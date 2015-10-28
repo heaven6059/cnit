@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.cnit</groupId>
+  <artifactId>YoYo-Base</artifactId>
+  <version>1.0.0</version>
+  <packaging>pom</packaging>
+  
+  <properties>
+		<org.springframework.version>3.2.12.RELEASE</org.springframework.version>
+		<org.mysql.version>5.1.34</org.mysql.version>
+		<mybatis.version>3.2.8</mybatis.version>
+		<druid.version>1.0.12</druid.version>
+		<mybatis-spring.version>1.2.2</mybatis-spring.version>
+		<hessian.version>3.1.5</hessian.version>
+		<log4j.version>1.2.17</log4j.version>
+		<fileupload.version>1.3.1</fileupload.version>
+		<shiro.version>1.2.2</shiro.version>
+		<redis.version>1.3.2.RELEASE</redis.version>
+		<taoping.version>1.0.1</taoping.version>
+		<jackson-databind.version>2.4.4</jackson-databind.version>
+		<sitemesh.version>3.0.0</sitemesh.version>
+		<jstl.version>1.2</jstl.version>
+		<aspectjweaver.version>1.8.5</aspectjweaver.version>
+		<junit.version>4.12</junit.version>
+		<json-lib.version>2.4</json-lib.version>
+		<javax.mail.version>1.4.7</javax.mail.version>
+		<objenesis.version>2.1</objenesis.version>
+		<easymock.version>3.3.1</easymock.version>
+		<dom4j.version>1.6.1</dom4j.version>
+		<fastjson.version>1.1.39</fastjson.version>
+		<protostuff.version>1.0.8</protostuff.version>
+		<YoYo-Support.version>1.0.0</YoYo-Support.version>
+		<poi.version>3.12</poi.version>
+		<poi-ooxml.version>3.12</poi-ooxml.version>
+	</properties>
+
+	<distributionManagement>
+		<repository>
+			<id>releases</id>
+			<name>YoYo Releases</name>
+			<url>http://10.255.8.17:8088/nexus/content/repositories/releases</url>
+		</repository>
+		<snapshotRepository>
+			<id>snapshots</id>
+			<name>YoYo Snapshots</name>
+			<url>http://10.255.8.17:8088/nexus/content/repositories/snapshots</url>
+		</snapshotRepository>
+	</distributionManagement>
+	
+	
+	
+  <modules>
+  	<module>YoYo-Base-Web</module>
+  	<module>YoYo-Base-Service</module>
+  	<module>YoYo-Base-Dal</module>
+  	<module>YoYo-Support</module>
+    <module>YoYo-Base-Spider</module>
+  </modules>
+  	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.1</version>
+					<configuration>
+						<source>1.7</source>
+						<target>1.7</target>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+</project>

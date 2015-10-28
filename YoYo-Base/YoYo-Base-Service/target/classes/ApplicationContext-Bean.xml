@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<description>接口配置</description>
+	<!-- 业务类 -->
+	<context:component-scan base-package="com.cnit.yoyo.rmi.**.*"></context:component-scan>
+	<bean id="smsService" class="com.cnit.yoyo.rmi.member.service.SmsService">
+		<property name="configLocation" value="classpath:smsTemplate.properties" />
+	</bean>
+	<bean id="oauthService" class="com.cnit.yoyo.rmi.member.service.OauthService">
+		<property name="configLocation" value="classpath:oauth.properties" />
+	</bean>
+	
+	<import resource="classpath*:spring-redis.xml" />
+	<import resource="classpath:spring-taoping.xml" />
+</beans>
