@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cnit.yoyo.dao.order.PaymentRefundsDetailMapper" >
+  <resultMap id="BaseResultMap" type="com.cnit.yoyo.model.order.PaymentRefundsDetail" >
+    <result column="batch_no" property="batchNo" jdbcType="VARCHAR" />
+    <result column="trade_no" property="tradeNo" jdbcType="VARCHAR" />
+    <result column="feel" property="feel" jdbcType="VARCHAR" />
+    <result column="result" property="result" jdbcType="VARCHAR" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <insert id="insert" parameterType="com.cnit.yoyo.model.order.PaymentRefundsDetail" >
+    insert into t_payment_refunds_detail (batch_no, trade_no, feel, 
+      result,create_time)
+    values (#{batchNo,jdbcType=VARCHAR}, #{tradeNo,jdbcType=VARCHAR}, #{feel,jdbcType=VARCHAR}, 
+      #{result,jdbcType=VARCHAR},sysdate())
+  </insert>
+  <insert id="insertSelective" parameterType="com.cnit.yoyo.model.order.PaymentRefundsDetail" >
+    insert into t_payment_refunds_detail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="batchNo != null" >
+        batch_no,
+      </if>
+      <if test="tradeNo != null" >
+        trade_no,
+      </if>
+      <if test="feel != null" >
+        feel,
+      </if>
+       create_time,
+      <if test="result != null" >
+        result,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="batchNo != null" >
+        #{batchNo,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeNo != null" >
+        #{tradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="feel != null" >
+        #{feel,jdbcType=VARCHAR},
+      </if>
+       sysdate(),
+      <if test="result != null" >
+        #{result,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

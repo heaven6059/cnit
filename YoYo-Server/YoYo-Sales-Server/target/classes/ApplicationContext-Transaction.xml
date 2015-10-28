@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+	<!-- ================================事务相关控制============================ -->
+	<bean name="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+	<tx:advice id="TxAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="delete*" propagation="REQUIRED" read-only="false" />
+			<tx:method name="remove*" propagation="REQUIRED" read-only="false" />
+			<tx:method name="insert*" propagation="REQUIRED" read-only="false" />
+			<tx:method name="save*" propagation="REQUIRED" read-only="false" />
+			<tx:method name="update*" propagation="REQUIRED" read-only="false" />
+			<tx:method name="modify*" propagation="REQUIRED" read-only="false" />
+			<tx:method name="batchSave*" propagation="REQUIRED" read-only="false" />
+			<tx:method name="batchUpdate*" propagation="REQUIRED" read-only="false" />
+			<tx:method name="batchInsert*" propagation="REQUIRED" read-only="false" />
+			<tx:method name="batchModify*" propagation="REQUIRED" read-only="false" />
+		</tx:attributes>
+	</tx:advice>
+	<aop:config>
+		<!--把事务控制在Service层 -->
+		<aop:pointcut id="pc" expression="execution(* com.cnit.yoyo.rmi.*.service.*.*(..))" />
+		<aop:advisor pointcut-ref="pc" advice-ref="TxAdvice" />
+	</aop:config>
+</beans>

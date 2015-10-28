@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cnit.yoyo.dao.member.StoreViewHistoryMapper">
+  <resultMap id="BaseResultMap" type="com.cnit.yoyo.model.member.StoreViewHistory">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="company_id" jdbcType="BIGINT" property="companyId" />
+    <result column="member_id" jdbcType="BIGINT" property="memberId" />
+    <result column="store_id" jdbcType="BIGINT" property="storeId" />
+    <result column="view_date" jdbcType="TIMESTAMP" property="viewDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, company_id, member_id, store_id, view_date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_store_view_history
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_store_view_history
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cnit.yoyo.model.member.StoreViewHistory">
+    insert into t_store_view_history (id, company_id, member_id, 
+      store_id, view_date)
+    values (#{id,jdbcType=INTEGER}, #{companyId,jdbcType=BIGINT}, #{memberId,jdbcType=BIGINT}, 
+      #{storeId,jdbcType=BIGINT}, #{viewDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cnit.yoyo.model.member.StoreViewHistory">
+    insert into t_store_view_history
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="companyId != null">
+        company_id,
+      </if>
+      <if test="memberId != null">
+        member_id,
+      </if>
+      <if test="storeId != null">
+        store_id,
+      </if>
+      <if test="viewDate != null">
+        view_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="companyId != null">
+        #{companyId,jdbcType=BIGINT},
+      </if>
+      <if test="memberId != null">
+        #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="storeId != null">
+        #{storeId,jdbcType=BIGINT},
+      </if>
+      <if test="viewDate != null">
+        #{viewDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cnit.yoyo.model.member.StoreViewHistory">
+    update t_store_view_history
+    <set>
+      <if test="companyId != null">
+        company_id = #{companyId,jdbcType=BIGINT},
+      </if>
+      <if test="memberId != null">
+        member_id = #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="storeId != null">
+        store_id = #{storeId,jdbcType=BIGINT},
+      </if>
+      <if test="viewDate != null">
+        view_date = #{viewDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cnit.yoyo.model.member.StoreViewHistory">
+    update t_store_view_history
+    set company_id = #{companyId,jdbcType=BIGINT},
+      member_id = #{memberId,jdbcType=BIGINT},
+      store_id = #{storeId,jdbcType=BIGINT},
+      view_date = #{viewDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <resultMap type="com.cnit.yoyo.model.member.dto.StoreViewHistoryDTO" extends="BaseResultMap" id="StoreViewHistoryResultMap">
+  		<result column="shop_name" property="shopName"/>
+  		<result column="store_name" property="stroeName"/>
+  		<result column="image" property="logo"/>
+  		<result column="companyId" property="company_id"/>
+  </resultMap>
+  
+  <select id="selectStoreViewHistory" resultMap="StoreViewHistoryResultMap" parameterType="com.cnit.yoyo.model.member.dto.StoreViewHistoryQryDTO">
+	SELECT
+		svh.id,
+		svh.view_date,
+		bs.shop_name,
+		bs.store_name,
+		bs.image,
+		bs.company_id
+	FROM
+		t_store_view_history svh
+	LEFT JOIN t_company bs ON svh.company_id = bs.company_id
+	WHERE svh.member_id=#{memberId}
+	order by svh.view_date desc
+  </select>
+  
+  <select id="selectStoreViewHistoryByIds" resultMap="BaseResultMap" parameterType="com.cnit.yoyo.model.member.dto.StoreViewHistoryQryDTO">
+  	SELECT
+		svh.id, 
+		svh.company_id, 
+		svh.member_id, 
+		svh.store_id, 
+		svh.view_date
+	FROM
+		t_store_view_history svh	
+	WHERE 
+		svh.member_id=#{memberId}
+	and svh.company_id in
+  	<foreach collection="companyIds" item="id" index="index" open="(" close=")" separator=",">
+		#{id}
+    </foreach>
+  </select>
+  
+  <delete id="deleteStoreViewHistory">
+  	delete from t_store_view_history where id in
+   	<foreach collection="array" item="id" index="index" open="(" close=")" separator=",">
+		#{id}
+    </foreach>
+  </delete>
+  
+  <delete id="deleteStoreViewHistoryByMember">
+  	delete from t_store_view_history where member_id =#{value}   	
+  </delete>
+  
+  <insert id="insertStoreViewHistory" parameterType="com.cnit.yoyo.model.member.dto.StoreViewHistoryDTO">       	
+      	{call PRO_ADD_T_STORE_VIEW_HISTORY(#{memberId,jdbcType=BIGINT,mode=IN},#{companyId,jdbcType=BIGINT,mode=IN},#{viewDate,jdbcType=TIMESTAMP,mode=IN})}  
+  </insert>
+  
+</mapper>

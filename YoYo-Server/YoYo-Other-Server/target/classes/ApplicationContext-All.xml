@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<import resource="classpath*:ApplicationContext-Bean.xml" />
+	<import resource="classpath*:ApplicationContext-DataSource.xml" />
+	<import resource="classpath*:ApplicationContext-ServiceMap.xml" />
+	<import resource="classpath*:ApplicationContext-Transaction.xml" />
+	<import resource="classpath*:ApplicationContext-i18n.xml" />
+	<import resource="classpath*:ApplicationContext-HessianClient.xml" />
+	<import resource="classpath*:spring-quartz.xml" />
+</beans>

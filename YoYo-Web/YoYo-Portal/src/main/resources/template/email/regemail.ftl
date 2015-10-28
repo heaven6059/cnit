@@ -1,0 +1,1 @@
+<a href="http://www.yoyocar.cn">您好${username},您的验证码为${validateCode}。</a>

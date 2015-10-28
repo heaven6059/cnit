@@ -1,0 +1,737 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cnit.yoyo.dao.order.OrderCommentMapper" >
+  <resultMap id="BaseResultMap" type="com.cnit.yoyo.model.order.OrderComment" >
+    <id column="comment_id" property="commentId" jdbcType="BIGINT" />
+    <result column="order_id" property="orderId" jdbcType="BIGINT" />
+    <result column="order_item_id" property="orderItemId" jdbcType="BIGINT" />
+    <result column="product_id" property="productId" jdbcType="BIGINT" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="comment" property="comment" jdbcType="VARCHAR" />
+    <result column="comment_star" property="commentStar" jdbcType="INTEGER" />
+    <result column="for_comment_id" property="forCommentId" jdbcType="BIGINT" />
+    <result column="member_id" property="memberId" jdbcType="BIGINT" />
+    <result column="comments_type" property="commentsType" jdbcType="CHAR" />
+    <result column="display" property="display" jdbcType="CHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="to_id" property="toId" jdbcType="BIGINT" />
+    <result column="to_name" jdbcType="VARCHAR" property="toName" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="CommentDetailDTO" type="com.cnit.yoyo.model.member.dto.OrderCommentDetailDTO">
+    <result column="goods_point" jdbcType="INTEGER" property="goodsPoint" />
+    <result column="member_lv_name" jdbcType="VARCHAR" property="memberLvName" />
+    <result column="login_name" jdbcType="VARCHAR" property="loginName" />
+    <result column="createtime" jdbcType="VARCHAR" property="orderCreateTime" />
+    <result column="reply_comment_id" jdbcType="INTEGER" property="replyCommentId" />
+    <result column="reply_author" jdbcType="VARCHAR" property="replyAuthor" />
+    <result column="reply_comment" jdbcType="VARCHAR" property="replyComment" />
+    <result column="reply_time" jdbcType="VARCHAR" property="replyTime" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    comment_id, order_id, order_item_id, product_id, title, comment, comment_star, for_comment_id, 
+    member_id, comments_type, display, create_time, to_id, to_name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_order_comment
+    where comment_id = #{commentId,jdbcType=BIGINT}
+  </select>
+  <select id="findCommentByOrderId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_order_comment
+    where order_id = #{order_id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_order_comment
+    where comment_id = #{commentId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.cnit.yoyo.model.order.OrderComment" >
+    insert into t_order_comment (comment_id, order_id, order_item_id, 
+      product_id, title, comment, 
+      comment_star, for_comment_id, member_id, 
+      comments_type, display, create_time, to_id, to_name
+      )
+    values (#{commentId,jdbcType=BIGINT}, #{orderId,jdbcType=BIGINT}, #{orderItemId,jdbcType=BIGINT}, 
+      #{productId,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{comment,jdbcType=VARCHAR}, 
+      #{commentStar,jdbcType=INTEGER}, #{forCommentId,jdbcType=BIGINT}, #{memberId,jdbcType=BIGINT}, 
+      #{commentsType,jdbcType=CHAR}, #{display,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP},
+      #{toId,jdbcType=BIGINT}, #{toName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cnit.yoyo.model.order.OrderComment" >
+    insert into t_order_comment
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="commentId != null" >
+        comment_id,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="orderItemId != null" >
+        order_item_id,
+      </if>
+      <if test="productId != null" >
+        product_id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="comment != null" >
+        comment,
+      </if>
+      <if test="commentStar != null" >
+        comment_star,
+      </if>
+      <if test="forCommentId != null" >
+        for_comment_id,
+      </if>
+      <if test="memberId != null" >
+        member_id,
+      </if>
+      <if test="commentsType != null" >
+        comments_type,
+      </if>
+      <if test="display != null" >
+        display,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="toId != null" >
+        to_id,
+      </if>
+      <if test="toName != null" >
+        to_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="commentId != null" >
+        #{commentId,jdbcType=BIGINT},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="orderItemId != null" >
+        #{orderItemId,jdbcType=BIGINT},
+      </if>
+      <if test="productId != null" >
+        #{productId,jdbcType=BIGINT},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="comment != null" >
+        #{comment,jdbcType=VARCHAR},
+      </if>
+      <if test="commentStar != null" >
+        #{commentStar,jdbcType=INTEGER},
+      </if>
+      <if test="forCommentId != null" >
+        #{forCommentId,jdbcType=BIGINT},
+      </if>
+      <if test="memberId != null" >
+        #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="commentsType != null" >
+        #{commentsType,jdbcType=CHAR},
+      </if>
+      <if test="display != null" >
+        #{display,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="toId != null" >
+        #{toId,jdbcType=BIGINT},
+      </if>
+      <if test="toName != null" >
+        #{toName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cnit.yoyo.model.order.OrderComment" >
+    update t_order_comment
+    <set >
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="orderItemId != null" >
+        order_item_id = #{orderItemId,jdbcType=BIGINT},
+      </if>
+      <if test="productId != null" >
+        product_id = #{productId,jdbcType=BIGINT},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="comment != null" >
+        comment = #{comment,jdbcType=VARCHAR},
+      </if>
+      <if test="commentStar != null" >
+        comment_star = #{commentStar,jdbcType=INTEGER},
+      </if>
+      <if test="forCommentId != null" >
+        for_comment_id = #{forCommentId,jdbcType=BIGINT},
+      </if>
+      <if test="memberId != null" >
+        member_id = #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="commentsType != null" >
+        comments_type = #{commentsType,jdbcType=CHAR},
+      </if>
+      <if test="display != null" >
+        display = #{display,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="toId != null" >
+        to_id = #{toId,jdbcType=BIGINT},
+      </if>
+      <if test="toName != null" >
+        to_name = #{toName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where comment_id = #{commentId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cnit.yoyo.model.order.OrderComment" >
+    update t_order_comment
+    set order_id = #{orderId,jdbcType=BIGINT},
+      order_item_id = #{orderItemId,jdbcType=BIGINT},
+      product_id = #{productId,jdbcType=BIGINT},
+      title = #{title,jdbcType=VARCHAR},
+      comment = #{comment,jdbcType=VARCHAR},
+      comment_star = #{commentStar,jdbcType=INTEGER},
+      for_comment_id = #{forCommentId,jdbcType=BIGINT},
+      member_id = #{memberId,jdbcType=BIGINT},
+      comments_type = #{commentsType,jdbcType=CHAR},
+      display = #{display,jdbcType=CHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      to_id = #{toId,jdbcType=BIGINT},
+      to_name = #{toName,jdbcType=VARCHAR}
+    where comment_id = #{commentId,jdbcType=BIGINT}
+  </update>
+  
+  <sql id="Order_Column_List">
+	t_orders.order_id,t_orders.company_id,t_orders.store_id,t_orders.MEMBER_ID,t_orders.total_amount,t_orders.final_amount,t_orders.pay_status,
+    t_orders.is_delivery,t_orders.discount_value,t_orders.createtime,t_orders.last_modified,t_orders.payment,t_orders.payment_id,t_orders.
+    shipping,t_orders.status,t_orders.confirm,t_orders.ship_area,t_orders.ship_name,t_orders.weight,t_orders.tostr,t_orders.itemnum,t_orders.ip,t_orders.ship_addr,
+    t_orders.ship_zip,t_orders.ship_tel,t_orders.ship_email,t_orders.ship_time,t_orders.ship_mobile,t_orders.cost_item,t_orders.is_coupons,t_orders.cost_tax,t_orders.tax_company,
+    t_orders.is_protect,t_orders.cost_protect,t_orders.cost_payment,t_orders.currency,t_orders.cur_rate,t_orders.score_u,t_orders.
+    score_g,t_orders.discount,t_orders.pmt_goods,t_orders.pmt_order,t_orders.payed,t_orders.memo,t_orders.disabled,t_orders.mark_type,t_orders.mark_text,t_orders.
+    cost_freight,t_orders.extend,t_orders.order_refer,t_orders.addon,t_orders.source,t_orders.confirm_time,t_orders.comments_count,t_orders.refund_status,t_orders.
+    act_id,t_orders.order_type,t_orders.is_extend,t_orders.order_kind,t_orders.is_display
+  </sql>
+  
+  <sql id="Items_Column_List" >
+    t_order_items.item_id,t_order_items.order_id,t_order_items.product_id,t_order_items.bn,t_order_items.name,t_order_items.price,t_order_items.g_pric,t_order_items.cost,t_order_items.amount,t_order_items.score,t_order_items.weight,t_order_items.nums,t_order_items.sendnum,t_order_items.item_type 
+  </sql>
+  
+  <sql id="Comments_Column_List" >
+    comments.comment_id, comments.order_id, comments.order_item_id, comments.product_id, comments.title, comments.comment, comments.comment_star, comments.for_comment_id, 
+    comments.member_id, comments.comments_type, comments.display, comments.create_time
+  </sql>
+  
+  <resultMap id="OrderCommentReusltDTO" type="com.cnit.yoyo.model.order.dto.OrderCommentDTO">
+  		<result column="comment_id" property="commentId" jdbcType="BIGINT" />
+	    <result column="order_id" property="orderId" jdbcType="BIGINT" />
+	    <result column="order_item_id" property="orderItemId" jdbcType="BIGINT" />
+	    <result column="product_id" property="productId" jdbcType="BIGINT" />
+	    <result column="title" property="title" jdbcType="VARCHAR" />
+	    <result column="comment" property="comment" jdbcType="VARCHAR" />
+	    <result column="comment_star" property="commentStar" jdbcType="INTEGER" />
+	    <result column="for_comment_id" property="forCommentId" jdbcType="BIGINT" />
+	    <result column="member_id" property="memberId" jdbcType="BIGINT" />
+	    <result column="comments_type" property="commentsType" jdbcType="CHAR" />
+	    <result column="display" property="display" jdbcType="CHAR" />
+	    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+	    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+	    <result column="price" jdbcType="DECIMAL" property="price" />
+	    <result column="product_id" property="productId" jdbcType="BIGINT" />
+		<result column="product_name" property="productName" jdbcType="VARCHAR" />
+	   	<result column="picture_path" property="picturePath" jdbcType="VARCHAR" />
+	   	<result column="goods_id" property="goodsId" jdbcType="BIGINT" />
+	   	<result column="member_name" property="memberName"/>
+	   	<result column="member_id" property="memberId"/>
+	   	<result column="mobile" property="mobile"/>
+	   	<result column="login_name" property="loginName"/>
+	   	<result column="store_name" property="storeName"/>
+	   	<result column="reply_count" property="replyCount" jdbcType="INTEGER" />
+	   	<collection property="replyComment" ofType="com.cnit.yoyo.model.order.dto.OrderCommentDTO">
+	   		<id column="reply_comment_id" property="commentId" jdbcType="BIGINT" />
+		    <result column="reply_comment" property="comment" jdbcType="VARCHAR" />
+		    <result column="reply_comment_time" property="createTime" jdbcType="TIMESTAMP" />
+		    <result column="reply_display" property="display" jdbcType="CHAR" />
+		    <result column="reply_comments_type" property="commentsType" jdbcType="CHAR" />
+		</collection>
+	   	
+  </resultMap>
+  
+  
+  <select id="selectNeedCommentOrder" parameterType="com.cnit.yoyo.model.order.dto.OrderQryDTO" resultMap="OrderCommentReusltDTO">
+    SELECT
+	   	items.item_id as order_item_id,
+	    items.price,
+	    items.product_id,
+		items.name product_name,
+	   	t_products.goods_id,
+	   	t_products.product_id,
+	   	t_products.picture_path,
+	   	t_orders.order_id,
+	   	t_orders.createtime,
+	   	(SELECT COUNT(0) from t_order_comment comments WHERE comments.order_item_id=items.item_id) as reply_count
+	FROM 
+		t_order_items items
+	left join t_orders  on t_orders.order_id = items.order_id
+	left join t_products on items.product_id = t_products.product_id
+	WHERE
+		items.order_id = #{orderId,jdbcType=BIGINT}
+  </select>
+  
+  
+  	<!-- 查询用户评论数量 -->
+	<select id="selectMemberCommentCount" resultType="java.lang.Long" parameterType="com.cnit.yoyo.model.member.dto.MemberCommentQryDTO">
+		SELECT
+			comments.comment_id
+		FROM
+			t_order_comment comments
+		LEFT JOIN t_orders orders ON comments.order_id=orders.order_id
+		LEFT JOIN t_painting_orders pOrders ON comments.order_id=pOrders.id
+		LEFT JOIN t_order_comment append ON comments.comment_id = append.for_comment_id AND (append.comments_type = '0' OR append.comments_type = '2')
+		LEFT JOIN t_products product ON comments.product_id=product.product_id		
+		LEFT JOIN t_members members ON comments.member_id=members.MEMBER_ID
+		LEFT JOIN t_pam_account account ON members.ACCOUNT_ID=account.ACCOUNT_ID
+		LEFT JOIN t_business_storemanger store ON orders.store_id=store.store_id
+		WHERE
+			comments.comments_type = '1'
+		<if test="memberId!=null">
+			AND comments.member_id=#{memberId}
+		</if>
+		<if test="companyId!=null">
+			AND orders.company_id=#{companyId} or pOrders.company_id =#{companyId}
+		</if>
+		<if test="memberName != null and memberName !=''">
+			AND account.LOGIN_NAME LIKE CONCAT('%/', #{memberName,jdbcType=VARCHAR},'%') escape '/'
+		</if>
+		<if test="storeName != null and storeName !=''">
+			AND store.store_name LIKE CONCAT('%/', #{storeName,jdbcType=VARCHAR},'%') escape '/'
+		</if>
+		<if test="title != null and title !=''">
+			AND comments.title LIKE CONCAT('%/', #{title,jdbcType=VARCHAR},'%') escape '/'
+		</if>
+		<if test="productName != null and productName  !=''">
+			AND product.`name` LIKE CONCAT('%/', #{productName,jdbcType=VARCHAR},'%') escape '/'
+		</if>
+		<if test="disPlay != null and disPlay != ''">
+			AND comments.display=#{disPlay}
+		</if>
+		<if test="orderId != null">
+			AND comments.order_id LIKE CONCAT('%', #{orderId,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="startTime !=null and startTime != ''">
+			 <![CDATA[
+		  	 	AND DATE_FORMAT(comments.create_time ,'%Y-%m-%d') >= DATE_FORMAT(#{startTime} ,'%Y-%m-%d')
+		  	 ]]>
+		</if>
+		<if test="endTime !=null and endTime != ''">
+			 <![CDATA[
+		  	 	AND DATE_FORMAT(comments.create_time ,'%Y-%m-%d') <= DATE_FORMAT(#{endTime} ,'%Y-%m-%d')
+		  	 ]]>
+		</if>
+		AND comments.for_comment_id = 0
+		GROUP BY comments.comment_id
+		ORDER BY
+		<choose>
+			<when test="orderStmt != null and orderStmt != ''">${orderStmt}</when>
+			<otherwise>comments.create_time DESC,append.create_time DESC</otherwise>
+		</choose>
+		 
+	</select>
+	
+	
+	<!-- 查询用户评论-->
+	<select id="selectMemberComment" resultMap="OrderCommentReusltDTO" parameterType="com.cnit.yoyo.model.member.dto.MemberCommentQryDTO">
+		SELECT
+			comments.order_item_id,
+			comments.order_id,
+			comments.comment_id,
+			comments.`comment`,
+			comments.title,
+			comments.create_time,
+			comments.display,
+			comments.comment_star,
+			comments.member_id,			
+			append.comment_id reply_comment_id,
+			append.`comment` reply_comment,
+			append.create_time reply_comment_time,
+			append.create_time reply_comment_time,
+			append.display reply_display,
+			append.comments_type reply_comments_type,
+			product.`name` product_name,
+			product.product_id,
+			product.goods_id,
+			product.picture_path,
+			members.`NAME` member_name,
+			account.login_name,
+			store.store_name,
+			(SELECT COUNT(0) FROM t_order_comment reply WHERE comments.comment_id=reply.for_comment_id AND reply.comments_type='0') reply_count
+		FROM
+			t_order_comment comments
+		LEFT JOIN t_orders orders ON comments.order_id=orders.order_id
+		LEFT JOIN t_painting_orders pOrders ON comments.order_id=pOrders.id
+		LEFT JOIN t_order_comment append ON comments.comment_id = append.for_comment_id AND (append.comments_type = '0' OR append.comments_type = '2')
+		LEFT JOIN t_products product ON comments.product_id=product.product_id		
+		LEFT JOIN t_members members ON comments.member_id=members.MEMBER_ID
+		LEFT JOIN t_pam_account account ON members.ACCOUNT_ID=account.ACCOUNT_ID
+		LEFT JOIN t_business_storemanger store ON orders.store_id=store.store_id
+		WHERE
+		comments.comments_type = #{commentsType,jdbcType=VARCHAR}
+		<if test="memberId!=null">
+		AND comments.member_id=#{memberId}
+		</if>
+		<if test="companyId!=null">
+		AND orders.company_id=#{companyId} or pOrders.company_id =#{companyId}
+		</if>
+		<if test="memberName != null and memberName !=''">
+			AND account.LOGIN_NAME LIKE CONCAT('%/', #{memberName,jdbcType=VARCHAR},'%') escape '/'
+		</if>
+		<if test="storeName != null and storeName !=''">
+			AND store.store_name LIKE CONCAT('%/', #{storeName,jdbcType=VARCHAR},'%') escape '/'
+		</if>
+		<if test="title != null and title !=''">
+			AND comments.title LIKE CONCAT('%/', #{title,jdbcType=VARCHAR},'%') escape '/'
+		</if>
+		<if test="productName != null and productName  !=''">
+			AND product.`name` LIKE CONCAT('%/', #{productName,jdbcType=VARCHAR},'%') escape '/'
+		</if>
+		<if test="disPlay != null and disPlay != ''">
+			AND comments.display=#{disPlay}
+		</if>
+		<if test="orderId != null">
+			AND comments.order_id LIKE CONCAT('%', #{orderId,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="startTime !=null and startTime != ''">
+			 <![CDATA[
+		  	 	AND DATE_FORMAT(comments.create_time ,'%Y-%m-%d') >= DATE_FORMAT(#{startTime} ,'%Y-%m-%d')
+		  	 ]]>
+		</if>
+		<if test="endTime !=null and endTime != ''">
+			 <![CDATA[
+		  	 	AND DATE_FORMAT(comments.create_time ,'%Y-%m-%d') <= DATE_FORMAT(#{endTime} ,'%Y-%m-%d')
+		  	 ]]>
+		</if>
+		AND comments.for_comment_id = 0
+		AND comments.comment_id in
+        <foreach collection="commentIds" item="commentId" index="index" open="(" close=")" separator=",">
+            #{commentId}
+        </foreach>
+        ORDER BY
+		<choose>
+			<when test="orderStmt != null and orderStmt != ''">${orderStmt}</when>
+			<otherwise>comments.create_time DESC,append.create_time DESC</otherwise>
+		</choose>
+	</select>
+	
+	
+	
+	<!-- 查询用户评论-->
+	<select id="selectMemberCommentByCommentId" resultMap="OrderCommentReusltDTO" parameterType="com.cnit.yoyo.model.member.dto.MemberCommentQryDTO">
+		SELECT
+			comments.order_item_id,
+			comments.order_id,
+			comments.comment_id,
+			comments.`comment`,
+			comments.title,
+			comments.create_time,
+			comments.display,
+			comments.comment_star,
+			append.comment_id reply_comment_id,
+			append.`comment` reply_comment,
+			append.create_time reply_comment_time,
+			append.display reply_display,
+			product.`name` product_name,
+			product.product_id,
+			product.goods_id,
+			product.picture_path,
+			member.`NAME` AS member_name,
+			member.member_id,
+			member.MOBILE,	
+			account.LOGIN_NAME,
+			(SELECT COUNT(0) FROM t_order_comment reply WHERE comments.comment_id=reply.for_comment_id AND reply.comments_type='0') reply_count
+		FROM
+			t_order_comment comments
+		LEFT JOIN t_order_comment append ON comments.comment_id = append.for_comment_id AND append.comments_type = '0'
+		LEFT JOIN t_products product ON comments.product_id=product.product_id
+		LEFT JOIN t_members member ON comments.member_id=member.MEMBER_ID
+		LEFT JOIN t_pam_account account on member.ACCOUNT_ID=account.ACCOUNT_ID		
+		WHERE
+			comments.for_comment_id = 0
+		AND comments.comments_type = '1'		
+		AND comments.comment_id = #{commentId}
+	</select>
+	
+	<update id="updateOrderCommentDisply" parameterType="java.util.Map">
+	    UPDATE t_order_comment
+	    <set>
+			<if test="display != null and display != ''">
+		       display = #{display},
+		    </if>
+	    </set>
+	    WHERE comment_id in
+	    <foreach collection="commentIds" item="commentId" index="index" open="(" close=")" separator=",">
+	           #{commentId}
+	    </foreach>
+  	</update>
+  	
+  	<select id="selectOrderCommentByGoodsId" resultMap="CommentDetailDTO">
+		<!-- SELECT
+			c.*, p.goods_point, v.name as member_lv_name, a.login_name, o.createtime
+		FROM
+			t_member_comments c, t_comment_goods_point p, t_members m, t_pam_account a, t_member_lv v, t_orders o
+		where c.comment_id=p.comment_id and c.member_id = m.member_id and m.account_id = a.account_id and 
+			m.member_lv_id = v.member_lv_id and c.order_id = o.order_id and p.disabled = 0 and c.for_comment_id = 0 and c.object_type = 'order' 
+			and c.display = 1 and c.p_index = 0 and c.disabled = 0 and p.goods_id = #{goodsId}  -->
+			<!-- SELECT
+			c.comment_id,
+			c.member_id,
+			c.for_comment_id,
+			c.type_id,
+			c.product_id,
+			c.order_id,
+			c.object_type,
+			c.author_id,
+			c.author,
+			c.contact,			
+			c.time,
+			c.lastreply,
+			c.reply_name,			
+			c.has_sent,
+			c.to_id,
+			c.to_uname,
+			c.title,
+			c.ip,
+			c.display,			
+			c.p_index,
+			c.disabled,
+			c.comments_type,
+			c.store_id,
+			c.comment,
+			p.goods_point, v.name as member_lv_name, a.login_name, o.createtime
+		FROM
+			t_member_comments c 
+		left join t_comment_goods_point p on c.comment_id=p.comment_id  
+		left join t_members m on c.member_id = m.member_id 
+		left join t_pam_account a on m.account_id = a.account_id 
+		left join t_member_lv v on m.member_lv_id = v.member_lv_id
+		left join t_orders o on c.order_id = o.order_id
+		where p.disabled = 0 and c.for_comment_id = 0 and c.object_type = 'order' 
+			and c.display = 1 and c.p_index = 0 and c.disabled = 0 and p.goods_id = #{goodsId} 
+		order by c.time desc -->
+		
+		SELECT
+			c.*,v.name as member_lv_name, a.login_name, o.createtime
+		FROM
+			t_order_comment c 
+		left join t_products p on c.product_id = p.product_id
+		left join t_members m on c.member_id = m.member_id 
+		left join t_pam_account a on m.account_id = a.account_id 
+		left join t_member_lv v on m.member_lv_id = v.member_lv_id
+		left join t_orders o on c.order_id = o.order_id
+		where c.for_comment_id = 0 and (c.display = '1' or c.display is null)  and p.goods_id = #{goodsId} 
+		order by c.create_time desc
+	</select>
+	
+	<select id="selectReplyCountByCommentId" resultType="java.lang.Integer">
+		<!-- SELECT
+			count(*)
+		FROM
+			t_member_comments c 
+		where c.for_comment_id = #{commentId} and c.object_type = 'reply' 
+			and c.display = 1 and c.p_index = 0 and c.disabled = 0 --> 
+		SELECT
+			count(*)
+		FROM
+			t_order_comment c 
+		where c.for_comment_id = #{commentId} 
+	</select>
+	
+	<select id="selectCommentCountByGoodsId" resultType="java.lang.Long">
+		<!-- SELECT
+			count(*)
+		FROM
+			t_member_comments c, t_comment_goods_point p, t_members m, t_pam_account a, t_member_lv v, t_orders o
+		where c.comment_id=p.comment_id and c.member_id = m.member_id and m.account_id = a.account_id and 
+			m.member_lv_id = v.member_lv_id and c.order_id = o.order_id and p.disabled = 0 and c.for_comment_id = 0 and c.object_type = 'order' 
+			and c.display = 1 and c.p_index = 0 and c.disabled = 0 and p.goods_id = #{goodsId}  -->
+			
+		SELECT
+			count(*)
+		FROM
+			t_order_comment c, t_members m, t_pam_account a, t_member_lv v, t_orders o, t_products p
+		where c.member_id = m.member_id and m.account_id = a.account_id and c.product_id = p.product_id and
+			m.member_lv_id = v.member_lv_id and c.order_id = o.order_id and c.for_comment_id = 0 and
+			p.goods_id = #{goodsId} 
+	</select>
+	
+	<select id="selectCommentCountByGoodsIdAndPoint" resultType="java.lang.Long">
+		<!-- SELECT
+			count(*)
+		FROM
+			t_member_comments c, t_comment_goods_point p, t_members m, t_pam_account a, t_member_lv v, t_orders o
+		where c.comment_id=p.comment_id and c.member_id = m.member_id and m.account_id = a.account_id and 
+			m.member_lv_id = v.member_lv_id and c.order_id = o.order_id and p.disabled = 0 and c.for_comment_id = 0 and c.object_type = 'order' 
+			and c.display = 1 and c.p_index = 0 and c.disabled = 0 and p.goods_id = #{goodsId} and p.goods_point in 
+			<foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+		    	#{item}  
+		   	</foreach> -->
+		SELECT
+			count(*)
+		FROM
+			t_order_comment c, t_members m, t_pam_account a, t_member_lv v, t_orders o, t_products p
+		where c.member_id = m.member_id and m.account_id = a.account_id and 
+			m.member_lv_id = v.member_lv_id and c.order_id = o.order_id and c.for_comment_id = 0 
+			and c.product_id= p.product_id and p.goods_id = #{goodsId} and c.comment_star in 
+			<foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+		    	#{item}  
+		   	</foreach>
+	</select>
+	
+	<select id="selectCommentById" resultMap="CommentDetailDTO">
+			<!-- SELECT
+			c.comment_id,
+			c.member_id,
+			c.for_comment_id,
+			c.type_id,
+			c.product_id,
+			c.order_id,
+			c.object_type,
+			c.author_id,
+			c.author,
+			c.contact,			
+			c.time,
+			c.lastreply,
+			c.reply_name,			
+			c.has_sent,
+			c.to_id,
+			c.to_uname,
+			c.title,
+			c.ip,
+			c.display,			
+			c.p_index,
+			c.disabled,
+			c.comments_type,
+			c.store_id,
+			c.comment,
+			p.goods_point, v.name as member_lv_name, a.login_name, o.createtime
+		FROM
+			t_member_comments c 
+		left join t_comment_goods_point p on c.comment_id=p.comment_id  
+		left join t_members m on c.member_id = m.member_id 
+		left join t_pam_account a on m.account_id = a.account_id 
+		left join t_member_lv v on m.member_lv_id = v.member_lv_id
+		left join t_orders o on c.order_id = o.order_id
+		where p.disabled = 0 and c.for_comment_id = 0 and c.object_type = 'order' 
+			and c.display = 1 and c.p_index = 0 and c.disabled = 0 and c.comment_id=#{commentId} -->
+			
+			SELECT c.*, v.name as member_lv_name, a.login_name, o.createtime
+		FROM
+			t_order_comment c 
+		left join t_members m on c.member_id = m.member_id 
+		left join t_pam_account a on m.account_id = a.account_id 
+		left join t_member_lv v on m.member_lv_id = v.member_lv_id
+		left join t_orders o on c.order_id = o.order_id
+		where c.for_comment_id = 0
+			and c.display = '1' and c.comment_id=#{commentId}
+	</select>
+	
+	<select id="selectReplyByCommentId" parameterType="java.lang.Integer" resultMap="CommentDetailDTO">
+		<!-- SELECT
+			*
+		FROM
+			t_member_comments c 
+		where c.for_comment_id = #{commentId} and c.object_type = 'reply' 
+			and c.display = 1 and c.p_index = 0 and c.disabled = 0 
+		order by c.time desc -->
+		SELECT
+			c.*,a.login_name
+		FROM
+			t_order_comment c 
+		left join t_members m on c.member_id = m.member_id 
+		left join t_pam_account a on m.account_id = a.account_id 
+		where c.for_comment_id = #{commentId} 
+			and c.display = '1' 
+		order by c.create_time desc
+	</select>
+	
+	<select id="selectReplyById" resultMap="CommentDetailDTO">
+			SELECT c.*,
+			v.name as member_lv_name, a.login_name
+		FROM
+			t_order_comment c 
+		left join t_members m on c.member_id = m.member_id 
+		left join t_pam_account a on m.account_id = a.account_id 
+		left join t_member_lv v on m.member_lv_id = v.member_lv_id
+		where (c.comments_type = '2' or c.comments_type = '0') and c.display = '1' and c.comment_id=#{commentId}
+	</select>
+	
+	<select id="selectCommentByExample"  resultMap="CommentDetailDTO">
+    select c.*,a.login_name from t_order_comment c
+    left join t_members m on c.member_id = m.member_id 
+	left join t_pam_account a on m.account_id = a.account_id 
+    where 1=1 
+      <if test="memberId != null">
+        and c.member_id = #{memberId,jdbcType=INTEGER}
+      </if>
+      <if test="forCommentId != null">
+        and c.for_comment_id = #{forCommentId,jdbcType=INTEGER}
+      </if>
+      <if test="productId != null">
+        and c.product_id = #{productId,jdbcType=INTEGER}
+      </if>
+      <if test="orderId != null">
+        and c.order_id = #{orderId,jdbcType=BIGINT}
+      </if>
+      <if test="orderItemId != null">
+        and c.order_item_id = #{orderItemId,jdbcType=BIGINT}
+      </if>
+      <if test="display != null">
+        and c.display = #{display,jdbcType=INTEGER}
+      </if>
+      <if test="commentsType != null">
+        and c.comments_type = #{commentsType,jdbcType=VARCHAR}
+      </if>
+      <if test="title != null">
+        and c.title = #{title,jdbcType=VARCHAR}
+      </if>
+      <if test="comment != null">
+        and c.comment = #{comment,jdbcType=VARCHAR}
+      </if>
+      <if test="commentStar != null">
+        and c.comment_star = #{commentStar,jdbcType=VARCHAR}
+      </if>
+      order by c.create_time desc
+  </select>
+  
+  <select id="selectCommentCountByProductId" resultType="java.lang.Long">
+		SELECT
+			count(*)
+		FROM
+			t_order_comment c,  t_members m, t_pam_account a, t_member_lv v, t_orders o
+		where c.member_id = m.member_id and m.account_id = a.account_id and 
+			m.member_lv_id = v.member_lv_id and c.order_id = o.order_id and c.for_comment_id = 0 
+			and c.display = '1' and c.product_id = #{productId} 
+	</select>
+	
+	<select id="selectSumPointByProductId" resultType="java.lang.Long">
+		SELECT
+			sum(c.comment_star)
+		FROM
+			t_order_comment c, t_members m, t_pam_account a, t_member_lv v, t_orders o
+		where c.member_id = m.member_id and m.account_id = a.account_id and 
+			m.member_lv_id = v.member_lv_id and c.order_id = o.order_id and c.for_comment_id = 0 
+			and c.display = '1' and c.product_id = #{productId} 
+	</select>
+	
+</mapper>

@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cnit.yoyo.dao.car.CarSpiderCompareMapper">
+  <resultMap id="BaseResultMap" type="com.cnit.yoyo.model.car.CarSpiderCompare">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="spider_val_id" jdbcType="VARCHAR" property="spiderValId" />
+    <result column="before_tips" jdbcType="LONGVARCHAR" property="beforeTips" />
+    <result column="after_tips" jdbcType="LONGVARCHAR" property="afterTips" />
+    <result column="before_value" jdbcType="LONGVARCHAR" property="beforeValue" />
+    <result column="after_value" jdbcType="LONGVARCHAR" property="afterValue" />
+    <result column="compare_type" jdbcType="VARCHAR" property="compareType" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="create_id" jdbcType="VARCHAR" property="createId" />
+    <result column="create_time" jdbcType="DATE" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, spider_val_id, before_tips, after_tips, before_value, after_value, compare_type, 
+    type, status, create_id, create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_car_spider_compare
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  
+    <select id="findList" resultMap="BaseResultMap" parameterType="map" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_car_spider_compare
+    where status = 0
+        <if test="spiderValId != null and spiderValId != '' and spiderValId != -1">  
+            and spider_val_id = #{spiderValId,jdbcType=VARCHAR}
+        </if>  
+        <if test="compareType != null and compareType != '' and compareType != -1">  
+            and compare_type =  #{compareType,jdbcType=VARCHAR}
+        </if>  
+    <!-- 排序规则 -->
+		<if test="orderStmt != null">
+			ORDER BY ${orderStmt}
+		</if>
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_car_spider_compare
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cnit.yoyo.model.car.CarSpiderCompare">
+    insert into t_car_spider_compare (id, spider_val_id, before_tips, 
+      after_tips, before_value, after_value, 
+      compare_type, type, status, 
+      create_id, create_time)
+    values (#{id,jdbcType=INTEGER}, #{spiderValId,jdbcType=VARCHAR}, #{beforeTips,jdbcType=LONGVARCHAR}, 
+      #{afterTips,jdbcType=LONGVARCHAR}, #{beforeValue,jdbcType=LONGVARCHAR}, #{afterValue,jdbcType=LONGVARCHAR}, 
+      #{compareType,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{createId,jdbcType=VARCHAR}, #{createTime,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cnit.yoyo.model.car.CarSpiderCompare">
+    insert into t_car_spider_compare
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="spiderValId != null">
+        spider_val_id,
+      </if>
+      <if test="beforeTips != null">
+        before_tips,
+      </if>
+      <if test="afterTips != null">
+        after_tips,
+      </if>
+      <if test="beforeValue != null">
+        before_value,
+      </if>
+      <if test="afterValue != null">
+        after_value,
+      </if>
+      <if test="compareType != null">
+        compare_type,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="createId != null">
+        create_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="spiderValId != null">
+        #{spiderValId,jdbcType=VARCHAR},
+      </if>
+      <if test="beforeTips != null">
+        #{beforeTips,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="afterTips != null">
+        #{afterTips,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="beforeValue != null">
+        #{beforeValue,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="afterValue != null">
+        #{afterValue,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="compareType != null">
+        #{compareType,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createId != null">
+        #{createId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cnit.yoyo.model.car.CarSpiderCompare">
+    update t_car_spider_compare
+    <set>
+      <if test="spiderValId != null">
+        spider_val_id = #{spiderValId,jdbcType=VARCHAR},
+      </if>
+      <if test="beforeTips != null">
+        before_tips = #{beforeTips,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="afterTips != null">
+        after_tips = #{afterTips,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="beforeValue != null">
+        before_value = #{beforeValue,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="afterValue != null">
+        after_value = #{afterValue,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="compareType != null">
+        compare_type = #{compareType,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createId != null">
+        create_id = #{createId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=DATE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cnit.yoyo.model.car.CarSpiderCompare">
+    update t_car_spider_compare
+    set spider_val_id = #{spiderValId,jdbcType=VARCHAR},
+      before_tips = #{beforeTips,jdbcType=LONGVARCHAR},
+      after_tips = #{afterTips,jdbcType=LONGVARCHAR},
+      before_value = #{beforeValue,jdbcType=LONGVARCHAR},
+      after_value = #{afterValue,jdbcType=LONGVARCHAR},
+      compare_type = #{compareType,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      create_id = #{createId,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=DATE}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <delete id="batchDeleteByParams" >
+    delete from t_car_spider_compare
+    where 1=1 and spider_val_id in 
+    <foreach collection="list" item="item" index="index" open="(" close=")" separator=",">
+		#{item.spiderValId}
+	</foreach>
+  </delete>
+  
+  <!-- 批量插入 -->
+   <insert id="batchInsertByParams" parameterType="java.util.List">
+		 insert into t_car_spider_compare (spider_val_id, before_tips, after_tips,before_value,after_value,compare_type,type,status,create_id,create_time)
+		 <foreach collection="list" index="index" item="item" separator="union all"> select 
+		 	#{item.spiderValId,jdbcType=VARCHAR}, #{item.beforeTips,jdbcType=LONGVARCHAR}, #{item.afterTips,jdbcType=LONGVARCHAR}, #{item.beforeValue,jdbcType=LONGVARCHAR}
+		 	, #{item.afterValue,jdbcType=LONGVARCHAR}, #{item.compareType,jdbcType=VARCHAR}, #{item.type,jdbcType=VARCHAR}, #{item.status,jdbcType=VARCHAR}
+		 	, #{item.createId,jdbcType=VARCHAR}, #{item.createTime,jdbcType=DATE} from dual
+		</foreach>
+   </insert>
+  
+</mapper>

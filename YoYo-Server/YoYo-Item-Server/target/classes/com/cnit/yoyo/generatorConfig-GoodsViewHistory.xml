@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+	<properties url="file:///E://code//YoYo-Server//YoYo-Item-Server///generatorConfig.properties" />
+	<!-- 存放jdbc驱动包的位置，可以采用相对路径，也可以采用绝对路径 -->
+	<classPathEntry location="${sqljdbcPath}" />
+	<context id="ecstore_yoyo_server">
+		<plugin type="org.mybatis.generator.plugins.MapperConfigPlugin">
+			<property name="targetPackage" value="com.cnit.yoyo" />
+			<property name="targetProject" value="YoYo-Item-Server/src/main/resource" />
+		</plugin>
+		
+		<!-- 为实体类添加序列化实现接口 -->
+		<plugin type="org.mybatis.generator.plugins.SerializablePlugin">
+			<property name="suppressJavaInterface " value="false" />
+		</plugin>
+		<!-- 为实体类添加toString方法 -->
+		<plugin type="org.mybatis.generator.plugins.ToStringPlugin"></plugin>
+		<!-- 为实体类添加equals与hashcode方法 -->
+		<plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin"></plugin>
+		<jdbcConnection driverClass="${driverClass}" connectionURL="${connectionURL}"
+			userId="${userId}" password="${password}" />
+		<javaModelGenerator targetPackage="com.cnit.yoyo.model.goods" targetProject="${modelTargetProject}" />
+		<!-- 配置生成相应的实体Mapper.xml，对于Mapper3.X我们需要把type="XMLMAPPER" -->
+		<sqlMapGenerator targetPackage="com.cnit.yoyo.mapper.goods" targetProject="${sqlMapTargetProject}" />
+		<!-- 配置生成相应的接口类，对应与Mapper.xml中的一系列CRUD方法SQL语句 -->
+		<javaClientGenerator targetPackage="com.cnit.yoyo.dao.goods" targetProject="${daoTargetProject}"
+			type="XMLMAPPER" />
+			
+			
+		<!-- schema你的数据库，tableName表明，domainObjectName对应你的javabean类名，是否生成相应的example 尽量关闭了所有不必要的Example生成信息 -->
+		<!-- <table schema="mybatis_db" tableName="visitor" domainObjectName="Visitor" enableCountByExample="false" 
+			enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"> 
+			<generatedKey column="id" sqlStatement="MySql" /> <columnOverride column="name" property="visitor_name" 
+			/> <ignoreColumn column="status" delimitedColumnName="false" /> </table> -->
+	<!-- 	<table schema="yoyo" tableName="t_pam_account" domainObjectName="PamAccount"
+			enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" selectByExampleQueryId="false">
+		</table>
+		<table schema="yoyo" tableName="t_pam_log_site" domainObjectName="PamLogSite"
+			enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" selectByExampleQueryId="false">
+		</table>
+		<table schema="yoyo" tableName="t_pam_log_plat" domainObjectName="PamLogPlat"
+			enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" selectByExampleQueryId="false">
+		</table>
+		<table schema="yoyo" tableName="t_members" domainObjectName="Member"
+			enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" selectByExampleQueryId="false">
+		</table>
+		<table schema="yoyo" tableName="t_member_lv" domainObjectName="MemberLevel"
+			enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" selectByExampleQueryId="false">
+		</table>
+		<table schema="yoyo" tableName="t_temp_key" domainObjectName="TempKey"
+			enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" selectByExampleQueryId="false">
+		</table>
+		
+		<table schema="yoyo" tableName="t_member_comments" domainObjectName="MemberComment"
+			enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" selectByExampleQueryId="false">
+		</table>
+		
+		<table schema="yoyo" tableName="t_orders" domainObjectName="Order"
+			enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" selectByExampleQueryId="false">
+		</table>
+		
+		<table schema="yoyo" tableName="t_goods" domainObjectName="Goods"
+			enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" selectByExampleQueryId="false">
+		</table>
+		
+		<table schema="yoyo" tableName="t_business_storemanger" domainObjectName="Store"
+			enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" selectByExampleQueryId="false">
+		</table>	
+		<table schema="yoyo" tableName="t_company" domainObjectName="Company"
+			enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" selectByExampleQueryId="false">
+		</table> 
+		<table schema="yoyo" tableName="area" domainObjectName="Area"
+			enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" selectByExampleQueryId="false">
+		</table>
+		
+		<table schema="yoyo" tableName="t_company_storegrade" domainObjectName="ShopGrade"
+			enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" selectByExampleQueryId="false">
+		</table>
+		
+		<table schema="yoyo" tableName="t_brand" domainObjectName="Brand"
+			enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" selectByExampleQueryId="false">
+		</table>
+		
+		<table schema="yoyo" tableName="t_label" domainObjectName="Label"
+			enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" selectByExampleQueryId="false">
+		</table>-->
+<!-- 		
+		<table schema="yoyo" tableName="t_goods_accessory" domainObjectName="CarAccessoryGoods"
+            enableCountByExample="false" enableUpdateByExample="true" enableDeleteByExample="true"
+            enableSelectByExample="true" selectByExampleQueryId="false">
+        </table>
+        <table schema="yoyo" tableName="t_goods_boutique" domainObjectName="CarBoutiqueGoods"
+            enableCountByExample="false"  enableUpdateByExample="true" enableDeleteByExample="true"
+            enableSelectByExample="true" selectByExampleQueryId="false">
+        </table>
+        <table schema="yoyo" tableName="t_goods_car" domainObjectName="CarGoods"
+            enableCountByExample="false"  enableUpdateByExample="true" enableDeleteByExample="true"
+            enableSelectByExample="true" selectByExampleQueryId="false">
+        </table>
+        <table schema="yoyo" tableName="t_goods_maintain" domainObjectName="CarMaintainGoods"
+            enableCountByExample="false"  enableUpdateByExample="true" enableDeleteByExample="true"
+            enableSelectByExample="true" selectByExampleQueryId="false">
+        </table>
+        <table schema="yoyo" tableName="t_goods_other" domainObjectName="OtherGoods"
+            enableCountByExample="false" enableUpdateByExample="true" enableDeleteByExample="true"
+            enableSelectByExample="true" selectByExampleQueryId="false">
+        </table> -->
+        <table schema="yoyo" tableName="t_goods_view_history" domainObjectName="GoodsViewHistory"
+            enableCountByExample="true"  enableUpdateByExample="true" enableDeleteByExample="true"
+            enableSelectByExample="true" selectByExampleQueryId="false">
+        </table>
+	</context>
+</generatorConfiguration>

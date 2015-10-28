@@ -1,0 +1,17 @@
+/**主体*/
+.division{background:white;border:1px solid #eee;padding:10px 10px;margin-bottom:10px;}
+.division li{padding: 2px;}
+.borderdown{border-top:1px solid #BEC6CE;border-left:1px solid #BEC6CE;border-right:1px solid white;border-bottom:1px solid white;}
+.borderup{border-top:1px solid #EFEFEF;border-left:1px solid #EFEFEF;border-right:1px solid #BEC6CE;border-bottom:1px solid #BEC6CE;}
+.borderbottom{border-bottom:1px solid #eeeeee;margin-bottom:5px;}
+.division .forform th, .division .forform td{vertical-align:top;padding:5px;}
+.division .forform th{width:120px;font-size:14px;font-weight:normal;padding-left:5px;color:#777777;white-space:nowrap;text-align:right;}
+ .x-input {  border: 1px solid #cccccc;  padding: 6px 5px ;  _vertical-align: middle;}
+ form .red {  color: red;  border: 0px;  margin-right: 5px;  background-color: #FFFFFF;}
+ .btn-primary{text-align:center;}
+ .mlev label{  margin-right: 5px;}
+ /**优惠条件*/
+ .tableform{display:none;border: 1px solid #cccccc;  padding: 8px;}
+ .tableform input, .solution_li input{width:60px;}
+ .solution_li li {display:none;}
+ 

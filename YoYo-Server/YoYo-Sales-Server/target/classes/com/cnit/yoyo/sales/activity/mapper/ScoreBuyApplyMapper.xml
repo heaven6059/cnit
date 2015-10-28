@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cnit.yoyo.sales.activity.dao.ScoreBuyApplyMapper">
+  <resultMap id="BaseResultMap" type="com.cnit.yoyo.model.sales.activity.ScoreBuyApply">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="gid" jdbcType="BIGINT" property="gid" />
+    <result column="aid" jdbcType="INTEGER" property="aid" />
+    <result column="company_id" jdbcType="BIGINT" property="companyId" />
+    <result column="store_id" jdbcType="BIGINT" property="storeId" />
+    <result column="member_id" jdbcType="INTEGER" property="memberId" />
+    <result column="cat_id" jdbcType="INTEGER" property="catId" />
+    <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="last_price" jdbcType="DECIMAL" property="lastPrice" />
+    <result column="score" jdbcType="INTEGER" property="score" />
+    <result column="isMemLv" jdbcType="INTEGER" property="ismemlv" />
+    <result column="remainnums" jdbcType="INTEGER" property="remainnums" />
+    <result column="nums" jdbcType="INTEGER" property="nums" />
+    <result column="personlimit" jdbcType="INTEGER" property="personlimit" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="image_codeid" jdbcType="VARCHAR" property="imageCodeid" />
+    <result column="last_midifity" jdbcType="TIMESTAMP" property="lastMidifity" />
+    <result column="isdel" jdbcType="VARCHAR" property="isdel" />
+  </resultMap>
+  
+  <resultMap extends="BaseResultMap" id="resultMapDTO" type="com.cnit.yoyo.model.sales.activity.dto.ScoreBuyApplyDTO">
+		<result column="store_name" jdbcType="VARCHAR" property="storeName" />
+		<result column="NAME" jdbcType="VARCHAR" property="memName" />
+		<result column="name" jdbcType="VARCHAR" property="actName" />
+		<result column="NAME" jdbcType="VARCHAR" property="goodsName" />
+		<result column="CAT_NAME" jdbcType="VARCHAR" property="catName" />
+		<result column="act_open" jdbcType="VARCHAR" property="actOpen" />
+		<result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
+		<result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+		<result column="limit_num" jdbcType="INTEGER" property="limitNum" />
+	</resultMap>
+	
+  <sql id="Base_Column_List">
+    id, gid, aid, company_id, store_id, member_id, cat_id, price, last_price, score, 
+    isMemLv, remainnums, nums, personlimit, status, remark, image_codeid, last_midifity,isdel
+  </sql>
+  
+  <select id="selectGoodsScoreActivity" resultMap="resultMapDTO" parameterType="java.lang.Integer">
+  	SELECT
+		apply.id,
+		apply.gid,
+		apply.aid,
+		apply.company_id,
+		apply.store_id,
+		apply.member_id,
+		apply.cat_id,
+		apply.price,
+		apply.last_price,
+		apply.score,
+		apply.isMemLv,
+		apply.remainnums,
+		apply.nums,
+		apply.personlimit,
+		apply.`status`,
+		apply.remark,
+		apply.image_codeid,
+		apply.last_midifity,			
+		activity.`name` as actName,
+		activity.act_open,
+		activity.start_time,
+		activity.end_time
+	FROM
+		t_activity activity
+	LEFT JOIN t_activity_apply apply ON activity.act_id = apply.aid
+	WHERE
+		activity.act_status=2
+		AND activity.act_open=1
+		<![CDATA[
+		AND DATE_FORMAT(now(), '%Y-%m-%d %H:%m:s') >= DATE_FORMAT(activity.start_time,'%Y-%m-%d %H:%m:s')
+		]]>
+		<![CDATA[
+		AND DATE_FORMAT(now(), '%Y-%m-%d') <= DATE_FORMAT(activity.end_time,'%Y-%m-%d %H:%m:s')
+		]]>
+		AND apply.`status`=2
+		AND apply.isdel='0'
+		AND apply.gid = #{goodsId}
+  </select>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="resultMapDTO">
+    SELECT
+		t_activity_apply.id,
+		t_activity_apply.gid,
+		t_activity_apply.aid,
+		t_activity_apply.company_id,
+		t_activity_apply.store_id,
+		t_activity_apply.member_id,
+		t_activity_apply.cat_id,
+		t_activity_apply.price,
+		t_activity_apply.last_price,
+		t_activity_apply.score,
+		t_activity_apply.isMemLv,
+		t_activity_apply.remainnums,
+		t_activity_apply.nums,
+		t_activity_apply.personlimit,
+		t_activity_apply.`status`,
+		t_activity_apply.remark,
+		t_activity_apply.image_codeid,
+		t_activity_apply.last_midifity,
+		t_business_storemanger.company_name,
+		t_business_storemanger.store_name,
+		t_members.`NAME` as memName,
+		t_activity.`name` as actName,
+		t_activity.act_open,
+		t_activity.start_time,
+		t_activity.end_time,
+		t_activity.limit_num,
+		t_goods.`NAME` as goodsName,
+		t_goods_cat.CAT_NAME as catName
+		FROM
+		t_activity_apply
+		JOIN t_business_storemanger ON t_activity_apply.store_id = t_business_storemanger.store_id
+		JOIN t_members ON t_members.MEMBER_ID = t_activity_apply.member_id
+		JOIN t_activity ON t_activity.act_id = t_activity_apply.aid
+		JOIN t_goods ON t_goods.GOODS_ID = t_activity_apply.gid
+		JOIN t_goods_cat ON t_goods_cat.CAT_ID = t_activity_apply.cat_id
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectList" parameterType="com.cnit.yoyo.model.sales.activity.dto.ScoreBuyApplyQryDTO" resultMap="resultMapDTO">
+    SELECT
+		t_activity_apply.id,
+		t_activity_apply.gid,
+		t_activity_apply.aid,
+		t_activity_apply.company_id,
+		t_activity_apply.store_id,
+		t_activity_apply.member_id,
+		t_activity_apply.cat_id,
+		t_activity_apply.price,
+		t_activity_apply.last_price,
+		t_activity_apply.score,
+		t_activity_apply.isMemLv,
+		t_activity_apply.remainnums,
+		t_activity_apply.nums,
+		t_activity_apply.personlimit,
+		t_activity_apply.`status`,
+		t_activity_apply.remark,
+		t_activity_apply.image_codeid,
+		t_activity_apply.last_midifity,
+		t_business_storemanger.company_name,
+		t_business_storemanger.store_name,
+		t_members.`NAME` as memName,
+		t_activity.`name` as actName,
+		t_activity.act_open,
+		t_activity.start_time,
+		t_activity.end_time,
+		t_goods.`NAME` as goodsName,
+		t_goods_cat.CAT_NAME as catName
+		FROM
+		t_activity_apply
+		JOIN t_business_storemanger ON t_activity_apply.store_id = t_business_storemanger.store_id
+		JOIN t_members ON t_members.MEMBER_ID = t_activity_apply.member_id
+		JOIN t_activity ON t_activity.act_id = t_activity_apply.aid
+		JOIN t_goods ON t_goods.GOODS_ID = t_activity_apply.gid
+		JOIN t_goods_cat ON t_goods_cat.CAT_ID = t_activity_apply.cat_id
+		where isdel='0'
+	    <if test="actName !=null and actName != ''">
+			<![CDATA[
+			  and t_activity.`name` like CONCAT('%', #{actName,jdbcType=VARCHAR},'%')
+			]]>
+		</if>
+		<if test="memName !=null and memName != ''">
+			<![CDATA[
+			  and t_members.`NAME` like CONCAT('%', #{memName,jdbcType=VARCHAR},'%')
+			]]>
+		</if>
+		<if test="storeName !=null and storeName != ''">
+			<![CDATA[
+			  and t_business_storemanger.store_name like CONCAT('%', #{storeName,jdbcType=VARCHAR},'%')
+			]]>
+		</if>
+		<if test="memberId !=null and memberId != ''">
+			  and t_activity_apply.member_id = #{memberId,jdbcType=INTEGER}
+		</if>
+		<if test="status !=null and status != ''">
+			<![CDATA[
+			  and t_activity_apply.status = #{status,jdbcType=INTEGER}
+			]]>
+		</if>
+		<if test="type !=null and type != ''">
+			  and t_activity.type = #{type,jdbcType=INTEGER}
+		</if>
+		order by t_activity_apply.last_midifity desc
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_activity_apply
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cnit.yoyo.model.sales.activity.ScoreBuyApply">
+    insert into t_activity_apply (id, gid, aid, 
+      company_id, store_id, member_id, 
+      cat_id, price, last_price, 
+      score, isMemLv, remainnums, 
+      nums, personlimit, status, 
+      remark, image_codeid, last_midifity,isdel
+      )
+    values (#{id,jdbcType=INTEGER}, #{gid,jdbcType=BIGINT}, #{aid,jdbcType=INTEGER}, 
+      #{companyId,jdbcType=BIGINT}, #{storeId,jdbcType=BIGINT}, #{memberId,jdbcType=INTEGER}, 
+      #{catId,jdbcType=INTEGER}, #{price,jdbcType=DECIMAL}, #{lastPrice,jdbcType=DECIMAL}, 
+      #{score,jdbcType=INTEGER}, #{ismemlv,jdbcType=INTEGER}, #{remainnums,jdbcType=INTEGER}, 
+      #{nums,jdbcType=INTEGER}, #{personlimit,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
+      #{remark,jdbcType=VARCHAR}, #{imageCodeid,jdbcType=VARCHAR}, #{lastMidifity,jdbcType=TIMESTAMP},#{isdel,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cnit.yoyo.model.sales.activity.ScoreBuyApply">
+    insert into t_activity_apply
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="gid != null">
+        gid,
+      </if>
+      <if test="aid != null">
+        aid,
+      </if>
+      <if test="companyId != null">
+        company_id,
+      </if>
+      <if test="storeId != null">
+        store_id,
+      </if>
+      <if test="memberId != null">
+        member_id,
+      </if>
+      <if test="catId != null">
+        cat_id,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="lastPrice != null">
+        last_price,
+      </if>
+      <if test="score != null">
+        score,
+      </if>
+      <if test="ismemlv != null">
+        isMemLv,
+      </if>
+      <if test="remainnums != null">
+        remainnums,
+      </if>
+      <if test="nums != null">
+        nums,
+      </if>
+      <if test="personlimit != null">
+        personlimit,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="imageCodeid != null">
+        image_codeid,
+      </if>
+      <if test="lastMidifity != null">
+        last_midifity,
+      </if>
+      <if test="isdel != null">
+        isdel,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="gid != null">
+        #{gid,jdbcType=BIGINT},
+      </if>
+      <if test="aid != null">
+        #{aid,jdbcType=INTEGER},
+      </if>
+      <if test="companyId != null">
+        #{companyId,jdbcType=BIGINT},
+      </if>
+      <if test="storeId != null">
+        #{storeId,jdbcType=BIGINT},
+      </if>
+      <if test="memberId != null">
+        #{memberId,jdbcType=INTEGER},
+      </if>
+      <if test="catId != null">
+        #{catId,jdbcType=INTEGER},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="lastPrice != null">
+        #{lastPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="score != null">
+        #{score,jdbcType=INTEGER},
+      </if>
+      <if test="ismemlv != null">
+        #{ismemlv,jdbcType=INTEGER},
+      </if>
+      <if test="remainnums != null">
+        #{remainnums,jdbcType=INTEGER},
+      </if>
+      <if test="nums != null">
+        #{nums,jdbcType=INTEGER},
+      </if>
+      <if test="personlimit != null">
+        #{personlimit,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="imageCodeid != null">
+        #{imageCodeid,jdbcType=VARCHAR},
+      </if>
+      <if test="lastMidifity != null">
+        #{lastMidifity,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isdel != null">
+        #{isdel,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cnit.yoyo.model.sales.activity.ScoreBuyApply">
+    update t_activity_apply
+    <set>
+      <if test="gid != null and gid>0">
+        gid = #{gid,jdbcType=BIGINT},
+      </if>
+      <if test="aid != null and aid>0">
+        aid = #{aid,jdbcType=INTEGER},
+      </if>
+      <if test="companyId != null and companyId>0">
+        company_id = #{companyId,jdbcType=BIGINT},
+      </if>
+      <if test="storeId != null and storeId>0">
+        store_id = #{storeId,jdbcType=BIGINT},
+      </if>
+      <if test="memberId != null  and memberId>0">
+        member_id = #{memberId,jdbcType=INTEGER},
+      </if>
+      <if test="catId != null and catId>0">
+        cat_id = #{catId,jdbcType=INTEGER},
+      </if>
+      <if test="price != null and price>0">
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="lastPrice != null and lastPrice>0">
+        last_price = #{lastPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="score != null and score>0">
+        score = #{score,jdbcType=INTEGER},
+      </if>
+      <if test="ismemlv != null and ismemlv>0">
+        isMemLv = #{ismemlv,jdbcType=INTEGER},
+      </if>
+      <if test="remainnums != null and remainnums>0" >
+        remainnums = #{remainnums,jdbcType=INTEGER},
+      </if>
+      <if test="nums != null and nums>0">
+        nums = #{nums,jdbcType=INTEGER},
+      </if>
+      <if test="personlimit != null and personlimit>0">
+        personlimit = #{personlimit,jdbcType=INTEGER},
+      </if>
+      <if test="status != null and status >0">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="imageCodeid != null and imageCodeid !='' ">
+        image_codeid = #{imageCodeid,jdbcType=VARCHAR},
+      </if>
+      <if test="lastMidifity != null">
+        last_midifity = #{lastMidifity,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isdel != null and isdel != '' ">
+        isdel = #{isdel,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cnit.yoyo.model.sales.activity.ScoreBuyApply">
+    update t_activity_apply
+    set gid = #{gid,jdbcType=BIGINT},
+      aid = #{aid,jdbcType=INTEGER},
+      company_id = #{companyId,jdbcType=BIGINT},
+      store_id = #{storeId,jdbcType=BIGINT},
+      member_id = #{memberId,jdbcType=INTEGER},
+      cat_id = #{catId,jdbcType=INTEGER},
+      price = #{price,jdbcType=DECIMAL},
+      last_price = #{lastPrice,jdbcType=DECIMAL},
+      score = #{score,jdbcType=INTEGER},
+      isMemLv = #{ismemlv,jdbcType=INTEGER},
+      remainnums = #{remainnums,jdbcType=INTEGER},
+      nums = #{nums,jdbcType=INTEGER},
+      personlimit = #{personlimit,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      image_codeid = #{imageCodeid,jdbcType=VARCHAR},
+      last_midifity = #{lastMidifity,jdbcType=TIMESTAMP},
+      isdel = #{isdel,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

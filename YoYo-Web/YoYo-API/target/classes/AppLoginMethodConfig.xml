@@ -1,0 +1,16 @@
+<applogins>
+    <method>memberCarList</method>
+    <method>setDefaulCar</method>
+    <method>saveMemberCar</method>
+    <method>updateMemberCar</method>
+    <method>deleteMemberCar</method>
+    <method>findMemberDefaultCar</method>
+    <method>myPaintingList</method>
+    <method>myPaintingOffers</method>
+    <method>myPaintingChooseStore</method>
+    <method>myPaintingSubmitOrder</method>
+    <method>myPaintingOrderDetail</method>
+    <method>myPaintingCancleOrder</method>
+    <method>paintingPartsInfo</method>
+    <method>savePaintingPartsInfo</method>
+</applogins>

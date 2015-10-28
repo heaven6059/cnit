@@ -1,0 +1,690 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cnit.yoyo.dao.car.AccessoryMapper">
+	<resultMap id="BaseResultMap" type="com.cnit.yoyo.model.car.Accessory">
+		<id column="ACC_ID" property="accId" jdbcType="INTEGER" />
+		<result column="CAT_ID" property="catId" jdbcType="INTEGER" />
+		<result column="ACC_NAME" property="accName" jdbcType="VARCHAR" />
+		<result column="ACC_SPEC" property="accSpec" jdbcType="VARCHAR" />
+		<result column="ACC_UNIT" property="accUnit" jdbcType="VARCHAR" />
+		<result column="ACC_FORSHORT" property="accForshort" jdbcType="VARCHAR" />
+		<result column="ACC_CODE" property="accCode" jdbcType="VARCHAR" />
+		<result column="ACC_OEM" property="accOem" jdbcType="VARCHAR" />
+		<result column="BRAND_ID" property="brandId" jdbcType="INTEGER" />
+		<result column="BRAND_NAME" property="brandName" jdbcType="VARCHAR" />
+		<result column="ACC_MAIN_PLANTS" property="accMainPlants" jdbcType="VARCHAR" />
+		<result column="ACC_SC_PRICE" property="accScPrice" jdbcType="DECIMAL" />
+		<result column="ACC_PRICE" property="accPrice" jdbcType="DECIMAL" />
+		<result column="ACC_PACK" property="accPack" jdbcType="VARCHAR" />
+		<result column="ACC_LOGISTICS" property="accLogistics" jdbcType="VARCHAR" />
+		<result column="DISABLED" property="disabled" jdbcType="CHAR" />
+		<result column="IS_RELATED_CAR" property="isRelatedCar" jdbcType="CHAR" />
+		<result column="ORDER_NUM" property="orderNum" jdbcType="INTEGER" />
+	</resultMap>
+	<resultMap id="ResultMapWithBLOBs" type="com.cnit.yoyo.model.car.Accessory" extends="BaseResultMap">
+		<result column="REMARK" property="remark" jdbcType="LONGVARCHAR" />
+	</resultMap>
+	<resultMap id="AccessoryDTO" type="com.cnit.yoyo.model.car.dto.AccessoryDTO" extends="ResultMapWithBLOBs">
+		<result column="CATALOG_NAME" property="catalogName" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Example_Where_Clause">
+		<where>
+			<foreach collection="oredCriteria" item="criteria" separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem" open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Update_By_Example_Where_Clause">
+		<where>
+			<foreach collection="example.oredCriteria" item="criteria" separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem" open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		ACC_ID, CAT_ID, ACC_NAME, ACC_SPEC, ACC_UNIT, ACC_FORSHORT, ACC_CODE, ACC_OEM,
+		BRAND_ID,
+		BRAND_NAME, ACC_MAIN_PLANTS, ACC_SC_PRICE, ACC_PRICE, ACC_PACK, ACC_LOGISTICS, DISABLED,
+		IS_RELATED_CAR, ORDER_NUM
+	</sql>
+	<sql id="Blob_Column_List">
+		REMARK
+	</sql>
+	<select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.cnit.yoyo.model.car.AccessoryExample">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		'false' as QUERYID,
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from t_accessory
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
+	<select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cnit.yoyo.model.car.AccessoryExample">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		'false' as QUERYID,
+		<include refid="Base_Column_List" />
+		from t_accessory
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
+	<select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from t_accessory
+		where ACC_ID = #{accId,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from t_accessory
+		where ACC_ID =
+		#{accId,jdbcType=INTEGER}
+	</delete>
+	<delete id="deleteByExample" parameterType="com.cnit.yoyo.model.car.AccessoryExample">
+		delete from t_accessory
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</delete>
+	<insert id="insert" parameterType="com.cnit.yoyo.model.car.Accessory" useGeneratedKeys="true"
+		keyProperty="accId">
+		insert into t_accessory (ACC_ID, CAT_ID, ACC_NAME,
+		ACC_SPEC, ACC_UNIT, ACC_FORSHORT,
+		ACC_CODE, ACC_OEM, BRAND_ID,
+		BRAND_NAME, ACC_MAIN_PLANTS, ACC_SC_PRICE,
+		ACC_PRICE, ACC_PACK,
+		ACC_LOGISTICS,
+		DISABLED, IS_RELATED_CAR, ORDER_NUM,
+		REMARK)
+		values (#{accId,jdbcType=INTEGER},
+		#{catId,jdbcType=INTEGER}, #{accName,jdbcType=VARCHAR},
+		#{accSpec,jdbcType=VARCHAR},
+		#{accUnit,jdbcType=VARCHAR}, #{accForshort,jdbcType=VARCHAR},
+		#{accCode,jdbcType=VARCHAR},
+		#{accOem,jdbcType=VARCHAR}, #{brandId,jdbcType=INTEGER},
+		#{brandName,jdbcType=VARCHAR},
+		#{accMainPlants,jdbcType=VARCHAR}, #{accScPrice,jdbcType=DECIMAL},
+		#{accPrice,jdbcType=DECIMAL},
+		#{accPack,jdbcType=VARCHAR}, #{accLogistics,jdbcType=VARCHAR},
+		#{disabled,jdbcType=CHAR},
+		#{isRelatedCar,jdbcType=CHAR}, #{orderNum,jdbcType=INTEGER},
+		#{remark,jdbcType=LONGVARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.cnit.yoyo.model.car.Accessory"
+		useGeneratedKeys="true" keyProperty="accId">
+		insert into t_accessory
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="accId != null">
+				ACC_ID,
+			</if>
+			<if test="catId != null">
+				CAT_ID,
+			</if>
+			<if test="accName != null">
+				ACC_NAME,
+			</if>
+			<if test="accSpec != null">
+				ACC_SPEC,
+			</if>
+			<if test="accUnit != null">
+				ACC_UNIT,
+			</if>
+			<if test="accForshort != null">
+				ACC_FORSHORT,
+			</if>
+			<if test="accCode != null">
+				ACC_CODE,
+			</if>
+			<if test="accOem != null">
+				ACC_OEM,
+			</if>
+			<if test="brandId != null">
+				BRAND_ID,
+			</if>
+			<if test="brandName != null">
+				BRAND_NAME,
+			</if>
+			<if test="accMainPlants != null">
+				ACC_MAIN_PLANTS,
+			</if>
+			<if test="accScPrice != null">
+				ACC_SC_PRICE,
+			</if>
+			<if test="accPrice != null">
+				ACC_PRICE,
+			</if>
+			<if test="accPack != null">
+				ACC_PACK,
+			</if>
+			<if test="accLogistics != null">
+				ACC_LOGISTICS,
+			</if>
+			<if test="disabled != null">
+				DISABLED,
+			</if>
+			<if test="isRelatedCar != null">
+				IS_RELATED_CAR,
+			</if>
+			<if test="orderNum != null">
+				ORDER_NUM,
+			</if>
+			<if test="remark != null">
+				REMARK,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="accId != null">
+				#{accId,jdbcType=INTEGER},
+			</if>
+			<if test="catId != null">
+				#{catId,jdbcType=INTEGER},
+			</if>
+			<if test="accName != null">
+				#{accName,jdbcType=VARCHAR},
+			</if>
+			<if test="accSpec != null">
+				#{accSpec,jdbcType=VARCHAR},
+			</if>
+			<if test="accUnit != null">
+				#{accUnit,jdbcType=VARCHAR},
+			</if>
+			<if test="accForshort != null">
+				#{accForshort,jdbcType=VARCHAR},
+			</if>
+			<if test="accCode != null">
+				#{accCode,jdbcType=VARCHAR},
+			</if>
+			<if test="accOem != null">
+				#{accOem,jdbcType=VARCHAR},
+			</if>
+			<if test="brandId != null">
+				#{brandId,jdbcType=INTEGER},
+			</if>
+			<if test="brandName != null">
+				#{brandName,jdbcType=VARCHAR},
+			</if>
+			<if test="accMainPlants != null">
+				#{accMainPlants,jdbcType=VARCHAR},
+			</if>
+			<if test="accScPrice != null">
+				#{accScPrice,jdbcType=DECIMAL},
+			</if>
+			<if test="accPrice != null">
+				#{accPrice,jdbcType=DECIMAL},
+			</if>
+			<if test="accPack != null">
+				#{accPack,jdbcType=VARCHAR},
+			</if>
+			<if test="accLogistics != null">
+				#{accLogistics,jdbcType=VARCHAR},
+			</if>
+			<if test="disabled != null">
+				#{disabled,jdbcType=CHAR},
+			</if>
+			<if test="isRelatedCar != null">
+				#{isRelatedCar,jdbcType=CHAR},
+			</if>
+			<if test="orderNum != null">
+				#{orderNum,jdbcType=INTEGER},
+			</if>
+			<if test="remark != null">
+				#{remark,jdbcType=LONGVARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<select id="countByExample" parameterType="com.cnit.yoyo.model.car.AccessoryExample"
+		resultType="java.lang.Integer">
+		select count(*) from t_accessory
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</select>
+	<update id="updateByExampleSelective" parameterType="map">
+		update t_accessory
+		<set>
+			<if test="record.accId != null">
+				ACC_ID = #{record.accId,jdbcType=INTEGER},
+			</if>
+			<if test="record.catId != null">
+				CAT_ID = #{record.catId,jdbcType=INTEGER},
+			</if>
+			<if test="record.accName != null">
+				ACC_NAME = #{record.accName,jdbcType=VARCHAR},
+			</if>
+			<if test="record.accSpec != null">
+				ACC_SPEC = #{record.accSpec,jdbcType=VARCHAR},
+			</if>
+			<if test="record.accUnit != null">
+				ACC_UNIT = #{record.accUnit,jdbcType=VARCHAR},
+			</if>
+			<if test="record.accForshort != null">
+				ACC_FORSHORT = #{record.accForshort,jdbcType=VARCHAR},
+			</if>
+			<if test="record.accCode != null">
+				ACC_CODE = #{record.accCode,jdbcType=VARCHAR},
+			</if>
+			<if test="record.accOem != null">
+				ACC_OEM = #{record.accOem,jdbcType=VARCHAR},
+			</if>
+			<if test="record.brandId != null">
+				BRAND_ID = #{record.brandId,jdbcType=INTEGER},
+			</if>
+			<if test="record.brandName != null">
+				BRAND_NAME = #{record.brandName,jdbcType=VARCHAR},
+			</if>
+			<if test="record.accMainPlants != null">
+				ACC_MAIN_PLANTS = #{record.accMainPlants,jdbcType=VARCHAR},
+			</if>
+			<if test="record.accScPrice != null">
+				ACC_SC_PRICE = #{record.accScPrice,jdbcType=DECIMAL},
+			</if>
+			<if test="record.accPrice != null">
+				ACC_PRICE = #{record.accPrice,jdbcType=DECIMAL},
+			</if>
+			<if test="record.accPack != null">
+				ACC_PACK = #{record.accPack,jdbcType=VARCHAR},
+			</if>
+			<if test="record.accLogistics != null">
+				ACC_LOGISTICS = #{record.accLogistics,jdbcType=VARCHAR},
+			</if>
+			<if test="record.disabled != null">
+				DISABLED = #{record.disabled,jdbcType=CHAR},
+			</if>
+			<if test="record.isRelatedCar != null">
+				IS_RELATED_CAR = #{record.isRelatedCar,jdbcType=CHAR},
+			</if>
+			<if test="record.orderNum != null">
+				ORDER_NUM = #{record.orderNum,jdbcType=INTEGER},
+			</if>
+			<if test="record.remark != null">
+				REMARK = #{record.remark,jdbcType=LONGVARCHAR},
+			</if>
+		</set>
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByExampleWithBLOBs" parameterType="map">
+		update t_accessory
+		set ACC_ID = #{record.accId,jdbcType=INTEGER},
+		CAT_ID =
+		#{record.catId,jdbcType=INTEGER},
+		ACC_NAME = #{record.accName,jdbcType=VARCHAR},
+		ACC_SPEC =
+		#{record.accSpec,jdbcType=VARCHAR},
+		ACC_UNIT = #{record.accUnit,jdbcType=VARCHAR},
+		ACC_FORSHORT =
+		#{record.accForshort,jdbcType=VARCHAR},
+		ACC_CODE = #{record.accCode,jdbcType=VARCHAR},
+		ACC_OEM =
+		#{record.accOem,jdbcType=VARCHAR},
+		BRAND_ID = #{record.brandId,jdbcType=INTEGER},
+		BRAND_NAME =
+		#{record.brandName,jdbcType=VARCHAR},
+		ACC_MAIN_PLANTS = #{record.accMainPlants,jdbcType=VARCHAR},
+		ACC_SC_PRICE = #{record.accScPrice,jdbcType=DECIMAL},
+		ACC_PRICE =
+		#{record.accPrice,jdbcType=DECIMAL},
+		ACC_PACK = #{record.accPack,jdbcType=VARCHAR},
+		ACC_LOGISTICS =
+		#{record.accLogistics,jdbcType=VARCHAR},
+		DISABLED = #{record.disabled,jdbcType=CHAR},
+		IS_RELATED_CAR = #{record.isRelatedCar,jdbcType=CHAR},
+		ORDER_NUM =
+		#{record.orderNum,jdbcType=INTEGER},
+		REMARK = #{record.remark,jdbcType=LONGVARCHAR}
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByExample" parameterType="map">
+		update t_accessory
+		set ACC_ID = #{record.accId,jdbcType=INTEGER},
+		CAT_ID =
+		#{record.catId,jdbcType=INTEGER},
+		ACC_NAME = #{record.accName,jdbcType=VARCHAR},
+		ACC_SPEC =
+		#{record.accSpec,jdbcType=VARCHAR},
+		ACC_UNIT = #{record.accUnit,jdbcType=VARCHAR},
+		ACC_FORSHORT =
+		#{record.accForshort,jdbcType=VARCHAR},
+		ACC_CODE = #{record.accCode,jdbcType=VARCHAR},
+		ACC_OEM =
+		#{record.accOem,jdbcType=VARCHAR},
+		BRAND_ID = #{record.brandId,jdbcType=INTEGER},
+		BRAND_NAME =
+		#{record.brandName,jdbcType=VARCHAR},
+		ACC_MAIN_PLANTS = #{record.accMainPlants,jdbcType=VARCHAR},
+		ACC_SC_PRICE = #{record.accScPrice,jdbcType=DECIMAL},
+		ACC_PRICE =
+		#{record.accPrice,jdbcType=DECIMAL},
+		ACC_PACK = #{record.accPack,jdbcType=VARCHAR},
+		ACC_LOGISTICS =
+		#{record.accLogistics,jdbcType=VARCHAR},
+		DISABLED = #{record.disabled,jdbcType=CHAR},
+		IS_RELATED_CAR = #{record.isRelatedCar,jdbcType=CHAR},
+		ORDER_NUM =
+		#{record.orderNum,jdbcType=INTEGER}
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByPrimaryKeySelective" parameterType="com.cnit.yoyo.model.car.Accessory">
+		update t_accessory
+		<set>
+			<if test="catId != null">
+				CAT_ID = #{catId,jdbcType=INTEGER},
+			</if>
+			<if test="accName != null">
+				ACC_NAME = #{accName,jdbcType=VARCHAR},
+			</if>
+			<if test="accSpec != null">
+				ACC_SPEC = #{accSpec,jdbcType=VARCHAR},
+			</if>
+			<if test="accUnit != null">
+				ACC_UNIT = #{accUnit,jdbcType=VARCHAR},
+			</if>
+			<if test="accForshort != null">
+				ACC_FORSHORT = #{accForshort,jdbcType=VARCHAR},
+			</if>
+			<if test="accCode != null">
+				ACC_CODE = #{accCode,jdbcType=VARCHAR},
+			</if>
+			<if test="accOem != null">
+				ACC_OEM = #{accOem,jdbcType=VARCHAR},
+			</if>
+			<if test="brandId != null">
+				BRAND_ID = #{brandId,jdbcType=INTEGER},
+			</if>
+			<if test="brandName != null">
+				BRAND_NAME = #{brandName,jdbcType=VARCHAR},
+			</if>
+			<if test="accMainPlants != null">
+				ACC_MAIN_PLANTS = #{accMainPlants,jdbcType=VARCHAR},
+			</if>
+			<if test="accScPrice != null">
+				ACC_SC_PRICE = #{accScPrice,jdbcType=DECIMAL},
+			</if>
+			<if test="accPrice != null">
+				ACC_PRICE = #{accPrice,jdbcType=DECIMAL},
+			</if>
+			<if test="accPack != null">
+				ACC_PACK = #{accPack,jdbcType=VARCHAR},
+			</if>
+			<if test="accLogistics != null">
+				ACC_LOGISTICS = #{accLogistics,jdbcType=VARCHAR},
+			</if>
+			<if test="disabled != null">
+				DISABLED = #{disabled,jdbcType=CHAR},
+			</if>
+			<if test="isRelatedCar != null">
+				IS_RELATED_CAR = #{isRelatedCar,jdbcType=CHAR},
+			</if>
+			<if test="orderNum != null">
+				ORDER_NUM = #{orderNum,jdbcType=INTEGER},
+			</if>
+			<if test="remark != null">
+				REMARK = #{remark,jdbcType=LONGVARCHAR},
+			</if>
+		</set>
+		where ACC_ID = #{accId,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKeyWithBLOBs" parameterType="com.cnit.yoyo.model.car.Accessory">
+		update t_accessory
+		set CAT_ID =
+		#{catId,jdbcType=INTEGER},
+		ACC_NAME = #{accName,jdbcType=VARCHAR},
+		ACC_SPEC =
+		#{accSpec,jdbcType=VARCHAR},
+		ACC_UNIT = #{accUnit,jdbcType=VARCHAR},
+		ACC_FORSHORT =
+		#{accForshort,jdbcType=VARCHAR},
+		ACC_CODE = #{accCode,jdbcType=VARCHAR},
+		ACC_OEM =
+		#{accOem,jdbcType=VARCHAR},
+		BRAND_ID = #{brandId,jdbcType=INTEGER},
+		BRAND_NAME =
+		#{brandName,jdbcType=VARCHAR},
+		ACC_MAIN_PLANTS = #{accMainPlants,jdbcType=VARCHAR},
+		ACC_SC_PRICE =
+		#{accScPrice,jdbcType=DECIMAL},
+		ACC_PRICE = #{accPrice,jdbcType=DECIMAL},
+		ACC_PACK =
+		#{accPack,jdbcType=VARCHAR},
+		ACC_LOGISTICS = #{accLogistics,jdbcType=VARCHAR},
+		DISABLED =
+		#{disabled,jdbcType=CHAR},
+		IS_RELATED_CAR = #{isRelatedCar,jdbcType=CHAR},
+		ORDER_NUM =
+		#{orderNum,jdbcType=INTEGER},
+		REMARK = #{remark,jdbcType=LONGVARCHAR}
+		where ACC_ID =
+		#{accId,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.cnit.yoyo.model.car.Accessory">
+		update t_accessory
+		set CAT_ID =
+		#{catId,jdbcType=INTEGER},
+		ACC_NAME = #{accName,jdbcType=VARCHAR},
+		ACC_SPEC =
+		#{accSpec,jdbcType=VARCHAR},
+		ACC_UNIT = #{accUnit,jdbcType=VARCHAR},
+		ACC_FORSHORT =
+		#{accForshort,jdbcType=VARCHAR},
+		ACC_CODE = #{accCode,jdbcType=VARCHAR},
+		ACC_OEM =
+		#{accOem,jdbcType=VARCHAR},
+		BRAND_ID = #{brandId,jdbcType=INTEGER},
+		BRAND_NAME =
+		#{brandName,jdbcType=VARCHAR},
+		ACC_MAIN_PLANTS = #{accMainPlants,jdbcType=VARCHAR},
+		ACC_SC_PRICE =
+		#{accScPrice,jdbcType=DECIMAL},
+		ACC_PRICE = #{accPrice,jdbcType=DECIMAL},
+		ACC_PACK =
+		#{accPack,jdbcType=VARCHAR},
+		ACC_LOGISTICS = #{accLogistics,jdbcType=VARCHAR},
+		DISABLED =
+		#{disabled,jdbcType=CHAR},
+		IS_RELATED_CAR = #{isRelatedCar,jdbcType=CHAR},
+		ORDER_NUM =
+		#{orderNum,jdbcType=INTEGER},
+		REMARK = #{remark,jdbcType=LONGVARCHAR}
+		where ACC_ID = #{accId,jdbcType=INTEGER}
+	</update>
+	<resultMap id="AccessoryParamValueMap" type="com.cnit.yoyo.model.car.AccessoryParamValue">
+		<!-- WARNING - @mbggenerated This element is automatically generated by MyBatis Generator, do not modify. 
+			This element was generated on Mon Mar 30 13:34:35 CST 2015. -->
+		<result column="PARAM_ID" jdbcType="INTEGER" property="paramId" />
+		<result column="ACC_ID" jdbcType="INTEGER" property="accId" />
+		<result column="PARAM_NAME" jdbcType="VARCHAR" property="paramName" />
+		<result column="PARAM_VALUES" jdbcType="VARCHAR" property="paramValues" />
+		<result column="DATA_TYPE" jdbcType="VARCHAR" property="dataType" />
+		<result column="DATA_FORMAT" jdbcType="VARCHAR" property="dataFormat" />
+		<result column="BOL_VALUE" jdbcType="BIT" property="bolValue" />
+		<result column="STR_VALUE" jdbcType="VARCHAR" property="strValue" />
+		<result column="INT_VALUE" jdbcType="INTEGER" property="intValue" />
+		<result column="DEC_VALUE" jdbcType="DECIMAL" property="decValue" />
+	</resultMap>
+	<select id="selectAccessoryParamValue" parameterType="map" resultMap="AccessoryParamValueMap">
+		<!-- 根据查询指定配件对应的参数值 -->
+		SELECT T_PARAM.PARAM_ID, T_PARAM.PARAM_NAME, T_PARAM.PARAM_VALUES,
+		T_PARAM.DATA_TYPE,
+		T_PARAM.DATA_FORMAT, T_BOL.VALUE
+		AS BOL_VALUE,
+		T_STR.VALUE AS STR_VALUE, T_INT.VALUE AS INT_VALUE,
+		T_DEC.VALUE AS
+		DEC_VALUE ,#{accId,jdbcType=INTEGER}
+		AS ACC_ID FROM
+		<!-- 参数项 -->
+		( SELECT * FROM T_ACCESSORY_PARAM WHERE CATALOG_ID =
+		#{catalogId,jdbcType=INTEGER} ) T_PARAM
+		<!-- 布尔值 -->
+		LEFT JOIN ( SELECT * FROM T_ACCESSORY_PARAM_BOL WHERE 1 = 1
+		<if test="accId != NULL"> AND ACC_ID = #{accId,jdbcType=INTEGER}</if>
+		) T_BOL ON T_BOL.PARAM_ID = T_PARAM.PARAM_ID
+		<!-- 字符值 -->
+		LEFT JOIN ( SELECT * FROM T_ACCESSORY_PARAM_STR WHERE 1 = 1
+		<if test="accId != NULL"> AND ACC_ID = #{accId,jdbcType=INTEGER}</if>
+		) T_STR ON T_STR.PARAM_ID = T_PARAM.PARAM_ID
+		<!-- 整数值 -->
+		LEFT JOIN ( SELECT * FROM T_ACCESSORY_PARAM_INT WHERE 1 = 1
+		<if test="accId != NULL"> AND ACC_ID = #{accId,jdbcType=INTEGER}</if>
+		) T_INT ON T_INT.PARAM_ID = T_PARAM.PARAM_ID
+		<!-- 浮点值 -->
+		LEFT JOIN ( SELECT * FROM T_ACCESSORY_PARAM_DEC WHERE 1 = 1
+		<if test="accId != NULL"> AND ACC_ID = #{accId,jdbcType=INTEGER}</if>
+		) T_DEC ON T_DEC.PARAM_ID = T_PARAM.PARAM_ID ORDER BY
+		T_PARAM.ORDER_NUM
+	</select>
+	<resultMap type="com.cnit.yoyo.model.car.AccessoryAndBindingCars" id="AccessoryAndBindingCars">
+		<id column="ACC_ID" property="accId" jdbcType="INTEGER" />
+		<result column="CAT_ID" property="catId" jdbcType="INTEGER" />
+		<result column="ACC_NAME" property="accName" jdbcType="VARCHAR" />
+		<result column="ACC_SPEC" property="accSpec" jdbcType="VARCHAR" />
+		<result column="ACC_UNIT" property="accUnit" jdbcType="VARCHAR" />
+		<result column="ACC_FORSHORT" property="accForshort" jdbcType="VARCHAR" />
+		<result column="ACC_CODE" property="accCode" jdbcType="VARCHAR" />
+		<result column="ACC_OEM" property="accOem" jdbcType="VARCHAR" />
+		<result column="BRAND_ID" property="brandId" jdbcType="INTEGER" />
+		<result column="BRAND_NAME" property="brandName" jdbcType="VARCHAR" />
+		<result column="ACC_MAIN_PLANTS" property="accMainPlants" jdbcType="VARCHAR" />
+		<result column="ACC_SC_PRICE" property="accScPrice" jdbcType="DECIMAL" />
+		<result column="ACC_PRICE" property="accPrice" jdbcType="DECIMAL" />
+		<result column="ACC_PACK" property="accPack" jdbcType="VARCHAR" />
+		<result column="ACC_LOGISTICS" property="accLogistics" jdbcType="VARCHAR" />
+		<result column="DISABLED" property="disabled" jdbcType="CHAR" />
+		<result column="ORDER_NUM" property="orderNum" jdbcType="INTEGER" />
+		<result column="REMARK" property="remark" jdbcType="LONGVARCHAR" />
+		<collection property="cars" ofType="com.cnit.yoyo.model.car.AccessoryCarIndex" column="ACC_ID"
+			select="selecBindingCarsByAccId" />
+	</resultMap>
+	<resultMap type="com.cnit.yoyo.model.car.AccessoryCarIndex" id="BindingCarsMap">
+		<id column="RELATE_ID" property="relateId" jdbcType="INTEGER" />
+		<result column="ACC_ID" property="accId" jdbcType="INTEGER" />
+		<result column="CAR_ID" property="carId" jdbcType="INTEGER" />
+		<result column="CAR_NAME" property="carName" jdbcType="VARCHAR" />
+		<result column="FACTORY_ID" property="factoryId" jdbcType="INTEGER" />
+		<result column="FACTORY_NAME" property="factoryName" jdbcType="VARCHAR" />
+		<result column="DEPT_ID" property="deptId" jdbcType="INTEGER" />
+		<result column="DEPT_NAME" property="deptName" jdbcType="VARCHAR" />
+		<result column="YEAR_ID" property="yearId" jdbcType="INTEGER" />
+		<result column="YEAR_VALUE" property="yearValue" jdbcType="VARCHAR" />
+	</resultMap>
+	<select id="selecBindingCarsByAccId" resultMap="BindingCarsMap" parameterType="int">
+		select
+		RELATE_ID, ACC_ID, CAR_ID, CAR_NAME, FACTORY_ID,
+		FACTORY_NAME, DEPT_ID,
+		DEPT_NAME,
+		YEAR_ID,
+		YEAR_VALUE
+		from t_accessory_car_index
+		where ACC_ID = #{accId,jdbcType=INTEGER}
+	</select>
+	<select id="selectAccInfoAndBindingCars" parameterType="int" resultMap="AccessoryAndBindingCars">
+		SELECT
+		A.ACC_ID,
+		A.CAT_ID,
+		A.ACC_NAME,
+		A.ACC_SPEC,
+		A.ACC_UNIT,
+		A.ACC_FORSHORT,
+		A.ACC_CODE,
+		A.ACC_OEM,
+		A.BRAND_ID,
+		A.BRAND_NAME,
+		A.ACC_MAIN_PLANTS,
+		A.ACC_SC_PRICE,
+		A.ACC_PRICE,
+		A.ACC_PACK,
+		A.ACC_LOGISTICS,
+		A.DISABLED,
+		A.ORDER_NUM,
+		A.REMARK
+		FROM T_ACCESSORY A
+		WHERE A.ACC_ID = #{accId,jdbcType=INTEGER}
+	</select>
+
+	<!-- 根据配件id查找配件类型 2015.07.10 修改A.disabled='0' 之前为1 -->
+	<select id="findAccessoryTypeInfo" parameterType="java.lang.Integer" resultMap="com.cnit.yoyo.dao.car.AccessoryCatalogMapper.BaseResultMap">
+		select B.CATALOG_ID, B.CATALOG_NAME, B.CAT_ID from T_ACCESSORY A join t_accessory_catalog B on A.CAT_ID = B.CATALOG_ID
+		where A.disabled='0' and A.ACC_ID=#{accId,jdbcType=INTEGER}
+	</select>
+
+	<select id="selectByQueryParams" resultMap="BaseResultMap" parameterType="map">
+		select
+		<include refid="Base_Column_List" />
+		from t_accessory where 1=1
+		<foreach index="index" item="item" collection="whereStmt">
+			and ${item}
+		</foreach>
+		order by ${orderStmt}
+	</select>
+	
+	<select id="selectAccessoryById" resultMap="AccessoryDTO" parameterType="int">
+		select a.*, ac.catalog_name 
+		from t_accessory a
+		left join t_accessory_catalog ac on a.cat_id = ac.catalog_id
+		where a.ACC_ID = #{accId,jdbcType=INTEGER}
+	</select>
+
+</mapper>

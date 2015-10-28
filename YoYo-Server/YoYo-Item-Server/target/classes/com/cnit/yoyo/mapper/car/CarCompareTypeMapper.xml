@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cnit.yoyo.dao.car.CarCompareTypeMapper" >
+  <resultMap id="BaseResultMap" type="com.cnit.yoyo.model.car.CarCompareType" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="compare_type" property="compareType" jdbcType="VARCHAR" />
+    <result column="compare_name" property="compareName" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="create_id" property="createId" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, compare_type, compare_name, status, create_id, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_car_compare_type
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_car_compare_type
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cnit.yoyo.model.car.CarCompareType" >
+    insert into t_car_compare_type (id, compare_type, compare_name, 
+      status, create_id, create_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{compareType,jdbcType=VARCHAR}, #{compareName,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER}, #{createId,jdbcType=VARCHAR}, #{createTime,jdbcType=DATE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cnit.yoyo.model.car.CarCompareType" >
+    insert into t_car_compare_type
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="compareType != null" >
+        compare_type,
+      </if>
+      <if test="compareName != null" >
+        compare_name,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="createId != null" >
+        create_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="compareType != null" >
+        #{compareType,jdbcType=VARCHAR},
+      </if>
+      <if test="compareName != null" >
+        #{compareName,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createId != null" >
+        #{createId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cnit.yoyo.model.car.CarCompareType" >
+    update t_car_compare_type
+    <set >
+      <if test="compareType != null" >
+        compare_type = #{compareType,jdbcType=VARCHAR},
+      </if>
+      <if test="compareName != null" >
+        compare_name = #{compareName,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createId != null" >
+        create_id = #{createId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=DATE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cnit.yoyo.model.car.CarCompareType" >
+    update t_car_compare_type
+    set compare_type = #{compareType,jdbcType=VARCHAR},
+      compare_name = #{compareName,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      create_id = #{createId,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=DATE}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

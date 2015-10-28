@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cnit.yoyo.dao.mpindex.MpIndexMapper" >
+	<select id="selectShopSellsInfo" parameterType="java.util.Map" resultType="com.cnit.yoyo.model.trade.dto.OrderSellsInfoDTO">
+  		SELECT  
+  			dayCount,
+  			daySumMoney,
+  			dayPayCount,
+  			dayPayMoney,
+  			monthCount,
+  			monthSumMoney,
+  			monthPayCount,
+  			monthPayMoney 
+  		FROM (
+			SELECT
+				(SELECT COALESCE(COUNT(0),0) FROM t_orders t WHERE t.createtime BETWEEN (SELECT date_format(now(), '%Y-%m-%d 00:00:00')) AND (SELECT date_format(now(), '%Y-%m-%d 23:59:59'))) dayCount,
+				(SELECT COALESCE(SUM(t.final_amount),0) FROM t_orders t WHERE t.createtime BETWEEN (SELECT date_format(now(), '%Y-%m-%d 00:00:00')) AND (SELECT date_format(now(), '%Y-%m-%d 23:59:59'))) daySumMoney,
+				(SELECT COALESCE(COUNT(0),0) FROM t_orders t WHERE t.pay_status=1 AND t.createtime BETWEEN (SELECT date_format(now(), '%Y-%m-%d 00:00:00')) AND (SELECT date_format(now(), '%Y-%m-%d 23:59:59'))) dayPayCount,
+				(SELECT COALESCE(SUM(t.final_amount),0) FROM t_orders t WHERE t.pay_status=1 AND t.createtime BETWEEN (SELECT date_format(now(), '%Y-%m-%d 00:00:00')) AND (SELECT date_format(now(), '%Y-%m-%d 23:59:59'))) dayPayMoney,
+				(SELECT COALESCE(COUNT(0),0) FROM t_orders t WHERE t.createtime BETWEEN (SELECT date_format(DATE_ADD(curdate(),interval -day(curdate())+1 day), '%Y-%m-%d')) AND (SELECT date_format(last_day(curdate()), '%Y-%m-%d'))) monthCount,
+				(SELECT COALESCE(SUM(t.final_amount),0) FROM t_orders t WHERE t.createtime BETWEEN (SELECT date_format(DATE_ADD(curdate(),interval -day(curdate())+1 day), '%Y-%m-%d')) AND (SELECT date_format(last_day(curdate()), '%Y-%m-%d'))) monthSumMoney,
+				(SELECT COALESCE(COUNT(0),0) FROM t_orders t WHERE t.pay_status=1 AND t.createtime BETWEEN (SELECT date_format(DATE_ADD(curdate(),interval -day(curdate())+1 day), '%Y-%m-%d')) AND (SELECT date_format(last_day(curdate()), '%Y-%m-%d'))) monthPayCount,
+				(SELECT COALESCE(SUM(t.final_amount),0) FROM t_orders t WHERE t.pay_status=1 AND t.createtime BETWEEN (SELECT date_format(DATE_ADD(curdate(),interval -day(curdate())+1 day), '%Y-%m-%d')) AND (SELECT date_format(last_day(curdate()), '%Y-%m-%d'))) monthPayMoney
+			FROM 
+				t_orders orders			
+			GROUP BY 
+				dayCount,daySumMoney,dayPayCount,dayPayMoney,monthCount,monthSumMoney,monthPayCount,monthPayMoney
+			) T
+  	</select>
+  	
+  	<select id="selectAccountInfo" parameterType="java.util.Map" resultType="com.cnit.yoyo.model.member.dto.PamAccountInfoDTO">
+  		SELECT 
+			totalAccount,
+			todayAccount,
+			monthAccount
+		FROM
+		(
+		(SELECT COALESCE(COUNT(0),0) AS totalAccount from t_pam_account)totalAccount,
+		(SELECT COALESCE(COUNT(0),0) AS todayAccount from t_pam_account WHERE date_format(REG_TIME,'%Y-%m-%d %T') BETWEEN (SELECT date_format(now(), '%Y-%m-%d 00:00:00')) AND (SELECT date_format(now(), '%Y-%m-%d 23:59:59'))) todayAccount,
+		(SELECT COALESCE(COUNT(0),0) AS monthAccount from t_pam_account WHERE date_format(REG_TIME,'%Y-%m-%d') BETWEEN (SELECT date_format(DATE_ADD(curdate(),interval -day(curdate())+1 day), '%Y-%m-%d')) AND (SELECT date_format(last_day(curdate()), '%Y-%m-%d'))) monthAccount
+		)
+  	</select>
+  	
+  	<select id="selectOrderTips" parameterType="java.util.Map" resultType="com.cnit.yoyo.model.trade.dto.OrderTipsDTO">
+  		
+		SELECT 
+	  		unpay,
+			unconfirm,
+	  		confirm,
+			finish,
+			refunds,
+			aftersales,
+			report,
+			complain
+	  	FROM 
+	  	(
+			(SELECT COALESCE(COUNT(1),0) AS unpay from t_orders t WHERE t.disabled=0 AND t.pay_status=0 AND t.`status`='create') unpay,
+			(SELECT COALESCE(COUNT(1),0) AS unconfirm from t_orders t WHERE t.disabled=0 AND t.`status`='unconfirm' ) unconfirm,
+			(SELECT COALESCE(COUNT(1),0) AS confirm from t_orders t WHERE t.disabled=0 AND t.`status`='confirm') confirm,
+			(SELECT COALESCE(COUNT(1),0) AS finish from t_orders t WHERE t.disabled=0 AND t.`status`='finish') finish,
+			(SELECT COALESCE(count(1),0) AS refunds FROM t_aftersales_return_product arp LEFT JOIN t_orders t ON arp.order_id = t.order_id WHERE arp.is_safeguard = 1) refunds,
+			(SELECT COALESCE(count(1),0) AS aftersales FROM t_aftersales_return_product arp LEFT JOIN t_orders t ON arp.order_id = t.order_id WHERE arp.is_safeguard = 2) aftersales,
+			(SELECT COALESCE(COUNT(1),0) AS report from t_report report WHERE report.disabled=0) report,
+			(SELECT COALESCE(COUNT(1),0) AS complain from t_complain complain) complain
+		)
+  	</select>
+  	
+  	<select id="selectGoodsStatistics" resultType="com.cnit.yoyo.model.goods.dto.GoodsStatisticsDTO" parameterType="java.util.Map">
+  		SELECT 
+  			totalCount,sellsCount,putawayCount,checkCount,backCount 
+  		FROM
+			(
+				(SELECT COUNT(0) totalCount from t_goods g WHERE g.DISABLED=0) totalCount,
+				(SELECT COUNT(0) sellsCount from t_goods g WHERE g.DISABLED=0 AND g.MARKETABLE=1) sellsCount,
+				(SELECT COUNT(0) putawayCount from t_goods g WHERE g.DISABLED=0 AND g.MARKETABLE=0) putawayCount,
+				(SELECT COUNT(0) checkCount from t_goods g WHERE g.DISABLED=0 AND g.MARKETABLE=2) checkCount,
+				(SELECT COUNT(0) backCount from t_goods g WHERE g.DISABLED=0 AND g.MARKETABLE=3) backCount
+			)
+  	</select>
+</mapper>

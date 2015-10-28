@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+  <display-name>YoYo-Image-Server</display-name>
+  <context-param>
+    <param-name>webAppRootKey</param-name>
+    <param-value>imageService.root</param-value>
+  </context-param>
+  <filter>
+    <filter-name>Struts 2</filter-name>
+    <filter-class>org.apache.struts2.dispatcher.FilterDispatcher</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>Struts 2</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  <filter>
+    <filter-name>encodingFilter</filter-name>
+    <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>GBK</param-value>
+    </init-param>
+    <init-param>
+      <param-name>forceEncoding</param-name>
+      <param-value>true</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>encodingFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+  <servlet>
+    <servlet-name>hello</servlet-name>
+    <servlet-class>com.caucho.hessian.server.HessianServlet</servlet-class>
+    <init-param>
+      <param-name>home-class</param-name>
+      <param-value>example.BasicService</param-value>
+    </init-param>
+    <init-param>
+      <param-name>home-api</param-name>
+      <param-value>example.Basic</param-value>
+    </init-param>
+  </servlet>
+  <servlet>
+    <servlet-name>Hessian</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Hessian</servlet-name>
+    <url-pattern>/remoting/*</url-pattern>
+  </servlet-mapping>
+</web-app>

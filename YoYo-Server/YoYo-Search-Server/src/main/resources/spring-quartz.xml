@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<!-- 调度任务执行操作类 -->
+	<!-- <bean id="goodsIndexQuartzTask" class="com.cnit.yoyo.search.service.SearchService" />
+
+	封装要执行操作的类
+	<bean id="goodsIndexQuartzTaskFactoryBean" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="goodsIndexQuartzTask" />
+		<property name="targetMethod" value="builderSearchIndex" />
+	</bean>
+
+	crontab trigger
+	<bean id="goodsIndexTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="goodsIndexQuartzTaskFactoryBean" />
+		每5分钟 执行一次
+		<property name="cronExpression" value="0 0/30 * * * ?" />
+	</bean>
+
+	配置任务和触发器
+	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<ref bean="goodsIndexTrigger" />
+			</list>
+		</property>
+	</bean> -->
+</beans>

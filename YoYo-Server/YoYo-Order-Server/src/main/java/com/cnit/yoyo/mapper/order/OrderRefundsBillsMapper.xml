@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cnit.yoyo.dao.order.OrderRefundsBillsMapper" >
+  <resultMap id="BaseResultMap" type="com.cnit.yoyo.model.order.OrderRefundsBills" >
+    <id column="refund_id" property="refundId" jdbcType="INTEGER" />
+    <result column="money" property="money" jdbcType="DECIMAL" />
+    <result column="order_id" property="orderId" jdbcType="BIGINT" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="memo" property="memo" jdbcType="VARCHAR" />
+    <result column="apply_time" property="applyTime" jdbcType="TIMESTAMP" />
+    <result column="is_disable" property="isDisable" jdbcType="INTEGER" />
+    <result column="member_id" property="memberId" jdbcType="BIGINT" />
+    <result column="store_id" property="storeId" jdbcType="BIGINT" />
+    <result column="company_id" property="companyId" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    refund_id, money, order_id, status, memo, apply_time, is_disable, member_id, store_id, 
+    company_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_order_refunds_bills
+    where refund_id = #{refundId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_order_refunds_bills
+    where refund_id = #{refundId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cnit.yoyo.model.order.OrderRefundsBills" >
+    insert into t_order_refunds_bills (refund_id, money, order_id, 
+      status, memo, apply_time, 
+      is_disable, member_id, store_id, 
+      company_id)
+    values (#{refundId,jdbcType=INTEGER}, #{money,jdbcType=DECIMAL}, #{orderId,jdbcType=BIGINT}, 
+      #{status,jdbcType=INTEGER}, #{memo,jdbcType=VARCHAR}, #{applyTime,jdbcType=TIMESTAMP}, 
+      #{isDisable,jdbcType=INTEGER}, #{memberId,jdbcType=BIGINT}, #{storeId,jdbcType=BIGINT}, 
+      #{companyId,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cnit.yoyo.model.order.OrderRefundsBills" >
+    insert into t_order_refunds_bills
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="refundId != null" >
+        refund_id,
+      </if>
+      <if test="money != null" >
+        money,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="memo != null" >
+        memo,
+      </if>
+      <if test="applyTime != null" >
+        apply_time,
+      </if>
+      <if test="isDisable != null" >
+        is_disable,
+      </if>
+      <if test="memberId != null" >
+        member_id,
+      </if>
+      <if test="storeId != null" >
+        store_id,
+      </if>
+      <if test="companyId != null" >
+        company_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="refundId != null" >
+        #{refundId,jdbcType=INTEGER},
+      </if>
+      <if test="money != null" >
+        #{money,jdbcType=DECIMAL},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="memo != null" >
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="applyTime != null" >
+        #{applyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDisable != null" >
+        #{isDisable,jdbcType=INTEGER},
+      </if>
+      <if test="memberId != null" >
+        #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="storeId != null" >
+        #{storeId,jdbcType=BIGINT},
+      </if>
+      <if test="companyId != null" >
+        #{companyId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cnit.yoyo.model.order.OrderRefundsBills" >
+    update t_order_refunds_bills
+    <set >
+      <if test="money != null" >
+        money = #{money,jdbcType=DECIMAL},
+      </if>
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="memo != null" >
+        memo = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="applyTime != null" >
+        apply_time = #{applyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDisable != null" >
+        is_disable = #{isDisable,jdbcType=INTEGER},
+      </if>
+      <if test="memberId != null" >
+        member_id = #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="storeId != null" >
+        store_id = #{storeId,jdbcType=BIGINT},
+      </if>
+      <if test="companyId != null" >
+        company_id = #{companyId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where refund_id = #{refundId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cnit.yoyo.model.order.OrderRefundsBills" >
+    update t_order_refunds_bills
+    set money = #{money,jdbcType=DECIMAL},
+      order_id = #{orderId,jdbcType=BIGINT},
+      status = #{status,jdbcType=INTEGER},
+      memo = #{memo,jdbcType=VARCHAR},
+      apply_time = #{applyTime,jdbcType=TIMESTAMP},
+      is_disable = #{isDisable,jdbcType=INTEGER},
+      member_id = #{memberId,jdbcType=BIGINT},
+      store_id = #{storeId,jdbcType=BIGINT},
+      company_id = #{companyId,jdbcType=BIGINT}
+    where refund_id = #{refundId,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectRefundsBills" parameterType="com.cnit.yoyo.model.order.dto.OrderRefundsBillsQryDTO" resultType="com.cnit.yoyo.model.order.dto.OrderRefundsBillsDTO">
+   SELECT
+		orders.order_id orderId,
+		bills.refund_id refundId,
+		bills.money,
+		bills.apply_time applyTime,
+		bills.member_id memberId,
+		bills.store_id storeId,
+		bills.company_id companyId,
+		bills.`status`,
+		account.LOGIN_NAME applyName
+	FROM
+		t_order_refunds_bills bills
+	LEFT JOIN t_orders orders ON bills.order_id = orders.order_id
+	LEFT JOIN t_members members ON members.MEMBER_ID=bills.member_id
+	LEFT JOIN t_pam_account account ON members.ACCOUNT_ID=account.ACCOUNT_ID
+	<where>
+		<if test="storeId != null">
+			bills.store_id=#{storeId,jdbcType=BIGINT}
+		</if>
+		<if test="companyId != null">
+			bills.company_id=#{company_id,jdbcType=BIGINT}
+		</if>
+		<if test="memberId != null">
+			bills.member_id=#{member_id,jdbcType=BIGINT}
+		</if>
+	</where>
+  </select>
+</mapper>

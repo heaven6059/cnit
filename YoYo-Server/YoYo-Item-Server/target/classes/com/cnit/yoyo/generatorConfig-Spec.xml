@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+	<properties url="file:///F://CnitWorkspace//YoYo-DC//generatorConfig.properties" />
+	<!-- 存放jdbc驱动包的位置，可以采用相对路径，也可以采用绝对路径 -->
+	<classPathEntry location="${sqljdbcPath}" />
+	<context id="ecstore_yoyo_server">
+		<plugin type="org.mybatis.generator.plugins.MapperConfigPlugin">
+			<property name="targetPackage" value="com.cnit.yoyo" />
+			<property name="targetProject" value="YoYo-DC/src.main.resource" />
+		</plugin>
+		<!-- 为实体类添加序列化实现接口 -->
+		<plugin type="org.mybatis.generator.plugins.SerializablePlugin">
+			<property name="suppressJavaInterface " value="false" />
+		</plugin>
+		<!-- 为实体类添加toString方法 -->
+		<plugin type="org.mybatis.generator.plugins.ToStringPlugin"></plugin>
+		<!-- 为实体类添加equals与hashcode方法 -->
+		<plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin"></plugin>
+		<jdbcConnection driverClass="${driverClass}" connectionURL="${connectionURL}"
+			userId="${userId}" password="${password}" />
+		<javaModelGenerator targetPackage="com.cnit.yoyo.model.spec" targetProject="${modelTargetProject}" />
+		<!-- 配置生成相应的实体Mapper.xml，对于Mapper3.X我们需要把type="XMLMAPPER" -->
+		<sqlMapGenerator targetPackage="com.cnit.yoyo.mapper.spec" targetProject="${sqlMapTargetProject}" />
+		<!-- 配置生成相应的接口类，对应与Mapper.xml中的一系列CRUD方法SQL语句 -->
+		<javaClientGenerator targetPackage="com.cnit.yoyo.dao.spec" targetProject="${daoTargetProject}"
+			type="XMLMAPPER" />
+		<!-- schema你的数据库，tableName表明，domainObjectName对应你的javabean类名，是否生成相应的example 尽量关闭了所有不必要的Example生成信息 -->		
+		<table schema="yoyo" tableName="t_spec" domainObjectName="Spec"
+			enableCountByExample="false" enableUpdateByExample="true" enableDeleteByExample="true"
+			enableSelectByExample="true" selectByExampleQueryId="true">
+		</table>
+		<table schema="yoyo" tableName="t_spec_values" domainObjectName="SpecValues"
+			enableCountByExample="false" enableUpdateByExample="true" enableDeleteByExample="true"
+			enableSelectByExample="true" selectByExampleQueryId="false">
+		</table>
+	</context>
+</generatorConfiguration>

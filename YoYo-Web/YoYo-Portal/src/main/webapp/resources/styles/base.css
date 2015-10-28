@@ -1,0 +1,43 @@
+@charset "utf-8";
+/* CSS Document */
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,img,legend,input,textarea,p,em,i,blockquote,th,td{margin:0;padding:0;outline:0;font-weight:normal;font-style:inherit;font-size:12px}
+body {font:12px/1.5 Verdana,Microsoft YaHei,Simsun;background:#fff;}
+table{border-collapse:collapse;border-spacing:0}
+ul,ol{list-style-type:none}
+select,input,img,select{vertical-align:middle}
+textarea{resize:none}
+h1,h2,h3,h4,h5,h6{ font-size: 100%; font-weight: normal; }
+a{ text-decoration: none; color: #6c6c6c; }
+a:hover { color: #f60; text-decoration: none;}
+
+/*文字排版*/
+.f12{ font-size: 12px; }
+.f13{ font-size: 13px; }
+.f14{ font-size: 14px; }
+.f16{ font-size: 16px; }
+.f20{ font-size: 20px; }
+.fb{ font-weight: bold; }
+.fn{ font-weight: normal; }
+.t2{ text-indent: 2em; }
+.lh150{ line-height: 150%; }
+.lh180{ line-height: 180%; }
+.lh200{ line-height: 200%; }
+.un{ text-decoration: underline; }
+.tl{ text-align: left; }
+.no_unl{ text-decoration: none; }
+/*定位*/
+.tc{ text-align: center; }
+.tr{ text-align: right; }
+.bc{ margin-left: auto; margin-right: auto; }
+.fl{ float: left; display: inline; }
+.fr{ float: right; display: inline; }
+
+/*宽度*/
+.w304{width:304px}
+
+/*清除浮动*/
+.clearfix:after { content: ""; display: block; height: 0; clear: both; visibility: hidden; }
+.clearfix { display: inline-table; }
+*html .clearfix { height: 1%; }
+.clearfix { display: block; }
+*+html .clearfix { min-height: 1%; }

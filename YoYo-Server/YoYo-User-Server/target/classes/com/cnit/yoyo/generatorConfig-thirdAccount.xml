@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+	<properties url="file:///D://Apache//generatorConfig.properties" />
+	<!-- 存放jdbc驱动包的位置，可以采用相对路径，也可以采用绝对路径 -->
+	<classPathEntry location="${sqljdbcPath}" />
+	<context id="ecstore_yoyo_server">
+		<plugin type="org.mybatis.generator.plugins.MapperConfigPlugin">
+			<property name="targetPackage" value="com.yoyo" />
+			<property name="targetProject" value="CarShop-Server/Resources" />
+		</plugin>
+		<!-- 为实体类添加序列化实现接口 -->
+		<plugin type="org.mybatis.generator.plugins.SerializablePlugin">
+			<property name="suppressJavaInterface " value="false" />
+		</plugin>
+		<!-- 为实体类添加toString方法 -->
+		<plugin type="org.mybatis.generator.plugins.ToStringPlugin"></plugin>
+		<!-- 为实体类添加equals与hashcode方法 -->
+		<plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin"></plugin>
+		<jdbcConnection driverClass="${driverClass}" connectionURL="${connectionURL}"
+			userId="${userId}" password="${password}" />
+		<javaModelGenerator targetPackage="com.cnit.yoyo.model.thirdaccount" targetProject="${modelTargetProject}" />
+		<!-- 配置生成相应的实体Mapper.xml，对于Mapper3.X我们需要把type="XMLMAPPER" -->
+		<sqlMapGenerator targetPackage="com.cnit.yoyo.thirdaccount.mapper" targetProject="${sqlMapTargetProject}" />
+		<!-- 配置生成相应的接口类，对应与Mapper.xml中的一系列CRUD方法SQL语句 -->
+		<javaClientGenerator targetPackage="com.cnit.yoyo.thirdaccount.dao" targetProject="${daoTargetProject}"
+			type="XMLMAPPER" />
+		<!-- schema你的数据库，tableName表明，domainObjectName对应你的javabean类名，是否生成相应的example 尽量关闭了所有不必要的Example生成信息 -->
+		
+          <!--    <table schema="yoyo" tableName="t_car" domainObjectName="Car"
+            enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+            enableSelectByExample="false" selectByExampleQueryId="false"></table>
+          
+            <table schema="yoyo" tableName="t_car_dept" domainObjectName="CarDept"
+            enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+            enableSelectByExample="false" selectByExampleQueryId="false"> 
+            
+             <table schema="yoyo" tableName="t_car_maintain_cycle" domainObjectName="CarMaintain"
+            enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+            enableSelectByExample="false" selectByExampleQueryId="false"></table>
+            
+             <table schema="yoyo" tableName="t_maintain_ship" domainObjectName="CarMaintainShip"
+            enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+            enableSelectByExample="false" selectByExampleQueryId="false">
+		</table>
+		
+		 <table schema="yoyo" tableName="t_car_factory" domainObjectName="CarFactory"
+            enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+            enableSelectByExample="false" selectByExampleQueryId="false"></table>
+            
+         <table schema="yoyo" tableName="t_car_factory_scope" domainObjectName="CarFactoryScope"
+         enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+         enableSelectByExample="false" selectByExampleQueryId="false"></table>-->
+         
+         <!-- <table schema="yoyo" tableName="t_car_brands" domainObjectName="CarBrands"
+            enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+            enableSelectByExample="false" selectByExampleQueryId="false"></table>
+            
+         <table schema="yoyo" tableName="t_car_year" domainObjectName="CarYear"
+         enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+         enableSelectByExample="false" selectByExampleQueryId="false"></table> -->
+         
+   <!--       <table schema="yoyo" tableName="t_accessory" domainObjectName="Accessory"
+			enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"
+			enableSelectByExample="true" selectByExampleQueryId="false"></table>
+		<table schema="yoyo" tableName="t_accessory_catalog" domainObjectName="AccessoryCatalog"
+			enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"
+			enableSelectByExample="true" selectByExampleQueryId="false"></table>
+		<table schema="yoyo" tableName="t_accessory_param" domainObjectName="AccessoryParam"
+			enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"
+			enableSelectByExample="true" selectByExampleQueryId="false"></table>
+		<table schema="yoyo" tableName="t_accessory_param_bol" domainObjectName="AccessoryParamBol"
+			enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"
+			enableSelectByExample="true" selectByExampleQueryId="false"></table>
+		<table schema="yoyo" tableName="t_accessory_param_str" domainObjectName="AccessoryParamStr"
+			enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"
+			enableSelectByExample="true" selectByExampleQueryId="false"></table>
+		<table schema="yoyo" tableName="t_accessory_param_Int" domainObjectName="AccessoryParamInt"
+			enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"
+			enableSelectByExample="true" selectByExampleQueryId="false"></table>
+		<table schema="yoyo" tableName="t_accessory_param_dec" domainObjectName="AccessoryParamDec"
+			enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"
+			enableSelectByExample="true" selectByExampleQueryId="false"></table> 
+         
+         <table schema="yoyo" tableName="t_car_brand_grade" domainObjectName="CarBrandGrade"
+            enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+            enableSelectByExample="false" selectByExampleQueryId="false"></table>
+            
+         <table schema="yoyo" tableName="t_car_config" domainObjectName="CarConfig"
+         enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+         enableSelectByExample="false" selectByExampleQueryId="false"></table>-->
+         
+         <table schema="yoyo" tableName="t_third_account" domainObjectName="ThirdAccount"
+            enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+            enableSelectByExample="false" selectByExampleQueryId="false"></table>
+         
+	</context>
+</generatorConfiguration>
+
+

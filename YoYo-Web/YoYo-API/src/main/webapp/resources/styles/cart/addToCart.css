@@ -1,0 +1,31 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*购物车结算*/
+.add_con{ width: 1200px; height: auto; margin: 0 auto; }
+.add_left{ width: 970px; height: auto; }
+.add_top{ padding: 56px 126px 0 80px; }
+.add_cg{ width: 360px; height: 40px; background: url(../images/20130425D.png) no-repeat 0 -100px; padding-left: 56px; }
+.add_cg h3{ font: normal 24px/40px \5fae\8f6f\96c5\9ed1; color: #7ABD54;}
+.add_btn{ width: 150px; height: 36px; line-height: 36px; color: #fff; background-color: #ee4509; font-size: 14px; display: inline-block; text-align: center; border-radius: 4px; margin-right: 10px; margin-top: 4px; }
+.add_btn:hover{ color: #fff; }
+
+.add_in{ width: 950px; height: auto; border: 1px solid #ddd; margin-top: 54px; padding: 10px; line-height: 24px; }
+.shop_con ul li{ float: left; width: 33%; padding: 10px 0; }
+.p_img{ width: 100px; height: 100px; overflow: hidden; padding: 5px 0 5px 5px; }
+.p_btn{ display: block; width: 87px; height: 19px; line-height: 19px; border: 1px solid #ddd; border-radius: 4px; background-color: #f5f5f5; color: #000; text-align: center; }
+
+
+/*右边*/
+.add_right{ width: 194px; height: 435px; border-top: 2px solid #999; border-bottom: 1px solid #ddd; border-left: 1px solid #ddd; border-right: 1px solid #ddd; margin-top: 20px; padding: 8px; }
+.add_right a:hover{ text-decoration: underline; }
+.add_right p{ height: 30px; }
+.add_right p i{ display: inline-block; width: 22px; height: 16px; background: url(../../images/cart/20130425D.png) -89px -74px; margin-right: 8px; }
+.r_pic{ width: 50px; height: 50px; padding: 5px 0; overflow: hidden; }
+.p_info{ width: 104px; }
+.add_right dl{ margin-top: 10px; }
+.add_right dl dd{ margin: 10px 0; }
+.bb_d{ border-bottom: 1px dotted #ddd; }
+.total{ padding: 10px 10px; }
+.btns{ padding: 0 10px; }
+.btns a:hover{ text-decoration: none; }

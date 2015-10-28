@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cnit.yoyo.dao.shop.ShopIndexPushMapper" >
+  <resultMap id="BaseResultMap" type="com.cnit.yoyo.model.shop.ShopIndexPush" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="company_id" property="companyId" jdbcType="BIGINT" />
+    <result column="store_id" property="storeId" jdbcType="BIGINT" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="title_push" property="titlePush" jdbcType="VARCHAR" />
+    <result column="enabled" property="enabled" jdbcType="CHAR" />
+    <result column="last_modify" property="lastModify" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.cnit.yoyo.model.shop.ShopIndexPushWithBLOBs" extends="BaseResultMap" >
+    <result column="left_push" property="leftPush" jdbcType="LONGVARCHAR" />
+    <result column="right_push" property="rightPush" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, company_id, store_id, title, title_push, enabled, last_modify
+  </sql>
+  <sql id="Blob_Column_List" >
+    left_push, right_push
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_shop_index_push
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_shop_index_push
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.cnit.yoyo.model.shop.ShopIndexPushWithBLOBs" >
+    insert into t_shop_index_push (id, company_id, store_id, 
+      title, title_push, enabled, 
+      last_modify, left_push, right_push
+      )
+    values (#{id,jdbcType=BIGINT}, #{companyId,jdbcType=BIGINT}, #{storeId,jdbcType=BIGINT}, 
+      #{title,jdbcType=VARCHAR}, #{titlePush,jdbcType=VARCHAR}, #{enabled,jdbcType=CHAR}, 
+      #{lastModify,jdbcType=TIMESTAMP}, #{leftPush,jdbcType=LONGVARCHAR}, #{rightPush,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" useGeneratedKeys="true" keyProperty="id" parameterType="com.cnit.yoyo.model.shop.ShopIndexPushWithBLOBs" >
+    insert into t_shop_index_push
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="companyId != null" >
+        company_id,
+      </if>
+      <if test="storeId != null" >
+        store_id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="titlePush != null" >
+        title_push,
+      </if>
+      <if test="enabled != null" >
+        enabled,
+      </if>
+      <if test="lastModify != null" >
+        last_modify,
+      </if>
+      <if test="leftPush != null" >
+        left_push,
+      </if>
+      <if test="rightPush != null" >
+        right_push,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="companyId != null" >
+        #{companyId,jdbcType=BIGINT},
+      </if>
+      <if test="storeId != null" >
+        #{storeId,jdbcType=BIGINT},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="titlePush != null" >
+        #{titlePush,jdbcType=VARCHAR},
+      </if>
+      <if test="enabled != null" >
+        #{enabled,jdbcType=CHAR},
+      </if>
+      <if test="lastModify != null" >
+        #{lastModify,jdbcType=TIMESTAMP},
+      </if>
+      <if test="leftPush != null" >
+        #{leftPush,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="rightPush != null" >
+        #{rightPush,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cnit.yoyo.model.shop.ShopIndexPushWithBLOBs" >
+    update t_shop_index_push
+    <set >
+      <if test="companyId != null" >
+        company_id = #{companyId,jdbcType=BIGINT},
+      </if>
+      <if test="storeId != null" >
+        store_id = #{storeId,jdbcType=BIGINT},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="titlePush != null" >
+        title_push = #{titlePush,jdbcType=VARCHAR},
+      </if>
+      <if test="enabled != null" >
+        enabled = #{enabled,jdbcType=CHAR},
+      </if>
+      <if test="lastModify != null" >
+        last_modify = #{lastModify,jdbcType=TIMESTAMP},
+      </if>
+      <if test="leftPush != null" >
+        left_push = #{leftPush,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="rightPush != null" >
+        right_push = #{rightPush,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.cnit.yoyo.model.shop.ShopIndexPushWithBLOBs" >
+    update t_shop_index_push
+    set company_id = #{companyId,jdbcType=BIGINT},
+      store_id = #{storeId,jdbcType=BIGINT},
+      title = #{title,jdbcType=VARCHAR},
+      title_push = #{titlePush,jdbcType=VARCHAR},
+      enabled = #{enabled,jdbcType=CHAR},
+      last_modify = #{lastModify,jdbcType=TIMESTAMP},
+      left_push = #{leftPush,jdbcType=LONGVARCHAR},
+      right_push = #{rightPush,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cnit.yoyo.model.shop.ShopIndexPush" >
+    update t_shop_index_push
+    set company_id = #{companyId,jdbcType=BIGINT},
+      store_id = #{storeId,jdbcType=BIGINT},
+      title = #{title,jdbcType=VARCHAR},
+      title_push = #{titlePush,jdbcType=VARCHAR},
+      enabled = #{enabled,jdbcType=CHAR},
+      last_modify = #{lastModify,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+  
+  <select id="selectShopIndexByCompanyId" resultMap="ResultMapWithBLOBs" parameterType="com.cnit.yoyo.model.shop.dto.ShopIndexQryDTO" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_shop_index_push
+    where
+     	company_id = #{companyId,jdbcType=BIGINT} 
+    <if test="enabled !=null"> 
+    	and enabled= #{enabled}
+    </if>
+  </select>
+  
+  <select id="selectShopIndexById" resultMap="ResultMapWithBLOBs" parameterType="com.cnit.yoyo.model.shop.dto.ShopIndexQryDTO">
+  	select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_shop_index_push
+    where id = #{id,jdbcType=BIGINT} and company_id=#{companyId}
+  </select>
+  
+</mapper>

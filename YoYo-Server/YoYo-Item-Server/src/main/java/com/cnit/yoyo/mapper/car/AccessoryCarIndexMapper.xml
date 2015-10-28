@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cnit.yoyo.dao.car.AccessoryCarIndexMapper">
+	<resultMap id="BaseResultMap" type="com.cnit.yoyo.model.car.AccessoryCarIndex">
+		<id column="RELATE_ID" property="relateId" jdbcType="INTEGER" />
+		<result column="ACC_ID" property="accId" jdbcType="INTEGER" />
+		<result column="CAR_ID" property="carId" jdbcType="INTEGER" />
+		<result column="CAR_NAME" property="carName" jdbcType="VARCHAR" />
+		<result column="FACTORY_ID" property="factoryId" jdbcType="INTEGER" />
+		<result column="FACTORY_NAME" property="factoryName" jdbcType="VARCHAR" />
+		<result column="DEPT_ID" property="deptId" jdbcType="INTEGER" />
+		<result column="DEPT_NAME" property="deptName" jdbcType="VARCHAR" />
+		<result column="YEAR_ID" property="yearId" jdbcType="INTEGER" />
+		<result column="YEAR_VALUE" property="yearValue" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Example_Where_Clause">
+		<where>
+			<foreach collection="oredCriteria" item="criteria" separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value}
+									and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Update_By_Example_Where_Clause">
+		<where>
+			<foreach collection="example.oredCriteria" item="criteria"
+				separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value}
+									and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		RELATE_ID, ACC_ID, CAR_ID, CAR_NAME, FACTORY_ID,
+		FACTORY_NAME, DEPT_ID,
+		DEPT_NAME,
+		YEAR_ID, YEAR_VALUE
+	</sql>
+	<select id="selectByExample" resultMap="BaseResultMap"
+		parameterType="com.cnit.yoyo.model.car.AccessoryCarIndexExample">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		'false' as QUERYID,
+		<include refid="Base_Column_List" />
+		from t_accessory_car_index
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from t_accessory_car_index
+		where RELATE_ID =
+		#{relateId,jdbcType=INTEGER}
+	</select>
+	
+	<select id="selectByCarId" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+    select CAR_ID from t_accessory_car_index
+    where CAR_ID in
+    <foreach item="idItem" collection="array" open="(" separator="," close=")">
+		#{idItem}
+	</foreach>
+  </select>
+	
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		t_accessory_car_index
+		where RELATE_ID = #{relateId,jdbcType=INTEGER}
+	</delete>
+	<delete id="deleteByExample" parameterType="com.cnit.yoyo.model.car.AccessoryCarIndexExample">
+		delete from t_accessory_car_index
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</delete>
+	<insert id="insert" parameterType="com.cnit.yoyo.model.car.AccessoryCarIndex">
+		insert into
+		t_accessory_car_index (RELATE_ID, ACC_ID, CAR_ID,
+		CAR_NAME, FACTORY_ID,
+		FACTORY_NAME,
+		DEPT_ID, DEPT_NAME, YEAR_ID,
+		YEAR_VALUE)
+		values
+		(#{relateId,jdbcType=INTEGER}, #{accId,jdbcType=INTEGER},
+		#{carId,jdbcType=INTEGER},
+		#{carName,jdbcType=VARCHAR},
+		#{factoryId,jdbcType=INTEGER}, #{factoryName,jdbcType=VARCHAR},
+		#{deptId,jdbcType=INTEGER}, #{deptName,jdbcType=VARCHAR},
+		#{yearId,jdbcType=INTEGER},
+		#{yearValue,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.cnit.yoyo.model.car.AccessoryCarIndex">
+		insert into t_accessory_car_index
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="relateId != null">
+				RELATE_ID,
+			</if>
+			<if test="accId != null">
+				ACC_ID,
+			</if>
+			<if test="carId != null">
+				CAR_ID,
+			</if>
+			<if test="carName != null">
+				CAR_NAME,
+			</if>
+			<if test="factoryId != null">
+				FACTORY_ID,
+			</if>
+			<if test="factoryName != null">
+				FACTORY_NAME,
+			</if>
+			<if test="deptId != null">
+				DEPT_ID,
+			</if>
+			<if test="deptName != null">
+				DEPT_NAME,
+			</if>
+			<if test="yearId != null">
+				YEAR_ID,
+			</if>
+			<if test="yearValue != null">
+				YEAR_VALUE,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="relateId != null">
+				#{relateId,jdbcType=INTEGER},
+			</if>
+			<if test="accId != null">
+				#{accId,jdbcType=INTEGER},
+			</if>
+			<if test="carId != null">
+				#{carId,jdbcType=INTEGER},
+			</if>
+			<if test="carName != null">
+				#{carName,jdbcType=VARCHAR},
+			</if>
+			<if test="factoryId != null">
+				#{factoryId,jdbcType=INTEGER},
+			</if>
+			<if test="factoryName != null">
+				#{factoryName,jdbcType=VARCHAR},
+			</if>
+			<if test="deptId != null">
+				#{deptId,jdbcType=INTEGER},
+			</if>
+			<if test="deptName != null">
+				#{deptName,jdbcType=VARCHAR},
+			</if>
+			<if test="yearId != null">
+				#{yearId,jdbcType=INTEGER},
+			</if>
+			<if test="yearValue != null">
+				#{yearValue,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<select id="countByExample" parameterType="com.cnit.yoyo.model.car.AccessoryCarIndexExample"
+		resultType="java.lang.Integer">
+		select count(*) from t_accessory_car_index
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</select>
+	<update id="updateByExampleSelective" parameterType="map">
+		update t_accessory_car_index
+		<set>
+			<if test="record.relateId != null">
+				RELATE_ID = #{record.relateId,jdbcType=INTEGER},
+			</if>
+			<if test="record.accId != null">
+				ACC_ID = #{record.accId,jdbcType=INTEGER},
+			</if>
+			<if test="record.carId != null">
+				CAR_ID = #{record.carId,jdbcType=INTEGER},
+			</if>
+			<if test="record.carName != null">
+				CAR_NAME = #{record.carName,jdbcType=VARCHAR},
+			</if>
+			<if test="record.factoryId != null">
+				FACTORY_ID = #{record.factoryId,jdbcType=INTEGER},
+			</if>
+			<if test="record.factoryName != null">
+				FACTORY_NAME = #{record.factoryName,jdbcType=VARCHAR},
+			</if>
+			<if test="record.deptId != null">
+				DEPT_ID = #{record.deptId,jdbcType=INTEGER},
+			</if>
+			<if test="record.deptName != null">
+				DEPT_NAME = #{record.deptName,jdbcType=VARCHAR},
+			</if>
+			<if test="record.yearId != null">
+				YEAR_ID = #{record.yearId,jdbcType=INTEGER},
+			</if>
+			<if test="record.yearValue != null">
+				YEAR_VALUE = #{record.yearValue,jdbcType=VARCHAR},
+			</if>
+		</set>
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByExample" parameterType="map">
+		update t_accessory_car_index
+		set RELATE_ID =
+		#{record.relateId,jdbcType=INTEGER},
+		ACC_ID =
+		#{record.accId,jdbcType=INTEGER},
+		CAR_ID =
+		#{record.carId,jdbcType=INTEGER},
+		CAR_NAME =
+		#{record.carName,jdbcType=VARCHAR},
+		FACTORY_ID =
+		#{record.factoryId,jdbcType=INTEGER},
+		FACTORY_NAME =
+		#{record.factoryName,jdbcType=VARCHAR},
+		DEPT_ID =
+		#{record.deptId,jdbcType=INTEGER},
+		DEPT_NAME =
+		#{record.deptName,jdbcType=VARCHAR},
+		YEAR_ID =
+		#{record.yearId,jdbcType=INTEGER},
+		YEAR_VALUE =
+		#{record.yearValue,jdbcType=VARCHAR}
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByPrimaryKeySelective" parameterType="com.cnit.yoyo.model.car.AccessoryCarIndex">
+		update t_accessory_car_index
+		<set>
+			<if test="accId != null">
+				ACC_ID = #{accId,jdbcType=INTEGER},
+			</if>
+			<if test="carId != null">
+				CAR_ID = #{carId,jdbcType=INTEGER},
+			</if>
+			<if test="carName != null">
+				CAR_NAME = #{carName,jdbcType=VARCHAR},
+			</if>
+			<if test="factoryId != null">
+				FACTORY_ID = #{factoryId,jdbcType=INTEGER},
+			</if>
+			<if test="factoryName != null">
+				FACTORY_NAME = #{factoryName,jdbcType=VARCHAR},
+			</if>
+			<if test="deptId != null">
+				DEPT_ID = #{deptId,jdbcType=INTEGER},
+			</if>
+			<if test="deptName != null">
+				DEPT_NAME = #{deptName,jdbcType=VARCHAR},
+			</if>
+			<if test="yearId != null">
+				YEAR_ID = #{yearId,jdbcType=INTEGER},
+			</if>
+			<if test="yearValue != null">
+				YEAR_VALUE = #{yearValue,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where RELATE_ID = #{relateId,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.cnit.yoyo.model.car.AccessoryCarIndex">
+		update
+		t_accessory_car_index
+		set ACC_ID = #{accId,jdbcType=INTEGER},
+		CAR_ID =
+		#{carId,jdbcType=INTEGER},
+		CAR_NAME = #{carName,jdbcType=VARCHAR},
+		FACTORY_ID = #{factoryId,jdbcType=INTEGER},
+		FACTORY_NAME =
+		#{factoryName,jdbcType=VARCHAR},
+		DEPT_ID = #{deptId,jdbcType=INTEGER},
+		DEPT_NAME = #{deptName,jdbcType=VARCHAR},
+		YEAR_ID =
+		#{yearId,jdbcType=INTEGER},
+		YEAR_VALUE = #{yearValue,jdbcType=VARCHAR}
+		where RELATE_ID = #{relateId,jdbcType=INTEGER}
+	</update>
+	<insert id="batchInsert" parameterType="java.util.List">
+		insert into t_accessory_car_index (ACC_ID, CAR_ID,CAR_NAME, FACTORY_ID, FACTORY_NAME,DEPT_ID, DEPT_NAME, YEAR_ID,YEAR_VALUE)
+		<foreach collection="list" index="index" item="item" separator="union all"> 
+			select 
+				#{item.accId,jdbcType=INTEGER},
+				#{item.carId,jdbcType=INTEGER},
+				#{item.carName,jdbcType=VARCHAR},
+				#{item.factoryId,jdbcType=INTEGER}, 
+				#{item.factoryName,jdbcType=VARCHAR},
+				#{item.deptId,jdbcType=INTEGER}, 
+				#{item.deptName,jdbcType=VARCHAR},
+				#{item.yearId,jdbcType=INTEGER},
+				#{item.yearValue,jdbcType=VARCHAR} 
+			 from dual
+		</foreach>
+	</insert>
+	
+	
+	<select id="selectCarNameByAccId" resultType="java.lang.String">
+		select car_name from t_accessory_car_index where acc_id = #{accId}
+	</select>
+</mapper>

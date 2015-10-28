@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cnit.yoyo.dao.car.CarDeptAutohomeMapper" >
+  <resultMap id="BaseResultMap" type="com.cnit.yoyo.model.car.CarDeptAutohome" >
+    <id column="car_dept_id" property="carDeptId" jdbcType="INTEGER" />
+    <result column="autohome_id" property="autohomeId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    car_dept_id, autohome_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_car_dept_autohome
+    where car_dept_id = #{carDeptId,jdbcType=INTEGER}
+  </select>
+  <select id="selectbyAutohomeId" resultType="java.lang.Integer" parameterType="java.lang.String" >
+    select 
+    car_dept_id
+    from t_car_dept_autohome
+    where autohome_id = #{autohomeId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_car_dept_autohome
+    where car_dept_id = #{carDeptId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cnit.yoyo.model.car.CarDeptAutohome" >
+    insert into t_car_dept_autohome (car_dept_id, autohome_id)
+    values (#{carDeptId,jdbcType=INTEGER}, #{autohomeId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cnit.yoyo.model.car.CarDeptAutohome" >
+    insert into t_car_dept_autohome
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="carDeptId != null" >
+        car_dept_id,
+      </if>
+      <if test="autohomeId != null" >
+        autohome_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="carDeptId != null" >
+        #{carDeptId,jdbcType=INTEGER},
+      </if>
+      <if test="autohomeId != null" >
+        #{autohomeId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cnit.yoyo.model.car.CarDeptAutohome" >
+    update t_car_dept_autohome
+    <set >
+      <if test="autohomeId != null" >
+        autohome_id = #{autohomeId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where car_dept_id = #{carDeptId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cnit.yoyo.model.car.CarDeptAutohome" >
+    update t_car_dept_autohome
+    set autohome_id = #{autohomeId,jdbcType=VARCHAR}
+    where car_dept_id = #{carDeptId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,92 @@
+@charset "utf-8";/* CSS Document */
+html{-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;}
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, input, ruby, section, summary, time, mark, audio, video{border:0;margin:0px;padding:0px;}
+body, button, input, select, textarea{font:12px/1.5 tahoma,arial,'Hiragino Sans GB',宋体,sans-serif;line-height:18px;}
+body{height:100%;background:#fff;margin:0 auto;padding:0px;min-width:1200px;width:auto !important;width:1200px;overflow:visible;}
+
+a{color:#6c6c6c;cursor:pointer;text-decoration:none;outline:none/* for FF Chrome */ ;}
+a:hover{color:#c40001;text-decoration:underline;}
+a:focus{outline:0;}
+a,area {blr:expression(this.onFocus=this.blur())} /* for IE */
+:focus {-moz-outline-style:none;} /* for Firefox */
+
+img{-ms-interpolation-mode:bicubic;border:0;}
+ul, li, ul li{list-style-type:none;}
+button, input, select, textarea{font-size:100%;}
+button{background:none;border:0 none;cursor:pointer;}
+input, label{line-height:18px;vertical-align:middle;/* padding:2px 0; */}
+label{display:inline-block;vertical-align:baseline;}
+select{line-height:18px;padding:2px 0px;}
+table{border-collapse:collapse;border-spacing:0;}
+hr{border:none;*color:#fff;height:1px;}
+
+table{border-collapse:collapse;border-spacing:0;}
+table tr,table tr td{border:none 0;}
+th{text-align:inherit;}
+table tr td, table tr th {empty-cells: show;}
+
+h1{font-size:16px;}
+h2{font-size:14px;}
+h3{font-size:14px;}
+h4{font-size:12px;}
+h5{font-size:12px;}
+
+.clb:after{visibility:hidden;display:block;font-size:0;content:" ";clear:both;height:0;}
+.clb{zoom:1; clear:both;}
+.clear:after{visibility:hidden;display:block;font-size:0;content:" ";clear:both;height:0;}
+.clear{zoom:1;}/* for IE6 IE7 */ 
+.bare{line-height:0;height:0px;visibility:visible;clear:both;font-size:0px;}
+.dots{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.ellipsis{-o-text-overflow:ellipsis;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+em,i{font-style:normal;}
+.over{ overflow:hidden;}
+
+/*common*/
+.webwidth{width:1200px;margin:0 auto;}
+.webpage{ background:#fff; padding-bottom:10px;overflow:hidden;}
+.main{min-height:530px;height:auto !important;height:530px;overflow:visible;}
+.webmaincont{ width:980px;}
+.webcelan{width:210px;}
+.pos_a{position:absolute;}
+.pos_r{position:relative;} 
+
+.tl{text-align:left;}
+.tc{text-align:center;}
+.tr{text-align:right;}
+.mt_20{margin-top:20px;}
+.ml_20{margin-left:20px;}
+.mb_20{margin-bottom:20px;}
+.mtb{margin:20px 0px;}
+.mb_10{ margin-bottom:10px;}
+
+.fl{float:left;}
+.fr{float:right;}
+.pointer{cursor:pointer;}
+
+.dis_bl{display:block;overflow:hidden;}
+
+.red,.red a,a.red{color:#c40001;}
+.red1{color:#b20000}
+
+.f10{font-size:10px;}
+.f12{font-size:12px;}
+.f14{font-size:14px;}
+.f16{font-size:16px;}
+.f18{font-size:18px;}
+
+/*weizhi*/
+.weizhi{ border-bottom:1px solid #e5e5e5; line-height:25px; color:#666666;}
+.weizhi a{color:#666666;}
+.weizhi a.current{color:#f83033;}
+
+/*top2样式*/
+.header2{background: url(head2_topbg.jpg) no-repeat center 0 #C9002A;height: 80px;}
+.header2_l .logo2{float: left;height: 40px;width: 162px;margin-top: 20px;background: url(head2_icon.png) no-repeat right 0;}
+.header2_l .logo2 img,.header2_l .logo2 a{height: 40px;width: 141px;display: block;overflow: hidden;}
+.header2_l .bt{float: left;height: 34px;margin:23px 0 0 20px;}
+.search2_box{height: 36px;width: 338px;margin-top:22px;display: block;overflow: hidden;}
+.search2_box .search_keyword{width:270px;height: 36px;line-height: 36px;background: #fff;border: none;padding: 0 0;color: #999;text-indent: 15px;}
+.search2_box .s_btn{border: none;background: #51515C;width: 68px;height: 36px;color: #fff;font-size: 18px;padding: 0 0;font-family: 'Microsoft Yahei';cursor: pointer;}
+
+.orderpay{background:#fff;width:1200px;padding:0px 10px;}
+.payfor_order_title{padding:0px 10px;line-height:30px;margin-top:15px;}

@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cnit.yoyo.dao.car.CarSpiderAuditLogMapper">
+  <resultMap id="BaseResultMap" type="com.cnit.yoyo.model.car.CarSpiderAuditLog">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="spider_compare_id" jdbcType="VARCHAR" property="spiderCompareId" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="create_id" jdbcType="VARCHAR" property="createId" />
+    <result column="create_time" jdbcType="DATE" property="createTime" />
+    <result column="cause" jdbcType="VARCHAR" property="cause" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.cnit.yoyo.model.car.CarSpiderAuditLogWithBLOBs">
+    <result column="before_value" jdbcType="LONGVARCHAR" property="beforeValue" />
+    <result column="after_value" jdbcType="LONGVARCHAR" property="afterValue" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, spider_compare_id, type, status, create_id, create_time, cause
+  </sql>
+  <sql id="Blob_Column_List">
+    before_value, after_value
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_car_spider_aduit_log
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_car_spider_aduit_log
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cnit.yoyo.model.car.CarSpiderAuditLogWithBLOBs">
+    insert into t_car_spider_aduit_log (id, spider_compare_id, type, 
+      status, create_id, create_time, 
+      cause, before_value, after_value
+      )
+    values (#{id,jdbcType=INTEGER}, #{spiderCompareId,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER}, #{createId,jdbcType=VARCHAR}, #{createTime,jdbcType=DATE}, 
+      #{cause,jdbcType=VARCHAR}, #{beforeValue,jdbcType=LONGVARCHAR}, #{afterValue,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cnit.yoyo.model.car.CarSpiderAuditLogWithBLOBs">
+    insert into t_car_spider_aduit_log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="spiderCompareId != null">
+        spider_compare_id,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="createId != null">
+        create_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="cause != null">
+        cause,
+      </if>
+      <if test="beforeValue != null">
+        before_value,
+      </if>
+      <if test="afterValue != null">
+        after_value,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="spiderCompareId != null">
+        #{spiderCompareId,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createId != null">
+        #{createId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=DATE},
+      </if>
+      <if test="cause != null">
+        #{cause,jdbcType=VARCHAR},
+      </if>
+      <if test="beforeValue != null">
+        #{beforeValue,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="afterValue != null">
+        #{afterValue,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cnit.yoyo.model.car.CarSpiderAuditLogWithBLOBs">
+    update t_car_spider_aduit_log
+    <set>
+      <if test="spiderCompareId != null">
+        spider_compare_id = #{spiderCompareId,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createId != null">
+        create_id = #{createId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=DATE},
+      </if>
+      <if test="cause != null">
+        cause = #{cause,jdbcType=VARCHAR},
+      </if>
+      <if test="beforeValue != null">
+        before_value = #{beforeValue,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="afterValue != null">
+        after_value = #{afterValue,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.cnit.yoyo.model.car.CarSpiderAuditLogWithBLOBs">
+    update t_car_spider_aduit_log
+    set spider_compare_id = #{spiderCompareId,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      create_id = #{createId,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=DATE},
+      cause = #{cause,jdbcType=VARCHAR},
+      before_value = #{beforeValue,jdbcType=LONGVARCHAR},
+      after_value = #{afterValue,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cnit.yoyo.model.car.CarSpiderAuditLog">
+    update t_car_spider_aduit_log
+    set spider_compare_id = #{spiderCompareId,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      create_id = #{createId,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=DATE},
+      cause = #{cause,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cnit.yoyo.dao.car.AccessoryParamDecMapper" >
+  <resultMap id="BaseResultMap" type="com.cnit.yoyo.model.car.AccessoryParamDec" >
+    <id column="ACC_ID" property="accId" jdbcType="INTEGER" />
+    <id column="PARAM_ID" property="paramId" jdbcType="INTEGER" />
+    <result column="CATALOG_ID" property="catalogId" jdbcType="INTEGER" />
+    <result column="VALUE" property="value" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ACC_ID, PARAM_ID, CATALOG_ID, VALUE
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cnit.yoyo.model.car.AccessoryParamDecExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from t_accessory_param_dec
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.cnit.yoyo.model.car.AccessoryParamDecKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_accessory_param_dec
+    where ACC_ID = #{accId,jdbcType=INTEGER}
+      and PARAM_ID = #{paramId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.cnit.yoyo.model.car.AccessoryParamDecKey" >
+    delete from t_accessory_param_dec
+    where ACC_ID = #{accId,jdbcType=INTEGER}
+      and PARAM_ID = #{paramId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cnit.yoyo.model.car.AccessoryParamDecExample" >
+    delete from t_accessory_param_dec
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cnit.yoyo.model.car.AccessoryParamDec" >
+    insert into t_accessory_param_dec (ACC_ID, PARAM_ID, CATALOG_ID, 
+      VALUE)
+    values (#{accId,jdbcType=INTEGER}, #{paramId,jdbcType=INTEGER}, #{catalogId,jdbcType=INTEGER}, 
+      #{value,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cnit.yoyo.model.car.AccessoryParamDec" >
+    insert into t_accessory_param_dec
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="accId != null" >
+        ACC_ID,
+      </if>
+      <if test="paramId != null" >
+        PARAM_ID,
+      </if>
+      <if test="catalogId != null" >
+        CATALOG_ID,
+      </if>
+      <if test="value != null" >
+        VALUE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="accId != null" >
+        #{accId,jdbcType=INTEGER},
+      </if>
+      <if test="paramId != null" >
+        #{paramId,jdbcType=INTEGER},
+      </if>
+      <if test="catalogId != null" >
+        #{catalogId,jdbcType=INTEGER},
+      </if>
+      <if test="value != null" >
+        #{value,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cnit.yoyo.model.car.AccessoryParamDecExample" resultType="java.lang.Integer" >
+    select count(*) from t_accessory_param_dec
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_accessory_param_dec
+    <set >
+      <if test="record.accId != null" >
+        ACC_ID = #{record.accId,jdbcType=INTEGER},
+      </if>
+      <if test="record.paramId != null" >
+        PARAM_ID = #{record.paramId,jdbcType=INTEGER},
+      </if>
+      <if test="record.catalogId != null" >
+        CATALOG_ID = #{record.catalogId,jdbcType=INTEGER},
+      </if>
+      <if test="record.value != null" >
+        VALUE = #{record.value,jdbcType=DECIMAL},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_accessory_param_dec
+    set ACC_ID = #{record.accId,jdbcType=INTEGER},
+      PARAM_ID = #{record.paramId,jdbcType=INTEGER},
+      CATALOG_ID = #{record.catalogId,jdbcType=INTEGER},
+      VALUE = #{record.value,jdbcType=DECIMAL}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cnit.yoyo.model.car.AccessoryParamDec" >
+    update t_accessory_param_dec
+    <set >
+      <if test="catalogId != null" >
+        CATALOG_ID = #{catalogId,jdbcType=INTEGER},
+      </if>
+      <if test="value != null" >
+        VALUE = #{value,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ACC_ID = #{accId,jdbcType=INTEGER}
+      and PARAM_ID = #{paramId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cnit.yoyo.model.car.AccessoryParamDec" >
+    update t_accessory_param_dec
+    set CATALOG_ID = #{catalogId,jdbcType=INTEGER},
+      VALUE = #{value,jdbcType=DECIMAL}
+    where ACC_ID = #{accId,jdbcType=INTEGER}
+      and PARAM_ID = #{paramId,jdbcType=INTEGER}
+  </update>
+  	<insert id="batchInsert" parameterType="java.util.List">
+		<!-- 批量插入 -->
+		insert into t_accessory_param_dec (ACC_ID, PARAM_ID, CATALOG_ID,VALUE )
+		<foreach collection="list" index="index" item="item" separator="union all"> select #{item.accId,jdbcType=INTEGER},
+			#{item.paramId,jdbcType=INTEGER},#{item.catalogId,jdbcType=INTEGER},#{item.value,jdbcType=DECIMAL} from dual
+		</foreach>
+	</insert>
+</mapper>

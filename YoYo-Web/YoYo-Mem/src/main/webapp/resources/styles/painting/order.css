@@ -1,0 +1,325 @@
+@CHARSET "UTF-8";
+.header {
+  padding-top: 0;
+}
+.sell_main {
+  width: 970px;
+  height: auto;
+  padding: 0 20px;
+}
+.fl {
+  float: left;
+  display: inline;
+}
+.sellList_dl {
+	width: 950px;
+	height: auto;
+	padding: 0 10px;
+}
+
+.sellList_dl dt,.sellList_dl dd {
+	float: left;
+	height: 34px;
+	line-height: 34px;
+}
+
+.sellList_dl dt {
+	margin-left: 20px;
+}
+
+.sellList_dl dd input {
+	width: 108px;
+	height: 32px;
+	line-height: 32px;
+	border: 1px solid #ddd;
+	padding-left: 10px;
+}
+
+.sell_search {
+	width: 100px;
+	height: 34px;
+	line-height: 34px;
+	background-color: #0093e7;
+	color: #fff;
+	font-size: 18px;
+	font-family: "微软雅黑";
+	display: inline-block;
+	text-align: center;
+}
+
+a.sell_search:hover {
+	color: #fff;
+	background-color: #0283cd;
+}
+
+.sell_con {
+	width: 970px;
+	height: auto;
+	margin-top: 20px;
+}
+
+.sell_table {
+	color: #333;
+}
+
+.sell_table .firstTr {
+	background-color: #edf2f8;
+}
+
+.sell_table .firstTr th {
+	text-align: center;
+}
+
+.sell_table tr td {
+	text-align: center;
+}
+
+.sell_table .sell_img a {
+	display: inline-block;
+	width: 68px;
+	height: 68px;
+	border: 1px solid #ddd;
+	margin: 11px 0 0 10px;
+}
+
+.sell_table .sell_name {
+	width: auto;
+	margin: 11px 0 0 10px;
+	text-align: left;
+}
+
+.sell_table p {
+	color: #333;
+	line-height: 20px;
+}
+
+.sell_table .sell_name span {
+	font-size: 12px;
+	color: #aaa;
+	line-height: 16px;
+	display: inline-block;
+}
+
+.sell_table .sell_name b {
+	font-style: normal;
+	display: inline-block;
+	width: 17px;
+	height: 16px;
+	background-color: #ccc;
+	overflow: hidden;
+	position: relative;
+	top: 4px;
+}
+
+.sell_table .buy_opera a {
+	line-height: 20px;
+}
+
+.select_c {
+	width: 77px;
+	height: 18px;
+	border: 1px solid #abadb3;
+}
+
+.pading_left {
+	padding-left: 10px
+}
+
+.offerPrice {
+	display: inline-block;
+	font-size: 0.1em;
+	vertical-align: middle;
+}
+
+.buy_opera {
+	display: table-cell;
+	height: 1em;
+	padding: 0 0.1em;
+	font-size: 10em;
+	vertical-align: middle;
+}
+
+.offerPrice a {
+	margin-left: 0
+}
+
+.Plate>h4 {
+	border-bottom: 2px solid #377bee;
+}
+
+.Plate>h4 a.current {
+	background: none repeat scroll 0 0 #377bee;
+	border: 0 none;
+	color: #fff;
+	font-weight: bold;
+}
+
+.Plate2>h4 {
+	border-bottom: 2px solid #59c558;
+}
+
+.Plate2>h4 a.current2 {
+	background: none repeat scroll 0 0 #59c558;
+	color: #ffffff;
+	display: inline-block;
+	font-weight: bold;
+	height: 28px;
+	line-height: 28px;
+	padding: 0 30px;
+}
+
+.Plate>h4 a {
+	background: none repeat scroll 0 0 #f1f1f1;
+	border-left: 1px solid #ecebf0;
+	border-right: 1px solid #ecebf0;
+	color: #333333;
+	display: inline-block;
+	font-weight: normal;
+	height: 28px;
+	line-height: 28px;
+	padding: 0 30px;
+}
+
+.clr {
+  display: block;
+  overflow: hidden;
+  clear: both;
+  height: 0;
+  line-height: 0;
+  font-size: 0;
+}
+
+.checkout-buttons .checkout-submit:hover {
+	background-color: #EF494D;
+}
+
+.checkout-buttons  .checkout-submit:hover b {
+	background-position: 0 -36px;
+}
+
+.checkout-buttons .checkout-submit-disabled {
+	background-color: #ccc;
+	position: relative;
+	line-height: 36px;
+	font-weight: bold;
+	font-size: 16px;
+	cursor: not-allowed;
+}
+
+.checkout-buttons .checkout-submit-disabled b {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 135px;
+	height: 36px;
+	background:
+		url(http://misc.360buyimg.com/purchase/trade/skin/i/btn-disabled.png)
+		no-repeat;
+	cursor: not-allowed;
+}
+
+.selectTable{
+	width:667px;margin:0 auto;line-height: 26px;color: #666;
+}
+
+.selectTable th{
+	width: 85px;
+	text-align: right;
+	font-weight: 400;
+	padding: 5px 0;
+}
+
+.selectTable .selmain {
+  width: 150px;
+  float: left;
+  margin-right: 10px;
+}
+
+.select {
+  font-size: 12px;
+  position: relative;
+  max-width: 260px;
+  cursor: pointer;
+}
+
+.zindex-05 {
+  z-index: 5;
+}
+
+.select-selected {
+  width: 99%;
+  height: 22px;
+  line-height: 138px;
+  border: solid 1px #ccd3e4;
+  background-color: #fff;
+  color: #666;
+  position: relative;
+  overflow: hidden;
+  z-index: 100;
+}
+
+.errortip{
+	padding-left: 10px;
+ 	color: #d60000;
+}
+
+.fn-hide{
+	display: none;
+}
+.selectStores{
+	position: relative
+}
+.btn {
+  top: -12px;
+  left: 730px;
+  position: absolute;
+  background: #0066FF;
+  padding: 0 20px;
+  border: none;
+  display: inline-block;
+  zoom: 1;
+  overflow: visible;
+  color: #FFFFFF;
+  font-size: 14px;
+  text-decoration: none;
+  cursor: pointer;
+  vertical-align: middle;
+  height: 23px;
+  line-height: 23px;
+  margin: 20px 5px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
+}
+#date-delivery .date span {
+  font-family: Arial;
+}
+
+.card-table{
+	width:667px;
+	margin: 10px 0 20px 44px;
+	line-height: 26px;
+ 	color: #666;
+}
+
+.card-table th {
+  width: 85px;
+  text-align: left;
+  font-weight: 400;
+  padding: 5px 0;
+}
+
+.card-table th .red {
+  color: #d60000;
+  margin-right: 5px;
+}
+
+.card-table td .inp-text {
+	width: 220px;
+    vertical-align: middle;
+    height: 22px;
+    border: 1px solid #ccd3e4;
+	padding: 0 5px;
+}

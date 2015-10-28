@@ -1,0 +1,74 @@
+@charset "utf-8";
+/* CSS Document */
+.sell_main{ width: 970px; height: auto; padding: 0 20px; }
+.sell_title{ _width: 450px; height: 65px; line-height: 65px; color: #0081cc; font-family: "微软雅黑"; font-size: 18px; }
+.title_border{ padding: 0 4px; height: 45px; border-bottom: 2px solid #0081cc; display: inline; overflow: hidden; }
+.sell_name{ width: 180px; margin-right: 30px; text-align: center; }
+.sell_name a{ display: block; width: 166px; height: 64px; border: 3px solid #f5f5f5; padding: 55px 4px; margin-bottom: 10px; }
+.sell_name span{ font-family: "新宋体"; font-size: 14px; color: #666; }
+.sell_dl{ width: 420px; height: auto; font-family: "新宋体"; overflow: hidden; }
+.sell_dl dl{ width: 158px; height: 56px; border: 1px solid #e5e5e5; padding: 15px 15px; float: left; margin: 0 20px 10px 0; overflow: hidden; }
+.sell_dl dl dt{ float: left; text-align: center; }
+.sell_dl dl dt i{ font-style: normal; display: block; width: 34px; height: 32px; background-image: url(../images/sell.png); }
+.sell_dl dl dt span{ color: #80c0e5; margin-top: 8px; display: block; font-size: 14px; }
+.sell_i01{ background-position: 0 -108px; }
+.sell_i02{ background-position: 0 -155px; }
+.sell_i03{ background-position: 0 -202px; }
+.sell_i04{ background-position: 0 -250px; }
+.sell_dl dl dd{ float: right; }
+.sell_dl dl dd p{ line-height: 30px; }
+.sell_dl dl dd p i,.sell_grade i{ font-style: normal; }
+.sell_grade{ width: 266px; height: 124px; border: 1px solid #cfe5d4; padding: 30px 36px; font-family: "新宋体"; }
+.sell_grade dl dt{ font-size: 14px; font-weight: bold; color: #55b46c; margin-bottom: 14px; }
+.sell_grade dl dd{ line-height: 30px; }
+
+
+/*推广活动信息*/
+.news_list{ margin-top: 30px; overflow: hidden; }
+.news_con{ width: 450px; display: inline-block; height: auto; overflow: hidden; }
+.news_con ul li{ position: relative; padding-left: 6px; line-height: 30px; color: #333; }
+.news_con ul li span{ color: #666; }
+.news_con ul li i{ width: 3px; height: 3px; background-color: #333; display: inline-block; position: absolute; left:0; top: 13px; overflow: hidden; }
+
+
+/*近期服务情况*/
+.sell_serve{ margin-top: 30px; font-family: "新宋体"; font-size: 14px; }
+.serve_con dl{ border-top: 1px solid #ffeeda; float: left; text-align: center; }
+.serve_con dl dt{ border-bottom: 1px solid #ffeeda; border-right: 1px solid #ffeeda; padding: 12px 0; margin: 0!important; background-color: #fff4e8; }
+.sell_dl01{ width: 100px; }
+.sell_dl01 dt{ border-left: 1px solid #ffeeda; }
+.serve_cur{ padding: 14px 0 !important; background-color: #5ac559 !important; border: 1px solid #1bb14d !important; color: #fff !important; position: relative; top: -5px; }
+.serve_cur+dd{ margin-top: -5px; }
+.sell_dl02{ width: 72px; }
+.sell_dl02 dt{ width: 72px !important; text-align: center !important; }
+.sell_dl03{ width: 107px; }
+.sell_dl04{ width: 152px; }
+.sell_dl05{ width: 178px; }
+.sell_dl06{ width: 288px; }
+.sell_dl07{ width: 72px; }
+.serve_con dl dd{ text-align: center; border-bottom: 1px solid #e6e6e6; height: 40px; line-height: 40px; }
+
+
+/*服务专区和评价*/
+.appraise_list{ margin-top: 30px; }
+.zone{ width: 400px; height: 125px; padding: 20px; font-family: "微软雅黑"; font-size: 18px; }
+.zone_img{ text-align: center; }
+.zone_con p{ margin-bottom: 14px; }
+.zone_con{ margin-right: 10px; }
+.zone_con i{ font-style: normal; }
+.zone_i{ color: #5ac559; }
+.zone_con a{ display: inline-block; width: 116px; height: 32px; line-height: 30px; border-radius: 30px; text-align: center; color: #fff; margin-top: 10px; }
+.zone_btn1{ background-color: #5ac559; margin-right: 16px; }
+.zone_btn2{ background-color: #eb4f38; }
+
+/*评价信息*/
+.app_con{ width: 456px; height: 165px; font-size: 14px; }
+.app_con dl{ float: left; text-align: center; border-top: 1px solid #ffeeda; }
+.app_con dl dt{ padding: 12px 0; border-right: 1px solid #ffeeda; border-bottom: 1px solid #ffeeda; background-color: #fff4e8; }
+.app_con dl dd{ padding: 13px; border-bottom: 1px solid #e6e6e6; }
+.app_dl01{ width: 116px; }
+.app_dl01 dt{ border-left: 1px solid #ffeeda; }
+.app_dl02{ width: 80px; }
+.app_dl03{ width: 127px; }
+.app_dl04{ width: 132px; }
+

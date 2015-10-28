@@ -1,0 +1,57 @@
+@charset "utf-8";
+.error-style{border: 1px solid rgb(111,111,111); background:url(../images/exclamation.png) no-repeat right;background-color: rgb(254,213,213); }
+.right-style{border: 1px solid green; ;background:url(../images/accept.png) no-repeat right; }
+.form-item-title{text-align:right;color:#000000; width:140px;font-size:12px;font-family:Arial, Helvetica, sans-serif,"宋体";}
+.form_item_input{color:#333; line-height:22px;height:22px; width:260px; padding-left:1px;vertical-align:middle;}
+
+.formtable tr{}
+.formtable tr th{font-size:12px;font-family:Arial, Helvetica, sans-serif,"宋体";font-weight: bold;text-align: right;}
+.formtable tr td{font-size:12px;font-family:Arial, Helvetica, sans-serif,"宋体";text-align: left;}
+.redstar{color:red;font-weight: bold;font-size:16px;}
+
+
+/* 表单提示 */
+.container table.formBody td .form-item-title{text-align:right;color:#000000; width:140px;font-size:12px;font-family:Arial, Helvetica, sans-serif,"宋体";}
+.container table.formBody td .form_item_input{color:#333; line-height:22px;height:22px; width:260px; padding-left:1px;vertical-align:middle;}
+.container table.formBody td .error-style{border: 1px solid #f00; background:url(../images/exclamation.png) no-repeat right;background-color: rgb(254,213,213); }
+.container table.formBody td .right-style{border:1px solid #68bc58; background:url(../images/accept.png) no-repeat right; }
+.prompt-info{z-index: auto;display: none;position:absolute;width: 276px;height: 35px;overflow: hidden;text-indent: 5px;line-height: 40px;font-size: 12px;font-family: Arial;background: url(../images/tooltop.gif) no-repeat left top;opacity:0.9;filter: alpha(opacity=90);}
+.tooltips-howpanel, .tooltips-howpanel-top{
+	display: none;
+	overflow: hidden;
+	text-indent: 5px;
+	font-size: 12px;
+	font-family: Arial;
+	position:absolute;
+}
+.tooltips-howpanel
+{
+	width: 210px;
+	padding:3px 10px;
+	line-height:20px;
+	z-index: 10000;
+	background:#fcf9e7;
+	border:1px solid #fc8941;
+	opacity:0.9;
+    filter: alpha(opacity=90);
+    margin-top:6px;
+
+}
+.tooltips-howpanel-top{
+
+	width: 12px;
+	height:7px;
+	z-index: 10003;
+	background: url(../images/tooltoparrow.gif) no-repeat left top;
+}
+#tooltips_iframe{
+	filter: Alpha(Opacity=0);
+	left:0px;
+	opacity:0;
+	position:absolute;
+	visibility:inherit;
+	width:100px;
+	z-index:-1;
+	top:0px;
+}
+.redstar{color:red;font-weight: bold;font-size:16px;}

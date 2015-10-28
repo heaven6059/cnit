@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cnit.yoyo.point.dao.MemberPointMapper" >
+  <resultMap id="BaseResultMap" type="com.cnit.yoyo.point.model.MemberPoint" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="member_id" property="memberId" jdbcType="INTEGER" />
+    <result column="in_point" property="inPoint" jdbcType="INTEGER" />
+    <result column="out_point" property="outPoint" jdbcType="INTEGER" />
+    <result column="remain_point" property="remainPoint" jdbcType="INTEGER" />
+    <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="expiretime" property="expiretime" jdbcType="TIMESTAMP" />
+    <result column="is_overdue" property="isOverdue" jdbcType="CHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="related_id" property="relatedId" jdbcType="BIGINT" />
+    <result column="type" property="type" jdbcType="BIT" />
+    <result column="operator" property="operator" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, member_id, in_point, out_point, remain_point, createtime, expiretime, is_overdue, 
+    remark, related_id, type, operator
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_member_point
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_member_point
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cnit.yoyo.point.model.MemberPoint" >
+    insert into t_member_point (id, member_id, in_point, 
+      out_point, remain_point, createtime, 
+      expiretime, is_overdue, remark, 
+      related_id, type, operator
+      )
+    values (#{id,jdbcType=INTEGER}, #{memberId,jdbcType=INTEGER}, #{inPoint,jdbcType=INTEGER}, 
+      #{outPoint,jdbcType=INTEGER}, #{remainPoint,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{expiretime,jdbcType=TIMESTAMP}, #{isOverdue,jdbcType=CHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{relatedId,jdbcType=BIGINT}, #{type,jdbcType=BIT}, #{operator,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cnit.yoyo.point.model.MemberPoint" >
+    insert into t_member_point
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="memberId != null" >
+        member_id,
+      </if>
+      <if test="inPoint != null" >
+        in_point,
+      </if>
+      <if test="outPoint != null" >
+        out_point,
+      </if>
+      <if test="remainPoint != null" >
+        remain_point,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+      <if test="expiretime != null" >
+        expiretime,
+      </if>
+      <if test="isOverdue != null" >
+        is_overdue,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="relatedId != null" >
+        related_id,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="operator != null" >
+        operator,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="memberId != null" >
+        #{memberId,jdbcType=INTEGER},
+      </if>
+      <if test="inPoint != null" >
+        #{inPoint,jdbcType=INTEGER},
+      </if>
+      <if test="outPoint != null" >
+        #{outPoint,jdbcType=INTEGER},
+      </if>
+      <if test="remainPoint != null" >
+        #{remainPoint,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expiretime != null" >
+        #{expiretime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isOverdue != null" >
+        #{isOverdue,jdbcType=CHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="relatedId != null" >
+        #{relatedId,jdbcType=BIGINT},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=BIT},
+      </if>
+      <if test="operator != null" >
+        #{operator,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cnit.yoyo.point.model.MemberPoint" >
+    update t_member_point
+    <set >
+      <if test="memberId != null" >
+        member_id = #{memberId,jdbcType=INTEGER},
+      </if>
+      <if test="inPoint != null" >
+        in_point = #{inPoint,jdbcType=INTEGER},
+      </if>
+      <if test="outPoint != null" >
+        out_point = #{outPoint,jdbcType=INTEGER},
+      </if>
+      <if test="remainPoint != null" >
+        remain_point = #{remainPoint,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expiretime != null" >
+        expiretime = #{expiretime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isOverdue != null" >
+        is_overdue = #{isOverdue,jdbcType=CHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="relatedId != null" >
+        related_id = #{relatedId,jdbcType=BIGINT},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=BIT},
+      </if>
+      <if test="operator != null" >
+        operator = #{operator,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cnit.yoyo.point.model.MemberPoint" >
+    update t_member_point
+    set member_id = #{memberId,jdbcType=INTEGER},
+      in_point = #{inPoint,jdbcType=INTEGER},
+      out_point = #{outPoint,jdbcType=INTEGER},
+      remain_point = #{remainPoint,jdbcType=INTEGER},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      expiretime = #{expiretime,jdbcType=TIMESTAMP},
+      is_overdue = #{isOverdue,jdbcType=CHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      related_id = #{relatedId,jdbcType=BIGINT},
+      type = #{type,jdbcType=BIT},
+      operator = #{operator,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+    <select id="getPointList"  parameterType="Map" resultMap="BaseResultMap" >
+		SELECT 
+		  M.MEMBER_ID,
+		  M.TOTAL_POINT,
+		  M.POINT_FREEZE,
+		  M_P.ID,
+		  M_P.MEMBER_ID AS POINTHISTORY_ID,
+		  M_P.IN_POINT,
+		  M_P.OUT_POINT,
+		  M_P.REMAIN_POINT,
+		  M_P.CREATETIME,
+		  M_P.EXPIRETIME,
+		  M_P.IS_OVERDUE,
+		  M_P.REMARK,
+		  M_P.RELATED_ID,
+		  M_P.TYPE,
+		  M_P.OPERATOR 
+		FROM
+		  T_MEMBERS M 
+		  LEFT JOIN T_MEMBER_POINT M_P 
+		    ON M.MEMBER_ID = M_P.MEMBER_ID 
+		  <where>
+		       <if test="memberId != '' and memberId != null ">
+		            M.MEMBER_ID = #{memberId}
+		       </if>
+		  </where>
+  </select>
+</mapper>

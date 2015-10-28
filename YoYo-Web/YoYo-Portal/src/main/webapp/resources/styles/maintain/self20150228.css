@@ -1,0 +1,238 @@
+/*������*/
+.conteBox { width:1200px; margin:0 auto;}
+.titleBox { padding:25px 0; overflow:hidden}
+.titleBox h2 { background:url(../images/self/icon.gif) no-repeat 0 0; color:#666; font-family:"΢���ź�"; font-size:18px; padding:0 0 0 30px; float:left;line-height:24px;}
+.titleBox h2 b {font-size:24px; color:#9f2024; line-height:24px; }
+.titleBox ol { float:right; width:320px; padding:22px 0 0;}
+.titleBox li{ float:left; width:80px; color:#666;font: 14px/20px "΢���ź�"; text-align:center;}
+.setp1 { background:url(http://c1.yangche51img.com/webresources/css/../images/self/setp.gif)}
+.setp2 { background:url(http://c1.yangche51img.com/webresources/css/../images/self/setp.gif) 0 -52px}
+.setp3 { background:url(http://c1.yangche51img.com/webresources/css/../images/self/setp.gif) 0 -104px no-repeat}
+.titleBox li.cur { color:#5a9823;}
+
+.models1 { border:2px solid #eee; border-top:3px solid #c10208; background:url(../images/self/icon.gif) no-repeat 14px -28px;width: 1197px}
+.models1 h3 { width:100%; text-align:center;font: 18px/50px "΢���ź�";  color:#333;background:url(../images/self/icon.gif) no-repeat 910px -28px;}
+.models1 h3 b {font: 22px/50px "΢���ź�";}
+.models1 span { position:absolute; display:none; width:740px; left:105px; top:46px;_top:50px} 
+.models1 i{background:url(../images/self/icon.gif) center -416px no-repeat; height:12px; display:block; width:740px; overflow:hidden}
+.models1 span div { background:#f3e077; height:40px;}
+.models1 span div b{font: 14px/40px "΢���ź�"; float:left; background:url(../images/self/icon.gif) -16px -429px no-repeat; padding:0 0 0 20px;}
+.models1 span div a{font: 14px/40px "΢���ź�"; float:right; background:url(../images/self/icon.gif) 52px -429px no-repeat;  width:60px; color:#333; }
+.models1 span div a em { width:20px; height:20px; background:url(../images/self/icon.gif) 0 -122px; display:block; float:left; margin-top:13px;}
+
+
+.listBox{ border:3px solid #eee; padding:1px; width:1194px; margin-top:5px;}
+.partsList { padding:5px; width:1187; background:#FFF;}
+.partsList h4 { background:url(../images/self/icon.gif) no-repeat 0 -82px;font:20px/30px "΢���ź�"; padding:0 0 0 20px; margin:0.5em 0 0.8em; overflow:hidden;}
+.partsList .info {background:url(../images/self/icon.gif) no-repeat 0 -158px;font:12px/22px "����"; color:#333; padding:0 0 0 20px; margin:8px 0;overflow:hidden;}
+.partsList .info a{ float: right; background: #f3e077; padding: 4px 14px; display: block; color: #333; font-size: 14px; border-radius: 5px; box-shadow: inset 0px -2px 0px 0px #bdbdbd; margin:0 5px 0 0;_margin:0 5px 5px 0}
+
+.partsList .tableBox table{ width:685px; margin:3px auto;border-collapse: collapse;}
+.partsList .tableBox tbody thead td{ background:#e8e8e8; font-size:14px; color:#333; text-align:center; font-weight:bold; }
+.partsList .tableBox thead td {height:40px;}
+.partsList .tableBox tbody td { border-left:1px solid #e8e8e8;}
+.partsList .tableBox tr th{height:40px;background:#e8e8e8; font-size:14px; color:#333; text-align:center; font-weight:bold;}
+
+.tableBox tbody td.category,.tableBox tbody td.pName {border-left:none;}
+.category { padding:10px 0 10px 10px; height:32px; background-image:url(../images/self/category.gif); background-repeat: no-repeat; color:#b88817; font-size:14px; font-weight:bold; border-bottom:3px solid #e8e8e8; }
+.category a { float:right; background:url(../images/self/icon.gif) 0 -312px no-repeat; width:14px; height:14px; display:block; overflow:hidden; line-height:50px;}
+.n1 {background-position:0 -200px;}
+.n2 {background-position:0 -200px;}
+.n3 {background-position:0 -200px;}
+.n4 {background-position:0 -410px;}
+.n5 {background-position:0 -662px;}
+.n6 {background-position:0 -200px;}
+.n7 {background-position:0 -368px;}
+.n8 {background-position:0 -452px;}
+.n9 {background-position:0 -368px;}
+.n10 {background-position:0 -620px;}
+.n11 {background-position:0 -536px;}
+.n12 {background-position:0 -494px;}
+.n13 {background-position:0 -956px;}
+.n14 {background-position:0 -116px;}
+.n15 {background-position:0 -116px;}
+.n16 {background-position:0 -74px;}
+.n17 {background-position:0 -74px;}
+.n18 {background-position:0 -158px;}
+.n19 {background-position:0 -662px;}
+.n20 {background-position:0 -872px;}
+.n21 {background-position:0 -284px;}
+.n22 {background-position:0 -326px;}
+.n23 {background-position:0 -788px;}
+.n24 {background-position:0 -830px;}
+.n25 {background-position:0 -410px;}
+.n26 {background-position:0 -746px;}
+.n32{background-position:0 -242px;}
+
+.n48{background-position:0 -32px;}
+.n64{background-position:0 -956px;}
+
+.n59{background-position:0 -998px;}
+
+.n61{background-position:0 -914px;}
+.n56{background-position:0 -1040px;}
+.n71{background-position:0 -788px;}
+.n69{background-position:0 -704px;}
+
+.tableBox tbody td.pName,.pLink,.pPrice,.pNumber,.pDo{ padding:3px;border-bottom:1px solid #e8e8e8;}
+.tableBox tbody td.pName{color:#333;cursor:pointer;padding-left: 20px;}
+.pName{ color:#999; font-size:12px; width:116px;}
+.pName span{ color:#999; font-size:12px;}
+
+.pLink{ color:#246ba7; font-size:12px; line-height:1.5em;text-align: left;}
+.pLink a{ color:#246ba7; font-size:12px;}
+.pPrice{ color:#960000; font-size:14px; font-weight:bold; width:74px; text-align:center;}
+.pNumber input{ border:1px solid #959595; width:30px; padding:7px 0; text-align:center; margin:0 4px;}
+.pNumber{ width:90px; font-size:16px; color:#333; text-align:center}
+.pNumber .a1{color: #246ba7;  font-family: "����";  text-decoration: none; *position:absolute; *margin-top:8px;  *margin-left:-8px; }
+.pNumber .a2{color: #246ba7; font-family: "����"; text-decoration: none;  *position:absolute;  *margin-top:8px;  *margin-left:1px;  }
+.pDo{ font-size:12px; text-align:center; width:36px; position:relative;}
+.pDo i{ position:absolute; display:none; width:14px; height:58px; background:url(../images/self/icon.gif) 0 -514px; right:-18px; margin-top:-23px;_margin-top:-3px;  }
+.partsList tr td.gray{color:#999;}
+
+.moreParts .pDo i 
+{
+	 display: block;
+	 
+}
+
+
+.tableBox tfoot td{ position:relative;height:205px;_height:245px;}
+.payBox{  width:660px; height:178px;left:210px; *left:67px;  background:#fefaf8;border:0 solid #f3ccce; border-top:none; padding:15px}
+.payBox .price { text-align:right; font-size:14px; color:#666; line-height:40px;}
+.payBox .price b { font-size:24px; color:#960000; font-family:Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif; line-height:40px;}
+.payBox .other {text-align:right;font-size:14px; color:#666; line-height:40px; _margin-right:50px;}
+.payBox .other i {text-align:right;font-size:14px; color:#f00; line-height:40px; _margin-right:20px; font-style: normal;*margin-right:40px;}
+.payBox .submitBox { width:100%;text-align:right;float:right;font-size:14px; color:#666; line-height:40px; margin:15px 0 0 0;position:relative;}
+.payBox .submitBox .button{ float: right; background:#c10208; padding: 4px 12px; display: block; color:#fff; border-radius:5px;box-shadow: inset 0px -2px 0px 0px #83001a;font:20px/30px "΢���ź�"; font-weight:bold;margin:0 0 0 15px; }
+
+
+.payBox .linkAPP { width:366px; float:right;}
+.linkAPP { width:306px; height:30px; border:2px solid #F90; background:#FFF url(../images/detail/2code.gif) no-repeat -134px 9px; padding:10px 8px 0 34px; position:relative;}
+.linkAPP a { font-size:12px; color:#000; line-height:22px;}
+.linkAPP a span {color:#f90b0b;}
+.linkAPP i { width:22px; height:22px; background:url(../images/detail/2code.gif); float:right; position:absolute; right:8px; top:8px; overflow:hidden}
+.linkAPP i a { width:22px; height:22px;overflow:hidden; line-height:120px;_line-height:60px; display:block}
+.layer2code { position:absolute;background:url(../images/detail/2code.gif) bottom; width:160px; height:181px; right:-2px; top:-188px; text-align:center; font-size:12px; color:#666; padding:8px 0 0;}
+
+.moreParts .pDo i{ display:block;}
+
+
+.moreParts {
+    background: none repeat scroll 0 0 #fffce9;
+}
+
+.moreList { width:480px; float:right;}
+.moreList h5 { background:url(../images/self/icon.gif) no-repeat 0 -82px;font:20px/30px "΢���ź�"; padding:0 0 0 20px; margin:16px 0; overflow:hidden; }
+.selectBox {width:100%;}
+.select { width:228px; height:34px; background:#F1EFEB;font:16px/34px "΢���ź�"; float:left;cursor:pointer; position:relative;display:inline;z-index:1;}
+.select.right { margin:0 0 0 20px;}
+.select span { padding:0 10px;display:block;height:34px;overflow:hidden;}
+.select span i { width:14px; height:10px; background:url(http://c1.yangche51img.com/webresources/css/../images/self/icon.gif) 0 -203px; display:block; float:right; margin:13px 10px 0 0;}
+.select ol { background:#FFF; box-shadow:0px 2px 2px 0px #666; position:absolute; top:34px; left:0;*border: 1px solid #f1efeb;}
+.select ol li { border-bottom:1px solid #eee }
+.select ol li a { font-size:14px;padding:0 10px; color:#666; width:207px; display:block}
+.select ol li a:hover { background:#FFC}
+
+
+.moreList table{ width:477px; margin:10px 0 0 0;border-collapse: collapse;}
+.moreList thead{ background:#f9eeb0; font-size:12px; color:#333; text-align:center; font-weight:bold; }
+.moreList thead td {height:40px; }
+.moreList tbody{background:#FFF;}
+.moreList tbody td { border-bottom:1px solid #e8e8e8;}
+.moreList tbody .pPrice {border-left:1px solid #e8e8e8;border-right:1px solid #e8e8e8;}
+.moreList tbody .pPic a{display:block;width:60px;height:60px;border:1px solid #e8e8e8;margin:6px 3px;overflow:hidden;text-align:center;}
+.moreList tbody img { max-height:60px;max-width:60px;_height:60px;_width:60px;}
+.moreList tbody .pDo { text-align:center}
+.moreList tbody .pDo a { background:url(http://c1.yangche51img.com/webresources/css/../images/self/icon.gif) 9px -255px no-repeat; padding-top:20px; display:block; color:#b88817}
+
+
+
+
+
+
+.pPic { position:relative;vertical-align:top;width:70px;}
+.pPic i { background:url(../images/self/icon.gif) -3px -477px; width:22px; height:22px; position:absolute; right:3px; top:6px }
+.infoErr { width:315px; padding:15px 20px; background:#f9eeb0; margin-top:15px; font-size:14px; color:#c10208 }
+.infoErr span{ padding:0 0 0 20px; background:url(../images/self/icon.gif) 0 -367px no-repeat; display:block; line-height:1.5em;}
+.infoErr span a { color:#000; text-decoration:underline;}
+
+
+#MaintenItemList .screening {display:none;}
+.infoErr span a { color:#000; text-decoration:underline;}
+
+.pLink div { color:#666;text-align:center;}
+.pLink div a span{text-align:center;}
+.pLink div span{text-align:left;display:block;}
+.pLink div b { color:#F00; display:block;}
+.pLink div.screening { background:#FFC; text-align:center;display:none;}
+.pLink div.screening a { display:block; background:#F3E077; padding:4px 10px; width:50px; margin:4px auto; color:#000;}
+/* page */
+.page{float:right;padding:15px;height:25px;display:inline;}
+.page a{color:#666;padding:2px 5px;background:#fff;border:1px #ccc solid;color:#666;font:12px arial;}
+.page span,.page a:hover {padding:2px 5px;background:#F9EEB0;border:1px #E1A924 solid;font:12px arial;text-decoration:none; }
+
+.page a.pageup{padding:0 0 0 12px;border:0;height:20px;line-height:20px;background:none;}
+.page a.nextpage{padding:0 12px 0 0;border:0;height:20px;line-height:20px;background:none;}
+
+.page a.nopageup{padding:0 0 0 12px;border:0;height:20px;line-height:20px;}
+.page a.nonextpage{padding:0 12px 0 0;border:0;height:20px;line-height:20px;}
+
+.page a.pageup:hover{padding:0 0 0 12px;border:0;height:20px;line-height:20px; background:none; }
+.page a.nextpage:hover{border:0;padding:0 12px 0 0; height:20px;line-height:20px;background:none;}
+
+.page a.nopageup:hover{padding:0 0 0 12px;border:0; background:none;}
+.page a.nonextpage:hover{border:0;padding:0 12px 0 0; background:none;}
+
+.moreList .page { padding:10px 0;}
+.nullpack{ background:#FFFFCC; border: 1px solid #FFCC66; color: #A33E01; font: 12px/17px "����"; margin: 10px auto; padding: 5px; width: 510px; text-align:center;}
+
+/*���빺�ﳵǰ��ʾ��*/
+.partsList tr td .submitBox .choosetips {background: none repeat scroll 0 0 #FFFFCC;border: 1px solid #E77200;bottom: 53px;left: 40px;padding: 5px 10px;position: absolute;width: 180px;}
+.partsList tr td .submitBox .choosetips i {background: url("../images/mycar/titlebg20130510.png") no-repeat scroll right -120px transparent;bottom: -13px;height: 13px;left: 80px;position: absolute;width: 33px;_bottom: -19.8px}
+.partsList tr td .submitBox .choosetips .tipscontent {text-align: center;}
+.partsList tr td .submitBox .choosetips .tipscontent b {color: #FF0000;display: block;font: bold 12px/22px "����";}
+.partsList tr td .submitBox .choosetips .tipscontent a {
+background: url("../images/mycar/lbg.png") repeat-x scroll 0 -210px transparent;border: 1px solid #DCA246;display: block;height: 24px;margin: 0 0 0 55px;text-align: center;text-decoration: none;width: 70px; _margin-left:26px;}
+.partsList tr td .submitBox .choosetips .tipscontent a span {border: 1px solid #FFFFFF;color: #734403;display: block;font: 12px/22px "����";height: 22px;text-align: center;width: 68px; cursor:pointer; }
+#div_choosetips{display:none;}
+
+/*ѡ����Ʒ�嵥����*/
+
+.addstyle {background-color:#fff;z-index:10;}
+
+.addstyle {position: fixed;top: 0;margin-top: 0;_position: absolute;_top: expression(documentElement.scrollTop); z-index:11;float:right;}
+
+.addstyle{ background: none repeat scroll 0 0 #FFFFFF;float:right;}
+
+
+
+.moreList table tr .npjbut span {background: url("../images/mycar/lbg.png") repeat-x scroll 0 -250px transparent;border: 1px solid #CCCCCC;color: #666666;display: block;margin-left: 4px;width: 50px;}
+.moreList table tr .npjbut span b {background: url("../images/mycar/icon20130506.gif") no-repeat scroll 0 -848px transparent;font-weight: normal;padding-left: 12px;}
+
+
+
+
+/*������ʽ*/
+.nullpack {background: #FFC;border: 1px solid #F3E077;color: #A33E01;font: 12px/17px "����";margin: 10px auto;padding: 5px;width: 510px;text-align: center;}
+.moreList .page { padding:10px 0;}
+.chooseTips { position:absolute;  top:-50px; right:-64px;z-index:999;*right:-90px;*width:300px;}
+.chooseTips i { display:block; width:24px; height:12px; background: url(../images/self/icon.gif) center -588px no-repeat; margin:0 auto;*left:280px;}
+.chooseTips div {background:#F3E077; overflow:hidden;*width:270px;}
+.chooseTips b{float: left;background: url(../images/self/icon.gif) -16px -429px no-repeat; color:#000; padding:0 0 0 10px}
+.chooseTips span{ display:block; float: right;background: url(../images/self/icon.gif) 52px -429px no-repeat;}
+.chooseTips a{ display:block; padding:2px; background: #C10208; line-height:20px; color:#FFF; margin:10px 6px; padding:0 6px;}
+
+
+.modelsSelect { width:740px;  margin:0 auto; background:#f3e077;border-radius:6px;*border-radius:9px;} 
+.modelsSelect i{background:url(../images/self/icon.gif) center -416px no-repeat; height:12px; display:block; width:50px; left:50%; position:absolute; top:-12px;overflow:hidden;}
+.modelsSelect div { margin:5px 0 0; }
+.modelsSelect span { float:left; width:670px;}
+.modelsSelect div b{font: 14px/40px "΢���ź�"; float:left; padding:0 0 0 20px;}
+.modelsSelect div a{font: 14px/40px "΢���ź�"; float:right; width:60px; color:#333; }
+.modelsSelect div a em { width:20px; height:20px; background:url(../images/self/icon.gif) 0 -122px; display:block; float:left; margin-top:13px;}
+.copBox{height:350px;} 
+.moreList tbody .pDo span { background:url(../images/self/icon.gif) 9px -764px no-repeat; padding-top:20px; display:block; color:#959595}
+.other .change {    color: #f90;display: block;float: right;margin-left: 6px;text-decoration: none;width: 36px;text-decoration:none;*margin-top:-40px;_margin-right: -20px;*margin-left:8px;}
+.underline{ text-decoration:underline;}
+.other span{*margin: auto  35px 0 0;}

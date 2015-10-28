@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cnit.yoyo.dao.system.RoleMapper" >
+  <resultMap id="BaseResultMap" type="com.cnit.yoyo.model.system.Role" >
+    <id column="ROLE_ID" property="roleId" jdbcType="INTEGER" />
+    <result column="ROLE_NAME" property="roleName" jdbcType="VARCHAR" />
+    <result column="ROLE" property="role" jdbcType="VARCHAR" />
+    <result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
+    <result column="ROLE_STATUS" property="roleStatus" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <resultMap id="ResultMapWithBLOBs" type="com.cnit.yoyo.model.system.RoleWithBLOBs" extends="BaseResultMap" >
+    <result column="WORKGROUND" property="workground" jdbcType="LONGVARCHAR" />
+    <result column="CAT" property="cat" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  
+  <resultMap type="com.cnit.yoyo.model.system.Role" id="roleUserMap" extends="BaseResultMap">  
+      <collection property="users" ofType="com.cnit.yoyo.model.member.PamAccount">  
+          	<id column="ACCOUNT_ID" property="accountId" jdbcType="INTEGER" />
+		    <result column="ACCOUNT_TYPE" property="accountType" jdbcType="VARCHAR" />
+		    <result column="LOGIN_NAME" property="loginName" jdbcType="VARCHAR" />
+		    <result column="LOGIN_PASSWORD" property="loginPassword" jdbcType="VARCHAR" />
+		    <result column="ACCOUNT_STATUS" property="accountStatus" jdbcType="VARCHAR" />
+		    <result column="REG_IP" property="regIp" jdbcType="VARCHAR" />
+		    <result column="REG_TIME" property="regTime" jdbcType="VARCHAR" />
+		    <result column="REG_TYPE" property="regType" jdbcType="VARCHAR" />
+		    <result column="SOURCE" property="source" jdbcType="VARCHAR" />
+		    <result column="LOGIN_COUNT" property="loginCount" jdbcType="INTEGER" />
+		    <result column="LOGIN_IP" property="loginIp" jdbcType="VARCHAR" />
+		    <result column="SALT" property="salt" jdbcType="VARCHAR" />
+		    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+		    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+		    <result column="EMAIL" property="email" jdbcType="VARCHAR" />
+		    <result column="MOBILE_PHONE" property="mobilePhone" jdbcType="VARCHAR" /> 
+      </collection>  
+  </resultMap>
+  
+  <resultMap type="com.cnit.yoyo.model.system.Role" id="roleResourceMap" extends="BaseResultMap">  
+      <collection property="resources" ofType="com.cnit.yoyo.model.system.Resource">  
+          	<id column="ID" property="id" jdbcType="INTEGER" />
+		    <result column="RESOURCE_NAME" property="resourceName" jdbcType="VARCHAR" />
+		    <result column="RESOURCE_TYPE" property="resourceType" jdbcType="VARCHAR" />
+		    <result column="APP_ID" property="appId" jdbcType="VARCHAR" />
+		    <result column="WORKGROUND" property="workground" jdbcType="VARCHAR" />
+		    <result column="MENU_GROUP" property="menuGroup" jdbcType="VARCHAR" />
+		    <result column="MENU_TITLE" property="menuTitle" jdbcType="VARCHAR" />
+		    <result column="URL" property="url" jdbcType="VARCHAR" />
+		    <result column="DISABLEd" property="disabled" jdbcType="BIT" />
+		    <result column="DISPLAY" property="display" jdbcType="BIT" />
+		    <result column="PERMISSION" property="permission" jdbcType="VARCHAR" />
+		    <result column="TARGET" property="target" jdbcType="VARCHAR" />
+		    <result column="MENU_ORDER" property="menuOrder" jdbcType="INTEGER" />
+		    <result column="IDENTITY" property="identity" jdbcType="VARCHAR" />
+		    <result column="PARENT_ID" property="parentId" jdbcType="BIGINT" />
+		    <result column="PARENT_IDS" property="parentIds" jdbcType="VARCHAR" />
+		    <result column="ICON" property="icon" jdbcType="VARCHAR" />
+		    <result column="WEIGHT" property="weight" jdbcType="INTEGER" />
+      </collection>  
+  </resultMap>
+  
+    <resultMap type="com.cnit.yoyo.model.system.dto.RoleListDTO" id="roleResourceDTO" extends="BaseResultMap">  
+	  <result column="RESOURCE_NAME" property="resourceName" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    ROLE_ID, ROLE_NAME, ROLE, DESCRIPTION, ROLE_STATUS
+  </sql>
+  
+  <sql id="Blob_Column_List" >
+    WORKGROUND, CAT
+  </sql>
+  
+  <!-- 根据Role表中的id或name查询组信息和组内用户信息 -->  
+    <select id="selectroleUser" parameterType="com.cnit.yoyo.model.system.Role"  resultMap="roleUserMap">  
+        select u.ACCOUNT_ID, u.ACCOUNT_TYPE, u.LOGIN_NAME, u.LOGIN_PASSWORD, u.ACCOUNT_STATUS, u.REG_IP, u.REG_TIME, 
+    	u.REG_TYPE, u.SOURCE, u.LOGIN_COUNT, u.LOGIN_IP, u.SALT, u.CREATE_TIME, u.UPDATE_TIME, u.EMAIL, u.MOBILE_PHONE,
+    	r.ROLE_ID, r.ROLE_NAME, r.ROLE, r.DESCRIPTION, r.ROLE_STATUS,r.WORKGROUND, r.CAT
+		from t_desktop_roles r left join t_role_user ur on r.ROLE_ID = ur.ROLE_ID left join t_pam_account u on ur.ACCOUNT_ID=u.ACCOUNT_ID 
+        <where>  
+            <!--当id为初始值0，不再使用id作为查询条件 -->  
+            <if test="roleId != 0  ">r.ROLE_ID=#{id}</if>  
+            <!-- 当name为空或为空串时，不再使用name作为查询条件 -->  
+            <if test="roleName != null and roleName != ''">  
+                or r.ROLE_NAME = #{name}  
+            </if>  
+        </where>  
+    </select>  
+    
+    <select id="findByRolename" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_desktop_roles
+    where ROLE_NAME = #{roleName,jdbcType=VARCHAR}
+  </select>
+    
+   <select id="selectAllRoleResource" resultMap="roleResourceDTO">
+    SELECT
+	t_desktop_roles.ROLE_NAME,
+	t_desktop_roles.DESCRIPTION,
+	t_desktop_resource.RESOURCE_NAME,
+	t_desktop_roles.ROLE_ID
+	FROM
+	t_desktop_roles
+	JOIN t_resource_role ON t_resource_role.ROLE_ID =  t_desktop_roles.ROLE_ID
+	JOIN t_desktop_resource ON t_desktop_resource.ID = t_resource_role.RESOURCE_ID
+  </select>
+    
+   <select id="findSelect" resultMap="BaseResultMap">
+    select 
+    ROLE_ID, ROLE_NAME
+    from t_desktop_roles
+  </select>
+    
+    <!-- 根据Role表中的id或name查询组信息和组内用户信息 -->  
+    <select id="selectroleResource" parameterType="java.lang.Integer"  resultMap="roleResourceMap">  
+        select re.ID, re.RESOURCE_NAME, re.RESOURCE_TYPE, re.APP_ID, re.WORKGROUND, re.MENU_GROUP, re.MENU_TITLE, re.URL, 
+    	re.DISABLEd, re.DISPLAY, re.PERMISSION, re.TARGET, re.MENU_ORDER, re.IDENTITY, re.PARENT_ID, re.PARENT_IDS, 
+    	re.ICON, re.WEIGHT, re.ADDON,
+    	r.ROLE_ID, r.ROLE_NAME, r.ROLE, r.DESCRIPTION, r.ROLE_STATUS,r.WORKGROUND, r.CAT
+		from t_desktop_roles r left join t_resource_role ur on r.ROLE_ID = ur.ROLE_ID left join t_desktop_resource re on ur.RESOURCE_ID=re.ID 
+        where r.ROLE_ID = #{roleId,jdbcType=INTEGER} 
+    </select>  
+  
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_desktop_roles
+    where ROLE_ID = #{roleId,jdbcType=INTEGER}
+  </select>
+  
+  <select id="findAll" resultMap="ResultMapWithBLOBs"  >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_desktop_roles
+    
+  </select>
+  
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    <!--
+      WARNING - @mbggenerated
+      This element is automatically generated by MyBatis Generator, do not modify.
+      This element was generated on Wed Mar 25 19:51:14 CST 2015.
+    -->
+    delete from t_desktop_roles
+    where ROLE_ID = #{roleId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cnit.yoyo.model.system.RoleWithBLOBs" >
+    <!--
+      WARNING - @mbggenerated
+      This element is automatically generated by MyBatis Generator, do not modify.
+      This element was generated on Wed Mar 25 19:51:14 CST 2015.
+    -->
+    insert into t_desktop_roles (ROLE_ID, ROLE_NAME, ROLE, 
+      DESCRIPTION, ROLE_STATUS, WORKGROUND, 
+      CAT)
+    values (#{roleId,jdbcType=INTEGER}, #{roleName,jdbcType=VARCHAR}, #{role,jdbcType=VARCHAR}, 
+      #{description,jdbcType=VARCHAR}, #{roleStatus,jdbcType=VARCHAR}, #{workground,jdbcType=LONGVARCHAR}, 
+      #{cat,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cnit.yoyo.model.system.RoleWithBLOBs" >
+    <!--
+      WARNING - @mbggenerated
+      This element is automatically generated by MyBatis Generator, do not modify.
+      This element was generated on Wed Mar 25 19:51:14 CST 2015.
+    -->
+    insert into t_desktop_roles
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="roleId != null" >
+        ROLE_ID,
+      </if>
+      <if test="roleName != null" >
+        ROLE_NAME,
+      </if>
+      <if test="role != null" >
+        ROLE,
+      </if>
+      <if test="description != null" >
+        DESCRIPTION,
+      </if>
+      <if test="roleStatus != null" >
+        ROLE_STATUS,
+      </if>
+      <if test="workground != null" >
+        WORKGROUND,
+      </if>
+      <if test="cat != null" >
+        CAT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="roleId != null" >
+        #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="roleName != null" >
+        #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="role != null" >
+        #{role,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="roleStatus != null" >
+        #{roleStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="workground != null" >
+        #{workground,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="cat != null" >
+        #{cat,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cnit.yoyo.model.system.RoleWithBLOBs" >
+    <!--
+      WARNING - @mbggenerated
+      This element is automatically generated by MyBatis Generator, do not modify.
+      This element was generated on Wed Mar 25 19:51:14 CST 2015.
+    -->
+    update t_desktop_roles
+    <set >
+      <if test="roleName != null" >
+        ROLE_NAME = #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="role != null" >
+        ROLE = #{role,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        DESCRIPTION = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="roleStatus != null" >
+        ROLE_STATUS = #{roleStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="workground != null" >
+        WORKGROUND = #{workground,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="cat != null" >
+        CAT = #{cat,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where ROLE_ID = #{roleId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.cnit.yoyo.model.system.RoleWithBLOBs" >
+    <!--
+      WARNING - @mbggenerated
+      This element is automatically generated by MyBatis Generator, do not modify.
+      This element was generated on Wed Mar 25 19:51:14 CST 2015.
+    -->
+    update t_desktop_roles
+    set ROLE_NAME = #{roleName,jdbcType=VARCHAR},
+      ROLE = #{role,jdbcType=VARCHAR},
+      DESCRIPTION = #{description,jdbcType=VARCHAR},
+      ROLE_STATUS = #{roleStatus,jdbcType=VARCHAR},
+      WORKGROUND = #{workground,jdbcType=LONGVARCHAR},
+      CAT = #{cat,jdbcType=LONGVARCHAR}
+    where ROLE_ID = #{roleId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cnit.yoyo.model.system.Role" >
+    <!--
+      WARNING - @mbggenerated
+      This element is automatically generated by MyBatis Generator, do not modify.
+      This element was generated on Wed Mar 25 19:51:14 CST 2015.
+    -->
+    update t_desktop_roles
+    set ROLE_NAME = #{roleName,jdbcType=VARCHAR},
+      ROLE = #{role,jdbcType=VARCHAR},
+      DESCRIPTION = #{description,jdbcType=VARCHAR},
+      ROLE_STATUS = #{roleStatus,jdbcType=VARCHAR}
+    where ROLE_ID = #{roleId,jdbcType=INTEGER}
+  </update>
+</mapper>

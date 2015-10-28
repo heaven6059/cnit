@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cnit.yoyo.dao.shop.CompanyRegionShipMapper" >
+  <resultMap id="BaseResultMap" type="com.cnit.yoyo.model.shop.CompanyRegionShip" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="region_id" property="regionId" jdbcType="INTEGER" />
+    <result column="cat_id" property="catId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, region_id, cat_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_company_region_ship
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_company_region_ship
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cnit.yoyo.model.shop.CompanyRegionShip" >
+    insert into t_company_region_ship (id, region_id, cat_id
+      )
+    values (#{id,jdbcType=INTEGER}, #{regionId,jdbcType=INTEGER}, #{catId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cnit.yoyo.model.shop.CompanyRegionShip" >
+    insert into t_company_region_ship
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="regionId != null and regionId!=0" >
+        region_id,
+      </if>
+      <if test="catId != null" >
+        cat_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="regionId != null and regionId!=0" >
+        #{regionId,jdbcType=INTEGER},
+      </if>
+      <if test="catId != null" >
+        #{catId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cnit.yoyo.model.shop.CompanyRegionShip" >
+    update t_company_region_ship
+    <set >
+      <if test="regionId != null" >
+        region_id = #{regionId,jdbcType=INTEGER},
+      </if>
+      <if test="catId != null" >
+        cat_id = #{catId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cnit.yoyo.model.shop.CompanyRegionShip" >
+    update t_company_region_ship
+    set region_id = #{regionId,jdbcType=INTEGER},
+      cat_id = #{catId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <!-- 删除 -->
+  <delete id="delete" parameterType="java.lang.Integer">
+  		  delete from t_company_region_ship
+   		  where region_id = #{regionId,jdbcType=INTEGER}
+  </delete>
+  
+  <!-- 查找指定经营范围的分类关系 -->
+  <select id="findRegionShip" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  		select cat_id,region_id from t_company_region_ship where region_id=#{regionId,jdbcType=INTEGER}
+  </select>
+</mapper>

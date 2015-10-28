@@ -1,0 +1,25 @@
+@CHARSET "UTF-8";
+
+/*detail*/
+#detail{padding:15px 340px 0;font-family:\5fae\8f6f\96c5\9ed1;}
+#detail h1{padding:10px 0 15px;margin-bottom:10px;height:24px;text-align:center;border-bottom:1px solid #EBEBEB;font-family:\5fae\8f6f\96c5\9ed1;line-height:24px;font-size:20px;}
+#detail .summary{text-align:center;color:#999;}
+#detail .mc{padding:30px 10px;font-size:14px;line-height:2em;}
+#detail .mt{padding-bottom:2px;position:relative;}
+#detail .partake{position:absolute;right:0;bottom:0;overflow:hidden;zoom:1;}
+#detail .partake span{float:left;line-height:23px;}
+#detail .partake a{float:left;width:22px;height:23px;overflow:hidden;background-image:url(i/icon_site.gif);background-repeat:no-repeat;line-height:100px;}
+a#site-qzone:link,a#site-qzone:visited{background-position:0 -24px;}
+a#site-qzone:hover,a#site-qzone:active{background-position:0 0;}
+#site-douban:link,#site-douban:visited{background-position:-24px -24px;}
+#site-douban:hover,#site-douban:active{background-position:-24px 0;}
+#site-renren:link,#site-renren:visited{background-position:-47px -24px;}
+#site-renren:hover,#site-renren:active{background-position:-47px 0;}
+#site-kaixing:link,#site-kaixing:visited{background-position:-70px -24px;}
+#site-kaixing:hover,#site-kaixing:active{background-position:-70px 0;}
+#site-sina:link,#site-sina:visited{background-position:-93px -24px;}
+#site-sina:hover,#site-sina:active{background-position:-93px 0;}
+#site-email:link,#site-email:visited{background-position:-116px -24px;}
+#site-email:hover,#site-email:active{background-position:-116px 0;}
+a#site-qqmsn:link,a#site-qqmsn:visited{width:51px;background-position:-139px -24px;}
+a#site-qqmsn:hover,a#site-qqmsn:active{width:51px;background-position:-139px 0;}

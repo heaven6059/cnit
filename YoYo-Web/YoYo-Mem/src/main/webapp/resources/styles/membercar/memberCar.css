@@ -1,0 +1,228 @@
+@charset "UTF-8";
+/* CSS Document */
+.managecar .mtitle {
+  background: url(../images/personal/icon20130320.gif) repeat-x 0 -160px;
+  height: 40px;
+  font: bold 16px/40px "微软雅黑";
+  color: #854e05;
+  padding-left: 15px;
+}
+
+div {
+  display: block;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Microsoft YaHei",微软雅黑;
+  color: #666;
+  font-size: 12px;
+}
+
+.managecar .mtitle a.pluscar {
+  float: right;
+  font: 12px/40px "宋体";
+  color: #666;
+  padding-right: 10px;
+  background: url(../images/common/icon20130630.gif) no-repeat 0 -2138px;
+  padding-left: 18px;
+}
+
+a {
+  color: #666;
+  text-decoration: none;
+  font-family: "Microsoft YaHei",微软雅黑;
+  text-decoration: none;
+  outline: none;
+}
+a:-webkit-any-link {
+  color: -webkit-link;
+  text-decoration: underline;
+  cursor: auto;
+}
+
+.managecar .mtitle {
+  background: url(../images/personal/icon20130320.gif) repeat-x 0 -160px;
+  height: 40px;
+  font: bold 16px/40px "微软雅黑";
+  color: #854e05;
+  padding-left: 15px;
+}
+
+.managecar .mycarlist {
+  margin: 0 10px;
+  padding: 15px 10px;
+  _padding: 15px 10px 2px;
+  border-bottom: 1px dashed #ccc;
+  width: 748px;
+  position: relative;
+  overflow: hidden;
+}
+
+
+.clearfix {
+  z-index: 2;
+}
+
+.clearfix:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+
+.changebut a {
+  position: absolute;
+  right: 10px;
+  bottom: 2px;
+  background: url(../images/station/station20130826.gif) no-repeat 0 -240px;
+  font: 12px/22px "宋体";
+  padding-left: 20px;
+}
+
+strong, b {
+  font-weight: bold;
+}
+
+.closebut a {
+  position: absolute;
+  right: 0;
+  background: url(../images/common/icon20130630.gif) no-repeat 0 -1900px;
+  display: block;
+  width: 11px;
+  height: 11px;
+  top: 0px;
+}
+
+.managecar .myleft dl dd b {
+  font: bold 14px/22px "宋体";
+  color: #666;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.managecar dl dt b, .managecar dl dd b {
+  font: bold 14px/26px "宋体";
+}
+
+ol, li, ul, p, hr, h1, h2, h3, dl, dt, dd, form {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.managecar .myleft dl dd span {
+  font: 12px/22px "宋体";
+  display: block;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+img {
+  border: none;
+}
+
+.managecar .myleft dl dd a.noblocka {
+  width: 60px;
+}
+
+.managecar .myleft dl dd a {
+  display: block;
+  font: 14px/24px "宋体";
+  background: url(../images/common/icon20130630.gif) no-repeat 0 -440px;
+  padding-left: 8px;
+}
+
+
+.managecar .myleft dl dd a {
+  display: block;
+  font: 14px/24px "宋体";
+  background: url(../images/common/icon20130630.gif) no-repeat 0 -440px;
+  padding-left: 8px;
+}
+
+
+
+.managecar .myright dl dt {
+  width: 90px;
+  float: left;
+  text-align: right;
+  padding: 0;
+  border: 0;
+  color: #b04e05;
+  margin-right: 5px;
+}
+
+.managecar dl dt {
+  border-right: 1px solid #E0CBA5;
+  float: left;
+  padding: 0 15px;
+  width: 300px;
+}
+
+.managecar .myright dl {
+  font: 12px/24px "宋体";
+  color: #666;
+  width: 230px;
+  padding-left: 18px;
+  margin: 0;
+  overflow: hidden;
+}
+
+.managecar .myright dl dd {
+  width: 130px;
+  float: left;
+  padding: 0;
+}
+
+.managecar dl dd {
+  width: 420px;
+  padding: 0 15px;
+  float: left;
+}
+
+.managecar dl {
+  width: 790px;
+  margin-top: 10px;
+}
+
+
+dl {
+  display: block;
+  -webkit-margin-before: 1em;
+  -webkit-margin-after: 1em;
+  -webkit-margin-start: 0px;
+  -webkit-margin-end: 0px;
+}
+
+dd {
+  display: block;
+  -webkit-margin-start: 40px;
+}
+
+.managecar .mycarlist .myright {
+  float: left;
+  width: 248px;
+  padding: 10px 0 10px 0;
+  background: #f3f3f3;
+}
+
+.managecar .myright dl {
+  font: 12px/24px "宋体";
+  color: #666;
+  width: 230px;
+  padding-left: 18px;
+  margin: 0;
+  overflow: hidden;
+}
+
+
+.clearfix:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}

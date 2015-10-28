@@ -1,0 +1,452 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cnit.yoyo.complain.dao.ComplainMapper">
+  <resultMap id="BaseResultMap" type="com.cnit.yoyo.complain.model.Complain">
+    <id column="complain_id" jdbcType="BIGINT" property="complainId" />
+    <result column="order_id" jdbcType="BIGINT" property="orderId" />
+    <result column="from_member_id" jdbcType="INTEGER" property="fromMemberId" />
+    <result column="from_uname" jdbcType="VARCHAR" property="fromUname" />
+    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+    <result column="to_member_id" jdbcType="INTEGER" property="toMemberId" />
+    <result column="to_uname" jdbcType="VARCHAR" property="toUname" />
+    <result column="source" jdbcType="CHAR" property="source" />
+    <result column="store_id" jdbcType="BIGINT" property="storeId" />
+    <result column="store_name" jdbcType="VARCHAR" property="storeName" />
+    <result column="reason" jdbcType="CHAR" property="reason" />
+    <result column="status" jdbcType="CHAR" property="status" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="last_modified" jdbcType="DATE" property="lastModified" />
+    <result column="disabled" jdbcType="CHAR" property="disabled" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.cnit.yoyo.complain.model.Complain">
+    <result column="memo" jdbcType="LONGVARCHAR" property="memo" />
+  </resultMap>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_complain
+    where complain_id = #{complainId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.cnit.yoyo.complain.model.Complain" >
+    insert into t_complain (complain_id, order_id, from_member_id, 
+      from_uname, mobile, to_member_id, 
+      to_uname, source, store_id, 
+      store_name, reason, status, 
+      createtime, last_modified, disabled, 
+      memo)
+    values (#{complainId,jdbcType=BIGINT}, #{orderId,jdbcType=BIGINT}, #{fromMemberId,jdbcType=INTEGER}, 
+      #{fromUname,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, #{toMemberId,jdbcType=INTEGER}, 
+      #{toUname,jdbcType=VARCHAR}, #{source,jdbcType=CHAR}, #{storeId,jdbcType=BIGINT}, 
+      #{storeName,jdbcType=VARCHAR}, #{reason,jdbcType=CHAR}, #{status,jdbcType=CHAR}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{lastModified,jdbcType=TIMESTAMP}, #{disabled,jdbcType=CHAR}, 
+      #{memo,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cnit.yoyo.complain.model.Complain" >
+    insert into t_complain
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="complainId != null" >
+        complain_id,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="fromMemberId != null" >
+        from_member_id,
+      </if>
+      <if test="fromUname != null" >
+        from_uname,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+      <if test="toMemberId != null" >
+        to_member_id,
+      </if>
+      <if test="toUname != null" >
+        to_uname,
+      </if>
+      <if test="source != null" >
+        source,
+      </if>
+      <if test="storeId != null" >
+        store_id,
+      </if>
+      <if test="storeName != null" >
+        store_name,
+      </if>
+      <if test="reason != null" >
+        reason,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+      <if test="lastModified != null" >
+        last_modified,
+      </if>
+      <if test="disabled != null" >
+        disabled,
+      </if>
+      <if test="memo != null" >
+        memo,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="complainId != null" >
+        #{complainId,jdbcType=BIGINT},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="fromMemberId != null" >
+        #{fromMemberId,jdbcType=INTEGER},
+      </if>
+      <if test="fromUname != null" >
+        #{fromUname,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="toMemberId != null" >
+        #{toMemberId,jdbcType=INTEGER},
+      </if>
+      <if test="toUname != null" >
+        #{toUname,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null" >
+        #{source,jdbcType=CHAR},
+      </if>
+      <if test="storeId != null" >
+        #{storeId,jdbcType=BIGINT},
+      </if>
+      <if test="storeName != null" >
+        #{storeName,jdbcType=VARCHAR},
+      </if>
+      <if test="reason != null" >
+        #{reason,jdbcType=CHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastModified != null" >
+        #{lastModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="disabled != null" >
+        #{disabled,jdbcType=CHAR},
+      </if>
+      <if test="memo != null" >
+        #{memo,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cnit.yoyo.complain.model.Complain" >
+    update t_complain
+    <set >
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="fromMemberId != null" >
+        from_member_id = #{fromMemberId,jdbcType=INTEGER},
+      </if>
+      <if test="fromUname != null" >
+        from_uname = #{fromUname,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="toMemberId != null" >
+        to_member_id = #{toMemberId,jdbcType=INTEGER},
+      </if>
+      <if test="toUname != null" >
+        to_uname = #{toUname,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null" >
+        source = #{source,jdbcType=CHAR},
+      </if>
+      <if test="storeId != null" >
+        store_id = #{storeId,jdbcType=BIGINT},
+      </if>
+      <if test="storeName != null" >
+        store_name = #{storeName,jdbcType=VARCHAR},
+      </if>
+      <if test="reason != null" >
+        reason = #{reason,jdbcType=CHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=CHAR},
+      </if>
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastModified != null" >
+        last_modified = #{lastModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="disabled != null" >
+        disabled = #{disabled,jdbcType=CHAR},
+      </if>
+      <if test="memo != null" >
+        memo = #{memo,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where complain_id = #{complainId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.cnit.yoyo.complain.model.Complain" >
+    update t_complain
+    set order_id = #{orderId,jdbcType=BIGINT},
+      from_member_id = #{fromMemberId,jdbcType=INTEGER},
+      from_uname = #{fromUname,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      to_member_id = #{toMemberId,jdbcType=INTEGER},
+      to_uname = #{toUname,jdbcType=VARCHAR},
+      source = #{source,jdbcType=CHAR},
+      store_id = #{storeId,jdbcType=BIGINT},
+      store_name = #{storeName,jdbcType=VARCHAR},
+      reason = #{reason,jdbcType=CHAR},
+      status = #{status,jdbcType=CHAR},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      last_modified = #{lastModified,jdbcType=TIMESTAMP},
+      disabled = #{disabled,jdbcType=CHAR},
+      memo = #{memo,jdbcType=LONGVARCHAR}
+    where complain_id = #{complainId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cnit.yoyo.complain.model.Complain" >
+    update t_complain
+    set order_id = #{orderId,jdbcType=BIGINT},
+      from_member_id = #{fromMemberId,jdbcType=INTEGER},
+      from_uname = #{fromUname,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      to_member_id = #{toMemberId,jdbcType=INTEGER},
+      to_uname = #{toUname,jdbcType=VARCHAR},
+      source = #{source,jdbcType=CHAR},
+      store_id = #{storeId,jdbcType=BIGINT},
+      store_name = #{storeName,jdbcType=VARCHAR},
+      reason = #{reason,jdbcType=CHAR},
+      status = #{status,jdbcType=CHAR},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      last_modified = #{lastModified,jdbcType=TIMESTAMP},
+      disabled = #{disabled,jdbcType=CHAR}
+    where complain_id = #{complainId,jdbcType=BIGINT}
+  </update>
+  
+  
+  <select id="getComplainList" parameterType = "com.cnit.yoyo.complain.model.dto.ComplainQryDTO" resultMap="BaseResultMap">
+		SELECT 
+		  COM.COMPLAIN_ID,
+		  COM.ORDER_ID,
+		  COM.TO_MEMBER_ID,
+		  COM.TO_UNAME,
+		  COM.SOURCE,
+		  COM.STORE_ID,
+		  COM.STORE_NAME,
+		  COM.REASON,
+		  COM.STATUS,
+		  COM.CREATETIME,
+		  COM.DISABLED 
+		FROM
+		  T_COMPLAIN COM 
+		<where>
+		    COM.DISABLED = 'false'
+		  <if test="storeId != null and storeId != '' ">
+			 AND COM.STORE_ID = #{storeId}
+		  </if>
+		  <if test="memberId != null and memberId != '' ">
+			 AND COM.FROM_MEMBER_ID = #{memberId}
+		  </if>
+		   <if test="orderId != null and orderId != '' ">
+			 AND  COM.ORDER_ID LIKE    CONCAT('%','${orderId}','%' )   
+		  </if>
+		  <if test="storeName != null and storeName != '' ">
+			 AND  COM.STORE_NAME LIKE    CONCAT('%/','${storeName}','%' ) escape '/'
+		  </if>
+		  <if test="complainId != null and complainId != '' ">
+			 AND  COM.COMPLAIN_ID LIKE CONCAT('%','${complainId}','%' )   
+		  </if>
+		  <if test="reason != null and reason != '' ">
+			 AND  COM.REASON = #{reason}
+		  </if>
+		  <if test="status != null and status != '' ">
+			 AND  COM.STATUS = #{status}
+		  </if>
+		  <if test="startDate != null and startDate != '' ">
+		  	 <![CDATA[
+		  	 	AND DATE_FORMAT(COM.CREATETIME ,'%Y-%m-%d') >= DATE_FORMAT(#{startDate} ,'%Y-%m-%d')
+		  	 ]]>
+		  </if>
+		  <if test="endDate != null and endDate != '' ">
+			<![CDATA[
+			  AND DATE_FORMAT(COM.CREATETIME, '%Y-%m-%d') <=  DATE_FORMAT(#{endDate}, '%Y-%m-%d')
+			]]>		
+		  </if>
+		</where>  			
+		  	ORDER  BY  COM.CREATETIME DESC	  		  		  		  		  
+  </select>
+  
+ <insert id="saveComplain" parameterType="com.cnit.yoyo.complain.model.Complain" useGeneratedKeys="true" keyProperty="complainId">
+		 	  INSERT INTO `t_complain`
+		            (
+		             `order_id`,
+		             `from_member_id`,
+		             `from_uname`,
+		             `mobile`,
+		             `to_member_id`,
+		             `to_uname`,
+		             `source`,
+		             `store_id`,
+		             `store_name`,
+		             `reason`,
+		             `status`,
+		             `memo`,
+		             `createtime`,
+		             `last_modified`,
+		             `disabled`)
+		VALUES (
+		        #{orderId},
+		        #{fromMemberId},
+		        #{fromUname},
+		        #{mobile},
+		        #{toMemberId},
+		        #{toUname},
+		        #{source},
+		        #{storeId},
+		        #{storeName},
+		        #{reason},
+		        #{status},
+		        #{memo},
+		        now(),
+		        NUll,
+		        #{disabled}
+		        )
+ </insert>
+ 
+ 
+  <insert id="saveComplainComment" parameterType="com.cnit.yoyo.complain.model.ComplainComments" useGeneratedKeys="true" keyProperty="complainId">
+		 	  INSERT INTO `t_complain_comments`
+		            (
+		             `complain_id`,
+		             `source`,
+		             `author_id`,
+		             `author`,
+		             `comment`,
+		             `last_modified`,
+		             `disabled`,
+		             image_path)
+		VALUES (
+		        #{complainId},
+		        #{source},
+		        #{authorId},
+		        #{author},
+		        #{comment},
+		        now(),
+		        #{disabled},
+		        #{imagePath}
+		        )
+ </insert>
+   
+ <update id="updateComplainStatus" parameterType="java.util.Map">
+    update t_complain set status = #{status} where complain_id=#{id} 
+ </update>
+   
+	<resultMap id="ResultWithComments"  extends="ResultMapWithBLOBs" type="com.cnit.yoyo.complain.model.Complain">
+		<collection property="complainComments" ofType="com.cnit.yoyo.complain.model.ComplainComments">
+			<id column="comments_id" jdbcType="BIGINT" property="commentsId" />
+		    <result column="cc_complain_id" jdbcType="BIGINT" property="complainId" />
+		    <result column="cc_source" jdbcType="CHAR" property="source" />
+		    <result column="author_id" jdbcType="INTEGER" property="authorId" />
+		    <result column="author" jdbcType="VARCHAR" property="author" />
+		    <result column="cc_last_modified" jdbcType="DATE" property="lastModified" />
+		    <result column="cc_disabled" jdbcType="CHAR" property="disabled" />
+		    <result column="comment" jdbcType="LONGVARCHAR" property="comment" />
+		    <result column="image_path" jdbcType="VARCHAR" property="imagePath" />
+		</collection>
+	</resultMap>
+	
+    <sql id="complain_list" >
+    	c.complain_id,c.order_id,c.from_member_id,c.from_uname,c.mobile,c.to_member_id,c.to_uname,c.source,
+    	c.store_id,c.store_name,c.reason,c.status,c.memo,c.createtime,c.last_modified,c.disabled
+  	</sql>
+	<sql id="comments_list">
+		cc.comments_id, cc.complain_id cc_complain_id, cc.source cc_source, 
+		cc.author_id, cc.author, cc.comment, cc.image_path, cc.last_modified cc_last_modified, cc.disabled cc_disabled
+	</sql>
+	
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultWithComments">
+    	select <include refid="complain_list" />,<include refid="comments_list" />
+		FROM t_complain c
+		LEFT JOIN t_complain_comments cc ON c.complain_id = cc.complain_id
+		WHERE c.complain_id = #{complainId}
+		AND c.disabled = 'false'
+    </select>
+    
+    
+    <resultMap type="com.cnit.yoyo.complain.model.dto.ComplainDetailDTO" id="ComplainDetailResutlDTO">
+  		<result column="complain_id" property="complainId"/>
+  		<result column="company_name" property="companyName"/>
+  		<result column="company_id" property="companyId"/>
+  		<result column="reason" property="reason"/>
+  		<result column="status" property="status"/>
+  		<result column="createtime" property="createtime"/>
+  		<result column="store_name" property="storeName"/>
+  		<result column="final_amount" property="finalAmount"/>
+  		<result column="confirm_time" property="confirmTime"/>
+  		<result column="complain_orderId" property="orderId"/>
+  		
+  		<collection property="items" ofType="com.cnit.yoyo.model.order.OrderItems">
+		  	<result property="nums" column="nums"/>
+		  	<result property="price" column="price"/>
+		  	<result property="name" column="name"/>
+		  	<result property="orderId" column="order_id"/>
+		  	<result property="amount" column="amount"/>
+		  	<result property="goodsId" column="goods_id"/>
+		  	<result property="picturePath" column="picture_path"/>
+  		</collection>
+  		<collection property="complainComments" ofType="com.cnit.yoyo.complain.model.ComplainComments">
+		    <result column="source" jdbcType="CHAR" property="source" />
+		    <result column="author" jdbcType="VARCHAR" property="author" />
+		    <result column="image_path" jdbcType="VARCHAR" property="imagePath" />
+		    <result column="last_modified" jdbcType="TIMESTAMP" property="lastModified" />
+		    <result column="author" jdbcType="CHAR" property="disabled" />
+		    <result column="comment" jdbcType="LONGVARCHAR" property="comment" />
+  		</collection>
+  	</resultMap>
+    
+    <select id="getComplainDetailById" parameterType="java.util.Map" resultMap="ComplainDetailResutlDTO">
+		 SELECT
+			complain.complain_id,
+			complain.reason,
+			complain.`status`,
+			complain.createtime,
+			complain.store_name,
+			complain.order_id complain_orderId,
+			complain.reason,
+			comments.author,
+			comments.`comment`,
+			comments.source,
+			comments.image_path,
+			comments.last_modified,
+			orders.final_amount,
+			orders.confirm_time,
+			items.`name`,
+			items.price,
+			items.nums,
+			items.amount,
+			items.order_id,
+			products.picture_path,
+			products.goods_id,
+			company.store_name as company_name,
+			company.company_id
+		FROM
+			t_complain complain
+		LEFT JOIN t_complain_comments comments ON complain.complain_id = comments.complain_id
+		LEFT JOIN t_order_items items on complain.order_id=items.order_id
+		left join t_orders orders ON items.order_id=orders.order_id
+		LEFT JOIN t_products products ON items.product_id = products.product_id
+		LEFT JOIN t_company company ON company.company_id=orders.company_id
+			where complain.complain_id = #{complainId,jdbcType=BIGINT}
+		order by comments.last_modified desc
+  </select>
+    
+</mapper>

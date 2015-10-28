@@ -1,0 +1,15 @@
+@CHARSET "UTF-8";
+
+.buy_opera a {
+	  margin-left: 0;
+}
+
+.gridlist td {
+  line-height: 28px;
+}
+
+.buy_opera {
+  line-height: 22px;
+  padding: 10px;
+  vertical-align: middle;
+}

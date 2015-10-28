@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cnit.yoyo.dao.shop.ShopIndexMapper" >
+	<resultMap id="GoodsResultMap" type="com.cnit.yoyo.model.goods.Goods">
+		<id column="GOODS_ID" jdbcType="INTEGER" property="goodsId" />
+		<result column="COMPANY_ID" jdbcType="INTEGER" property="companyId" />
+		<result column="NAME" jdbcType="VARCHAR" property="name" />
+		<result column="PRICE" jdbcType="DECIMAL" property="price" />
+		<result column="SMALL_PIC" jdbcType="VARCHAR" property="smallPic" />
+		<result column="MID_PIC" jdbcType="VARCHAR" property="midPic" />
+		<result column="BIG_PIC" jdbcType="VARCHAR" property="bigPic" />
+	</resultMap>
+				
+  	<select id="selectShopIndexHotSell" resultMap="GoodsResultMap" parameterType="com.cnit.yoyo.model.shop.dto.ShopIndexQryDTO">
+  		SELECT
+			t.GOODS_ID,
+			t.COMPANY_ID,
+			t.MID_PIC,
+			t.PRICE,
+			t.`NAME`
+		FROM
+			t_goods t
+		WHERE
+			t.COMPANY_ID = #{companyId}
+		AND t.MARKETABLE = 1
+		ORDER BY
+			t.BUY_COUNT DESC
+		LIMIT 8
+  	</select>
+  	
+  	<select id="selectShopIndexCategoryGoods" resultMap="GoodsResultMap" parameterType="com.cnit.yoyo.model.shop.dto.ShopIndexQryDTO">
+  		SELECT
+			t.GOODS_ID,
+			t.COMPANY_ID,
+			t.MID_PIC,
+			t.PRICE,
+			t.`NAME`
+		FROM
+			t_goods t
+		WHERE
+			t.COMPANY_ID = #{companyId}
+		AND t.MARKETABLE = 1
+		AND t.CAT_ID IN (SELECT CAT_ID from t_goods_cat WHERE identifier=#{identifier})
+		ORDER BY
+			t.BUY_COUNT DESC
+		LIMIT #{num}
+  	</select>
+  	
+  	<select id="selectShopIndexHotCommentGoods" resultMap="GoodsResultMap" parameterType="com.cnit.yoyo.model.shop.dto.ShopIndexQryDTO">
+  		SELECT
+			t.GOODS_ID,
+			t.COMPANY_ID,
+			t.MID_PIC,
+			t.PRICE,
+			t.`NAME`
+		FROM
+			t_goods t
+		WHERE
+			t.COMPANY_ID = #{companyId}
+		AND t.MARKETABLE = 1
+		AND t.CAT_ID IN (SELECT CAT_ID from t_goods_cat WHERE identifier=#{identifier})
+		ORDER BY
+			t.COMMENTS_COUNT DESC
+		LIMIT #{num}
+  	</select>
+</mapper>

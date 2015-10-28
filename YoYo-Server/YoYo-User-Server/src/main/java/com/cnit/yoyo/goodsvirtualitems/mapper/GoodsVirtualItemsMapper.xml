@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cnit.yoyo.goodsvirtualitems.dao.GoodsVirtualItemsMapper" >
+  <resultMap id="BaseResultMap" type="com.cnit.yoyo.goodsvirtualitems.model.GoodsVirtualItems" >
+    <id column="ITEMS_ID" property="itemsId" jdbcType="BIGINT" />
+    <result column="GOODS_ID" property="goodsId" jdbcType="BIGINT" />
+    <result column="PRODUCT_ID" property="productId" jdbcType="INTEGER" />
+    <result column="CARD_ID" property="cardId" jdbcType="VARCHAR" />
+    <result column="CARD_PSW" property="cardPsw" jdbcType="VARCHAR" />
+    <result column="STORE_ID" property="storeId" jdbcType="BIGINT" />
+    <result column="ORDER_ID" property="orderId" jdbcType="BIGINT" />
+    <result column="IS_USED" property="isUsed" jdbcType="CHAR" />
+    <result column="RANDOM" property="random" jdbcType="VARCHAR" />
+    <result column="SEND_TIME" property="sendTime" jdbcType="TIMESTAMP" />
+    <result column="RANDOM2" property="random2" jdbcType="VARCHAR" />
+    <result column="GOODS_NAME" property="goodsName" jdbcType="VARCHAR" />
+  </resultMap>
+
+   <select id="getGoodsVirtualItemsList"  parameterType="Map" resultMap="BaseResultMap" >
+			SELECT 
+			  GVI.ORDER_ID,
+			  G.NAME GOODS_NAME,
+			  GVI.CARD_ID,
+			  GVI.CARD_PSW,
+			  GVI.SEND_TIME 
+			FROM
+			  T_GOODS_VIRTUAL_ITEMS GVI 
+			  INNER JOIN T_GOODS G 
+			    ON G.GOODS_ID = GVI.GOODS_ID 
+			  INNER JOIN T_ORDERS O 
+			    ON O.ORDER_ID = GVI.ORDER_ID 
+			WHERE O.MEMBER_ID = #{memberId}
+  </select>
+
+
+
+</mapper>

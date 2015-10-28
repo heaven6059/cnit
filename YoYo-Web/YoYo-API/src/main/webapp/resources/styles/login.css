@@ -1,0 +1,58 @@
+@charset "utf-8";
+/* CSS Document */
+.h_top{ width: 100%; height: 80px; }
+.h_top_in{ width: 980px; height: 80px; margin: 0 auto; }
+.h_top_l{height: 80px; line-height: 80px; }
+.h_top_l h1{ width: 117px; height: 80px; }
+.h_top_l h1 a{ width: 117px; height: 45px; margin-top: 15px; display: inline-block; background-image:url(../images/login/login_pic.png); text-indent: -999em; }
+.login_txt{font-size: 24px;  color: #666; font-style: normal;height: 80px; line-height: 80px;}
+.h_top_r{ width: 100px; height: 42px; background: url(../images/login/login_pic.png) 0 -60px; margin-top: 19px; }
+
+
+.main{ width: 100%; height: 475px; background-color: #7ddcd8; }
+.main_in{ width: 980px; height: 475px; margin: 0 auto; background: url(../images/login/login_bg.jpg) no-repeat left top; position: relative; }
+
+.login{ width: 306px; height: 354px; background-color: #fff; position: absolute; top: 40px; right: 1px; padding: 20px; }
+.login_t{ width: 306px; height: 20px; line-height: 20px; }
+.login_t h2{ display: inline-block;font-size: 18px; }
+.login_t a{ width: 78px; height: 16px; line-height: 16px; display: inline-block;font-size: 14px; background:url(../images/login/login_icon.png) no-repeat; text-align: right; }
+.login_b{ width: 306px; height: 254px; }
+.user{ width: 304px; height: 38px; border: 1px solid #c7c7c7; margin-top: 20px; }
+.user span{ width: 38px; height: 38px; display: block; background: url(../images/login/login_pic.png) no-repeat left -115px; }
+.user input{ width: 252px; height: 37px; border: 0; padding-left: 10px; }
+.pws span{ background-position: 0 -162px; }
+
+.code{ width: 306px; height: 40px; margin-top: 20px; }
+.code_ipt{ width: 120px; height: 38px; border: 1px solid #c7c7c7; }
+.code_ipt input{ width: 110px; height: 37px; border: 0; line-height: 38px; padding-left: 10px; }
+.code_bg{height: 40px;padding: 0px 6px;}
+.code span{ width: 98px; height: 40px; line-height: 40px; display: block; font-family:"宋体"; font-size: 12px; }
+.code span a{ color: #0088cc; }
+.find{ width: 306px; height: 14px; line-height: 14px; margin-top: 20px; }
+.find a{ display: block; }
+.sub{color: #fff;font-size: 18px; text-align: center; display: block;height: 38px;line-height: 38px; background-color:#6fc615;border: 1px solid #76a518; margin-top: 20px}
+.sub:hover{color:#fff;background-color:#75CF18;border: 1px solid #86BB1C}
+
+.login_f{ color:#666;width: 306px; height: 44px; margin-top: 20px; }
+.login_f ul li{ margin-top: 10px; float: left; background: url(../images/login/login_icon.png) no-repeat left -24px; padding: 0 15px; height: 22px; line-height: 22px; }
+.login_f ul li a{ display: block; padding: 0 15px; height: 12px; line-height: 12px; border-right: 1px solid #ccc; margin-top: 5px; }
+.login_f ul .login_li02{ background-position: 0 -55px; }
+.login_f ul .login_li03{ background-position: 0 -80px; }
+
+.bor0{ border-right: 0 !important; border-top: 0 !important; }
+
+.layui-layer-content h5 {
+    line-height: 30px;
+    font-weight: bold;
+}
+.layui-layer-content h4 {
+    line-height: 30px;
+    font-weight: bold;
+}
+h5 {
+    font-size: 12px;
+}
+
+label.valid {
+    color: #e4393c;
+}

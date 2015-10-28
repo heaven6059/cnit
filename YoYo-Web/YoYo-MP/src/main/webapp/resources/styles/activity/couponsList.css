@@ -1,0 +1,51 @@
+/**主体*/
+.division{background:white;border:1px solid #eee;padding:10px 10px;margin-bottom:10px;}
+.division li{padding: 2px;}
+.borderdown{border-top:1px solid #BEC6CE;border-left:1px solid #BEC6CE;border-right:1px solid white;border-bottom:1px solid white;}
+.borderup{border-top:1px solid #EFEFEF;border-left:1px solid #EFEFEF;border-right:1px solid #BEC6CE;border-bottom:1px solid #BEC6CE;}
+.borderbottom{border-bottom:1px solid #eeeeee;margin-bottom:5px;}
+.division .forform th, .division .forform td{vertical-align:top;padding:5px;}
+.division .forform th{width:120px;font-size:14px;font-weight:normal;padding-left:5px;color:#777777;white-space:nowrap;text-align:right;}
+ .x-input {  border: 1px solid #cccccc;  padding: 6px 5px ;  _vertical-align: middle;}
+ form .red {  color: red;  border: 0px;  margin-right: 5px;  background-color: #FFFFFF;}
+ .btn-primary{text-align:center;}
+ .mlev label{  margin-right: 5px;}
+ /**优惠条件*/
+ .tableform{display:none;border: 1px solid #cccccc;  padding: 8px;}
+ .tableform input, .solution_li input{width:60px;}
+ .solution_li li {display:none;}
+ 
+ 
+ .liststyle{border:1px solid #dddddd;width:88%;margin-top:10px;/*定义列表的头部*/ /*用于整个通栏的td，使用了colspan的td*/ }
+.liststyle a{padding-right:5px;text-decoration:underline;}
+.liststyle a.lnk{text-decoration:none;}
+.liststyle thead th{text-align:center;font-size:12px;white-space:nowrap;background:#EFEFEF;padding:4px 3px;}
+.liststyle td, .liststyle th{padding:4px;word-break:break-word;text-align:center;background:white;}
+.liststyle.data td, .liststyle.data th{word-break:break-word;  empty-cells: show;font-style: normal;
+  font-weight: normal;}
+.liststyle.data tbody th{text-align:right;color:black;font-size:12px;}
+.liststyle.data td{text-align:left;}
+.liststyle  th,.liststyle2 th{width:162px;}
+
+.btn {
+	background:#377BEE;/* #c40001*/
+	padding: 0 20px;
+	border: none;
+	display: inline-block;
+	zoom: 1;
+	overflow: visible;
+	color: #FFFFFF;
+	font-size: 14px;
+	text-decoration: none;
+	cursor: pointer;
+	vertical-align: middle;
+	height: 32px;
+	line-height: 32px;
+	margin: 0 5px;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-ms-border-radius: 2px;
+	-o-border-radius: 2px;
+	border-radius: 2px;
+}
+ 

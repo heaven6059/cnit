@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cnit.yoyo.coupon.dao.MemberCouponMapper" >
+  <resultMap id="BaseResultMap" type="com.cnit.yoyo.coupon.model.MemberCoupon" >
+    <id column="memc_code" property="memcCode" jdbcType="BIGINT" />
+    <id column="member_id" property="memberId" jdbcType="INTEGER" />
+    <result column="memc_gen_orderid" property="memcGenOrderid" jdbcType="VARCHAR" />
+    <result column="memc_source" property="memcSource" jdbcType="INTEGER" />
+    <result column="memc_enabled" property="memcEnabled" jdbcType="INTEGER" />
+    <result column="memc_used_times" property="memcUsedTimes" jdbcType="INTEGER" />
+    <result column="memc_gen_time" property="memcGenTime" jdbcType="INTEGER" />
+    <result column="disabled" property="disabled" jdbcType="INTEGER" />
+    <result column="cpns_id" property="cpnsId" jdbcType="INTEGER" />
+    <result column="memc_isvalid" property="memcIsvalid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    memc_code, member_id, memc_gen_orderid, memc_source, memc_enabled, memc_used_times, 
+    memc_gen_time, disabled, cpns_id, memc_isvalid
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_member_coupon
+    where memc_code = #{memcCode,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey">
+    delete from t_member_coupon
+    where memc_code = #{memcCode,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.cnit.yoyo.coupon.model.MemberCoupon" >
+    insert into t_member_coupon (memc_code, member_id, memc_gen_orderid, 
+      memc_source, memc_enabled, memc_used_times, 
+      memc_gen_time, disabled, cpns_id, 
+      memc_isvalid)
+    values (#{memcCode,jdbcType=BIGINT}, #{memberId,jdbcType=INTEGER}, #{memcGenOrderid,jdbcType=BIGINT}, 
+      #{memcSource,jdbcType=INTEGER}, #{memcEnabled,jdbcType=INTEGER}, #{memcUsedTimes,jdbcType=INTEGER}, 
+      #{memcGenTime,jdbcType=INTEGER}, #{disabled,jdbcType=INTEGER}, #{cpnsId,jdbcType=INTEGER}, 
+      #{memcIsvalid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cnit.yoyo.coupon.model.MemberCoupon" >
+    insert into t_member_coupon
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="memcCode != null" >
+        memc_code,
+      </if>
+      <if test="memberId != null" >
+        member_id,
+      </if>
+      <if test="memcGenOrderid != null" >
+        memc_gen_orderid,
+      </if>
+      <if test="memcSource != null" >
+        memc_source,
+      </if>
+      <if test="memcEnabled != null" >
+        memc_enabled,
+      </if>
+      <if test="memcUsedTimes != null" >
+        memc_used_times,
+      </if>
+      <if test="memcGenTime != null" >
+        memc_gen_time,
+      </if>
+      <if test="disabled != null" >
+        disabled,
+      </if>
+      <if test="cpnsId != null" >
+        cpns_id,
+      </if>
+      <if test="memcIsvalid != null" >
+        memc_isvalid,
+      </if>
+       <if test="createTime != null" >
+        create_time,
+      </if>
+       <if test="payTime != null" >
+        pay_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="memcCode != null" >
+        #{memcCode,jdbcType=BIGINT},
+      </if>
+      <if test="memberId != null" >
+        #{memberId,jdbcType=INTEGER},
+      </if>
+      <if test="memcGenOrderid != null" >
+        #{memcGenOrderid,jdbcType=BIGINT},
+      </if>
+      <if test="memcSource != null" >
+        #{memcSource,jdbcType=INTEGER},
+      </if>
+      <if test="memcEnabled != null" >
+        #{memcEnabled,jdbcType=INTEGER},
+      </if>
+      <if test="memcUsedTimes != null" >
+        #{memcUsedTimes,jdbcType=INTEGER},
+      </if>
+      <if test="memcGenTime != null" >
+        #{memcGenTime,jdbcType=INTEGER},
+      </if>
+      <if test="disabled != null" >
+        #{disabled,jdbcType=INTEGER},
+      </if>
+      <if test="cpnsId != null" >
+        #{cpnsId,jdbcType=INTEGER},
+      </if>
+      <if test="memcIsvalid != null" >
+        #{memcIsvalid,jdbcType=INTEGER},
+      </if>
+       <if test="createTime != null" >
+        #{createTime,jdbcType=DATETIME},
+      </if>
+       <if test="payTime != null" >
+        #{payTime,jdbcType=DATETIME},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cnit.yoyo.coupon.model.MemberCoupon" >
+    update t_member_coupon
+    <set >
+      <if test="memcGenOrderid != null" >
+        memc_gen_orderid = #{memcGenOrderid,jdbcType=BIGINT},
+      </if>
+      <if test="memcSource != null" >
+        memc_source = #{memcSource,jdbcType=INTEGER},
+      </if>
+      <if test="memcEnabled != null" >
+        memc_enabled = #{memcEnabled,jdbcType=INTEGER},
+      </if>
+      <if test="memcUsedTimes != null" >
+        memc_used_times = #{memcUsedTimes,jdbcType=INTEGER},
+      </if>
+      <if test="memcGenTime != null" >
+        memc_gen_time = #{memcGenTime,jdbcType=INTEGER},
+      </if>
+      <if test="disabled != null" >
+        disabled = #{disabled,jdbcType=INTEGER},
+      </if>
+      <if test="cpnsId != null" >
+        cpns_id = #{cpnsId,jdbcType=INTEGER},
+      </if>
+      <if test="memcIsvalid != null" >
+        memc_isvalid = #{memcIsvalid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where memc_code = #{memcCode,jdbcType=BIGINT}
+      and member_id = #{memberId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cnit.yoyo.coupon.model.MemberCoupon" >
+    update t_member_coupon
+    set memc_gen_orderid = #{memcGenOrderid,jdbcType=BIGINT},
+      memc_source = #{memcSource,jdbcType=INTEGER},
+      memc_enabled = #{memcEnabled,jdbcType=INTEGER},
+      memc_used_times = #{memcUsedTimes,jdbcType=INTEGER},
+      memc_gen_time = #{memcGenTime,jdbcType=INTEGER},
+      disabled = #{disabled,jdbcType=INTEGER},
+      cpns_id = #{cpnsId,jdbcType=INTEGER},
+      memc_isvalid = #{memcIsvalid,jdbcType=INTEGER}
+    where memc_code = #{memcCode,jdbcType=BIGINT}
+      and member_id = #{memberId,jdbcType=INTEGER}
+  </update>
+  
+  <resultMap type="com.cnit.yoyo.coupon.model.dto.MemberCouponDTO" id="MEMBER_STORE_COUPONS_RESULT" extends="BaseResultMap">
+  		<result column="store_name" property="storeName"/>
+  		<association property="coupons" column="cpns_id" javaType="com.cnit.yoyo.model.activity.Coupons">
+		 	<id column="cpns_id" jdbcType="INTEGER" property="cpnsId" />
+		    <result column="cpns_name" jdbcType="VARCHAR" property="cpnsName" />
+		    <result column="issue_type" jdbcType="VARCHAR" property="issueType" />
+		    <result column="cpns_prefix" jdbcType="VARCHAR" property="cpnsPrefix" />
+		    <result column="cpns_gen_quantity" jdbcType="INTEGER" property="cpnsGenQuantity" />
+		    <result column="cpns_status" jdbcType="VARCHAR" property="cpnsStatus" />
+		    <result column="cpns_point" jdbcType="INTEGER" property="cpnsPoint" />
+		    <result column="cpns_type" jdbcType="VARCHAR" property="cpnsType" />
+		    <result column="online_gen_quantity" jdbcType="INTEGER" property="onlineGenQuantity" />
+		    <result column="online_limit" jdbcType="INTEGER" property="onlineLimit" />
+		    <result column="online_quantity" jdbcType="INTEGER" property="onlineQuantity" />
+		    <result column="company_id" jdbcType="BIGINT" property="companyId" />
+		    <result column="store_id" jdbcType="BIGINT" property="storeId" />
+		    <result column="pmt_id" jdbcType="INTEGER" property="pmtId" />
+		    <result column="cpns_key" jdbcType="VARCHAR" property="cpnsKey" />
+		    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+		    <result column="disabled" jdbcType="VARCHAR" property="disabled" />
+		    <result column="store_name" jdbcType="VARCHAR" property="storeName" />
+		    <result column="big_pic" jdbcType="VARCHAR" property="bigPic" />
+  		</association>
+  		
+  		<association property="salesRuleGoods" column="rule_id" javaType="com.cnit.yoyo.model.activity.SalesRuleGoodsWithBLOBs">
+		    <id column="rule_id" jdbcType="INTEGER" property="ruleId" />
+		    <result column="name" jdbcType="VARCHAR" property="name" />
+		    <result column="company_id" jdbcType="BIGINT" property="companyId" />
+		    <result column="store_id" jdbcType="BIGINT" property="storeId" />
+		    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+		    <result column="from_time" jdbcType="TIMESTAMP" property="fromTime" />
+		    <result column="to_time" jdbcType="TIMESTAMP" property="toTime" />
+		    <result column="member_lv_ids" jdbcType="VARCHAR" property="memberLvIds" />
+		    <result column="status" jdbcType="VARCHAR" property="status" />
+		    <result column="stop_rules_processing" jdbcType="VARCHAR" property="stopRulesProcessing" />
+		    <result column="sort_order" jdbcType="INTEGER" property="sortOrder" />
+		    <result column="free_shipping" jdbcType="BIT" property="freeShipping" />
+		    <result column="c_template" jdbcType="VARCHAR" property="cTemplate" />
+		    <result column="s_template" jdbcType="VARCHAR" property="sTemplate" />
+		    <result column="apply_time" jdbcType="TIMESTAMP" property="applyTime" />
+		    <result column="description" jdbcType="LONGVARCHAR" property="description" />
+		    <result column="conditions" jdbcType="LONGVARCHAR" property="conditions" />
+		    <result column="action_solution" jdbcType="LONGVARCHAR" property="actionSolution" />
+  		</association>
+  </resultMap>
+  
+  
+  <select id="selectMemberCouponsByOrder" resultMap="MEMBER_STORE_COUPONS_RESULT" parameterType="com.cnit.yoyo.coupon.model.dto.MemberCouponQryDTO">
+	  	SELECT
+			mc.memc_code,
+			mc.member_id,
+			mc.memc_gen_orderid,
+			mc.memc_source,
+			mc.memc_enabled,
+			mc.memc_used_times,
+			mc.memc_gen_time,		
+			mc.memc_isvalid,
+			c.cpns_id,
+			c.cpns_name,
+			c.issue_type,
+			c.company_id,
+			c.store_id,
+			c.pmt_id,
+			c.cpns_prefix,
+			c.cpns_gen_quantity,
+			c.cpns_key,
+			c.cpns_status,
+			c.cpns_point,
+			c.rule_id,
+			c.cpns_type,
+			c.online_gen_quantity,
+			c.online_limit,
+			c.online_quantity,
+			c.create_time,
+			c.disabled,
+			c.big_pic,
+		 	srg.rule_id, 
+		 	srg.name, 
+		 	srg.company_id, 
+		 	srg.store_id, 
+		 	srg.create_time, 
+		 	srg.from_time,
+		 	srg.to_time, 
+		 	srg.member_lv_ids, 
+		  	srg.status, 
+		  	srg.stop_rules_processing, 
+		  	srg.sort_order, 
+		  	srg.free_shipping, 
+		  	srg.c_template, 
+		  	srg.s_template, 
+		  	srg.apply_time,
+		  	srg.description, 
+		  	srg.conditions, 
+		  	srg.action_solution,
+		  	bs.store_name
+		FROM
+			t_member_coupon mc
+		LEFT JOIN t_coupons c ON mc.cpns_id=c.cpns_id
+		LEFT JOIN t_sales_rule_goods srg ON srg.rule_id=c.rule_id
+		LEFT JOIN t_business_storemanger bs ON c.store_id=bs.store_id
+		WHERE
+		 	c.disabled = 0
+		AND c.cpns_status=1
+		<![CDATA[
+			AND DATE_FORMAT(now(), '%Y-%m-%d') >= DATE_FORMAT(srg.from_time, '%Y-%m-%d')
+		]]>
+		<![CDATA[
+			AND DATE_FORMAT(now(), '%Y-%m-%d') <=  DATE_FORMAT(srg.to_time, '%Y-%m-%d')
+		]]>
+		AND mc.member_id = #{memberId}	
+		AND mc.memc_gen_orderid=#{orderId}
+  </select>
+  
+  
+  
+  <select id="selectMemberStoreCoupons" resultMap="MEMBER_STORE_COUPONS_RESULT" parameterType="com.cnit.yoyo.coupon.model.dto.MemberCouponQryDTO">
+	  	SELECT
+			mc.memc_code,
+			mc.member_id,
+			mc.memc_gen_orderid,
+			mc.memc_source,
+			mc.memc_enabled,
+			mc.memc_used_times,
+			mc.memc_gen_time,		
+			mc.memc_isvalid,
+			c.cpns_id,
+			c.cpns_name,
+			c.issue_type,
+			c.company_id,
+			c.store_id,
+			c.pmt_id,
+			c.cpns_prefix,
+			c.cpns_gen_quantity,
+			c.cpns_key,
+			c.cpns_status,
+			c.cpns_point,
+			c.rule_id,
+			c.cpns_type,
+			c.online_gen_quantity,
+			c.online_limit,
+			c.online_quantity,
+			c.create_time,
+			c.disabled,
+			c.big_pic,
+		 	srg.rule_id, 
+		 	srg.name, 
+		 	srg.company_id, 
+		 	srg.store_id, 
+		 	srg.create_time, 
+		 	srg.from_time,
+		 	srg.to_time, 
+		 	srg.member_lv_ids, 
+		  	srg.status, 
+		  	srg.stop_rules_processing, 
+		  	srg.sort_order, 
+		  	srg.free_shipping, 
+		  	srg.c_template, 
+		  	srg.s_template, 
+		  	srg.apply_time,
+		  	srg.description, 
+		  	srg.conditions, 
+		  	srg.action_solution,
+		  	bs.store_name
+		FROM
+			t_member_coupon mc
+		LEFT JOIN t_coupons c ON mc.cpns_id=c.cpns_id
+		LEFT JOIN t_sales_rule_goods srg ON srg.rule_id=c.rule_id
+		LEFT JOIN t_business_storemanger bs ON c.store_id=bs.store_id
+		WHERE
+			mc.disabled = 0
+		AND c.disabled = 0
+		AND c.cpns_status=1
+		<![CDATA[
+			AND DATE_FORMAT(now(), '%Y-%m-%d') >= DATE_FORMAT(srg.from_time, '%Y-%m-%d')
+		]]>
+		<![CDATA[
+			AND DATE_FORMAT(now(), '%Y-%m-%d') <=  DATE_FORMAT(srg.to_time, '%Y-%m-%d')
+		]]>
+		AND mc.member_id = #{memberId}	
+		<if test="storeIds != null">
+		AND c.store_id IN
+		<foreach collection="storeIds" item="storeId" index="index" open="(" close=")" separator=",">
+			#{storeId}		
+		</foreach>
+		</if>
+		<if test="memcCodes != null">
+		AND mc.memc_code IN
+			<foreach collection="memcCodes" item="memcCode" index="index" open="(" close=")" separator=",">
+				#{memcCode}
+			</foreach>
+		</if>
+  </select>
+</mapper>

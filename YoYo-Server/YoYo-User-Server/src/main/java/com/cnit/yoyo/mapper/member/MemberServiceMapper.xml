@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cnit.yoyo.dao.member.MemberServiceMapper">
+	<resultMap id="memberListMap" type="com.cnit.yoyo.model.member.MemberListDo">
+		<result column="MEMBER_ID" jdbcType="INTEGER" property="memberId" />
+		<result column="ACCOUNT_ID" jdbcType="INTEGER" property="accountId" />
+		<result column="LOGIN_NAME" jdbcType="VARCHAR" property="loginName" />
+		<result column="ACCOUNT_TYPE" jdbcType="VARCHAR" property="accountType" />
+		<result column="ACCOUNT_STATUS" jdbcType="VARCHAR" property="accountStatus" />
+		<result column="REG_TIME" jdbcType="VARCHAR" property="regTime" />
+		<result column="MEMBER_LV_ID" jdbcType="INTEGER" property="memberLvId" />
+		<result column="NAME" jdbcType="VARCHAR" property="name" />
+		<result column="NICK_NAME" jdbcType="VARCHAR" property="nickName" />
+		<result column="IDCARD" jdbcType="VARCHAR" property="idcard" />
+		<result column="EMAIL" jdbcType="VARCHAR" property="email" />
+		<result column="MOBILE" jdbcType="VARCHAR" property="mobile" />
+		<result column="SEX" jdbcType="CHAR" property="sex" />
+		<result column="ADVANCE" jdbcType="DECIMAL" property="advance" />
+		<result column="POINT_SUMMATION" jdbcType="DECIMAL" property="pointSummation" />
+		<result column="ORDER_NUM" jdbcType="INTEGER" property="orderNum" />
+		<result column="CHANNEL" jdbcType="VARCHAR" property="channel" />
+		<result column="SOURCE" jdbcType="VARCHAR" property="source" />
+		<result column="company_id" jdbcType="BIGINT" property="companyId" />
+	</resultMap>
+	
+	<select id="findMembersInfoByParam" parameterType="com.cnit.yoyo.domain.member.MemberQueryDo"
+		resultMap="memberListMap">
+		SELECT p.ACCOUNT_ID, p.LOGIN_NAME, p.ACCOUNT_TYPE, p.ACCOUNT_STATUS, p.REG_TIME, t.MEMBER_LV_ID,
+		t.NICK_NAME, t.IDCARD, t.SEX, t.ORDER_NUM,t.CHANNEL,
+		t.POINT_SUMMATION, t.ADVANCE
+		,t.NAME,T.MEMBER_ID, t.EMAIL, t.MOBILE FROM T_MEMBERS t, T_PAM_ACCOUNT p WHERE t.ACCOUNT_ID =
+		p.ACCOUNT_ID and p.ACCOUNT_STATUS='1'
+		<if test="loginName != null"> AND p.LOGIN_NAME = #{loginName,jdbcType=VARCHAR}</if>
+		<if test="accountType != null"> AND p.ACCOUNT_TYPE = #{accountType,jdbcType=VARCHAR}</if>
+		<if test="accountStatus != null"> AND p.ACCOUNT_STATUS = #{accountStatus,jdbcType=VARCHAR}</if>
+		<if test="channel != null"> AND t.CHANNEL LIKE CONCAT(CONCAT( #{channel, jdbcType=VARCHAR}),'%')  </if>
+		<if test="nickName != null"> AND t.NICK_NAME = #{nickName,jdbcType=VARCHAR}</if>
+		<if test="name != null"> AND t.NAME = #{name,jdbcType=VARCHAR}</if>
+		<if test="idcard != null"> AND t.IDCARD = #{idcard,jdbcType=VARCHAR}</if>
+		<if test="mobile != null"> AND t.MOBILE = #{mobile,jdbcType=VARCHAR}</if>
+		<if test="email != null"> AND t.EMAIL = #{email,jdbcType=VARCHAR}</if>
+		<if test="loginPassword != null"> AND p.LOGIN_PASSWORD = #{loginPassword,jdbcType=VARCHAR}</if>
+		<if test="memberLvId != null"> AND t.MEMBER_LV_ID = #{memberLvId,jdbcType=VARCHAR}</if>
+		ORDER BY REG_TIME DESC
+	</select>
+
+
+	<select id="findMemberByParam" parameterType="com.cnit.yoyo.model.member.dto.MemberDTO"
+		resultMap="memberListMap">
+		SELECT p.ACCOUNT_ID, p.LOGIN_NAME, p.ACCOUNT_TYPE, p.ACCOUNT_STATUS, p.REG_TIME, t.MEMBER_LV_ID,
+		t.NICK_NAME, t.IDCARD, t.SEX, t.ORDER_NUM,t.CHANNEL,
+		t.POINT_SUMMATION, t.ADVANCE
+		,t.NAME,T.MEMBER_ID, t.EMAIL, t.MOBILE FROM T_MEMBERS t, T_PAM_ACCOUNT p WHERE t.ACCOUNT_ID =
+		p.ACCOUNT_ID
+		<if test="loginName != null and loginName !='' "> AND p.LOGIN_NAME = #{loginName,jdbcType=VARCHAR}</if>
+		<if test="accountType != null and accountType !='' "> AND p.ACCOUNT_TYPE = #{accountType,jdbcType=VARCHAR}</if>
+		<if test="accountStatus != null and accountStatus !='' "> AND p.ACCOUNT_STATUS = #{accountStatus,jdbcType=VARCHAR}</if>
+		<if test="channel != null and channel != '' "> AND t.CHANNEL LIKE CONCAT(CONCAT( #{channel, jdbcType=VARCHAR}),'%')  </if>
+		<if test="nickName != null and nickName != '' "> AND t.NICK_NAME = #{nickName,jdbcType=VARCHAR}</if>
+		<if test="name != null and name != '' "> AND t.NAME = #{name,jdbcType=VARCHAR}</if>
+		<if test="idcard != null and idcard !='' "> AND t.IDCARD = #{idcard,jdbcType=VARCHAR}</if>
+		<if test="mobile != null and mobile !='' "> AND t.MOBILE = #{mobile,jdbcType=VARCHAR}</if>
+		<if test="email != null and email !='' "> AND t.EMAIL = #{email,jdbcType=VARCHAR}</if>
+		<if test="memberLvId != null and memberLvId !='' "> AND t.MEMBER_LV_ID = #{memberLvId,jdbcType=VARCHAR}</if>
+
+		<if test="memberId != null and memberId !=0 "> AND t.MEMBER_ID = #{memberId,jdbcType=INTEGER}</if>
+		<if test="accountId != null and accountId !=0 "> AND p.ACCOUNT_ID = #{accountId,jdbcType=INTEGER}</if>
+		<if test="advance != null and advance !=0 "> AND t.ADVANCE = #{advance,jdbcType=DECIMAL}</if>
+		<if test="pointSummation != null and pointSummation !='' "> AND t.POINT_SUMMATION = #{pointSummation,jdbcType=DECIMAL}</if>
+		<if test="orderNum != null and orderNum !=0 "> AND t.ORDER_NUM = #{orderNum,jdbcType=INTEGER}</if>
+		<if test="startTime != null and startTime !='' ">   <![CDATA[ AND p.REG_TIME >= #{startTime,jdbcType=VARCHAR}]]></if>
+		<if test="endTime != null and endTime !='' ">  <![CDATA[AND p.REG_TIME <= #{endTime,jdbcType=VARCHAR}]]></if>
+
+		ORDER BY REG_TIME DESC
+	</select>
+	<select id="selectByQueryParams" resultMap="memberListMap" parameterType="map">
+		SELECT P.ACCOUNT_ID, P.LOGIN_NAME, P.ACCOUNT_TYPE, P.ACCOUNT_STATUS, P.REG_TIME,
+		P.SOURCE,T.MEMBER_LV_ID, T.NICK_NAME, T.IDCARD, T.SEX, T.ORDER_NUM, T.CHANNEL,
+		T.POINT_SUMMATION,T.ADVANCE, T.NAME, T.MEMBER_ID, T.EMAIL, T.MOBILE
+		<!-- 关联表 -->
+		FROM T_MEMBERS T,T_PAM_ACCOUNT P,T_MEMBER_LV Q
+		<!-- 关联条件 -->
+		WHERE T.ACCOUNT_ID = P.ACCOUNT_ID AND Q.MEMBER_LV_ID = T.MEMBER_LV_ID
+		AND P.ACCOUNT_TYPE NOT LIKE '2%'
+		<foreach index="index" item="item" collection="whereStmt">
+			AND ${item}
+		</foreach>
+		ORDER BY ${orderStmt}
+	</select>
+	
+	<!-- 检查是账户是否存在，并且是否已经开店 -->
+	<select id="checkMembersInfoByParam" parameterType="com.cnit.yoyo.domain.member.MemberQueryDo"
+		resultMap="memberListMap">
+		SELECT p.ACCOUNT_ID, p.LOGIN_NAME, p.ACCOUNT_TYPE, p.ACCOUNT_STATUS, p.REG_TIME, t.MEMBER_LV_ID,
+		t.NICK_NAME, t.IDCARD, t.SEX, t.ORDER_NUM,t.CHANNEL,t_company.company_id,
+		t.POINT_SUMMATION, t.ADVANCE
+		,t.NAME,T.MEMBER_ID, t.EMAIL, t.MOBILE FROM T_MEMBERS t join T_PAM_ACCOUNT p on t.ACCOUNT_ID =
+		p.ACCOUNT_ID left join t_company on (t_company.account_id=p.ACCOUNT_ID and t_company.disabled='0')  where p.ACCOUNT_STATUS='1'
+		<if test="loginName != null"> AND p.LOGIN_NAME = #{loginName,jdbcType=VARCHAR}</if>
+		<if test="accountType != null"> AND p.ACCOUNT_TYPE = #{accountType,jdbcType=VARCHAR}</if>
+		<if test="accountStatus != null"> AND p.ACCOUNT_STATUS = #{accountStatus,jdbcType=VARCHAR}</if>
+		<if test="channel != null"> AND t.CHANNEL LIKE CONCAT(CONCAT( #{channel, jdbcType=VARCHAR}),'%')  </if>
+		<if test="nickName != null"> AND t.NICK_NAME = #{nickName,jdbcType=VARCHAR}</if>
+		<if test="name != null"> AND t.NAME = #{name,jdbcType=VARCHAR}</if>
+		<if test="idcard != null"> AND t.IDCARD = #{idcard,jdbcType=VARCHAR}</if>
+		<if test="mobile != null"> AND t.MOBILE = #{mobile,jdbcType=VARCHAR}</if>
+		<if test="email != null"> AND t.EMAIL = #{email,jdbcType=VARCHAR}</if>
+		<if test="loginPassword != null"> AND p.LOGIN_PASSWORD = #{loginPassword,jdbcType=VARCHAR}</if>
+		<if test="memberLvId != null"> AND t.MEMBER_LV_ID = #{memberLvId,jdbcType=VARCHAR}</if>
+		ORDER BY REG_TIME DESC
+	</select>
+	
+	<select id="selectByPrimaryKey" resultMap="memberListMap"  parameterType="java.lang.Integer" >
+		 select t.MOBILE,t.name,t.MEMBER_ID
+	    from T_MEMBERS t
+	    where t.MEMBER_ID = #{memberId,jdbcType=INTEGER}
+	</select>
+	
+</mapper>

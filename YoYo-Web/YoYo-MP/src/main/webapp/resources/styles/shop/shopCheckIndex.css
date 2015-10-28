@@ -1,0 +1,10 @@
+/**店铺审核*/
+.shop-detail{background: white; padding: 5px 7px; zoom: 1; overflow: hidden;width: 100%;}
+.shop-detail table{padding: 0px 20px; margin: 20px 0px;}
+.shop-detail th{ padding: 7px 5px;text-align: right;font-weight: normal; min-width: 100px;}
+.shop-detail td { padding: 2px 5px;border:none;}
+.shop-detail td input[type=text]{width:200px; padding: 3px 5px;border: 1px solid #gred;}
+.shop-detail td select{width: 215px;height:25px;padding: 3px 5px;border: 1px solid #gred;}
+.shop-detail .shop-detail-label{text-align: right;}
+.shop-detail .shop-detail-input{text-align: left;}
+.shop-detail .shop-detail-th{text-align: center;  font-size: 14px;font-weight:bold;}

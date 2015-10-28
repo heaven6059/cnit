@@ -1,0 +1,77 @@
+
+a, .lnk {
+    color: #3367ac;
+}
+a, .lnk {
+    cursor: pointer;
+    outline: 0 none;
+    text-decoration: none;
+}
+.consult-table{
+	width: 98%;
+	margin: 10px 0px;
+	line-height: 22px;	
+}
+.txt_left{
+	text-align: left;
+}
+
+.txt_right{
+	text-align: right;
+}
+
+.txt_center{
+	text-align: center;
+}
+
+.consult-table h4 {
+    border-bottom: 1px solid #c8c8c8;
+    color: #305c89;
+    margin: 0 0 5px;
+    padding: 7px 0 5px 5px;
+}
+
+.ap-ct-textinput textarea {
+    border: 0 none;
+    height: 70px;
+    outline: 0 none;
+    overflow: hidden;
+    resize: none;
+    width: 98%;
+}
+
+
+.ap-ct-textinput {
+    background: none repeat scroll 0 0 #fff;
+    border: 1px solid #d7d7d7;
+    position: relative;
+    margin-top: 10px;
+}
+
+.line{
+    border-color: #999;
+    border-style: solid;
+    border-width: 1px;
+}
+
+button {
+    background-color: #3367ac;
+    border: 0 none;
+    color: #fff;
+    cursor: pointer;
+    font-family: "Î¢ÈíÑÅºÚ",arial,"ËÎÌå";
+    font-size: 16px;
+    height: 30px;
+    letter-spacing: 4px;
+    overflow: hidden;
+    width: 80px;
+    margin-top: 10px;
+}
+
+.display-oepn{
+
+}
+.l-btn-icon-left .l-btn-text img{ padding-right:10px;}
+/*.display-close{
+	background: rgba(0, 0, 0, 0) url("../../images/disply-close.png") no-repeat scroll center center;
+}*/

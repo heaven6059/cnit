@@ -1,0 +1,34 @@
+<assembly>  
+    <id>bin</id>  
+    <!-- 最终打包成一个用于发布的zip文件 -->  
+    <formats>  
+        <format>zip</format>  
+    </formats>  
+    <includeBaseDirectory>false</includeBaseDirectory>
+    <!-- Adds dependencies to zip package under lib directory -->  
+    <dependencySets>  
+        <dependencySet>  
+            <!-- 
+               不使用项目的artifact，第三方jar不要解压，打包进zip文件的lib目录 
+           -->  
+            <useProjectArtifact>zip</useProjectArtifact>  
+            <outputDirectory>lib</outputDirectory>  
+            <unpack>zip</unpack>  
+        </dependencySet>  
+    </dependencySets>  
+  
+    <fileSets>  
+        <!-- 把项目相关的说明文件，打包进zip文件的根目录 -->  
+         <fileSet>  
+            <directory>${project.build.directory}</directory>  
+            <outputDirectory></outputDirectory>  
+            <includes>  
+                <include>classes/**</include>  
+            </includes>  
+        </fileSet>  
+          
+    
+          
+     
+    </fileSets>  
+</assembly>  

@@ -1,0 +1,49 @@
+@CHARSET "UTF-8";
+
+.bdshare-button-style0-32{
+	margin-bottom: 70px;
+}
+
+.bdshare-button-style0-32 a {
+  float: left;
+  width: 32px;
+  line-height: 32px;
+  height: 32px;
+  background-image: url(../../images/third_icons.png);
+  background-repeat: no-repeat;
+  cursor: pointer;
+  margin: 16px 16px 16px 0;
+  text-indent: -100em;
+  overflow: hidden;
+  color: #3a8ceb;
+}
+
+a[disabled]{
+  cursor: not-allowed;
+}
+
+.bdshare-button-style0-32 .bd_weixin {
+  background-position: 0 -1612px;
+}
+
+.bdshare-button-style0-32 .bd_sina {
+  background-position: 0 -104px;
+}
+
+.bdshare-button-style0-32 .bd_qq {
+  background-position: 0 -2652px;
+}
+
+.bdshare-button-style0-32 p{
+	font-size: 14px;
+}
+
+.title{
+	  height: 45px;
+	  line-height: 45px;
+	  font-size: 18px;
+	  font-family: 'Microsoft Yahei';
+	  font-weight: normal;
+	  border-bottom: 1px solid #eee;
+	  margin-bottom: 15px;
+}

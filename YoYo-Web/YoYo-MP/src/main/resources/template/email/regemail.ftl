@@ -1,0 +1,1 @@
+<a href="http://www.baidu.com">您好${username},您的验证码为${validateCode}。</a>

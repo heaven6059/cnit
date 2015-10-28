@@ -1,0 +1,192 @@
+@charset "UTF-8";
+.shop_reg_main{width:1200px;margin-left: auto;
+	margin-right: auto;
+	min-height:900px;
+	}
+
+
+
+ .shop_reg_step{  
+ text-align:center;  
+ vertical-align:middle;  
+ height:60px;  
+  
+
+ }
+ 
+ .shop_reg_center{ text-align:center;  
+ vertical-align:middle; }
+.shop_reg_phone{
+	background:#E4E4E4;
+	color:#F73366;
+	font-size:20px;
+	border:1px solid #B4A7A5;
+	}
+	
+.shop_reg_flow{
+	display: block;
+	padding: 10px;
+	margin-right: 88px;
+	margin-top: 70px;
+	border:1px solid #B4A7A5;
+	width:170px;
+	height:180px;
+	float:left;
+	-webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+}
+.shop_reg_flow_span{
+	font-size:16px;
+	width:140px;
+}
+.shop_reg_flow_span_1{
+	font-weight:bold;
+}
+
+/*填写资料css*/
+.shop_reg_data{
+	display: block;
+	padding: 10px;
+	margin-top: 70px;
+	border:1px solid #B4A7A5;
+	width:170px;
+	height:180px;
+	float:left;
+	margin-left:270px;
+	-webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    cursor:pointer;
+    background-color: #F3F3F3;
+}
+
+.clear{clear:both;height:40px;}
+.shop_reg_next{margin-left: 570px;margin-bottom:50px;}
+
+.shop_reg_info_title{
+	margin-left:30px;
+}
+
+.shop_reg_sub_table{
+	margin-left:300px;
+	border-collapse:separate; 
+	border-spacing:10px;
+}
+
+.shop_base_info_table{
+	margin-left:300px;
+	border-collapse:separate; 
+	border-spacing:15px;
+}
+.tab_input{height:28px;width:360px;border:1px solid #CCCCCC;}
+/*.shop_reg_sub_table input{}*/
+.shop_reg_sub_table td{font-size:14px;line-height:1em;}
+
+.shop_reg_check_info{border:1px solid #FAE97A;background-color:#FFFFED;font-size:14px;width:400px;height:80px;margin-left:380px;padding:10px;}
+
+/*上传图片*/
+.fig {
+	width: 448px;
+	float: left;
+	margin: 30px 0 0 30px;
+}
+
+.fig h4 {
+	font-size: 14px;
+	color: #2b8cc7;
+	font-weight: bold;
+	line-height: 30px;
+	height: 30px;
+	margin: 0px;
+}
+
+.fig p {
+	font-size: 12px;
+	float: left;
+	line-height: 31px;
+	margin: 0px;
+}
+
+.fig_tj {
+	border: 3px solid #dadada;
+	width: 448px;
+	height: 248px;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+/* 	background: url("../../images/ff.gif") no-repeat center; */
+	margin: 10px 0;
+	text-align: center;
+}
+
+.shop_td {
+	width: 448px;
+	float: left;
+}
+.shop_logo {
+	border: 3px solid #dadada;
+	width: 358px;
+	height: 248px;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	background: url("../../images/ff.gif") no-repeat center;
+	
+	text-align: center;
+}
+
+.fileInputContainer {
+	height: 31px;
+	background: url("../../images/btn1.jpg") left center;
+	position: relative;
+	width: 101px;
+	margin-left: 5px;
+	float: left;
+}
+
+
+.fileInput {
+	height: 31px;
+	overflow: hidden;
+	font-size: 300px;
+	position: absolute;
+	right: 0;
+	top: 0;
+	opacity: 0;
+	filter: alpha(opacity = 0);
+	cursor: pointer;
+	width: 101px;
+}
+
+.upLoad {
+	background: none repeat scroll 0 0 #fff;
+	border: 1px solid #dadada;
+	float: left;
+	height: 31px;
+	margin: 0 0 0 10px;
+	width: 80px;
+	display:none;
+}
+
+.fig_tjShow{border:3px solid #dadada;width:448px;height:248px;
+ border-top-left-radius:5px;
+ border-top-right-radius:5px;
+ border-bottom-right-radius:5px;
+ border-bottom-left-radius:5px;
+ background:url("../../images/ff.gif") no-repeat center;
+ margin:10px 0;
+ text-align: center;
+line-height: 248px;
+
+}
+.fig_tjShow img{
+	vertical-align: middle;
+}
+
+
+.cl_red{color: #ff0000;}
+
+
+.brand_btn{  margin-left: 270px;
+  margin-top: 20px;}

@@ -1,0 +1,14 @@
+
+@charset "UTF-8";/*卖家中心*/
+
+.clerk_manager_right {
+width: 970px;
+background: #fff;
+display:black;
+padding: 10px 10px;
+}
+/*添加店员*/
+.addclerk{  border: none;  border-bottom: 1px dashed #ddd;margin-bottom:30px;padding-bottom:20px;display:none;}
+.addclerk_table{border-collapse:separate; border-spacing:10px;}
+.addclerk_table input{  border: 1px solid #cccccc;  padding: 6px 5px;width:300px;}
+.addclerk-form-a{margin-left:90px;}

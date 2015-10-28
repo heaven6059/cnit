@@ -1,0 +1,23 @@
+@CHARSET "UTF-8";
+
+.t_H3 {
+    border-collapse: collapse;
+    text-align: center;
+	background: none repeat scroll 0 0 #d4e1f2;
+}
+
+.t_H3_col_bg {
+    background: none repeat scroll 0 0 #fff;
+}
+
+.t_H3 td {
+    border: 1px solid #c8c8c8;
+    padding: 3px 0;
+}
+.t_H3_item_bg {
+    background: none repeat scroll 0 0 #d7e0eb;
+    width: 47px;
+}
+.t_H3_seleted_th{
+	height: 24px;
+}

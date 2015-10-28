@@ -1,0 +1,56 @@
+
+
+/*添加品牌*/
+.add_brand_table{
+	border-collapse:separate; 
+	border-spacing:15px;
+}
+.tab_input{height:28px;width:360px;border:1px solid #CCCCCC;}
+
+.fileInputContainer {
+	height: 31px;
+	background: url("../images/btn1.jpg") left center;
+	position: relative;
+	width: 101px;
+	margin-left: 5px;
+	float: left;
+}
+
+
+.fileInput {
+	height: 31px;
+	overflow: hidden;
+	font-size: 300px;
+	position: absolute;
+	right: 0;
+	top: 0;
+	opacity: 0;
+	filter: alpha(opacity = 0);
+	cursor: pointer;
+	width: 101px;
+}
+.upLoad {
+	background: none repeat scroll 0 0 #fff;
+	border: 1px solid #dadada;
+	float: left;
+	height: 31px;
+	margin: 0 0 0 10px;
+	width: 80px;
+	display:none;
+}
+
+.shop_logo {
+	border: 3px solid #dadada;
+	width: 260px;
+	height: 150px;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+/* 	background: url("../images/ff.gif") no-repeat center; */
+	
+	text-align: center;
+}
+.upload_btn{height:31px;  margin-bottom: 5px;}
+
+.tab_select{width:320px;}

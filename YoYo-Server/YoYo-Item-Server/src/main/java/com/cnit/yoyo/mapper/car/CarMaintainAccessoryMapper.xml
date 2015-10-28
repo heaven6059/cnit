@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cnit.yoyo.dao.car.CarMaintainAccessoryMapper" >
+  <resultMap id="BaseResultMap" type="com.cnit.yoyo.model.car.CarMaintainAccessory" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="category_id" property="categoryId" jdbcType="INTEGER" />
+    <result column="acc_id" property="accId" jdbcType="INTEGER" />
+    <result column="require_time" property="requireTime" jdbcType="VARCHAR" />
+    <result column="quality" property="quality" jdbcType="VARCHAR" />
+    <result column="unit" property="unit" jdbcType="VARCHAR" />
+    <result column="disabled" property="disabled" jdbcType="VARCHAR" />
+    <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.cnit.yoyo.model.car.CarMaintainAccessory" extends="BaseResultMap" >
+    <result column="remark" property="remark" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, category_id, acc_id, require_time, quality, unit, disabled, modify_time
+  </sql>
+  <sql id="Blob_Column_List" >
+    remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_car_maintain_accessory
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_car_maintain_accessory
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cnit.yoyo.model.car.CarMaintainAccessory" >
+    insert into t_car_maintain_accessory (id, category_id, acc_id, 
+      require_time, quality, unit, 
+      disabled, modify_time, remark
+      )
+    values (#{id,jdbcType=INTEGER}, #{categoryId,jdbcType=INTEGER}, #{accId,jdbcType=INTEGER}, 
+      #{requireTime,jdbcType=VARCHAR}, #{quality,jdbcType=VARCHAR}, #{unit,jdbcType=VARCHAR}, 
+      #{disabled,jdbcType=VARCHAR}, #{modifyTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cnit.yoyo.model.car.CarMaintainAccessory" >
+    insert into t_car_maintain_accessory
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="categoryId != null" >
+        category_id,
+      </if>
+      <if test="accId != null" >
+        acc_id,
+      </if>
+      <if test="requireTime != null" >
+        require_time,
+      </if>
+      <if test="quality != null" >
+        quality,
+      </if>
+      <if test="unit != null" >
+        unit,
+      </if>
+      <if test="disabled != null" >
+        disabled,
+      </if>
+      <if test="modifyTime != null" >
+        modify_time,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="categoryId != null" >
+        #{categoryId,jdbcType=INTEGER},
+      </if>
+      <if test="accId != null" >
+        #{accId,jdbcType=INTEGER},
+      </if>
+      <if test="requireTime != null" >
+        #{requireTime,jdbcType=VARCHAR},
+      </if>
+      <if test="quality != null" >
+        #{quality,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null" >
+        #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="disabled != null" >
+        #{disabled,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cnit.yoyo.model.car.CarMaintainAccessory" >
+    update t_car_maintain_accessory
+    <set >
+      <if test="categoryId != null" >
+        category_id = #{categoryId,jdbcType=INTEGER},
+      </if>
+      <if test="accId != null" >
+        acc_id = #{accId,jdbcType=INTEGER},
+      </if>
+      <if test="requireTime != null" >
+        require_time = #{requireTime,jdbcType=VARCHAR},
+      </if>
+      <if test="quality != null" >
+        quality = #{quality,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null" >
+        unit = #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="disabled != null" >
+        disabled = #{disabled,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null" >
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.cnit.yoyo.model.car.CarMaintainAccessory" >
+    update t_car_maintain_accessory
+    set category_id = #{categoryId,jdbcType=INTEGER},
+      acc_id = #{accId,jdbcType=INTEGER},
+      require_time = #{requireTime,jdbcType=VARCHAR},
+      quality = #{quality,jdbcType=VARCHAR},
+      unit = #{unit,jdbcType=VARCHAR},
+      disabled = #{disabled,jdbcType=VARCHAR},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cnit.yoyo.model.car.CarMaintainAccessory" >
+    update t_car_maintain_accessory
+    set category_id = #{categoryId,jdbcType=INTEGER},
+      acc_id = #{accId,jdbcType=INTEGER},
+      require_time = #{requireTime,jdbcType=VARCHAR},
+      quality = #{quality,jdbcType=VARCHAR},
+      unit = #{unit,jdbcType=VARCHAR},
+      disabled = #{disabled,jdbcType=VARCHAR},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <!-- 批量插入 -->
+    <insert id="batchInsert" parameterType="java.util.List">
+		 insert into t_car_maintain_accessory (category_id, acc_id, modify_time)
+		 <foreach collection="list" index="index" item="item" separator="union all"> 
+		 select 
+		 	#{item.categoryId,jdbcType=INTEGER}, #{item.accId,jdbcType=INTEGER}, #{item.modifyTime,jdbcType=TIMESTAMP}
+      		from dual
+		</foreach>
+   </insert>
+   
+   
+   <!-- 根据分类查询保养配件 -->
+   <select id="findAccessoryByCatId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+	   	 select 
+	    <include refid="Base_Column_List" />
+	    from t_car_maintain_accessory
+	    where category_id = #{catId,jdbcType=INTEGER} and disabled='0'
+   
+   </select>
+   
+   <!-- 删除 -->
+   <update id="updateDisable">
+   		update t_car_maintain_accessory set disabled='1' where category_id = #{catId,jdbcType=INTEGER} and acc_id in
+   		<foreach index="index" item="item" collection="list" separator=","  open="(" close=")" >
+			 ${item}
+		</foreach>
+   </update>
+</mapper>

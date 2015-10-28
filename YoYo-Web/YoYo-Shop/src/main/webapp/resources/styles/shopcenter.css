@@ -1,0 +1,25 @@
+
+@charset "UTF-8";/*卖家中心*/
+/*左边导航列表*/
+.shop-sidebar{width:200px;float:left;_overflow:hidden;background: #fff;}
+.shop-sidebar2 h2.left_top{background-color:#377bee;}
+.shop-sidebar2 .shop-menu .current a,.shop-sidebar2 .shop-menu a:hover{color:#377bee;}
+.shop-menu a{padding:0;display:block;text-indent:10px;color:#666;text-decoration: none;}
+.shop-menu .current a,.shop-menu a:hover{color:#c40001;}
+.shop-menu .shop-menu-list{line-height:34px;}
+.shop-menu .shop-menu-list ul{display:block;overflow:hidden;}
+.shop-menu .shop-menu-list li{line-height:34px;height:34px;display:block;overflow:hidden;padding-left: 20px;}
+.shop-menu .shop-menu-list .list-title-bg{height:34px;line-height:34px;background:#f9f9f9;text-indent: 10px;}
+.shop-menu .shop-menu-list .list-title-bg h2{font-size:14px;font-family: 'Microsoft Yahei';}
+.shop-sidebar h2.left_top{height:56px; line-height:56px;text-indent: 56px;color: #fff;}
+
+
+
+
+
+
+
+
+
+
+

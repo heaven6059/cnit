@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cnit.yoyo.personInfo.dao.PersonInfoMapper">
+	<resultMap type="com.cnit.yoyo.member.model.dto.MemberDTO" id="memberDTO" >
+	  <id     column="MEMBER_ID" property="memberId"/>
+	  <result column="MOBILE" property="mobile"/>
+	  <result column="EMAIL" property="email"/>
+	</resultMap>
+	<select id="getPersonInfo" parameterType="String" resultMap="memberDTO">
+		SELECT
+			MEMBER_ID,
+			MOBILE,
+			EMAIL
+		FROM
+			t_members t_m
+		WHERE
+			t_m.MEMBER_ID = #{userId}
+	</select>
+	
+	<update id="updatePersonInfo" parameterType="com.cnit.yoyo.member.model.dto.MemberDTO" >
+		UPDATE T_MEMBERS
+		SET 
+			MOBILE = #{mobile}, 
+			EMAIL = #{email}
+		WHERE
+			MEMBER_ID =	#{memberId}	
+	</update>
+</mapper>

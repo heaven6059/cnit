@@ -1,0 +1,114 @@
+.right_side{
+	width: 1000px;
+ 	height: 800px;
+  	margin-left: 200px;
+}
+.list_head{
+	width: 1000px;
+	height: 42px;
+	line-height: 42px;
+	border: 1px solid #e9e9e9;
+	background-color: #f3f3f3;
+}
+.list_head div {
+  float: left;
+}
+.damage_id{
+	width: 349px;
+	text-align: center;
+}
+.u_remark{
+	width: 260px;
+  text-align: center;
+}
+.offer_price{
+	  text-align: center;
+  width: 110px;
+}
+.s_remark{
+	  text-align: center;
+  width: 260px;
+}
+.detail_list{
+	margin-top: 16px;
+}
+.item_list {
+  width: 998px;
+  height: 108px;
+  border-width: 1px 1px 1px;
+  border-style: solid;
+  border-color: #f1f1f1;
+  margin-bottom: -1px;
+}
+.item_single {
+  padding: 0;
+  width: 998px;
+  height: 108px;
+  position: relative;
+}
+.p_goods{
+	width: 618px;
+}
+.goods_item{
+	width:618px;
+}
+.p_remark{
+	width: 260px;
+	height: 80px;
+}
+.p_title{
+  width: 78px;
+  height: 80px;
+  line-height: 80px;
+  text-align: center;
+}
+.p_price {
+  width: 100px;
+  height: 80px;
+  line-height: 15px;
+  padding-right: 10px;
+  text-align: center;
+}
+.p_img {
+  width: 80px;
+  height: 80px;
+  border: 1px solid #eee;
+  margin-right: 5px;
+  overflow: hidden;
+  background-color: #fff;
+  text-align: center;
+}
+.input_moneny{
+	width: 70px;
+	height: 25px;
+	color: #828181;
+	font-style: italic;
+	text-align: right;
+	padding-right: 5px;
+}
+.remark{
+	padding-top:15px;
+	padding-button:15px;
+	width: 270px;
+	height: 65px;
+}
+.remark2{
+	width: 254px;
+	height: 77px;
+}
+.cart_floatbar {
+  width: 998px;
+  height: 50px;
+  border: 1px solid #f0f0f0;
+  margin-top: 20px;
+}
+.price_sum {
+  height: 50px;
+  line-height: 50px;
+  color: #999;
+  margin:0 10px;
+}
+.p_remark.fl {
+    margin-right: 10px;
+  float: right;
+}

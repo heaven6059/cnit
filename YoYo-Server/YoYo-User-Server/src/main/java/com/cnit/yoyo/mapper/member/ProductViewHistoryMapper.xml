@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cnit.yoyo.dao.member.ProductViewHistoryMapper">
+  <resultMap id="BaseResultMap" type="com.cnit.yoyo.model.member.ProductViewHistory">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="member_id" jdbcType="BIGINT" property="memberId" />
+    <result column="product_id" jdbcType="BIGINT" property="productId" />
+    <result column="view_date" jdbcType="BIGINT" property="viewDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, member_id, product_id, view_date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_product_view_history
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_product_view_history
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cnit.yoyo.model.member.ProductViewHistory">
+    insert into t_product_view_history (id, member_id, product_id, 
+      view_date)
+    values (#{id,jdbcType=INTEGER}, #{memberId,jdbcType=BIGINT}, #{productId,jdbcType=BIGINT}, 
+      #{viewDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cnit.yoyo.model.member.ProductViewHistory">
+    insert into t_product_view_history
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="memberId != null">
+        member_id,
+      </if>
+      <if test="productId != null">
+        product_id,
+      </if>
+      <if test="viewDate != null">
+        view_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="memberId != null">
+        #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="productId != null">
+        #{productId,jdbcType=BIGINT},
+      </if>
+      <if test="viewDate != null">
+        #{viewDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cnit.yoyo.model.member.ProductViewHistory">
+    update t_product_view_history
+    <set>
+      <if test="memberId != null">
+        member_id = #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="productId != null">
+        product_id = #{productId,jdbcType=BIGINT},
+      </if>
+      <if test="viewDate != null">
+        view_date = #{viewDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cnit.yoyo.model.member.ProductViewHistory">
+    update t_product_view_history
+    set member_id = #{memberId,jdbcType=BIGINT},
+      product_id = #{productId,jdbcType=BIGINT},
+      view_date = #{viewDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <resultMap id="ProductViewHistoryResultMap" type="com.cnit.yoyo.model.member.dto.ProductViewHistoryDTO" extends="BaseResultMap">
+  		<result column="GOODS_ID" jdbcType="INTEGER" property="goodsId" />
+  		<result column="NAME" jdbcType="VARCHAR" property="productName" />
+  		<result column="DBN" jdbcType="VARCHAR" property="productBn" />
+  		<result column="PRICE" jdbcType="DECIMAL" property="price" />
+  		<result column="SMALL_PIC" jdbcType="VARCHAR" property="picturePath" />
+  		<result column="product_id" jdbcType="VARCHAR" property="productId" />
+  		<result column="DISABLED" jdbcType="VARCHAR" property="disabled" />
+  		<result column="MARKETABLE" jdbcType="VARCHAR" property="marketable" />
+  		<result column="login_name" jdbcType="VARCHAR" property="loginName" />
+  </resultMap>
+  
+  <select id="selectProductViewHistory" resultMap="ProductViewHistoryResultMap" parameterType="com.cnit.yoyo.model.member.dto.ProductViewHistoryQryDTO">
+  	SELECT
+		goods.GOODS_ID,
+		goods.`NAME`,
+		goods.DBN,
+		goods.PRICE,		
+		goods.SMALL_PIC,
+		pvh.last_modify viewDate,
+		goods.DISABLED,
+		goods.MARKETABLE
+	FROM
+		t_goods_view_history pvh 
+	LEFT JOIN 
+		t_goods goods ON pvh.goods_id=goods.GOODS_ID	
+	WHERE
+		pvh.member_id=#{memberId}	
+ 	ORDER BY pvh.last_modify DESC
+  </select>
+  
+  
+    <select id="selectShopProductViewHistory" resultMap="ProductViewHistoryResultMap" parameterType="com.cnit.yoyo.model.member.dto.ProductViewHistoryQryDTO">
+  	 	SELECT
+			goods.GOODS_ID,
+			goods.`NAME`,
+			goods.DBN,
+			goods.PRICE,		
+			goods.SMALL_PIC,
+			pvh.last_modify viewDate,
+			goods.DISABLED,
+			goods.MARKETABLE,
+			account.LOGIN_NAME
+		FROM
+			t_goods_view_history pvh 
+		LEFT JOIN 
+			t_members member ON pvh.member_id=member.MEMBER_ID
+		LEFT JOIN
+			t_pam_account account ON account.ACCOUNT_ID=member.ACCOUNT_ID
+		LEFT JOIN 
+			t_goods goods ON pvh.goods_id=goods.GOODS_ID	
+		WHERE
+			goods.DISABLED=0
+			AND goods.MARKETABLE=1
+			AND goods.STORE_ID=${storeId}
+	 	ORDER BY 
+	 		pvh.last_modify DESC
+  </select>
+  
+  <delete id="deleteProductViewHistory">
+  	delete from t_goods_view_history where member_id=#{memberId} and goods_id in
+   	<foreach collection="ids" item="id" index="index" open="(" close=")" separator=",">
+           #{id}
+    </foreach>
+  </delete>
+</mapper>

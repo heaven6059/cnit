@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+	<display-name>YoYoMP</display-name>
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath*:ApplicationContext*.xml</param-value>
+	</context-param>
+	<filter>
+		<filter-name>SpringCharacterEncodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>SpringCharacterEncodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	<!-- shiro 安全过滤器 -->
+    <filter>
+        <filter-name>shiroFilter</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+        <async-supported>true</async-supported>
+        <init-param>
+            <param-name>targetFilterLifecycle</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>shiroFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+    </filter-mapping>
+	<filter>
+	    <filter-name>wordValidator</filter-name>
+	    <filter-class>com.cnit.yoyo.filter.WordValidator</filter-class>
+	</filter>
+	<filter-mapping>
+	    <filter-name>wordValidator</filter-name>
+	    <url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<servlet>
+		<servlet-name>VerifyImageServlet</servlet-name>
+		<servlet-class>com.cnit.yoyo.servlet.VerifyImageServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>VerifyImageServlet</servlet-name>
+		<url-pattern>/verifyImage</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>SpringMVC</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:springmvc-servlet.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SpringMVC</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<description></description>
+		<display-name>VerifySmsServlet</display-name>
+		<servlet-name>VerifySmsServlet</servlet-name>
+		<servlet-class>com.cnit.yoyo.servlet.VerifySmsServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>VerifySmsServlet</servlet-name>
+		<url-pattern>/VerifySmsServlet</url-pattern>
+	</servlet-mapping>
+	<!-- 监控 start -->
+	<filter>
+		<filter-name>monitoring</filter-name>
+		<filter-class>net.bull.javamelody.MonitoringFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>monitoring</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<listener>
+		<listener-class>net.bull.javamelody.SessionListener</listener-class>
+	</listener>
+	<!-- 监控 end -->
+	<welcome-file-list>
+		<welcome-file>login.jsp</welcome-file>
+	</welcome-file-list>
+</web-app>

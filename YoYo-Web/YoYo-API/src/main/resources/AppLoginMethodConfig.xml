@@ -1,0 +1,29 @@
+<applogins>
+    <method>memberCarList</method>
+    <method>setDefaulCar</method>
+    <method>saveMemberCar</method>
+    <method>updateMemberCar</method>
+    <method>deleteMemberCar</method>
+    <method>findMemberDefaultCar</method>
+    <method>myPaintingList</method>
+    <method>myPaintingOffers</method>
+    <method>myPaintingChooseStore</method>
+    <method>myPaintingSubmitOrder</method>
+    <method>myPaintingOrderDetail</method>
+    <method>myPaintingCancleOrder</method>
+    <method>paintingPartsInfo</method>
+    <method>savePaintingPartsInfo</method>
+    <method>loadOrderList</method>
+    <method>viewOrder</method>
+    <method>canelOrder</method>
+    <method>updateStatus</method>
+    <method>reshipList</method>
+    <method>returnProduct</method>
+    <method>processReship</method>
+    <method>shopAppealAfterSales</method>
+    <method>refundsList</method>
+    <method>refundsInfo</method>
+    <method>commentsListData</method>
+    <method>replyComment</method>
+    <method>commentDisplay</method>
+</applogins>

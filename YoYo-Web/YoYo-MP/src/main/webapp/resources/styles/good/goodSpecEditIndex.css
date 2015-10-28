@@ -1,0 +1,113 @@
+* {
+	margin: 0px; padding: 0px;
+}
+
+body {
+	font: 12px/1.5 \5FAE\8F6F\96C5\9ED1, \5b8b\4f53, tahoma, arial, "Hiragino Sans GB"; color: black; background: #FFF;
+}
+
+ul li {
+	list-style: none;
+}
+
+.spec-panel {
+	width: 950px; margin: 10px;
+}
+
+.spec-panel .spec-value {
+	min-height: 310px; border: 1px solid #D5DFE3; margin-bottom: 10px; float: left; width: 750px; margin-left: 10px;
+}
+
+.specs-value-ul li {
+	display: inline-block; padding: 3px 5px;
+}
+
+.spec-panel .specs {
+	width: 150px; border: 1px solid #D5DFE3; height: 100%; float: left; margin-left: 5px;
+}
+
+.specs ul {
+	height: 310px; overflow-y: auto;
+}
+
+.specs ul li {
+	padding: 3px;
+}
+
+.specs ul li.c {
+	color: #ffffff; background: #3698DC;
+}
+
+.specs a {
+	display: inline-block; height: 23px; line-height: 23px; text-indent: 1em; color: black; text-decoration: none;
+	cursor: pointer;
+}
+
+.spec-values-list {
+	padding: 15px;
+}
+
+.hidden {
+	display: none;
+}
+
+.spec-toolbar {
+	padding: 7px 5px 8px; border-bottom: 1px solid #D5DFE3; background: #F5F8FA;
+}
+
+.spec-value-table {
+	margin: 20px 10px 0; padding-bottom: 10px; border-top: 1px solid #D5DFE3;
+}
+
+.spec-value-table table {
+	margin-top: 10px; background: #F5F8FA;
+}
+
+.spec-value-table table th {
+	border-right: 1px solid white; background: #DEE4ED; text-align: center; padding: 3px;
+}
+
+.spec-value-table table td {
+	padding: 5px 0; text-align: center;
+}
+
+.clearfix {
+	zoom: 1;
+}
+
+.clearfix:after {
+	display: block; content: '.'; clear: both; line-height: 0; visibility: hidden;
+}
+
+.spec-action {
+	text-align: center;
+}
+
+.spec-panel button {
+	background: #377BEE; padding: 0 20px; border: none; display: inline-block; color: #FFFFFF; text-decoration: none;
+	cursor: pointer; vertical-align: middle; height: 32px; line-height: 32px;
+}
+
+.product-table {
+	margin: 10px 5px;
+}
+
+.product-table th {
+	border-right: 1px solid white; background: #DEE4ED; text-align: center; width: 100px !important; padding: 3px;
+}
+
+.product-table-body td {
+	text-align: center; padding: 5px; border-bottom: 1px solid #D5DFE3;
+}
+
+.product-table-body input[type=text] {
+	width: 80px !important;
+}
+
+.product-table-body .product_spec {
+	display: block;
+}
+
+.spec-panel-action {
+	margin: 10px auto; text-align: center;
+}

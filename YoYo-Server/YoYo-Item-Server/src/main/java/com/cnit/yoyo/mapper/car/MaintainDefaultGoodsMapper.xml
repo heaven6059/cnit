@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cnit.yoyo.dao.car.MaintainDefaultGoodsMapper" >
+  <resultMap id="BaseResultMap" type="com.cnit.yoyo.model.car.MaintainDefaultGoods" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="store_id" property="storeId" jdbcType="BIGINT" />
+    <result column="company_id" property="companyId" jdbcType="BIGINT" />
+    <result column="goods_id" property="goodsId" jdbcType="BIGINT" />
+    <result column="acc_id" property="accId" jdbcType="INTEGER" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="disabled" property="disabled" jdbcType="VARCHAR" />
+    <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+    <result column="maintain_id" property="maintainId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, store_id, company_id, goods_id, acc_id, remark, disabled, modify_time, maintain_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_maintain_default_goods
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_maintain_default_goods
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cnit.yoyo.model.car.MaintainDefaultGoods" >
+    insert into t_maintain_default_goods (id, store_id, company_id, 
+      goods_id, acc_id, remark, 
+      disabled, modify_time, maintain_id
+      )
+    values (#{id,jdbcType=INTEGER}, #{storeId,jdbcType=BIGINT}, #{companyId,jdbcType=BIGINT}, 
+      #{goodsId,jdbcType=BIGINT}, #{accId,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, 
+      #{disabled,jdbcType=VARCHAR}, #{modifyTime,jdbcType=TIMESTAMP}, #{maintainId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cnit.yoyo.model.car.MaintainDefaultGoods" >
+    insert into t_maintain_default_goods
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="storeId != null" >
+        store_id,
+      </if>
+      <if test="companyId != null" >
+        company_id,
+      </if>
+      <if test="goodsId != null" >
+        goods_id,
+      </if>
+      <if test="accId != null" >
+        acc_id,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="disabled != null" >
+        disabled,
+      </if>
+      <if test="modifyTime != null" >
+        modify_time,
+      </if>
+      <if test="maintainId != null" >
+        maintain_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="storeId != null" >
+        #{storeId,jdbcType=BIGINT},
+      </if>
+      <if test="companyId != null" >
+        #{companyId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="accId != null" >
+        #{accId,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="disabled != null" >
+        #{disabled,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="maintainId != null" >
+        #{maintainId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cnit.yoyo.model.car.MaintainDefaultGoods" >
+    update t_maintain_default_goods
+    <set >
+      <if test="storeId != null" >
+        store_id = #{storeId,jdbcType=BIGINT},
+      </if>
+      <if test="companyId != null" >
+        company_id = #{companyId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsId != null" >
+        goods_id = #{goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="accId != null" >
+        acc_id = #{accId,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="disabled != null" >
+        disabled = #{disabled,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null" >
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="maintainId != null" >
+        maintain_id = #{maintainId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cnit.yoyo.model.car.MaintainDefaultGoods" >
+    update t_maintain_default_goods
+    set store_id = #{storeId,jdbcType=BIGINT},
+      company_id = #{companyId,jdbcType=BIGINT},
+      goods_id = #{goodsId,jdbcType=BIGINT},
+      acc_id = #{accId,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      disabled = #{disabled,jdbcType=VARCHAR},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      maintain_id = #{maintainId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <!-- 删除默认商品 -->
+  <delete id="deleteByParam">
+       delete from t_maintain_default_goods
+       where  company_id = #{companyId} and  maintain_id = #{maintainId} and  acc_id = #{accId}
+  </delete>
+  
+  <!-- 根据保养配件id查找是否存在保养默认商品 -->
+  <select id="findByAccIds" resultType="java.lang.Integer">
+  	select count(*) from t_maintain_default_goods where disabled='0' and 
+  	acc_id in 
+  	<foreach collection="list" separator="," open="(" close=")" index="index" item="item">
+  		#{item}
+  	</foreach>
+  </select>
+</mapper>

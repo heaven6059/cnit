@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cnit.yoyo.advance.dao.AdvanceHistoryMapper" >
+  <resultMap id="BaseResultMap" type="com.cnit.yoyo.advance.model.Advance" >
+	    <id column="member_id" property="memberId" jdbcType="INTEGER" />
+	    <result column="advance" property="totalAdvance" jdbcType="DECIMAL" />
+    <collection property="advanceHistorys" column="advancehistory_id" javaType="ArrayList"   ofType="com.cnit.yoyo.advance.model.AdvanceHistory" >
+	    <id column="log_id" property="logId" jdbcType="INTEGER" />
+	    <result column="member_id" property="memberId" jdbcType="INTEGER" />
+	    <result column="money" property="money" jdbcType="DECIMAL" />
+	    <result column="message" property="message" jdbcType="VARCHAR" />
+	    <result column="mtime" property="mtime" jdbcType="TIMESTAMP" />
+	    <result column="payment_id" property="paymentId" jdbcType="VARCHAR" />
+	    <result column="order_id" property="orderId" jdbcType="BIGINT" />
+	    <result column="paymethod" property="paymethod" jdbcType="VARCHAR" />
+	    <result column="memo" property="memo" jdbcType="VARCHAR" />
+	    <result column="import_money" property="importMoney" jdbcType="DECIMAL" />
+	    <result column="shop_advance" property="shopAdvance" jdbcType="DECIMAL" />
+	    <result column="member_advance" property="memberAdvance" jdbcType="DECIMAL" />
+	    <result column="explode_money" property="explodeMoney" jdbcType="DECIMAL" />
+	    <result column="disabled" property="disabled" jdbcType="CHAR" />	  
+    </collection>
+  </resultMap>
+  
+    <select id="getAdvanceList"  parameterType="Map" resultMap="BaseResultMap" >
+					SELECT 
+					  M.MEMBER_ID,
+					  M.ADVANCE,
+					  M_A.LOG_ID,
+					  M_A.MEMBER_ID AS ADVANCEHISTORY_ID,
+					  M_A.MTIME,
+					  M_A.PAYMETHOD,
+					  M_A.IMPORT_MONEY,
+					  M_A.EXPLODE_MONEY,
+					  M_A.MEMBER_ADVANCE 
+					FROM
+					  T_MEMBERS M 
+					  LEFT JOIN T_MEMBER_ADVANCE M_A 
+					    ON M.MEMBER_ID = M_A.MEMBER_ID 
+				  <where>
+				       <if test="memberId != '' and memberId != null ">
+				            M.MEMBER_ID = #{memberId}
+				       </if>
+				  </where>
+  </select>  
+  
+</mapper>

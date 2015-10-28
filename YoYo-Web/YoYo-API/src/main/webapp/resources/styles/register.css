@@ -1,0 +1,37 @@
+@charset "utf-8";
+/* CSS Document */
+.reg_con{ width: 990px; height: 515px; margin: 0 auto; }
+.ref_nav{ width: 867px; height: 35px; padding-left: 123px; margin-top: 20px; position: relative; z-index: 10; }
+.ref_nav ul li{ float: left; width: 118px; height: 34px; margin-right: 10px; }
+.ref_nav ul li a{ display: block; width: 118px; height: 34px; line-height: 35px; color: #666; border: 1px solid #ddd; border-bottom: 0; text-align: center; font-size: 14px;background-color: #fff; }
+.ref_nav ul li a:hover{ color: #76a518; border-top: 3px solid #76a518; height: 32px; line-height: 32px; }
+.ref_nav ul li a.active{ color: #76a518; border-top: 3px solid #76a518; height: 32px; line-height: 32px; }
+.reg_con_in{ width: 988px; height: 479px; margin: 0 auto; border: 1px solid #ddd; margin-top: -1px; position: relative; z-index: 8; }
+.reg_con_l{ width: 453px; height: 403px; padding: 40px 0 35px 50px; }
+.reg_con_l div input{ width: 294px; }
+.reg_con_l .code{ width: 413px; }
+.reg_con_l .code_ipt{ width: 306px; }
+.reg_con_l .code_ipt input{ width: 294ox; }
+
+.codew{ width: 306px; height: 40px; margin-top: 20px; }
+.codew_ipt{ width: 138px; height: 38px; border: 1px solid #ddd; }
+.codew_ipt input{ width: 128px !important; height: 37px; border: 0; padding-left: 10px; }
+.codew_btn{ width: 145px; height: 37px; border: 1px solid #ddd; }
+.codew_btn button{ width: 145px; height: 37px; border: 0; background-color: #f7f7f9; font-size: 14px;font-weight: bold; }
+
+.reg_con_r{ width: 392px; height: 363px; margin: 40px 0 75px; border-left: 1px solid #eaeaea; padding: 0 40px; }
+.reg_con_dl {font-size: 14px;line-height: 34px;}
+.reg_con_dl .login_button{ width: 100px; height: 34px;line-height: 34px; text-align:center;background-color: #f7f7f9;border: 1px solid #bbb;font-weight: bold;display:-moz-inline-stack;display:inline-block;vertical-align:top;zoom:1;*display:inline }
+
+.reg_con_r .login_f{ width: 392px; padding-bottom: 6px; border-bottom: 1px dashed #eaeaea; }
+.reg_con_r .login_f p{ width: 168px; height: 44px; line-height: 44px; font-size: 12px;color: #666; }
+.reg_con_r .login_f ul{ display: block; }
+.reg_con_r .login_f ul li{ padding: 0 12px; }
+.reg_con_r .login_f ul li a{ padding: 0 13px; }
+
+.login_show{ margin-top: 30px; }
+.login_show p{ margin-bottom: 20px;font-size: 14px; }
+.login_show ul li{ float: left; width: 124px; border-right: 1px solid #eaeaea; text-align: center; }
+.login_show ul li h4,.login_show ul li h5{ font-size: 12px; }
+.login_show ul li h3{ font-size: 14px; font-weight: bold; }
+.hide{display: none;}

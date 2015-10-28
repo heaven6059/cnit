@@ -1,0 +1,28 @@
+@CHARSET "UTF-8";
+/* user-cart common.css Date:2015-03-25 11:28:34 */
+
+.cart-empty .message .txt {
+    font-size: 14px;
+}
+.cart-empty .message li {
+    line-height: 26px;
+}
+.cart-empty {
+    color: #333;
+}
+.cart-empty {
+    height: 98px;
+    padding: 80px 0px 120px;
+    color: #333;
+}
+.cart-empty .message {
+    height: 98px;
+    padding-left: 500px;
+    background: url("../../images/cart/cart_empty_icon.png") no-repeat scroll 400px 22px transparent;
+}
+.cart-empty .message ul {
+    padding-top: 23px;
+}
+.ftx-05, .ftx05 {
+    color: #005EA7;
+}

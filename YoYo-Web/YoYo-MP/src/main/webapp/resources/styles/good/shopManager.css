@@ -1,0 +1,228 @@
+@charset "UTF-8";  /*卖家中心*/
+
+/*右边内容展示*/
+.shop_manager_right {
+	width: 962px;
+	background: #fff;
+	display: block;
+	padding: 10px 10px;
+	margin-left: 224px;
+}
+
+.shop_manager_right .title {
+	height: 45px;
+	line-height: 45px;
+	font-size: 18px;
+	font-family: 'Microsoft Yahei';
+	font-weight: normal;
+	border-bottom: 1px solid #eee;
+	margin-bottom: 15px;
+}
+
+.shop_manager_right .disc {
+	color: #666666;
+	font-weight: 100;
+	padding-left: 15px;
+	font-size: 12px;
+}
+
+.shop_manager_right .disc a:link {
+	color: #31A13D;
+}
+
+.shop_manager_right a {
+	cursor: pointer;
+	text-decoration: none;
+	outline: none /* for FF Chrome */;
+}
+
+input {
+	line-height: 18px;
+	vertical-align: middle;
+	padding: 2px 0;
+}
+
+/*添加分店*/
+.addshop {
+	border: none;
+	border-bottom: 1px dashed #ddd;
+	margin-bottom: 30px;
+	padding-bottom: 20px;
+	display: none;
+}
+
+.addShop_table {
+	border-collapse: separate;
+	border-spacing: 10px;
+}
+
+.addShop_table input {
+	border: 1px solid #cccccc;
+	padding: 6px 5px;
+	width: 300px;
+}
+
+.addshop-form-a {
+	margin-left: 90px;
+}
+
+.save_btn {
+	background-image: url(../../../resources/images/shop/save.png);
+	width: 70px;
+	height: 34px;
+	line-height: 34px;
+	text-align: center;
+	display: inline-block;
+}
+
+.cancel_btn {
+	background-image: url(../../../resources/images/shop/cancel.png);
+	width: 70px;
+	height: 33px;
+	line-height: 33px;
+	text-align: center;
+	display: inline-block;
+}
+
+/*添加店员*/
+.addclerk_table {
+	border-collapse: separate;
+	border-spacing: 10px;
+}
+
+/*发布商品首页*/
+.return_box {
+	border: 1px solid #eee;
+	overflow: hidden;
+	padding: 10px 0px;
+}
+
+.return_box .return_boxon {
+	background: #fff;
+	float: left;
+	border: 1px dashed #296ecc;
+	height: 88px;
+	line-height: 88px;
+	width: 200px;
+	padding-left: 20px;
+	margin: 20px 20px;
+	font-size: 14px;
+}
+
+.return_box input {
+	margin-right: 10px;
+}
+
+.return_box .return_boxn {
+	float: left;
+	border: 1px dashed #E6E6E6;
+	height: 88px;
+	line-height: 88px;
+	width: 200px;
+	padding-left: 20px;
+	margin: 20px 20px;
+	font-size: 14px;
+	color: #666666;
+	background: #f6f6f6;
+}
+
+.shop_manager2 .btn {
+	background: #377bee;
+}
+
+.btn {
+	background:#377BEE;/* #c40001*/
+	padding: 0 20px;
+	border: none;
+	display: inline-block;
+	zoom: 1;
+	overflow: visible;
+	color: #FFFFFF;
+	font-size: 14px;
+	text-decoration: none;
+	cursor: pointer;
+	vertical-align: middle;
+	height: 32px;
+	line-height: 32px;
+	margin: 0 5px;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-ms-border-radius: 2px;
+	-o-border-radius: 2px;
+	border-radius: 2px;
+}
+
+
+/*发布商品主页*/
+.liststyle{border:1px solid #dddddd;width:100%;margin-top:10px;/*定义列表的头部*/ /*用于整个通栏的td，使用了colspan的td*/ }
+.liststyle a{padding-right:5px;text-decoration:underline;}
+.liststyle a.lnk{text-decoration:none;}
+.liststyle thead th{text-align:center;font-size:12px;white-space:nowrap;background:#EFEFEF;padding:4px 3px;}
+.liststyle td, .liststyle th{padding:4px;word-break:break-word;text-align:center;background:white;}
+.liststyle.data td, .liststyle.data th{word-break:break-word;  empty-cells: show;font-style: normal;
+  font-weight: normal;}
+.liststyle.data tbody th{text-align:right;color:black;font-size:12px;}
+.liststyle.data td{text-align:left;}
+.liststyle  th,.liststyle2 th{width:162px;}
+
+.FormWrap {
+  margin: 10px 0;
+  border: 1px solid #eee;
+  background: #F5F5F5;
+  padding: 7px;
+  line-height: 150%;
+  min-height: 100px;
+}
+.FormWrap em {
+  font-style: normal;
+  color: #c40001;
+  margin: 0 2px;
+}
+.title_fb {
+  color: #404040;
+  font-size: 16px;
+  font-weight: bold;
+  height: 30px;
+  line-height: 30px;
+}
+.object-select {
+  border: medium none;
+  display: inline-block;
+  margin: 2px 0;
+  vertical-align: middle;
+}
+.object-select .label {
+  background-position: 0 -626px;
+  border-right: medium none;
+  cursor: pointer;
+  font-weight: normal;
+  padding: 0 10px;
+  max-width: 280px;
+  overflow: hidden;
+  display: block;
+  white-space: nowrap;
+}
+
+.object-select div {
+  float: left;
+  height: 21px;
+  line-height: 21px;
+}
+.clearfix:after {
+  content: "\0020";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+  overflow: hidden;
+}
+.object-select .label, .object-select .handle {
+  background: url("../../images/sliding.png") no-repeat scroll 0 0 transparent;
+}
+.object-select .handle {
+  background-position: 100% -656px;
+  cursor: pointer;
+  width: 19px;
+}
+.inputstyle{width:315px;}
+

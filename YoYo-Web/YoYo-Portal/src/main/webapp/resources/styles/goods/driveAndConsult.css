@@ -1,0 +1,233 @@
+@CHARSET "UTF-8";
+.contentxj {
+    width: 1200px;
+    margin: 0px auto;
+}
+.tittop {
+    height: 30px;
+    background-color: #3B5999;
+}
+.titzx {
+    margin-left: 10px;
+    width: 90px;
+    height: 28px;
+    line-height: 28px;
+    background-color: #FFF;
+    text-align: center;
+    border-top: 2px solid #F60;
+    font-size: 12px;
+    font-weight: bold;
+}
+ul, li, table, tr, td, p, input, select, h1, h2, dl, dt, dd {
+    margin: 0px;
+    padding: 0px;
+    list-style: outside none none;
+}
+.conxj {
+    overflow: hidden;
+    border-right: 1px solid #BFC9E2;
+    border-width: medium 1px 1px;
+    border-style: none solid solid;
+    border-color: -moz-use-text-color #BFC9E2 #BFC9E2;
+    -moz-border-top-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    border-image: none;
+    font-size: 12px;
+    line-height: 22px;
+    color: #000;
+    padding: 19px;
+}
+.cxjl {
+    width: 317px;
+    float: left;
+    position: relative;
+}
+.cxjlt {
+    width: 285px;
+    height: 136px;
+    padding: 33px 0px 0px 130px;
+    border: 1px solid #FFF;
+    cursor: pointer;
+}
+.cxtl {
+    float: left;
+}
+.cxjlt .cxtit {
+    width: 126px;
+    height: 24px;
+    font-family: 微软雅黑;
+    font-size: 20px;
+    font-weight: bold;
+}
+.cf36614 {
+    color: #F36614;
+}
+.cxtxt {
+    margin-top: 10px;
+    width: 195px;
+}
+span.cxsp, span.cxbsp, span.cxbhs, span.cxlsp {
+    width: 10px;
+    height: 10px;
+    line-height: 0;
+    overflow: hidden;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 6px 0px 0px 10px;
+}
+.cxsp, .cxbsp, a.buthq, .cxtr, a.butsq, dl.tjxx dt, .tjou, a.cgra, a.buttj, span.cxbhs, dl.tjcw dt, .inpsq, .inpsq_hover, .inpsq_active, .inpdj, .inpdj_hover, .inpdj_active, .inptj, .gain-disabled, .refer-disabled {
+    background: url("../../images/goods/con_bg1.png") no-repeat scroll 0% 0% transparent;
+}
+.c0282cd {
+    color: #0282CD;
+}
+.cxactive .cxtr {
+    width: 34px;
+    height: 65px;
+    float: right;
+    background-position: 0px -12px;
+    margin: 5px 5px 0px 0px;
+}
+.cxactive {
+    width: 327px;
+	border: 1px solid #bfc9e2;
+	background-color: #fbfcff;
+	border-right: none;
+}
+.cxjr {
+	width: 641px;
+	min-height: 310px;
+	_height: 310px;
+	border: 1px solid #bfc9e2;
+	float: right;
+	padding: 30px 30px 0 30px;
+	background-color: #fbfcff;
+	margin-left: -1px;
+}
+li {
+	display: list-item;
+	text-align: -webkit-match-parent;
+}
+ul.cxrul li {
+	overflow: hidden;
+	zoom: 1;
+	line-height: 22px;
+	margin-bottom: 12px;
+}
+.conxj ul, .conxj li, .conxj p, .conxj span, .conxj dl, .conxj dd, .conxj dt, .conxj h3 {
+	margin: 0;
+	padding: 0;
+	border: none;
+	list-style: none;
+}
+ul.cxrul li .w213 {
+	width: 213px;
+}
+ul.cxrul li .w30 {
+	width: 15px;
+	color: #fc0301;
+}
+ul.cxrul li .w60 {
+	width: 67px;
+}
+.inpsq {
+	background-position: 0 -438px;
+}
+.inpsq_hover {
+	background-position: 0 -487px;
+}
+.conxj .txtcent {
+	text-align: center;
+}
+.inpsq, .inpsq_hover, .inpsq_active, .inpdj, .inpdj_hover, .inpdj_active, .inptj, .gain-disabled, .refer-disabled {
+	width: 186px;
+	height: 48px;
+	border: none;
+	cursor: pointer;
+}
+.inpdj {
+	background-position: 0 -586px;
+}
+.inpdj_hover {
+	background-position: 0 -636px;
+}
+.dealercont {
+	width: 540px;
+	background-color: #fff;
+}
+.dealercont .dealercont-title {
+	height: 28px;
+	line-height: 28px;
+	padding-left: 20px;
+	border: 1px solid #ccd3e4;
+	background-color: #fafbfc;
+}
+.dealercont .dealercont-title .title-name {
+	fotn-size: 14px;
+	font-weight: bold;
+	color: #333;
+}
+.dealercont .dealercont-cont {
+	overflow: hidden;
+	position: relative;
+}
+.dealercont .dealercont-cont .tablecont {
+	width: 100%;
+	border: 1px solid #ccd3e4;
+	border-top: none;
+	border-collapse: collapse;
+	border-spacing: 0;
+	margin-top: -1px;
+}
+.dealercont .dealercont-cont .tipcont {
+	position: absolute;
+	top: 40%;
+	left: 35%;
+	width: 150px;
+	height: 24px;
+	line-height: 24px;
+	border: 1px solid #f90;
+	background-color: #fffbe2;
+	padding: 2px 10px;
+	color: #d60000;
+}
+.dealercont .dealercont-cont .tablecont td.text-center {
+	text-align: center;
+}
+.dealercont .dealercont-cont .tablecont td {
+	padding: 10px;
+	line-height: 28px;
+	border: 1px dotted #ccd3e4;
+}
+.dealercont .dealercont-cont .tablecont td .name {
+	font-size: 14px;
+	font-weight: bold;
+}
+a, a:link, a:visited {
+	color: #3b5998;
+	text-decoration: none;
+}
+.grey-999 {
+	color: #999;
+}
+.dealercont .dealercont-cont .tablecont td .btncont .btn-more {
+	display: block;
+	width: 110px;
+	height: 22px;
+	line-height: 22px;
+	padding: 0 10px;
+	border: 1px solid #ccd3e4;
+	border-bottom: none;
+	margin: 0 auto;
+	position: relative;
+	background-color: #fafbfc;
+	margin-bottom: -10px;
+}
+ul.cxrul li .ml12 {
+	margin-left: 12px;
+}
+.cfc0301 {
+	color: #fc0301;
+}

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- log4j2 配置 -->
+<configuration status="WARN">
+    <properties>
+        <property name="defaultLogSize">30 MB</property>
+    </properties>
+    <appenders>
+        <Console name="STDOUT" target="SYSTEM_OUT">
+            <PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:ss}] %p [%t] [%c] [%m]%n" />
+        </Console>
+        <RollingFile name="File" fileName="/usr/logs/userserver/all.log" filePattern="/usr/logs/userserver/all-%d{yyyyMMdd}-%i.log"
+            bufferedIO="false" immediateFlush="true">
+            <PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:ss}] %p [%t] [%c] [%m]%n" />
+            <SizeBasedTriggeringPolicy size="${defaultLogSize}" />
+        </RollingFile>
+        <RollingFile name="Error" fileName="/usr/logs/userserver/error.log" filePattern="/usr/logs/userserver/error-%d{yyyyMMdd}-%i.log"
+            immediateFlush="true">
+            <ThresholdFilter level="error" onMatch="ACCEPT" onMismatch="DENY" />
+            <PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:ss}] %p [%t] [%c] [%l] [%m]%n" />
+            <SizeBasedTriggeringPolicy size="${defaultLogSize}" />
+        </RollingFile>
+        <!-- 异步邮件发送 -->
+<!--         <SMTP name="Mail" bufferSize="1024" smtpHost="smtp.163.com" subject="${log.mail.subject}" SMTPUsername="${log.mail.username}" -->
+<!--             SMTPPassword="${log.mail.password}" from="${log.mail.from}" to="${log.mail.to}" cc="${log.mail.cc}"> -->
+<!--         </SMTP> -->
+<!--         <Async name="AsyncMail"> -->
+<!--             <AppenderRef ref="Mail" /> -->
+<!--         </Async> -->
+    </appenders>
+    <loggers>
+    <root level="DEBUG">
+     	<appender-ref ref="STDOUT"/>
+        <appender-ref ref="File" />
+        <appender-ref ref="Error" level="error"/>
+    </root>
+<!--         <root level="${log.root.level}"> -->
+<!--             <appender-ref ref="${log.stdout}" /> -->
+<!--             <appender-ref ref="File" /> -->
+<!--             <appender-ref ref="Error" level="error" /> -->
+<!--             <appender-ref ref="AsyncMail" level="${log.mail.level}" /> -->
+<!--         </root> -->
+    </loggers>
+</configuration>

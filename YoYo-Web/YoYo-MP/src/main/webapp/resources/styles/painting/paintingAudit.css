@@ -1,0 +1,15 @@
+.panel>div{
+	margin:10px 0 0 0px;
+}
+.pic img{
+	height:100px;
+	weight:100px;
+	margin-right:10px;
+	float:left;
+}
+.remark {
+  height: 78px;
+  padding: 10px;
+  border: 1px dashed;
+  margin:0 20px 10px 440px;
+}

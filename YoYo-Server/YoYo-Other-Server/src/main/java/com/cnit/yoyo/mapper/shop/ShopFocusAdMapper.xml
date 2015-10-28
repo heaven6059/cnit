@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cnit.yoyo.dao.shop.ShopFocusAdMapper" >
+  <resultMap id="BaseResultMap" type="com.cnit.yoyo.model.shop.ShopFocusAd" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="focus_title" property="focusTitle" jdbcType="VARCHAR" />
+    <result column="focus_type" property="focusType" jdbcType="CHAR" />
+    <result column="focus_order" property="focusOrder" jdbcType="INTEGER" />
+    <result column="focus_img" property="focusImg" jdbcType="VARCHAR" />
+    <result column="focus_url" property="focusUrl" jdbcType="VARCHAR" />
+    <result column="focus_enabled" property="focusEnabled" jdbcType="CHAR" />
+    <result column="company_id" property="companyId" jdbcType="BIGINT" />
+    <result column="store_id" property="storeId" jdbcType="BIGINT" />
+    <result column="last_modify" property="lastModify" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, focus_title, focus_type, focus_order, focus_img, focus_url,focus_enabled, company_id, store_id, 
+    last_modify
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_shop_focus_ad
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_shop_focus_ad
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.cnit.yoyo.model.shop.ShopFocusAd" >
+    insert into t_shop_focus_ad (id, focus_title, focus_type, 
+      focus_order, focus_img,focus_url, focus_enabled, 
+      company_id, store_id, last_modify
+      )
+    values (#{id,jdbcType=BIGINT}, #{focusTitle,jdbcType=VARCHAR}, #{focusType,jdbcType=CHAR}, 
+      #{focusOrder,jdbcType=INTEGER}, #{focusImg,jdbcType=VARCHAR},${#focusUrl,jdbcType=VARCHAR}, 
+      #{focusEnabled,jdbcType=CHAR},#{companyId,jdbcType=BIGINT}, #{storeId,jdbcType=BIGINT},
+       #{lastModify,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cnit.yoyo.model.shop.ShopFocusAd" >
+    insert into t_shop_focus_ad
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="focusTitle != null" >
+        focus_title,
+      </if>
+      <if test="focusType != null" >
+        focus_type,
+      </if>
+      <if test="focusOrder != null" >
+        focus_order,
+      </if>
+      <if test="focusImg != null" >
+        focus_img,
+      </if>
+      <if test="focusUrl != null" >
+        focus_url,
+      </if>
+      <if test="focusEnabled != null" >
+        focus_enabled,
+      </if>
+      <if test="companyId != null" >
+        company_id,
+      </if>
+      <if test="storeId != null" >
+        store_id,
+      </if>
+      <if test="lastModify != null" >
+        last_modify,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="focusTitle != null" >
+        #{focusTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="focusType != null" >
+        #{focusType,jdbcType=CHAR},
+      </if>
+      <if test="focusOrder != null" >
+        #{focusOrder,jdbcType=INTEGER},
+      </if>
+      <if test="focusImg != null" >
+        #{focusImg,jdbcType=VARCHAR},
+      </if>
+      <if test="focusUrl != null" >
+        #{focusUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="focusEnabled != null" >
+        #{focusEnabled,jdbcType=CHAR},
+      </if>
+      <if test="companyId != null" >
+        #{companyId,jdbcType=BIGINT},
+      </if>
+      <if test="storeId != null" >
+        #{storeId,jdbcType=BIGINT},
+      </if>
+      <if test="lastModify != null" >
+        #{lastModify,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cnit.yoyo.model.shop.ShopFocusAd" >
+    update t_shop_focus_ad
+    <set >
+      <if test="focusTitle != null" >
+        focus_title = #{focusTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="focusType != null" >
+        focus_type = #{focusType,jdbcType=CHAR},
+      </if>
+      <if test="focusOrder != null" >
+        focus_order = #{focusOrder,jdbcType=INTEGER},
+      </if>
+      <if test="focusImg != null" >
+        focus_img = #{focusImg,jdbcType=VARCHAR},
+      </if>
+      <if test="focusUrl != null" >
+        focus_url = #{focusUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="focusEnabled != null" >
+        focus_enabled = #{focusEnabled,jdbcType=CHAR},
+      </if>
+      <if test="companyId != null" >
+        company_id = #{companyId,jdbcType=BIGINT},
+      </if>
+      <if test="storeId != null" >
+        store_id = #{storeId,jdbcType=BIGINT},
+      </if>
+      <if test="lastModify != null" >
+        last_modify = #{lastModify,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cnit.yoyo.model.shop.ShopFocusAd" >
+    update t_shop_focus_ad
+    set focus_title = #{focusTitle,jdbcType=VARCHAR},
+      focus_type = #{focusType,jdbcType=CHAR},
+      focus_order = #{focusOrder,jdbcType=INTEGER},
+      focus_img = #{focusImg,jdbcType=VARCHAR},
+      focus_url = #{focusUrl,jdbcType=VARCHAR},
+      focus_enabled = #{focusEnabled,jdbcType=CHAR},
+      company_id = #{companyId,jdbcType=BIGINT},
+      store_id = #{storeId,jdbcType=BIGINT},
+      last_modify = #{lastModify,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <select id="selectShopFocusAd" resultMap="BaseResultMap" parameterType="com.cnit.yoyo.model.shop.ShopFocusAd" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_shop_focus_ad
+    where 
+    	company_id = #{companyId,jdbcType=BIGINT}
+    <if test="focusEnabled != null"> 
+    and focus_enabled=#{focusEnabled} 
+    </if>
+    order by focus_order desc
+  </select>
+</mapper>

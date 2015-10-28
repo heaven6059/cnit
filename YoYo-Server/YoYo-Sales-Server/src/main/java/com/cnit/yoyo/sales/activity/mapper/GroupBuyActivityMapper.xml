@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cnit.yoyo.sales.activity.dao.GroupBuyActivityMapper" >
+  <resultMap id="BaseResultMap" type="com.cnit.yoyo.model.sales.activity.GroupBuyActivity" >
+    <id column="act_id" property="actId" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="apply_start_time" property="applyStartTime" jdbcType="TIMESTAMP" />
+    <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="apply_end_time" property="applyEndTime" jdbcType="TIMESTAMP" />
+    <result column="store_type" property="storeType" jdbcType="VARCHAR" />
+    <result column="activity_tag" property="activityTag" jdbcType="VARCHAR" />
+    <result column="price_tag" property="priceTag" jdbcType="VARCHAR" />
+    <result column="nums" property="nums" jdbcType="INTEGER" />
+    <result column="business_type" property="businessType" jdbcType="VARCHAR" />
+    <result column="act_open" property="actOpen" jdbcType="INTEGER" />
+    <result column="act_status" property="actStatus" jdbcType="INTEGER" />
+    <result column="last_modified" property="lastModified" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.cnit.yoyo.model.sales.activity.GroupBuyActivity" extends="BaseResultMap" >
+    <result column="description" property="description" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    act_id, name, end_time, apply_start_time, start_time, apply_end_time, store_type, 
+    activity_tag, price_tag, nums, business_type, act_open, act_status, last_modified
+  </sql>
+  <sql id="Blob_Column_List" >
+    description
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_groupbuy_activity
+    where act_id = #{actId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_groupbuy_activity
+    where act_id = #{actId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.cnit.yoyo.model.sales.activity.GroupBuyActivity" >
+    insert into t_groupbuy_activity (act_id, name, end_time, 
+      apply_start_time, start_time, apply_end_time, 
+      store_type, activity_tag, price_tag, 
+      nums, business_type, act_open, 
+      act_status, last_modified, description
+      )
+    values (#{actId,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{endTime,jdbcType=TIMESTAMP}, 
+      #{applyStartTime,jdbcType=TIMESTAMP}, #{startTime,jdbcType=TIMESTAMP}, #{applyEndTime,jdbcType=TIMESTAMP}, 
+      #{storeType,jdbcType=VARCHAR}, #{activityTag,jdbcType=VARCHAR}, #{priceTag,jdbcType=VARCHAR}, 
+      #{nums,jdbcType=INTEGER}, #{businessType,jdbcType=VARCHAR}, #{actOpen,jdbcType=INTEGER}, 
+      #{actStatus,jdbcType=INTEGER}, #{lastModified,jdbcType=TIMESTAMP}, #{description,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cnit.yoyo.model.sales.activity.GroupBuyActivity" >
+    insert into t_groupbuy_activity
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="actId != null" >
+        act_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+      <if test="applyStartTime != null" >
+        apply_start_time,
+      </if>
+      <if test="startTime != null" >
+        start_time,
+      </if>
+      <if test="applyEndTime != null" >
+        apply_end_time,
+      </if>
+      <if test="storeType != null" >
+        store_type,
+      </if>
+      <if test="activityTag != null" >
+        activity_tag,
+      </if>
+      <if test="priceTag != null" >
+        price_tag,
+      </if>
+      <if test="nums != null" >
+        nums,
+      </if>
+      <if test="businessType != null" >
+        business_type,
+      </if>
+      <if test="actOpen != null" >
+        act_open,
+      </if>
+      <if test="actStatus != null" >
+        act_status,
+      </if>
+      <if test="lastModified != null" >
+        last_modified,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="actId != null" >
+        #{actId,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="applyStartTime != null" >
+        #{applyStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="applyEndTime != null" >
+        #{applyEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="storeType != null" >
+        #{storeType,jdbcType=VARCHAR},
+      </if>
+      <if test="activityTag != null" >
+        #{activityTag,jdbcType=VARCHAR},
+      </if>
+      <if test="priceTag != null" >
+        #{priceTag,jdbcType=VARCHAR},
+      </if>
+      <if test="nums != null" >
+        #{nums,jdbcType=INTEGER},
+      </if>
+      <if test="businessType != null" >
+        #{businessType,jdbcType=VARCHAR},
+      </if>
+      <if test="actOpen != null" >
+        #{actOpen,jdbcType=INTEGER},
+      </if>
+      <if test="actStatus != null" >
+        #{actStatus,jdbcType=INTEGER},
+      </if>
+      <if test="lastModified != null" >
+        #{lastModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cnit.yoyo.model.sales.activity.GroupBuyActivity" >
+    update t_groupbuy_activity
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="applyStartTime != null" >
+        apply_start_time = #{applyStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="startTime != null" >
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="applyEndTime != null" >
+        apply_end_time = #{applyEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="storeType != null" >
+        store_type = #{storeType,jdbcType=VARCHAR},
+      </if>
+      <if test="activityTag != null" >
+        activity_tag = #{activityTag,jdbcType=VARCHAR},
+      </if>
+      <if test="priceTag != null" >
+        price_tag = #{priceTag,jdbcType=VARCHAR},
+      </if>
+      <if test="nums != null" >
+        nums = #{nums,jdbcType=INTEGER},
+      </if>
+      <if test="businessType != null" >
+        business_type = #{businessType,jdbcType=VARCHAR},
+      </if>
+      <if test="actOpen != null" >
+        act_open = #{actOpen,jdbcType=INTEGER},
+      </if>
+      <if test="actStatus != null" >
+        act_status = #{actStatus,jdbcType=INTEGER},
+      </if>
+      <if test="lastModified != null" >
+        last_modified = #{lastModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where act_id = #{actId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.cnit.yoyo.model.sales.activity.GroupBuyActivity" >
+    update t_groupbuy_activity
+    set name = #{name,jdbcType=VARCHAR},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      apply_start_time = #{applyStartTime,jdbcType=TIMESTAMP},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      apply_end_time = #{applyEndTime,jdbcType=TIMESTAMP},
+      store_type = #{storeType,jdbcType=VARCHAR},
+      activity_tag = #{activityTag,jdbcType=VARCHAR},
+      price_tag = #{priceTag,jdbcType=VARCHAR},
+      nums = #{nums,jdbcType=INTEGER},
+      business_type = #{businessType,jdbcType=VARCHAR},
+      act_open = #{actOpen,jdbcType=INTEGER},
+      act_status = #{actStatus,jdbcType=INTEGER},
+      last_modified = #{lastModified,jdbcType=TIMESTAMP},
+      description = #{description,jdbcType=LONGVARCHAR}
+    where act_id = #{actId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cnit.yoyo.model.sales.activity.GroupBuyActivity" >
+    update t_groupbuy_activity
+    set name = #{name,jdbcType=VARCHAR},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      apply_start_time = #{applyStartTime,jdbcType=TIMESTAMP},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      apply_end_time = #{applyEndTime,jdbcType=TIMESTAMP},
+      store_type = #{storeType,jdbcType=VARCHAR},
+      activity_tag = #{activityTag,jdbcType=VARCHAR},
+      price_tag = #{priceTag,jdbcType=VARCHAR},
+      nums = #{nums,jdbcType=INTEGER},
+      business_type = #{businessType,jdbcType=VARCHAR},
+      act_open = #{actOpen,jdbcType=INTEGER},
+      act_status = #{actStatus,jdbcType=INTEGER},
+      last_modified = #{lastModified,jdbcType=TIMESTAMP}
+    where act_id = #{actId,jdbcType=BIGINT}
+  </update>
+</mapper>

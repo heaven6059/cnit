@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+    "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>	
+		<!-- 将Struts2交与Spring管理 -->
+	<constant name="struts.objectFactory" value="spring" />
+	<!-- 包含登录拦截、权限拦截 --><!--普通栈-->
+	<package name="payCenter-core" extends="struts-default">
+		<!-- <interceptors>
+		<interceptor name="loginInterceptor" class="com.msd.store.interceptor.LoginInterceptor"/> 
+		<interceptor-stack name="commonStack">
+				<interceptor-ref name="defaultStack"/>
+				<interceptor-ref name="loginInterceptor"/>
+				<interceptor-ref name="exception">
+					<param name="logEnabled">true</param>
+					<param name="logLevel">warn</param>
+				</interceptor-ref>			
+			</interceptor-stack>
+		</interceptors>
+		-->
+		<!--<default-interceptor-ref name="commonStack" />-->
+		<!-- 全局跳转
+		<global-results>
+			<result name="login">/login.jsp</result>
+			<result name="nopermission">/nopermission.jsp</result>
+		</global-results>
+		 -->
+	</package>
+	
+	<!-- 不包含任何自定义拦截 -->
+	<package name="noInterceptor" extends="struts-default">
+		<interceptors>		
+			<!--普通栈-->
+			<interceptor-stack name="commonStack">
+				<interceptor-ref name="defaultStack"/>
+				<interceptor-ref name="exception">
+					<param name="logEnabled">true</param>
+					<param name="logLevel">warn</param>
+				</interceptor-ref>			
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="commonStack" />
+	</package>
+<!-- 	<include file="struts-test.xml"/> -->
+</struts>    

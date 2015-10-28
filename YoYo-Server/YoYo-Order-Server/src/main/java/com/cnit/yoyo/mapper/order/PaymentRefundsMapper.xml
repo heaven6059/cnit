@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cnit.yoyo.dao.order.PaymentRefundsMapper" >
+  <resultMap id="BaseResultMap" type="com.cnit.yoyo.model.order.PaymentRefunds" >
+    <result column="batch_no" property="batchNo" jdbcType="VARCHAR" />
+    <result column="success_num" property="successNum" jdbcType="VARCHAR" />
+    <result column="result_details" property="resultDetails" jdbcType="VARCHAR" />
+    <result column="notify_time" property="notifyTime" jdbcType="VARCHAR" />
+    <result column="notify_type" property="notifyType" jdbcType="VARCHAR" />
+    <result column="notify_id" property="notifyId" jdbcType="VARCHAR" />
+    <result column="sign_type" property="signType" jdbcType="VARCHAR" />
+    <result column="sign" property="sign" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <insert id="insert" parameterType="com.cnit.yoyo.model.order.PaymentRefunds" >
+    insert into t_payment_refunds (batch_no, success_num, result_details, 
+      notify_time, notify_type, notify_id, 
+      sign_type, sign, create_time
+      )
+    values (#{batchNo,jdbcType=VARCHAR}, #{successNum,jdbcType=VARCHAR}, #{resultDetails,jdbcType=VARCHAR}, 
+      #{notifyTime,jdbcType=VARCHAR}, #{notifyType,jdbcType=VARCHAR}, #{notifyId,jdbcType=VARCHAR}, 
+      #{signType,jdbcType=VARCHAR}, #{sign,jdbcType=VARCHAR}, #{create_time,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cnit.yoyo.model.order.PaymentRefunds" >
+    insert into t_payment_refunds
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="batchNo != null" >
+        batch_no,
+      </if>
+      <if test="successNum != null" >
+        success_num,
+      </if>
+      <if test="resultDetails != null" >
+        result_details,
+      </if>
+      <if test="notifyTime != null" >
+        notify_time,
+      </if>
+      <if test="notifyType != null" >
+        notify_type,
+      </if>
+      <if test="notifyId != null" >
+        notify_id,
+      </if>
+      <if test="signType != null" >
+        sign_type,
+      </if>
+      <if test="sign != null" >
+        sign,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="batchNo != null" >
+        #{batchNo,jdbcType=VARCHAR},
+      </if>
+      <if test="successNum != null" >
+        #{successNum,jdbcType=VARCHAR},
+      </if>
+      <if test="resultDetails != null" >
+        #{resultDetails,jdbcType=VARCHAR},
+      </if>
+      <if test="notifyTime != null" >
+        #{notifyTime,jdbcType=VARCHAR},
+      </if>
+      <if test="notifyType != null" >
+        #{notifyType,jdbcType=VARCHAR},
+      </if>
+      <if test="notifyId != null" >
+        #{notifyId,jdbcType=VARCHAR},
+      </if>
+      <if test="signType != null" >
+        #{signType,jdbcType=VARCHAR},
+      </if>
+      <if test="sign != null" >
+        #{sign,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  
+</mapper>

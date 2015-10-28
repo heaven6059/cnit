@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cnit.yoyo.dao.car.CarFactoryScopeMapper" >
+  <resultMap id="BaseResultMap" type="com.cnit.yoyo.model.car.CarFactoryScope" >
+    <id column="scope_id" property="scopeId" jdbcType="INTEGER" />
+    <result column="car_type" property="carType" jdbcType="VARCHAR" />
+    <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="disabled" property="disabled" jdbcType="VARCHAR" />
+    <result column="last_midifity" property="lastMidifity" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    scope_id, car_type, createtime, disabled, last_midifity
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_car_factory_scope
+    where scope_id = #{scopeId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_car_factory_scope
+    where scope_id = #{scopeId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cnit.yoyo.model.car.CarFactoryScope" >
+    insert into t_car_factory_scope (scope_id, car_type, createtime, 
+      disabled, last_midifity)
+    values (#{scopeId,jdbcType=INTEGER}, #{carType,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{disabled,jdbcType=VARCHAR}, #{lastMidifity,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cnit.yoyo.model.car.CarFactoryScope" >
+    insert into t_car_factory_scope
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="scopeId != null" >
+        scope_id,
+      </if>
+      <if test="carType != null" >
+        car_type,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+      <if test="disabled != null" >
+        disabled,
+      </if>
+      <if test="lastMidifity != null" >
+        last_midifity,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="scopeId != null" >
+        #{scopeId,jdbcType=INTEGER},
+      </if>
+      <if test="carType != null" >
+        #{carType,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="disabled != null" >
+        #{disabled,jdbcType=VARCHAR},
+      </if>
+      <if test="lastMidifity != null" >
+        #{lastMidifity,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cnit.yoyo.model.car.CarFactoryScope" >
+    update t_car_factory_scope
+    <set >
+      <if test="carType != null" >
+        car_type = #{carType,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="disabled != null" >
+        disabled = #{disabled,jdbcType=VARCHAR},
+      </if>
+      <if test="lastMidifity != null" >
+        last_midifity = #{lastMidifity,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where scope_id = #{scopeId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cnit.yoyo.model.car.CarFactoryScope" >
+    update t_car_factory_scope
+    set car_type = #{carType,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      disabled = #{disabled,jdbcType=VARCHAR},
+      last_midifity = #{lastMidifity,jdbcType=TIMESTAMP}
+    where scope_id = #{scopeId,jdbcType=INTEGER}
+  </update>
+  
+  <!-- 逻辑删除 -->
+   <update id="deleteById" parameterType="java.lang.Integer">
+    update  t_car_factory_scope set disabled='1'
+    where scope_id in
+     <foreach collection="array" item="id" index="index" open="(" close=")" separator=",">
+         #{id,jdbcType=INTEGER}
+    </foreach>
+  </update>
+
+   <!-- 查询所有的厂商区域 -->
+  <select id="findList" resultMap="BaseResultMap" parameterType="com.cnit.yoyo.model.car.dto.CarFactoryScopeQryDTO">
+     select 
+    <include refid="Base_Column_List" />
+    from t_car_factory_scope
+    where disabled = '0'
+    <if test="carType != null and carType != ''">
+    	and car_type LIKE CONCAT('%', #{carType,jdbcType=VARCHAR},'%')
+    </if>
+    order by last_midifity desc
+  </select>
+  
+  <!-- 查找是否有同名的 -->
+  <select id="findByName" resultType="java.lang.Integer" parameterType="com.cnit.yoyo.model.car.CarFactoryScope">
+        select count(scope_id) from t_car_factory_scope 
+        where disabled='0' and  car_type = #{carType,jdbcType=VARCHAR}
+        <if test="scopeId !=null and scopeId !=0 ">
+             and scope_id != #{scopeId,jdbcType=INTEGER}
+        </if>
+  </select>
+</mapper>

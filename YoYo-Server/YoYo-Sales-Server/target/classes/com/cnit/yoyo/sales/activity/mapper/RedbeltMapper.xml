@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cnit.yoyo.sales.activity.dao.RedbeltMapper" >
+  <resultMap id="BaseResultMap" type="com.cnit.yoyo.model.order.Redbelt" >
+    <id column="redbelt_id" property="redbeltId" jdbcType="BIGINT" />
+    <result column="target" property="target" jdbcType="INTEGER" />
+    <result column="nums" property="nums" jdbcType="INTEGER" />
+    <result column="total_amount" property="totalAmount" jdbcType="DECIMAL" />
+    <result column="rule" property="rule" jdbcType="INTEGER" />
+    <result column="categorys" property="categorys" jdbcType="VARCHAR" />
+    <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="memberLvIds" property="memberLvIds" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="create_user" property="createUser" jdbcType="INTEGER" />
+    <result column="update_user" property="updateUser" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    redbelt_id, target, nums, total_amount, rule, categorys, start_time, end_time, status, 
+    remark, create_time, update_time, create_user, update_user,memberLvIds
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cnit.yoyo.model.order.RedbeltExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from t_redbelt
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_redbelt
+    where redbelt_id = #{redbeltId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_redbelt
+    where redbelt_id = #{redbeltId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cnit.yoyo.model.order.RedbeltExample" >
+    delete from t_redbelt
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cnit.yoyo.model.order.Redbelt" useGeneratedKeys="true" keyProperty="redbeltId">
+    insert into t_redbelt (redbelt_id, target, nums, 
+      total_amount, rule, categorys, 
+      start_time, end_time, status, 
+      remark, create_time, update_time, 
+      create_user, update_user,memberLvIds)
+    values (#{redbeltId,jdbcType=BIGINT}, #{target,jdbcType=INTEGER}, #{nums,jdbcType=INTEGER}, 
+      #{totalAmount,jdbcType=DECIMAL}, #{rule,jdbcType=INTEGER}, #{categorys,jdbcType=VARCHAR}, 
+      #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{status,jdbcType=TINYINT}, 
+      #{remark,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{createUser,jdbcType=INTEGER}, #{updateUser,jdbcType=INTEGER},#{memberLvIds,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cnit.yoyo.model.order.Redbelt" >
+    insert into t_redbelt
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="redbeltId != null" >
+        redbelt_id,
+      </if>
+      <if test="target != null" >
+        target,
+      </if>
+      <if test="nums != null" >
+        nums,
+      </if>
+      <if test="totalAmount != null" >
+        total_amount,
+      </if>
+      <if test="rule != null" >
+        rule,
+      </if>
+      <if test="categorys != null" >
+        categorys,
+      </if>
+      <if test="startTime != null" >
+        start_time,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="createUser != null" >
+        create_user,
+      </if>
+      <if test="updateUser != null" >
+        update_user,
+      </if>
+      <if test="memberLvIds != null" >
+        memberLvIds,
+      </if>
+      
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="redbeltId != null" >
+        #{redbeltId,jdbcType=BIGINT},
+      </if>
+      <if test="target != null" >
+        #{target,jdbcType=INTEGER},
+      </if>
+      <if test="nums != null" >
+        #{nums,jdbcType=INTEGER},
+      </if>
+      <if test="totalAmount != null" >
+        #{totalAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="rule != null" >
+        #{rule,jdbcType=INTEGER},
+      </if>
+      <if test="categorys != null" >
+        #{categorys,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null" >
+        #{createUser,jdbcType=INTEGER},
+      </if>
+      <if test="updateUser != null" >
+        #{updateUser,jdbcType=INTEGER},
+      </if>
+      <if test="memberLvIds != null" >
+        #{memberLvIds,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cnit.yoyo.model.order.RedbeltExample" resultType="java.lang.Integer" >
+    select count(*) from t_redbelt
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_redbelt
+    <set >
+      <if test="record.redbeltId != null" >
+        redbelt_id = #{record.redbeltId,jdbcType=BIGINT},
+      </if>
+      <if test="record.target != null" >
+        target = #{record.target,jdbcType=INTEGER},
+      </if>
+      <if test="record.nums != null" >
+        nums = #{record.nums,jdbcType=INTEGER},
+      </if>
+      <if test="record.totalAmount != null" >
+        total_amount = #{record.totalAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.rule != null" >
+        rule = #{record.rule,jdbcType=INTEGER},
+      </if>
+      <if test="record.categorys != null" >
+        categorys = #{record.categorys,jdbcType=VARCHAR},
+      </if>
+      <if test="record.startTime != null" >
+        start_time = #{record.startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.endTime != null" >
+        end_time = #{record.endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=TINYINT},
+      </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createUser != null" >
+        create_user = #{record.createUser,jdbcType=INTEGER},
+      </if>
+      <if test="record.updateUser != null" >
+        update_user = #{record.updateUser,jdbcType=INTEGER},
+      </if>
+      <if test="memberLvIds != null" >
+        memberLvIds=#{memberLvIds,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_redbelt
+    set redbelt_id = #{record.redbeltId,jdbcType=BIGINT},
+      target = #{record.target,jdbcType=INTEGER},
+      nums = #{record.nums,jdbcType=INTEGER},
+      total_amount = #{record.totalAmount,jdbcType=DECIMAL},
+      rule = #{record.rule,jdbcType=INTEGER},
+      categorys = #{record.categorys,jdbcType=VARCHAR},
+      start_time = #{record.startTime,jdbcType=TIMESTAMP},
+      end_time = #{record.endTime,jdbcType=TIMESTAMP},
+      status = #{record.status,jdbcType=TINYINT},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      create_user = #{record.createUser,jdbcType=INTEGER},
+      update_user = #{record.updateUser,jdbcType=INTEGER},
+      memberLvIds=#{memberLvIds,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cnit.yoyo.model.order.Redbelt" >
+    update t_redbelt
+    <set >
+      <if test="target != null" >
+        target = #{target,jdbcType=INTEGER},
+      </if>
+      <if test="nums != null" >
+        nums = #{nums,jdbcType=INTEGER},
+      </if>
+      <if test="totalAmount != null" >
+        total_amount = #{totalAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="rule != null" >
+        rule = #{rule,jdbcType=INTEGER},
+      </if>
+      <if test="categorys != null" >
+        categorys = #{categorys,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null" >
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null" >
+        create_user = #{createUser,jdbcType=INTEGER},
+      </if>
+      <if test="updateUser != null" >
+        update_user = #{updateUser,jdbcType=INTEGER},
+      </if>
+      <if test="memberLvIds != null" >
+        memberLvIds=#{memberLvIds,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where redbelt_id = #{redbeltId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cnit.yoyo.model.order.Redbelt" >
+    update t_redbelt
+    set target = #{target,jdbcType=INTEGER},
+      nums = #{nums,jdbcType=INTEGER},
+      total_amount = #{totalAmount,jdbcType=DECIMAL},
+      rule = #{rule,jdbcType=INTEGER},
+      categorys = #{categorys,jdbcType=VARCHAR},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=TINYINT},
+      remark = #{remark,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      create_user = #{createUser,jdbcType=INTEGER},
+      memberLvIds=#{memberLvIds,jdbcType=VARCHAR},
+      update_user = #{updateUser,jdbcType=INTEGER}
+    where redbelt_id = #{redbeltId,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,39 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.cnit</groupId>
+	<artifactId>YoYo-Server</artifactId>
+	<version>1.0.0</version>
+	<packaging>pom</packaging>
+
+	<properties>
+		<base.version>1.0.0</base.version>
+		<YoYo-Support.version>1.0.0</YoYo-Support.version>
+		<es.version>1.0.0</es.version>
+	</properties>
+  
+  <modules>
+  	<module>YoYo-Item-Server</module>
+  	<module>YoYo-Order-Server</module>
+  	<module>YoYo-User-Server</module>
+  	<module>YoYo-Other-Server</module>
+  	<module>YoYo-PayCenter-Server</module>
+  	<module>YoYo-Sales-Server</module>
+  	<module>YoYo-Sipder-Server</module>
+  </modules>
+  <build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.1</version>
+					<configuration>
+						<source>1.7</source>
+						<target>1.7</target>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+</project>

@@ -1,0 +1,159 @@
+@CHARSET "UTF-8";
+.desktop-sliding, .head-nav dt a, .head-nav dt a.current, .head-nav dt a.current:hover, .head-nav dt a.current span, .head-nav dt a.current:hover span, .head-nav dt span, .btn span, .tabs-wrap .current, .gridlist-action .tabs-wrap li.current, .tabs-wrap .current span, .object-select .label, .object-select .handle, .finder-packet li a, .finder-packet li span, .finder-action-items a, .finder-action-items span, .finder-tabs-wrap .tab, .finder-tabs-wrap .tab span, .finder-tabs-wrap .current, .finder-tabs-wrap .current span, .col-select-opt:hover, .switch-head li, .switch-head li em, .widget-edit-head .tab-head, .widget-edit-head .exit button span, .widget-edit-head li a.act, .widget-edit-head li a:hover, .widget-edit-head li a.droping, .widget-edit-head li a.act em, .widget-edit-head li a:hover em, .widget-edit-head li a.droping em {
+    background: url("../../images/sliding.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+}
+#body {
+    border: medium none;
+    height: 100%;
+    min-width: 960px;
+    overflow: hidden;
+    width: 100%;
+}
+a, .lnk {
+    color: #3367ac;
+    cursor: pointer;
+}
+a:hover, .lnk:focus, .lnk:hover {
+    color: #3367ac;
+}
+
+textarea {
+    font-size: 1em;
+}
+
+input, textarea, select {
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+}
+
+.tableform {
+    margin: 5px 5px 10px;
+}
+.tableform h4 {
+    border-top: 1px solid #e8e8e8;
+    font-size: 12px;
+    margin: 5px;
+    padding: 10px 10px 0;
+}
+.tableform h5 {
+    color: #333;
+    font-size: 12px;
+    margin: 0 0 5px;
+    padding: 0 5px;
+}
+.tableform .first, .tableform .division h4 {
+    border: medium none;
+}
+.tableform .division td a {
+    color: #000;
+    line-height: 20px;
+    margin: 0 3px;
+    padding: 2px 5px;
+}
+.tableform th, .tableform td {
+    padding: 7px 5px;
+    vertical-align: top;
+}
+.tableform th {
+    color: #4f4f4f;
+    font-weight: normal;
+    padding-right: 5px;
+    text-align: right;
+    white-space: nowrap;
+    width: 120px;
+}
+.tableform td {
+    white-space: normal;
+}
+.tableform table {
+    padding: 0;
+}
+.tableform h5.head-title {
+    border-bottom: 1px solid #dddddd;
+}
+.tableform .red {
+    font-weight: bold;
+    margin: 0 2px;
+}
+.tableform .intro {
+    color: #369;
+    padding-left: 15px;
+}
+.tableform-tabs {
+    background: none repeat scroll 0 0 white;
+}
+.tableform-tabs .table-action {
+    margin: 0 0 15px;
+}
+.tableform-tabs .division {
+    border: medium none;
+    margin: 0;
+}
+
+
+.table-action {
+    border-top: 1px solid #e0e0e0;
+    clear: both;
+    height: 35px;
+    line-height: 35px;
+    margin: 5px 0 0;
+    padding: 10px 0;
+    text-align: center;
+}
+
+
+.btn-primary, .btn-secondary, .table-action .btn {
+    height: 27px;
+    line-height: 27px;
+}
+
+
+.table-action .btn span, .btn-primary span {
+    height: 27px;
+    line-height: 27px;
+}
+.btn-primary span, .btn-secondary span, .table-action .btn span {
+    background-position: 0 -556px;
+    color: white;
+    font-weight: bold;
+}
+.btn span {
+    background-position: 0 -1091px;
+    display: block;
+    overflow: visible;
+    padding: 0 0 0 10px;
+    white-space: nowrap;
+}
+
+
+.btn-primary span span, .btn-secondary span span, .table-action .btn span span {
+    background-position: 100% -556px;
+    height: 27px;
+    line-height: 27px;
+    min-width: 40px;
+}
+
+.btn span span {
+    background-position: 100% -1091px;
+    display: block;
+    height: 23px;
+    line-height: 23px;
+    padding: 0 10px 0 0;
+}
+
+.btn {
+    background: none repeat scroll 0 0 transparent;
+    border: 0 none;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 12px;
+    font-weight: normal;
+    height: 23px;
+    line-height: 23px;
+    margin: 0 1px;
+    overflow: visible;
+    padding: 0;
+    text-decoration: none;
+    vertical-align: middle;
+}

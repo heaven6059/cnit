@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cnit.yoyo.dao.order.PaymentLogMapper">
+  <resultMap id="BaseResultMap" type="com.cnit.yoyo.model.order.PaymentLog">
+    <result column="order_id" jdbcType="BIGINT" property="orderId" />
+    <result column="trade_no" jdbcType="VARCHAR" property="tradeNo" />
+    <result column="payment_type" jdbcType="VARCHAR" property="paymentType" />
+    <result column="exterface" jdbcType="VARCHAR" property="exterface" />
+    <result column="trade_status" jdbcType="VARCHAR" property="tradeStatus" />
+    <result column="notify_id" jdbcType="VARCHAR" property="notifyId" />
+    <result column="notify_time" jdbcType="VARCHAR" property="notifyTime" />
+    <result column="seller_email" jdbcType="VARCHAR" property="sellerEmail" />
+    <result column="buyer_email" jdbcType="VARCHAR" property="buyerEmail" />
+    <result column="seller_id" jdbcType="VARCHAR" property="sellerId" />
+    <result column="buyer_id" jdbcType="VARCHAR" property="buyerId" />
+    <result column="total_fee" jdbcType="DECIMAL" property="totalFee" />
+    <result column="is_success" jdbcType="VARCHAR" property="isSuccess" />
+    <result column="sign_type" jdbcType="VARCHAR" property="signType" />
+    <result column="sign" jdbcType="VARCHAR" property="sign" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="returnId" jdbcType="VARCHAR" property="returnid" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="store_name" jdbcType="VARCHAR" property="shopName" />
+    <result column="nums" jdbcType="VARCHAR" property="nums" />
+    <result column="total_amount" jdbcType="VARCHAR" property="totalAmount" />
+    <result column="final_amount" jdbcType="VARCHAR" property="finalAmount" />
+    <result column="refunds_feel" jdbcType="VARCHAR" property="refundsFeel" />
+    
+  </resultMap>
+  <insert id="insert" parameterType="com.cnit.yoyo.model.order.PaymentLog">
+    insert into t_payment_log (order_id, trade_no, payment_type, 
+      exterface, trade_status, notify_id, 
+      notify_time, seller_email, buyer_email, 
+      seller_id, buyer_id, total_fee, 
+      is_success, sign_type, sign, 
+      create_time, returnId)
+    values (#{orderId,jdbcType=BIGINT}, #{tradeNo,jdbcType=VARCHAR}, #{paymentType,jdbcType=VARCHAR}, 
+      #{exterface,jdbcType=VARCHAR}, #{tradeStatus,jdbcType=VARCHAR}, #{notifyId,jdbcType=VARCHAR}, 
+      #{notifyTime,jdbcType=VARCHAR}, #{sellerEmail,jdbcType=VARCHAR}, #{buyerEmail,jdbcType=VARCHAR}, 
+      #{sellerId,jdbcType=VARCHAR}, #{buyerId,jdbcType=VARCHAR}, #{totalFee,jdbcType=DECIMAL}, 
+      #{isSuccess,jdbcType=VARCHAR}, #{signType,jdbcType=VARCHAR}, #{sign,jdbcType=VARCHAR}, 
+      sysdate(), #{returnid,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cnit.yoyo.model.order.PaymentLog">
+    insert into t_payment_log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="tradeNo != null">
+        trade_no,
+      </if>
+      <if test="paymentType != null">
+        payment_type,
+      </if>
+      <if test="exterface != null">
+        exterface,
+      </if>
+      <if test="tradeStatus != null">
+        trade_status,
+      </if>
+      <if test="notifyId != null">
+        notify_id,
+      </if>
+      <if test="notifyTime != null">
+        notify_time,
+      </if>
+      <if test="sellerEmail != null">
+        seller_email,
+      </if>
+      <if test="buyerEmail != null">
+        buyer_email,
+      </if>
+      <if test="sellerId != null">
+        seller_id,
+      </if>
+      <if test="buyerId != null">
+        buyer_id,
+      </if>
+      <if test="totalFee != null">
+        total_fee,
+      </if>
+      <if test="isSuccess != null">
+        is_success,
+      </if>
+      <if test="signType != null">
+        sign_type,
+      </if>
+      <if test="sign != null">
+        sign,
+      </if>
+        create_time,
+      <if test="returnid != null">
+        returnId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orderId != null">
+        #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="tradeNo != null">
+        #{tradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentType != null">
+        #{paymentType,jdbcType=VARCHAR},
+      </if>
+      <if test="exterface != null">
+        #{exterface,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeStatus != null">
+        #{tradeStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="notifyId != null">
+        #{notifyId,jdbcType=VARCHAR},
+      </if>
+      <if test="notifyTime != null">
+        #{notifyTime,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerEmail != null">
+        #{sellerEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerEmail != null">
+        #{buyerEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerId != null">
+        #{sellerId,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerId != null">
+        #{buyerId,jdbcType=VARCHAR},
+      </if>
+      <if test="totalFee != null">
+        #{totalFee,jdbcType=DECIMAL},
+      </if>
+      <if test="isSuccess != null">
+        #{isSuccess,jdbcType=VARCHAR},
+      </if>
+      <if test="signType != null">
+        #{signType,jdbcType=VARCHAR},
+      </if>
+      <if test="sign != null">
+        #{sign,jdbcType=VARCHAR},
+      </if>
+        sysdate(),
+      <if test="returnid != null">
+        #{returnid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+ 	<sql id="sql_select">
+ 		<if test="tradeNo != null and  tradeNo!='' ">
+			and t.trade_no=#{tradeNo,jdbcType=VARCHAR}
+		</if>
+		<if test="orderId != null and  orderId!='' ">
+			and t.order_id=#{orderId,jdbcType=VARCHAR}
+		</if>
+		<if test="buyerEmail != null  and  buyerEmail!='' ">
+			and t.buyer_email  LIKE CONCAT('%', #{buyerEmail,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="sellerEmail != null  and  sellerEmail!='' ">
+			and t.seller_email  LIKE CONCAT('%', #{sellerEmail,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="name != null  and  name!='' ">
+			and t2.name LIKE CONCAT('%', #{name,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="shopName != null  and  shopName!='' ">
+			and t3.store_name LIKE CONCAT('%', #{shopName,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="startDate != null  and  startDate!='' ">
+			<![CDATA[ and t.create_time >= #{startDate,jdbcType=VARCHAR}  ]]>
+		</if>
+		<if test="endDate != null and  endDate!='' ">
+			<![CDATA[ and t.create_time <= #{endDate,jdbcType=VARCHAR} ]]>
+		</if>
+ 	</sql>
+	<select id="selectPaymentLog" parameterType="com.cnit.yoyo.model.order.PaymentLog" resultMap="BaseResultMap">
+		select t.*,t2.name,t3.store_name from  t_payment_log t 
+			left join t_orders t1 on t.order_id=t1.order_id 
+			left join t_members t2 on t1.MEMBER_ID=t2.MEMBER_ID 
+			left join t_company t3 on t1.company_id=t3.company_id
+		 where 1=1 and t.is_success='T'
+			<include refid="sql_select"/>
+		order by t.create_time desc
+	</select>
+	<select id="selectPaymentLogBuyer" parameterType="com.cnit.yoyo.model.order.PaymentLog" resultMap="BaseResultMap">
+		select t2.name,count(1)as orderId,sum(t.total_fee) total_fee,max(t.buyer_email) as buyer_email,max(create_time) create_time from  t_payment_log t 
+			left join t_orders t1 on t.order_id=t1.order_id 
+			left join t_members t2 on t1.MEMBER_ID=t2.MEMBER_ID 
+			left join t_company t3 on t1.company_id=t3.company_id
+		 where 1=1  and t.is_success='T'
+		<include refid="sql_select"/>
+		 group by t2.name
+		order by t.create_time desc
+	</select>
+	<select id="selectPaymentLogSell" parameterType="com.cnit.yoyo.model.order.PaymentLog" resultMap="BaseResultMap">
+		select t3.store_name,count(1)as orderId,sum(t.total_fee) total_fee,t.seller_email,max(t.create_time) create_time,sum(t1.nums)nums
+			,sum(t1.total_amount)total_amount,sum(t1.final_amount)final_amount,sum(t4.feel)refunds_feel
+		   from  t_payment_log t  inner join (select o.*,sum(od.nums)nums from t_orders o 
+        	inner join  t_order_items od on o.order_id=od.order_id  where 1=1
+	        <if test="storeId != null and  storeId!='' ">
+				and o.store_id=#{storeId,jdbcType=VARCHAR}
+			</if>
+       	 group  by o.order_id) t1 on t.order_id=t1.order_id 
+			left join t_members t2 on t1.MEMBER_ID=t2.MEMBER_ID 
+			left join t_business_storemanger t3 on t1.store_id=t3.store_id
+			left join t_payment_refunds_detail t4 on t.trade_no=t4.trade_no
+		 where 1=1 and t.is_success='T'
+		<include refid="sql_select"/>
+		group by t1.store_id, t3.store_name,t.seller_email
+		order by t.create_time desc
+	</select>
+	<select id="selectPaymentLogSellDetail" parameterType="com.cnit.yoyo.model.order.PaymentLog" resultMap="BaseResultMap">
+		select t1.order_id,t2.name,t1.total_amount,t.total_fee,t1.final_amount,t1.nums ,(t4.feel)refunds_feel
+		from  t_payment_log t 
+			left join (select o.*,sum(od.nums)nums from t_orders o 
+        	inner join  t_order_items od on o.order_id=od.order_id where 1=1
+	        <if test="storeId != null and  storeId!='' ">
+				and o.store_id=#{storeId,jdbcType=VARCHAR}
+			</if>
+       	 group  by o.order_id) t1 on t.order_id=t1.order_id 
+			left join t_members t2 on t1.MEMBER_ID=t2.MEMBER_ID 
+			left join t_business_storemanger t3 on t1.store_id=t3.store_id
+			left join t_payment_refunds_detail t4 on t.trade_no=t4.trade_no
+		 where 1=1 and t.is_success='T'
+		<if test="storeId != null and  storeId!='' ">
+				and t1.store_id=#{storeId,jdbcType=VARCHAR}
+		</if>
+		<if test="tradeNo != null and  tradeNo!='' ">
+			and t.trade_no=#{tradeNo,jdbcType=VARCHAR}
+		</if>
+		<if test="orderId != null and  orderId!='' ">
+			and t.order_id=#{orderId,jdbcType=VARCHAR}
+		</if>
+		<if test="buyerEmail != null  and  buyerEmail!='' ">
+			and t.buyer_email  LIKE CONCAT('%', #{buyerEmail,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="sellerEmail != null  and  sellerEmail!='' ">
+			and t.seller_email  LIKE CONCAT('%', #{sellerEmail,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="name != null  and  name!='' ">
+			and t2.name LIKE CONCAT('%', #{name,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="shopName != null  and  shopName!='' ">
+			and t3.store_name LIKE CONCAT('%', #{shopName,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="startDate != null  and  startDate!='' ">
+			<![CDATA[ and t.create_time >= #{startDate,jdbcType=VARCHAR}  ]]>
+		</if>
+		<if test="endDate != null and  endDate!='' ">
+			<![CDATA[ and t.create_time <= #{endDate,jdbcType=VARCHAR} ]]>
+		</if>
+		order by t.create_time desc
+	</select>
+	<select id="selectRefunds" parameterType="com.cnit.yoyo.model.order.PaymentLog" resultMap="BaseResultMap" >
+		select t.order_id, t.trade_no,t.seller_email, t.buyer_email,t.seller_id,t.buyer_id,t.total_fee,t4.create_time,t2.name,t3.store_name
+			from t_payment_log t inner join t_payment_refunds_detail t4 on t.trade_no=t4.trade_no 
+			left join t_orders t1 on t.order_id=t1.order_id 
+			left join t_members t2 on t1.MEMBER_ID=t2.MEMBER_ID 
+			left join t_company t3 on t1.company_id=t3.company_id
+			where 1=1 and t.is_success='T'
+	   <if test="tradeNo != null and  tradeNo!='' ">
+			and t.trade_no=#{tradeNo,jdbcType=VARCHAR}
+		</if>
+		<if test="orderId != null and  orderId!='' ">
+			and t.order_id=#{orderId,jdbcType=VARCHAR}
+		</if>
+		<if test="buyerEmail != null  and  buyerEmail!='' ">
+			and t.buyer_email  LIKE CONCAT('%', #{buyerEmail,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="sellerEmail != null  and  sellerEmail!='' ">
+			and t.seller_email  LIKE CONCAT('%', #{sellerEmail,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="name != null  and  name!='' ">
+			and t2.name LIKE CONCAT('%', #{name,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="shopName != null  and  shopName!='' ">
+			and t3.store_name LIKE CONCAT('%', #{shopName,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="startDate != null  and  startDate!='' ">
+			<![CDATA[ and t.create_time >= #{startDate,jdbcType=VARCHAR}  ]]>
+		</if>
+		<if test="endDate != null and  endDate!='' ">
+			<![CDATA[ and t.create_time <= #{endDate,jdbcType=VARCHAR} ]]>
+		</if>
+		order by t4.create_time desc
+	</select>
+	<update id="update" parameterType="com.cnit.yoyo.model.order.PaymentLog">
+		update t_payment_log set returnId=#{returnid,jdbcType=VARCHAR}  where  trade_no=#{tradeNo,jdbcType=VARCHAR} and is_success='T'
+	</update>
+</mapper>

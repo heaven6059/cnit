@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sitemesh xmlns="http://sitemesh.org/xml/config" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://sitemesh.org/xml/config sitemesh3.xsd ">
+	<!--默认情况下， sitemesh 只对 HTTP 响应头中 Content-Type 为 text/html 的类型进行拦截和装饰， 我们可以添加更多的 mime 类型 -->
+	<mime-type>text/html</mime-type>
+	<!-- 默认装饰器，当下面的路径都不匹配时，启用该装饰器进行装饰 -->
+	<mapping decorator="/WEB-INF/pages/decorator/main.jsp" /> 
+	<!-- 对不同的路径，启用不同的装饰器 -->
+	<!-- <mapping path="/*" decorator="/WEB-INF/pages/decorator/main.jsp" /> -->
+	
+	<!-- 注意：path路径是浏览器地址栏中的url,不是文件路径 -->
+	<mapping path="/memberManager/*" decorator="/WEB-INF/pages/decorator/membercenter.jsp" />
+	<mapping path="/memberOrder/*" decorator="/WEB-INF/pages/decorator/membercenter.jsp" />
+	<mapping path="/personInfo/*" decorator="/WEB-INF/pages/decorator/membercenter.jsp" />
+	<mapping path="/complain/*" decorator="/WEB-INF/pages/decorator/membercenter.jsp" />
+	<mapping path="/report/*" decorator="/WEB-INF/pages/decorator/membercenter.jsp" />
+	<mapping path="/point/*" decorator="/WEB-INF/pages/decorator/membercenter.jsp" />
+	<mapping path="/accountsecurity/*" decorator="/WEB-INF/pages/decorator/membercenter.jsp" />
+	<mapping path="/pamAuth/*" decorator="/WEB-INF/pages/decorator/membercenter.jsp" />
+	<mapping path="/advance/*" decorator="/WEB-INF/pages/decorator/membercenter.jsp" />
+	<mapping path="/memberCoupon/*" decorator="/WEB-INF/pages/decorator/membercenter.jsp" />
+	<mapping path="/goodsVirtualItems/*" decorator="/WEB-INF/pages/decorator/membercenter.jsp" />
+	<mapping path="/reship/*" decorator="/WEB-INF/pages/decorator/membercenter.jsp" />
+	<mapping path="/memberMsg/*" decorator="/WEB-INF/pages/decorator/membercenter.jsp" />
+	<mapping path="/membercar/*" decorator="/WEB-INF/pages/decorator/membercenter.jsp" />
+	<mapping path="/productWishList/*" decorator="/WEB-INF/pages/decorator/membercenter.jsp" />
+	<mapping path="/storeWishList/*" decorator="/WEB-INF/pages/decorator/membercenter.jsp" />
+	<mapping path="/activityWishList/*" decorator="/WEB-INF/pages/decorator/membercenter.jsp" />
+	<mapping path="/memberComment/*" decorator="/WEB-INF/pages/decorator/membercenter.jsp" />
+	<mapping path="/memberConsult/*" decorator="/WEB-INF/pages/decorator/membercenter.jsp" />
+	<mapping path="/memberViewHistory/*" decorator="/WEB-INF/pages/decorator/membercenter.jsp" />
+	<mapping path="/mypainting/*" decorator="/WEB-INF/pages/decorator/membercenter.jsp" />
+	<mapping path="/requirement/*" decorator="/WEB-INF/pages/decorator/membercenter.jsp" />
+	<mapping path="/orderComment/*" decorator="/WEB-INF/pages/decorator/membercenter.jsp" />
+	<mapping path="/shoppingHistory/*" decorator="/WEB-INF/pages/decorator/membercenter.jsp" />
+	<mapping path="/memberCenter/*" decorator="/WEB-INF/pages/decorator/membercenter.jsp" />
+	
+	<mapping path="/mypainting/paySuccess*" decorator="/WEB-INF/pages/decorator/main.jsp"/>
+	<!-- 对同一路径，启用多个装饰器 -->
+<!-- 	<mapping>
+		<path>/articles/*</path>
+		<decorator>/decorators/article.html</decorator>
+		<decorator>/decorators/two-page-layout.html</decorator>
+		<decorator>/decorators/common.html</decorator>
+	</mapping> -->
+	<!-- 排除，不进行装饰的路径 -->
+	<mapping path="/resources/*" exclue="true" />
+	<mapping path="/register/*" exclue="true" />
+	<mapping path="/sign2/*" exclue="true" />
+	<!-- 自定义 tag 规则 -->
+	<!-- <content-processor> <tag-rule-bundle class="com.cnit.yoyo.tagrule.ScriptTagRuleBundle" /> </content-processor> -->
+</sitemesh>

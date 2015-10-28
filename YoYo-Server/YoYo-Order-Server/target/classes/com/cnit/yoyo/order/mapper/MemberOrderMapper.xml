@@ -1,0 +1,892 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cnit.yoyo.order.dao.MemberOrderMapper">
+  <resultMap id="BaseResultMap" type="com.cnit.yoyo.order.model.Order">
+    <id column="order_id" jdbcType="BIGINT" property="orderId" />
+    <id column="parent_order_id" jdbcType="BIGINT" property="parentOrderId" />
+    <result column="company_id" jdbcType="BIGINT" property="companyId" />
+    <result column="store_id" jdbcType="BIGINT" property="storeId" />
+    <result column="MEMBER_ID" jdbcType="INTEGER" property="memberId" />
+    <result column="total_amount" jdbcType="DECIMAL" property="totalAmount" />
+    <result column="final_amount" jdbcType="DECIMAL" property="finalAmount" />
+    <result column="pay_status" jdbcType="VARCHAR" property="payStatus" />
+    <result column="is_delivery" jdbcType="VARCHAR" property="isDelivery" />
+    <result column="discount_value" jdbcType="DECIMAL" property="discountValue" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="last_modified" jdbcType="TIMESTAMP" property="lastModified" />
+    <result column="payment" jdbcType="VARCHAR" property="payment" />
+    <result column="payment_id" jdbcType="INTEGER" property="paymentId" />
+    <result column="shipping" jdbcType="VARCHAR" property="shipping" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="confirm" jdbcType="VARCHAR" property="confirm" />
+    <result column="ship_area" jdbcType="VARCHAR" property="shipArea" />
+    <result column="ship_name" jdbcType="VARCHAR" property="shipName" />
+    <result column="weight" jdbcType="DECIMAL" property="weight" />
+    <result column="tostr" jdbcType="VARCHAR" property="tostr" />
+    <result column="itemnum" jdbcType="INTEGER" property="itemnum" />
+    <result column="ip" jdbcType="VARCHAR" property="ip" />
+    <result column="ship_addr" jdbcType="VARCHAR" property="shipAddr" />
+    <result column="ship_zip" jdbcType="VARCHAR" property="shipZip" />
+    <result column="ship_tel" jdbcType="VARCHAR" property="shipTel" />
+    <result column="ship_email" jdbcType="VARCHAR" property="shipEmail" />
+    <result column="ship_time" jdbcType="VARCHAR" property="shipTime" />
+    <result column="ship_mobile" jdbcType="VARCHAR" property="shipMobile" />
+    <result column="cost_item" jdbcType="DECIMAL" property="costItem" />
+    <result column="is_coupons" jdbcType="INTEGER" property="isCoupons" />
+    <result column="cost_tax" jdbcType="DECIMAL" property="costTax" />
+    <result column="tax_company" jdbcType="VARCHAR" property="taxCompany" />
+    <result column="is_protect" jdbcType="VARCHAR" property="isProtect" />
+    <result column="cost_protect" jdbcType="DECIMAL" property="costProtect" />
+    <result column="cost_payment" jdbcType="DECIMAL" property="costPayment" />
+    <result column="currency" jdbcType="VARCHAR" property="currency" />
+    <result column="cur_rate" jdbcType="DECIMAL" property="curRate" />
+    <result column="score_u" jdbcType="DECIMAL" property="scoreU" />
+    <result column="score_g" jdbcType="DECIMAL" property="scoreG" />
+    <result column="discount" jdbcType="DECIMAL" property="discount" />
+    <result column="pmt_goods" jdbcType="DECIMAL" property="pmtGoods" />
+    <result column="pmt_order" jdbcType="DECIMAL" property="pmtOrder" />
+    <result column="payed" jdbcType="DECIMAL" property="payed" />
+    <result column="memo" jdbcType="VARCHAR" property="memo" />
+    <result column="disabled" jdbcType="VARCHAR" property="disabled" />
+    <result column="mark_type" jdbcType="VARCHAR" property="markType" />
+    <result column="mark_text" jdbcType="VARCHAR" property="markText" />
+    <result column="cost_freight" jdbcType="DECIMAL" property="costFreight" />
+    <result column="extend" jdbcType="VARCHAR" property="extend" />
+    <result column="order_refer" jdbcType="VARCHAR" property="orderRefer" />
+    <result column="addon" jdbcType="VARCHAR" property="addon" />
+    <result column="source" jdbcType="VARCHAR" property="source" />
+    <result column="confirm_time" jdbcType="TIMESTAMP" property="confirmTime" />
+    <result column="comments_count" jdbcType="INTEGER" property="commentsCount" />
+    <result column="refund_status" jdbcType="VARCHAR" property="refundStatus" />
+    <result column="act_id" jdbcType="INTEGER" property="actId" />
+    <result column="order_type" jdbcType="VARCHAR" property="orderType" />
+    <result column="is_extend" jdbcType="VARCHAR" property="isExtend" />
+    <result column="order_kind" jdbcType="VARCHAR" property="orderKind" />
+    <result column="is_isplay" jdbcType="INTEGER" property="isDisplay" />
+    <result column="parent_order_id" jdbcType="BIGINT" property="parentOrderId" />
+    <result column="parentorder_flag" jdbcType="INTEGER" property="parentOrderFlag" />
+    
+	<association property="complain"  javaType="com.cnit.yoyo.complain.model.Complain" column="complain_id">
+	    <id column="complain_id" jdbcType="BIGINT" property="complainId" />
+	    <result column="order_id" jdbcType="BIGINT" property="orderId" />
+	    <result column="from_member_id" jdbcType="INTEGER" property="fromMemberId" />
+	    <result column="from_uname" jdbcType="VARCHAR" property="fromUname" />
+	    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+	    <result column="to_member_id" jdbcType="INTEGER" property="toMemberId" />
+	    <result column="to_uname" jdbcType="VARCHAR" property="toUname" />
+	    <result column="source" jdbcType="CHAR" property="source" />
+	    <result column="store_id" jdbcType="BIGINT" property="storeId" />
+	    <result column="store_name" jdbcType="VARCHAR" property="storeName" />
+	    <result column="reason" jdbcType="CHAR" property="reason" />
+	    <result column="status" jdbcType="CHAR" property="status" />
+	    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+	    <result column="last_modified" jdbcType="TIMESTAMP" property="lastModified" />
+	    <result column="disabled" jdbcType="CHAR" property="disabled" />
+	</association>    
+    
+	<association property="store"  javaType="com.cnit.yoyo.model.goods.Store"  column="store_id">
+	    <id column="store_id" property="storeId" jdbcType="BIGINT" />
+	    <result column="grade_id" property="gradeId" jdbcType="BIGINT" />
+	    <result column="shop_name" property="shopName" jdbcType="VARCHAR" />
+	    <result column="member_id" property="memberId" jdbcType="INTEGER" />
+	    <result column="account_id" property="accountId" jdbcType="INTEGER" />
+	    <result column="company_id" property="companyId" jdbcType="BIGINT" />
+	    <result column="company_name" property="companyName" jdbcType="VARCHAR" />
+	    <result column="store_idcard" property="storeIdcard" jdbcType="VARCHAR" />
+	    <result column="store_idcardname" property="storeIdcardname" jdbcType="VARCHAR" />
+	    <result column="store_name" property="storeName" jdbcType="VARCHAR" />
+	    <result column="area" property="area" jdbcType="VARCHAR" />
+	    <result column="addr" property="addr" jdbcType="VARCHAR" />
+	    <result column="tel" property="tel" jdbcType="VARCHAR" />
+	    <result column="zip" property="zip" jdbcType="VARCHAR" />
+	    <result column="email" property="email" jdbcType="VARCHAR" />
+	    <result column="store_grade" property="storeGrade" jdbcType="BIGINT" />
+	    <result column="shopstatus" property="shopstatus" jdbcType="VARCHAR" />
+	    <result column="status" property="status" jdbcType="VARCHAR" />
+	    <result column="disabled" property="disabled" jdbcType="VARCHAR" />
+	    <result column="last_modify" property="lastModify" jdbcType="VARCHAR" />
+	    <result column="d_order" property="dOrder" jdbcType="INTEGER" />
+	    <result column="image" property="image" jdbcType="VARCHAR" />
+	    <result column="image_id" property="imageId" jdbcType="VARCHAR" />
+	    <result column="image_cid" property="imageCid" jdbcType="VARCHAR" />
+	    <result column="image_codeid" property="imageCodeid" jdbcType="VARCHAR" />
+	    <result column="image_taxid" property="imageTaxid" jdbcType="VARCHAR" />
+	    <result column="theme_id" property="themeId" jdbcType="INTEGER" />
+	    <result column="fav_count" property="favCount" jdbcType="INTEGER" />
+	    <result column="buy_m_count" property="buyMCount" jdbcType="INTEGER" />
+	    <result column="store_space" property="storeSpace" jdbcType="BIGINT" />
+	    <result column="store_usedspace" property="storeUsedspace" jdbcType="BIGINT" />
+	    <result column="experience" property="experience" jdbcType="INTEGER" />
+	    <result column="alert_num" property="alertNum" jdbcType="DECIMAL" />
+	    <result column="limit_goods" property="limitGoods" jdbcType="VARCHAR" />
+	    <result column="limit_goodsdown" property="limitGoodsdown" jdbcType="VARCHAR" />
+	    <result column="limit_news" property="limitNews" jdbcType="VARCHAR" />
+	    <result column="limit_news_value" property="limitNewsValue" jdbcType="INTEGER" />
+	    <result column="limit_store" property="limitStore" jdbcType="VARCHAR" />
+	    <result column="limit_storedown" property="limitStoredown" jdbcType="VARCHAR" />
+	    <result column="limit_sales" property="limitSales" jdbcType="VARCHAR" />
+	    <result column="limit_earnest" property="limitEarnest" jdbcType="VARCHAR" />
+	    <result column="store_cert" property="storeCert" jdbcType="VARCHAR" />
+	    <result column="bank_name" property="bankName" jdbcType="VARCHAR" />
+	    <result column="bank_cardid" property="bankCardid" jdbcType="VARCHAR" />		
+	</association>
+  </resultMap>
+  
+  
+  <sql id="Items_Column_List" >
+    t_order_items.item_id,t_order_items.order_id,t_order_items.product_id,t_order_items.bn,t_order_items.name,t_order_items.price,t_order_items.g_pric,t_order_items.cost,t_order_items.amount,t_order_items.score,t_order_items.weight,t_order_items.nums,t_order_items.sendnum,t_order_items.item_type,t_order_items.appointment
+  </sql>
+  
+  <sql id="Order_Column_List">
+	t_orders.order_id,t_orders.company_id,t_orders.store_id,t_orders.MEMBER_ID,t_orders.total_amount,t_orders.final_amount,t_orders.pay_status,
+    t_orders.is_delivery,t_orders.discount_value,t_orders.createtime,t_orders.last_modified,t_orders.payment,t_orders.payment_id,t_orders.
+    shipping,t_orders.status,t_orders.confirm,t_orders.ship_area,t_orders.ship_name,t_orders.weight,t_orders.tostr,t_orders.itemnum,t_orders.ip,t_orders.ship_addr,
+    t_orders.ship_zip,t_orders.ship_tel,t_orders.ship_email,t_orders.ship_time,t_orders.ship_mobile,t_orders.cost_item,t_orders.is_coupons,t_orders.cost_tax,t_orders.tax_company,
+    t_orders.is_protect,t_orders.cost_protect,t_orders.cost_payment,t_orders.currency,t_orders.cur_rate,t_orders.score_u,t_orders.
+    score_g,t_orders.discount,t_orders.pmt_goods,t_orders.pmt_order,t_orders.payed,t_orders.memo,t_orders.disabled,t_orders.mark_type,t_orders.mark_text,t_orders.
+    cost_freight,t_orders.extend,t_orders.order_refer,t_orders.addon,t_orders.source,t_orders.confirm_time,t_orders.comments_count,t_orders.refund_status,t_orders.
+    act_id,t_orders.order_type,t_orders.is_extend,t_orders.order_kind,t_orders.parent_order_id,t_orders.is_display
+  </sql>
+  
+  <sql id="Product_Column_List">
+	  t_products.product_id,t_products.picture_path,t_products.goods_id,t_products.barcode,t_products.title,t_products.bn as product_bn,t_products.price,t_products.cost,t_products.mktprice,t_products.name as product_name,t_products.weight,t_products.unit,t_products.store,t_products.store_place,t_products.freez,t_products.goods_type,t_products.last_modify,t_products.uptime,t_products.disabled,t_products.marketable
+  </sql>
+  
+  <sql id="Log_Column_List" >
+    t_order_log.log_id,t_order_log.order_id,t_order_log.rel_id,t_order_log.op_id,t_order_log.op_name,t_order_log.alttime,t_order_log.bill_type,t_order_log.behavior,t_order_log.result,t_order_log.log_text, t_order_log.addon
+  </sql>
+  
+  <sql id="Member_Column_List" >
+  	t_members.member_id,t_members.member_lv_id,t_members.account_id,t_members.nick_name,t_members.name as member_name,t_members.idcard,t_members.first_name,t_members.last_name,t_members.
+    b_year,t_members.b_month,t_members.b_day,t_members.sex,t_members.mobile,t_members.tel,t_members.email,t_members.area,t_members.addr,t_members.zip,t_members.wedlock,t_members.education,t_members.
+    vocation,t_members.cur,t_members.lang,t_members.advance,t_members.advance_freeze,t_members.experience,t_members.point_summation,t_members.point_useable,t_members.
+    point_used,t_members.point_disrate,t_members.settled_time,t_members.biz_money,t_members.refer_id,t_members.refer_url,t_members.info_integrity,t_members.
+    state,t_members.order_num
+  </sql>  
+  
+  <sql id="Storemanger_Column_List" >
+  	t_business_storemanger.store_id,t_business_storemanger.company_id,t_business_storemanger.store_name,t_business_storemanger.account_id,t_business_storemanger.area store_area,t_business_storemanger.addr store_addr,t_business_storemanger.tel store_tel
+  </sql> 
+  
+    <sql id="ComplainComments_Column_List" >
+		  t_complain_comments.`comments_id` as complain_comments_comments_id,
+		  t_complain_comments.`complain_id` as comments_complain_id,
+		  t_complain_comments.`source` as complain_comments_source,		  									 
+		  t_complain_comments.`author_id` as complain_comments_author_id,
+		  t_complain_comments.`author` as complain_comments_author,
+		  t_complain_comments.`comment` as complain_comment,
+		  t_complain_comments.`image_path` complain_comments_image_path,
+		  t_complain_comments.`last_modified` as complain_comments_last_modified,
+		  t_complain_comments.`disabled` as complain_comments_disabled
+  </sql>
+  
+   <sql id="Complain_Column_List" >
+  	  t_complain.`complain_id`,t_complain.`order_id`,t_complain.`from_member_id`,t_complain.`from_uname`,t_complain.`mobile`,
+  	  t_complain.`to_member_id`,t_complain.`to_uname`,t_complain.`source`,t_complain.`store_id`,t_complain.`store_name`,
+  	  t_complain.`reason`, t_complain.`status` as complain_status,t_complain.`memo`,t_complain.`createtime`,t_complain.`last_modified` as complain_last_modified,
+  	  t_complain.`disabled`
+  </sql>
+  
+  <sql id="Complain_Id_List" >
+  	  t_complain.`complain_id`
+  </sql>
+  
+  
+  <sql id="Company_Column_List">
+		t_company.company_id, t_company.grade_id, t_company.shop_name, t_company.account_id,
+		t_company.store_name,
+		t_company.store_grade, t_company.region_id,
+		t_company.last_time,
+		t_company.earnest, t_company.company_name, t_company.company_no, t_company.company_taxno,
+		t_company.company_codename, t_company.company_idname,
+		t_company.company_idcard,
+		t_company.company_cname, t_company.company_cidcard, t_company.company_charge,
+		t_company.company_ctel, t_company.company_area,
+		t_company.company_addr, t_company.company_carea,
+		t_company.company_caddr, t_company.company_earnest,
+		t_company.company_time,
+		t_company.company_timestart,
+		t_company.company_timeend,
+		t_company.last_modify, t_company.image,
+		t_company.image_id, t_company.image_cid, t_company.image_codeid,
+		t_company.image_taxid,
+		t_company.approve_time,
+		t_company.approved_time, t_company.apply_time, t_company.bank_name,
+		t_company.bank_cardid , t_company.company_remark,
+		t_company.company_url, t_company.remark
+	</sql>  
+  
+  <resultMap id="order_detail" type="com.cnit.yoyo.order.model.Order" extends="BaseResultMap">
+	  	<result column="complain_count" property="complainCount"/>
+  		<association property="member" javaType="com.cnit.yoyo.model.member.Member"  column="member_id">
+		    <id column="MEMBER_ID" jdbcType="INTEGER" property="memberId" />
+		    <result column="MEMBER_LV_ID" jdbcType="INTEGER" property="memberLvId" />
+		    <result column="ACCOUNT_ID" jdbcType="INTEGER" property="accountId" />
+		    <result column="NICK_NAME" jdbcType="VARCHAR" property="nickName" />
+		    <result column="MEMBER_NAME" jdbcType="VARCHAR" property="name" />
+		    <result column="IDCARD" jdbcType="VARCHAR" property="idcard" />
+		    <result column="FIRST_NAME" jdbcType="VARCHAR" property="firstName" />
+		    <result column="LAST_NAME" jdbcType="VARCHAR" property="lastName" />
+		    <result column="B_YEAR" jdbcType="VARCHAR" property="bYear" />
+		    <result column="B_MONTH" jdbcType="VARCHAR" property="bMonth" />
+		    <result column="B_DAY" jdbcType="VARCHAR" property="bDay" />
+		    <result column="SEX" jdbcType="CHAR" property="sex" />
+		    <result column="MOBILE" jdbcType="VARCHAR" property="mobile" />
+		    <result column="TEL" jdbcType="VARCHAR" property="tel" />
+		    <result column="EMAIL" jdbcType="VARCHAR" property="email" />
+		    <result column="AREA" jdbcType="VARCHAR" property="area" />
+		    <result column="ADDR" jdbcType="VARCHAR" property="addr" />
+		    <result column="ZIP" jdbcType="VARCHAR" property="zip" />
+		    <result column="WEDLOCK" jdbcType="CHAR" property="wedlock" />
+		    <result column="EDUCATION" jdbcType="VARCHAR" property="education" />
+		    <result column="VOCATION" jdbcType="VARCHAR" property="vocation" />
+		    <result column="CUR" jdbcType="VARCHAR" property="cur" />
+		    <result column="LANG" jdbcType="VARCHAR" property="lang" />
+		    <result column="ADVANCE" jdbcType="DECIMAL" property="advance" />
+		    <result column="ADVANCE_FREEZE" jdbcType="DECIMAL" property="advanceFreeze" />
+		    <result column="EXPERIENCE" jdbcType="DECIMAL" property="experience" />
+		    <result column="POINT_SUMMATION" jdbcType="DECIMAL" property="pointSummation" />
+		    <result column="POINT_USEABLE" jdbcType="DECIMAL" property="pointUseable" />
+		    <result column="POINT_USED" jdbcType="DECIMAL" property="pointUsed" />
+		    <result column="POINT_DISRATE" jdbcType="DECIMAL" property="pointDisrate" />
+		    <result column="SETTLED_TIME" jdbcType="VARCHAR" property="settledTime" />
+		    <result column="BIZ_MONEY" jdbcType="DECIMAL" property="bizMoney" />
+		    <result column="REFER_ID" jdbcType="VARCHAR" property="referId" />
+		    <result column="REFER_URL" jdbcType="VARCHAR" property="referUrl" />
+		    <result column="INFO_INTEGRITY" jdbcType="DECIMAL" property="infoIntegrity" />
+		    <result column="STATE" jdbcType="VARCHAR" property="state" />
+		    <result column="ORDER_NUM" jdbcType="INTEGER" property="orderNum" />
+		    <result column="CHANNEL" jdbcType="VARCHAR" property="channel" />
+		</association>
+		
+		<association property="company" javaType="com.cnit.yoyo.model.goods.Company" column="company_id">
+			<id column="company_id" property="companyId" jdbcType="BIGINT" />
+			<result column="grade_id" property="gradeId" jdbcType="BIGINT" />
+			<result column="shop_name" property="shopName" jdbcType="VARCHAR" />
+			<result column="account_id" property="accountId" jdbcType="INTEGER" />
+			<result column="store_name" property="storeName" jdbcType="VARCHAR" />
+			<result column="store_grade" property="storeGrade" jdbcType="BIGINT" />
+			<result column="region_id" property="regionId" jdbcType="BIGINT" />
+			<result column="last_time" property="lastTime" jdbcType="TIMESTAMP" />
+			<result column="earnest" property="earnest" jdbcType="DOUBLE" />
+			<result column="company_name" property="companyName" jdbcType="VARCHAR" />
+			<result column="company_no" property="companyNo" jdbcType="VARCHAR" />
+			<result column="company_taxno" property="companyTaxno" jdbcType="VARCHAR" />
+			<result column="company_codename" property="companyCodename" jdbcType="VARCHAR" />
+			<result column="company_idname" property="companyIdname" jdbcType="VARCHAR" />
+			<result column="company_idcard" property="companyIdcard" jdbcType="VARCHAR" />
+			<result column="company_cname" property="companyCname" jdbcType="VARCHAR" />
+			<result column="company_cidcard" property="companyCidcard" jdbcType="VARCHAR" />
+			<result column="company_charge" property="companyCharge" jdbcType="VARCHAR" />
+			<result column="company_ctel" property="companyCtel" jdbcType="VARCHAR" />
+			<result column="company_area" property="companyArea" jdbcType="VARCHAR" />
+			<result column="company_addr" property="companyAddr" jdbcType="VARCHAR" />
+			<result column="company_carea" property="companyCarea" jdbcType="VARCHAR" />
+			<result column="company_caddr" property="companyCaddr" jdbcType="VARCHAR" />
+			<result column="company_earnest" property="companyEarnest" jdbcType="VARCHAR" />
+			<result column="company_time" property="companyTime" jdbcType="TIMESTAMP" />
+			<result column="company_timestart" property="companyTimestart" jdbcType="TIMESTAMP" />
+			<result column="company_timeend" property="companyTimeend" jdbcType="TIMESTAMP" />
+			<result column="shopstatus" property="shopstatus" jdbcType="VARCHAR" />
+			<result column="status" property="status" jdbcType="VARCHAR" />
+			<result column="approved" property="approved" jdbcType="VARCHAR" />
+			<result column="certification" property="certification" jdbcType="VARCHAR" />
+			<result column="recommend" property="recommend" jdbcType="VARCHAR" />
+			<result column="disabled" property="disabled" jdbcType="VARCHAR" />
+			<result column="last_modify" property="lastModify" jdbcType="TIMESTAMP" />
+			<result column="d_order" property="dOrder" jdbcType="INTEGER" />
+			<result column="image" property="image" jdbcType="VARCHAR" />
+			<result column="image_id" property="imageId" jdbcType="VARCHAR" />
+			<result column="image_cid" property="imageCid" jdbcType="VARCHAR" />
+			<result column="image_codeid" property="imageCodeid" jdbcType="VARCHAR" />
+			<result column="image_taxid" property="imageTaxid" jdbcType="VARCHAR" />
+			<result column="approve_time" property="approveTime" jdbcType="TIMESTAMP" />
+			<result column="approved_time" property="approvedTime" jdbcType="TIMESTAMP" />
+			<result column="apply_time" property="applyTime" jdbcType="TIMESTAMP" />
+			<result column="fav_count" property="favCount" jdbcType="INTEGER" />
+			<result column="buy_m_count" property="buyMCount" jdbcType="INTEGER" />
+			<result column="store_space" property="storeSpace" jdbcType="BIGINT" />
+			<result column="store_usedspace" property="storeUsedspace" jdbcType="BIGINT" />
+			<result column="experience" property="experience" jdbcType="INTEGER" />
+			<result column="alert_num" property="alertNum" jdbcType="DECIMAL" />
+			<result column="limit_goods" property="limitGoods" jdbcType="VARCHAR" />
+			<result column="limit_goodsdown" property="limitGoodsdown" jdbcType="VARCHAR" />
+			<result column="limit_news" property="limitNews" jdbcType="VARCHAR" />
+			<result column="limit_news_value" property="limitNewsValue" jdbcType="INTEGER" />
+			<result column="limit_store" property="limitStore" jdbcType="VARCHAR" />
+			<result column="limit_storedown" property="limitStoredown" jdbcType="VARCHAR" />
+			<result column="limit_sales" property="limitSales" jdbcType="VARCHAR" />
+			<result column="limit_earnest" property="limitEarnest" jdbcType="VARCHAR" />
+			<result column="store_cert" property="storeCert" jdbcType="VARCHAR" />
+			<result column="bank_name" property="bankName" jdbcType="VARCHAR" />
+			<result column="bank_cardid" property="bankCardid" jdbcType="VARCHAR" />
+			<result column="isCheck" property="isCheck" jdbcType="VARCHAR" />
+		</association>
+
+	    		
+		<association property="store"  javaType="com.cnit.yoyo.model.goods.Store"  column="store_id">
+		    <id column="store_id" property="storeId" jdbcType="BIGINT" />
+		    <result column="grade_id" property="gradeId" jdbcType="BIGINT" />
+		    <result column="shop_name" property="shopName" jdbcType="VARCHAR" />
+		    <result column="member_id" property="memberId" jdbcType="INTEGER" />
+		    <result column="account_id" property="accountId" jdbcType="INTEGER" />
+		    <result column="company_id" property="companyId" jdbcType="BIGINT" />
+		    <result column="company_name" property="companyName" jdbcType="VARCHAR" />
+		    <result column="store_idcard" property="storeIdcard" jdbcType="VARCHAR" />
+		    <result column="store_idcardname" property="storeIdcardname" jdbcType="VARCHAR" />
+		    <result column="store_name" property="storeName" jdbcType="VARCHAR" />
+		    <result column="store_area" property="area" jdbcType="VARCHAR" />
+		    <result column="store_addr" property="addr" jdbcType="VARCHAR" />
+		    <result column="store_tel" property="tel" jdbcType="VARCHAR" />
+		    <result column="zip" property="zip" jdbcType="VARCHAR" />
+		    <result column="email" property="email" jdbcType="VARCHAR" />
+		    <result column="store_grade" property="storeGrade" jdbcType="BIGINT" />
+		    <result column="shopstatus" property="shopstatus" jdbcType="VARCHAR" />
+		    <result column="status" property="status" jdbcType="VARCHAR" />
+		    <result column="disabled" property="disabled" jdbcType="VARCHAR" />
+		    <result column="last_modify" property="lastModify" jdbcType="VARCHAR" />
+		    <result column="d_order" property="dOrder" jdbcType="INTEGER" />
+		    <result column="image" property="image" jdbcType="VARCHAR" />
+		    <result column="image_id" property="imageId" jdbcType="VARCHAR" />
+		    <result column="image_cid" property="imageCid" jdbcType="VARCHAR" />
+		    <result column="image_codeid" property="imageCodeid" jdbcType="VARCHAR" />
+		    <result column="image_taxid" property="imageTaxid" jdbcType="VARCHAR" />
+		    <result column="theme_id" property="themeId" jdbcType="INTEGER" />
+		    <result column="fav_count" property="favCount" jdbcType="INTEGER" />
+		    <result column="buy_m_count" property="buyMCount" jdbcType="INTEGER" />
+		    <result column="store_space" property="storeSpace" jdbcType="BIGINT" />
+		    <result column="store_usedspace" property="storeUsedspace" jdbcType="BIGINT" />
+		    <result column="experience" property="experience" jdbcType="INTEGER" />
+		    <result column="alert_num" property="alertNum" jdbcType="DECIMAL" />
+		    <result column="limit_goods" property="limitGoods" jdbcType="VARCHAR" />
+		    <result column="limit_goodsdown" property="limitGoodsdown" jdbcType="VARCHAR" />
+		    <result column="limit_news" property="limitNews" jdbcType="VARCHAR" />
+		    <result column="limit_news_value" property="limitNewsValue" jdbcType="INTEGER" />
+		    <result column="limit_store" property="limitStore" jdbcType="VARCHAR" />
+		    <result column="limit_storedown" property="limitStoredown" jdbcType="VARCHAR" />
+		    <result column="limit_sales" property="limitSales" jdbcType="VARCHAR" />
+		    <result column="limit_earnest" property="limitEarnest" jdbcType="VARCHAR" />
+		    <result column="store_cert" property="storeCert" jdbcType="VARCHAR" />
+		    <result column="bank_name" property="bankName" jdbcType="VARCHAR" />
+		    <result column="bank_cardid" property="bankCardid" jdbcType="VARCHAR" />		
+		</association>
+		
+		<association property="complain"  javaType="com.cnit.yoyo.complain.model.Complain" column="complain_id">
+		    <id column="complain_id" jdbcType="BIGINT" property="complainId" />
+		    <result column="order_id" jdbcType="BIGINT" property="orderId" />
+		    <result column="from_member_id" jdbcType="INTEGER" property="fromMemberId" />
+		    <result column="from_uname" jdbcType="VARCHAR" property="fromUname" />
+		    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+		    <result column="to_member_id" jdbcType="INTEGER" property="toMemberId" />
+		    <result column="to_uname" jdbcType="VARCHAR" property="toUname" />
+		    <result column="source" jdbcType="CHAR" property="source" />
+		    <result column="store_id" jdbcType="BIGINT" property="storeId" />
+		    <result column="store_name" jdbcType="VARCHAR" property="storeName" />
+		    <result column="reason" jdbcType="CHAR" property="reason" />
+		    <result column="complain_status" jdbcType="CHAR" property="status" />
+		    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+		    <result column="complain_last_modified" jdbcType="TIMESTAMP" property="lastModified" />
+		    <result column="disabled" jdbcType="CHAR" property="disabled" />
+		</association>
+		
+		<collection property="complainComments" ofType="com.cnit.yoyo.complain.model.ComplainComments" column="complain_id">
+		    <id column="comments_complain_comments_id" jdbcType="BIGINT" property="commentsId" />
+		    <result column="complain_comments_id" jdbcType="BIGINT" property="complainId" />
+		    <result column="complain_comments_source" jdbcType="CHAR" property="source" />
+		    <result column="complain_comments_author_id" jdbcType="INTEGER" property="authorId" />
+		    <result column="complain_comments_author" jdbcType="VARCHAR" property="author" />
+		    <result column="complain_comments_image_path" jdbcType="VARCHAR" property="imagePath" />
+		    <result column="complain_comments_last_modified" jdbcType="TIMESTAMP" property="lastModified" />
+		    <result column="complain_comments_disabled" jdbcType="CHAR" property="disabled" />
+		    <result column="complain_comment" jdbcType="LONGVARCHAR" property="comment" />
+	    </collection>	
+	    	
+  		<collection property="orderItems" ofType="com.cnit.yoyo.model.order.OrderItems" column="order_id">
+			<id column="item_id" property="itemId" jdbcType="INTEGER" />
+		    <result column="order_id" property="orderId" jdbcType="BIGINT" />
+		    <result column="product_id" property="productId" jdbcType="INTEGER" />
+		    <result column="bn" property="bn" jdbcType="VARCHAR" />
+		    <result column="product_name" property="name" jdbcType="VARCHAR" />
+		    <result column="price" property="price" jdbcType="DECIMAL" />
+		    <result column="g_pric" property="gPric" jdbcType="DECIMAL" />
+		    <result column="cost" property="cost" jdbcType="DECIMAL" />
+		    <result column="amount" property="amount" jdbcType="DECIMAL" />
+		    <result column="score" property="score" jdbcType="INTEGER" />
+		    <result column="weight" property="weight" jdbcType="INTEGER" />
+		    <result column="nums" property="nums" jdbcType="REAL" />
+		    <result column="sendnum" property="sendnum" jdbcType="REAL" />
+		    <result column="item_type" property="itemType" jdbcType="INTEGER" />
+		    <result column="appointment" property="appointment" jdbcType="VARCHAR" />
+		    <result column="car_id" property="goods.carId"/>
+		    <result column="acc_id" property="goods.accId"/>
+		    <association property="product" column="product_id" javaType="com.cnit.yoyo.model.goods.Product">  
+	            <id column="product_id" property="productId" jdbcType="INTEGER" />
+			    <result column="goods_id" property="goodsId" jdbcType="INTEGER" />
+			    <result column="barcode" property="barcode" jdbcType="VARCHAR" />
+			    <result column="title" property="title" jdbcType="VARCHAR" />
+			    <result column="product_bn" property="bn" jdbcType="VARCHAR" />
+			    <result column="price" property="price" jdbcType="DECIMAL" />
+			    <result column="cost" property="cost" jdbcType="DECIMAL" />
+			    <result column="mktprice" property="mktprice" jdbcType="DECIMAL" />
+			    <result column="product_name" property="name" jdbcType="VARCHAR" />
+			    <result column="weight" property="weight" jdbcType="DECIMAL" />
+			    <result column="unit" property="unit" jdbcType="VARCHAR" />
+			    <result column="store" property="store" jdbcType="DECIMAL" />
+			    <result column="store_place" property="storePlace" jdbcType="VARCHAR" />
+			    <result column="freez" property="freez" jdbcType="INTEGER" />
+			    <result column="goods_type" property="goodsType" jdbcType="VARCHAR" />
+			    <result column="last_modify" property="lastModify" jdbcType="TIMESTAMP" />
+			    <result column="uptime" property="uptime" jdbcType="TIMESTAMP" />
+			    <result column="disabled" property="disabled" jdbcType="VARCHAR" />
+			    <result column="marketable" property="marketable" jdbcType="VARCHAR" />
+			    <result column="picture_path" property="picturePath" jdbcType="VARCHAR" />
+	        </association>  
+		</collection>
+		
+		<collection property="orderLogs" ofType="com.cnit.yoyo.model.order.OrderLog" column="order_id">
+			<id column="log_id" property="logId" jdbcType="INTEGER" />
+		    <result column="order_id" property="orderId" jdbcType="BIGINT" />
+		    <result column="rel_id" property="relId" jdbcType="BIGINT" />
+		    <result column="op_id" property="opId" jdbcType="INTEGER" />
+		    <result column="op_name" property="opName" jdbcType="VARCHAR" />
+		    <result column="alttime" property="alttime" jdbcType="TIMESTAMP" />
+		    <result column="bill_type" property="billType" jdbcType="INTEGER" />
+		    <result column="behavior" property="behavior" jdbcType="INTEGER" />
+		    <result column="result" property="result" jdbcType="INTEGER" />
+		    <result column="log_text" property="logText" jdbcType="LONGVARCHAR" />
+	   		<result column="addon" property="addon" jdbcType="LONGVARCHAR" />
+		</collection>
+
+		
+  </resultMap>
+
+	<!-- 查询主单和子单集合 -->
+ <select id="getAllOrderInfoList" parameterType="java.util.Map" resultMap="BaseResultMap">
+ 	 SELECT 
+	   <include refid="Order_Column_List" />,t_orders.parent_order_id,1 as parentorder_flag
+	from
+	t_orders where t_orders.order_id =  #{orderId}
+
+	UNION ALL
+	SELECT 
+	   <include refid="Order_Column_List" />,t_orders.parent_order_id,0 as parentorder_flag
+	from
+	t_orders where t_orders.parent_order_id = #{orderId}
+ </select>
+	
+  
+  <select id="getOrderIdsList" parameterType="java.util.Map" resultType="java.lang.Long">
+    	select 	
+	   		t_orders.order_id
+		from 
+			t_orders		
+		left join t_order_items on t_orders.order_id = t_order_items.order_id
+		left join t_products on t_order_items.product_id = t_products.product_id
+		left join t_goods goods on goods.goods_id=t_products.goods_id
+		left join t_business_storemanger on t_business_storemanger.store_id=t_orders.store_id
+		left join t_complain on t_complain.order_id=t_orders.order_id				
+		<where>
+				(t_orders.order_kind = 2 or (t_orders.parent_order_id=t_orders.order_id AND t_orders.order_kind=1))
+			and t_orders.member_id=${memberId}
+			<if test="disabled != null and disabled != ''">
+				and t_orders.disabled = #{disabled}
+			</if>
+			<if test="orderId != null and orderId != ''">
+				 and t_orders.order_id LIKE CONCAT('%', #{orderId},'%')
+			</if>
+			<if test="name != null and name != ''">
+				and t_products.name LIKE CONCAT('%',REPLACE(REPLACE(#{name,jdbcType=VARCHAR},'_','\_'),'%','\%'),'%')
+			</if>
+			<choose>
+				<when test="status =='comment'">
+					AND t_orders.order_id NOT IN (SELECT comments.order_id FROM t_order_comment comments WHERE comments.MEMBER_ID = ${memberId})
+					AND t_orders.`status`='finish'
+				</when>
+				<otherwise>
+					<if test="status != null and status != ''">
+						and t_orders.status=#{status}
+					</if>				
+				</otherwise>
+			</choose>
+			<if test="payStatus != null and payStatus != ''">
+				and t_orders.pay_status=#{payStatus}
+			</if>
+			<if test="createtime != null and createtime != ''">
+				<if test="beforeOneYear == false ">
+					<![CDATA[
+					  and DATE_FORMAT(t_orders.createtime, '%Y-%m-%d') >=  DATE_FORMAT(#{createtime}, '%Y-%m-%d')
+					]]>
+				</if>
+				<if test="beforeOneYear == true ">
+					<![CDATA[
+					  and DATE_FORMAT(t_orders.createtime, '%Y-%m-%d') <  DATE_FORMAT(#{createtime}, '%Y-%m-%d')
+					]]>
+				</if>
+			</if>
+		</where>
+		group by t_orders.order_id
+		<choose>
+			<when test="qryType!=null and qryType=='recycleBin'">
+			order by t_orders.last_modified DESC	
+			</when>
+			<otherwise>
+			order by t_orders.createtime DESC
+			</otherwise>
+		</choose>
+  </select>  
+  
+  <select id="getOrderList" parameterType="java.util.Map" resultMap="order_detail">
+     SELECT 
+	   <include refid="Order_Column_List" />,
+	   <include refid="Items_Column_List" />,
+	   <include refid="Product_Column_List" />,
+	   <include refid="Storemanger_Column_List" />,
+	   <include refid="Complain_Column_List" />,
+	   goods.car_id,
+	   goods.acc_id,
+	   (SELECT count(0) from t_complain complain WHERE complain.order_id=t_orders.order_id) as complain_count
+		from 
+			t_orders
+		left join t_order_items on t_orders.order_id = t_order_items.order_id
+		left join t_products on t_order_items.product_id = t_products.product_id
+		left join t_goods goods on goods.goods_id=t_products.goods_id
+		left join t_business_storemanger on t_business_storemanger.store_id=t_orders.store_id
+		left join t_complain on t_complain.order_id=t_orders.order_id			
+		<where>
+			(t_orders.order_kind = 2 or (t_orders.parent_order_id=t_orders.order_id AND t_orders.order_kind=1))
+			and t_orders.member_id=${memberId}
+			and t_orders.order_id in
+			<foreach collection="orderIds" item="id" index="index" open="(" close=")" separator=",">
+				#{id}
+			</foreach>
+			<if test="disabled != null and disabled != ''">
+				and t_orders.disabled = #{disabled}
+			</if>
+			<if test="orderId != null and orderId != ''">
+				 and t_orders.order_id LIKE CONCAT('%', #{orderId},'%')
+			</if>
+			<if test="name != null and name != ''">
+				and t_products.name LIKE CONCAT('%',REPLACE(REPLACE(#{name,jdbcType=VARCHAR},'_','\_'),'%','\%'),'%')
+			</if>
+			<choose>
+				<when test="status =='comment'">
+					AND t_orders.order_id NOT IN (SELECT comments.order_id FROM t_order_comment comments WHERE comments.MEMBER_ID = ${memberId})
+					AND t_orders.`status`='finish'
+				</when>
+				<otherwise>
+					<if test="status != null and status != ''">
+						and t_orders.status=#{status}
+					</if>				
+				</otherwise>
+			</choose>
+			<if test="payStatus != null and payStatus != ''">
+				and t_orders.pay_status=#{payStatus}
+			</if>
+			<if test="createtime != null and createtime != ''">
+				<if test="beforeOneYear == false ">
+					<![CDATA[
+					  and DATE_FORMAT(t_orders.createtime, '%Y-%m-%d') >=  DATE_FORMAT(#{createtime}, '%Y-%m-%d')
+					]]>
+				</if>
+				<if test="beforeOneYear == true ">
+					<![CDATA[
+					  and DATE_FORMAT(t_orders.createtime, '%Y-%m-%d') <  DATE_FORMAT(#{createtime}, '%Y-%m-%d')
+					]]>
+				</if>
+			</if>
+		</where>
+		<choose>
+			<when test="qryType!=null and qryType=='recycleBin'">
+			order by t_orders.last_modified DESC	
+			</when>
+			<otherwise>
+			order by t_orders.createtime DESC
+			</otherwise>
+		</choose>		
+  </select>  
+  
+   <select id="getOrderByOrderId" parameterType="java.util.Map" resultMap="order_detail">
+    SELECT 
+	   <include refid="Order_Column_List" />
+	   	,
+	   <include refid="Member_Column_List" />
+	   ,
+	   <include refid="Storemanger_Column_List" />
+	   ,
+	   <include refid="Items_Column_List" />
+	   ,
+	   <include refid="Product_Column_List" />
+	   ,
+	   <include refid="Log_Column_List" />
+	   ,
+	   t_pam_account.login_name AS NICK_NAME
+	FROM 
+		t_orders  
+	left join t_orders oo on t_orders.order_id = oo.parent_order_id
+	left join t_order_items on (oo.order_id = t_order_items.order_id or t_orders.order_id = t_order_items.order_id)
+	left join t_products on t_order_items.product_id = t_products.product_id
+	left join t_order_log on t_order_log.order_id=t_orders.order_id
+	left join t_members on t_members.member_id=t_orders.member_id
+	left join t_pam_account on t_members.account_id=t_pam_account.account_id
+	left join t_business_storemanger on t_business_storemanger.store_id=t_orders.store_id			
+	WHERE
+		t_orders.order_id = #{orderId,jdbcType=BIGINT}
+	<if test="itemId !=null">
+		and t_order_items.item_id=#{itemId,jdbcType=BIGINT}
+	</if>
+  </select>
+  
+  <resultMap type="com.cnit.yoyo.complain.model.dto.ComplainDetailDTO" id="ComplainDetailResutlDTO">
+  		<result column="complain_id" property="complainId"/>
+  		<result column="company_name" property="companyName"/>
+  		<result column="company_id" property="companyId"/>
+  		<result column="reason" property="reason"/>
+  		<result column="status" property="status"/>
+  		<result column="createtime" property="createtime"/>
+  		<result column="store_name" property="storeName"/>
+  		<result column="final_amount" property="finalAmount"/>
+  		<result column="confirm_time" property="confirmTime"/>
+  		
+  		<collection property="items" ofType="com.cnit.yoyo.model.order.OrderItems">
+		  	<result property="nums" column="nums"/>
+		  	<result property="price" column="price"/>
+		  	<result property="name" column="name"/>
+		  	<result property="orderId" column="order_id"/>
+		  	<result property="amount" column="amount"/>
+		  	<result property="goods.goodsId" column="goods_id"/>
+		  	<result property="product.picturePath" column="picture_path"/>
+  		</collection>
+  		<collection property="complainComments" ofType="com.cnit.yoyo.complain.model.ComplainComments">
+		    <result column="source" jdbcType="CHAR" property="source" />
+		    <result column="author" jdbcType="VARCHAR" property="author" />
+		    <result column="image_path" jdbcType="VARCHAR" property="imagePath" />
+		    <result column="last_modified" jdbcType="TIMESTAMP" property="lastModified" />
+		    <result column="author" jdbcType="CHAR" property="disabled" />
+		    <result column="comment" jdbcType="LONGVARCHAR" property="comment" />
+  		</collection>
+  </resultMap>
+  
+  <select id="getOrderComplainByOrderId" parameterType="java.util.Map" resultMap="ComplainDetailResutlDTO">
+		 SELECT
+			complain.complain_id,
+			complain.reason,
+			complain.`status`,
+			complain.createtime,
+			complain.store_name,
+			comments.author,
+			comments.`comment`,
+			comments.source,
+			comments.image_path,
+			comments.last_modified,
+			orders.final_amount,
+			orders.confirm_time,
+			items.`name`,
+			items.price,
+			items.nums,
+			items.amount,
+			items.order_id,
+			products.picture_path,
+			products.goods_id,
+			company.store_name as company_name,
+			company.company_id
+		FROM
+			t_complain complain
+		LEFT JOIN t_complain_comments comments ON complain.complain_id = comments.complain_id
+		LEFT JOIN t_order_items items on complain.order_id=items.order_id
+		left join t_orders orders ON items.order_id=orders.order_id
+		LEFT JOIN t_products products ON items.product_id = products.product_id
+		LEFT JOIN t_company company ON company.company_id=orders.company_id
+			where complain.complain_id = #{complainId,jdbcType=BIGINT}
+		order by comments.last_modified desc
+  </select>
+  
+  <resultMap type="com.cnit.yoyo.model.order.dto.OrderAfterSales" id="OrderAfterSalesResultMap">
+  	<result column="order_id" property="orderId"/>
+  	<result column="createtime" property="createTime" jdbcType="TIMESTAMP"/>
+  	<collection property="afterSales" ofType="com.cnit.yoyo.model.order.dto.OrderItemsAfterSales">
+  		<result column="item_id" property="itemId"/>
+  		<result column="name" property="productName"/>
+  		<result column="price" property="price"/>
+  		<result column="picture_path" property="picturePath"/>
+  		<result column="goods_id" property="goodsId"/>
+  		<result column="product_id" property="productId"/>
+  		<result column="return_id" property="returnId"/>
+  		<result column="status" property="status"/>
+  	</collection>
+  </resultMap>
+  
+  
+  <select id="selectNeedAfterSalesOrdersCount" resultType="java.lang.Long" parameterType="com.cnit.yoyo.model.order.dto.OrderQryDTO">
+  	SELECT
+		orders.order_id
+	FROM
+		t_orders orders
+	LEFT JOIN t_order_items items ON orders.order_id = items.order_id 
+	LEFT JOIN t_products product ON items.product_id=product.product_id
+	LEFT JOIN t_aftersales_return_product  arp ON arp.items_id=items.item_id
+	WHERE orders.disabled=0
+	and orders.member_id=${memberId}
+	<if test="status != null and status != ''">
+		and orders.status=#{status}
+	</if>
+	<if test="payStatus != null and payStatus != ''">
+		and orders.pay_status=#{payStatus}
+	</if>
+	<if test="orderId != null"> 
+		and orders.order_id LIKE CONCAT('%', #{orderId},'%')
+	</if>
+	<if test="goodsName != null and goodsName != ''"> 
+		and items.name LIKE CONCAT('%',REPLACE(REPLACE(#{goodsName,jdbcType=VARCHAR},'_','\_'),'%','\%'),'%')
+	</if>
+	group by orders.order_id
+	order by orders.createtime desc
+  </select>
+  
+  
+  <select id="selectNeedAfterSalesOrders" resultMap="OrderAfterSalesResultMap" parameterType="com.cnit.yoyo.model.order.dto.OrderQryDTO">
+  	SELECT
+		orders.order_id,
+		orders.createtime,
+		items.item_id,
+		items.`name`,
+		items.price,
+		product.picture_path,
+		product.goods_id,
+		product.product_id,
+		arp.return_id,
+		arp.`status`
+	FROM
+		t_orders orders
+	left join t_order_items items on orders.order_id = items.order_id
+	LEFT JOIN t_products product ON items.product_id=product.product_id
+	LEFT JOIN t_aftersales_return_product  arp ON arp.items_id=items.item_id
+	WHERE 
+		orders.disabled=0
+		and orders.member_id=${memberId}
+	<if test="status != null and status != ''">
+		and orders.status=#{status}
+	</if>
+	<if test="payStatus != null and payStatus != ''">
+		and orders.pay_status=#{payStatus}
+	</if>
+	<if test="orderId != null"> 
+		and orders.order_id LIKE CONCAT('%', #{orderId},'%')
+	</if>
+	<if test="goodsName != null and goodsName != ''"> 
+		and items.name LIKE CONCAT('%',REPLACE(REPLACE(#{goodsName,jdbcType=VARCHAR},'_','\_'),'%','\%'),'%')
+	</if>
+	and orders.order_id in
+	<foreach collection="orderIds" item="id" index="index" open="(" close=")" separator=",">
+		#{id}
+	</foreach>
+	order by orders.createtime desc
+  </select>
+   
+   <select id="selectShoppingHistory" parameterType="com.cnit.yoyo.model.order.dto.OrderQryDTO" resultType="com.cnit.yoyo.model.order.dto.ShoppingHistoryDTO">
+	  SELECT
+			orders.order_id as orderId,
+			orders.createtime as createTime,
+			items.item_id as orderItemId,
+			items.`name`as productName,
+			items.price as price,
+			product.picture_path as picturePath,
+			product.goods_id as goodsId,
+			product.product_id as productId
+		FROM
+			t_order_items items		
+		left join t_orders orders on items.order_id=orders.order_id
+		LEFT JOIN t_products product ON items.product_id=product.product_id
+		WHERE orders.member_id=#{memberId} and orders.status='finish'
+		ORDER BY createtime DESC LIMIT 10
+   </select>
+   
+   
+   <select id="selectMemberOrderTips" resultType="com.cnit.yoyo.model.trade.dto.OrderTipsDTO">
+	  	SELECT 
+	  		unpay,
+	  		confirm,
+	  		uncomments,
+	  		wishCount,
+	  		coupons
+	  	FROM 
+	  	(
+			(SELECT COUNT(1) AS unpay from t_orders t WHERE t.disabled=0 AND t.pay_status=0 AND t.`status`='create' AND t.order_kind=2 AND t.MEMBER_ID=#{memberId}) unpay,
+			(SELECT COUNT(1) AS confirm from t_orders t WHERE t.disabled=0 AND t.`status`='confirm' AND t.MEMBER_ID=#{memberId}) confirm,
+			(SELECT COUNT(1) AS uncomments from t_orders t WHERE t.disabled=0 AND t.`status`='finish' AND t.MEMBER_ID=#{memberId} AND t.order_id NOT IN (SELECT comments.order_id from t_order_comment comments WHERE comments.MEMBER_ID=#{memberId})) uncomments,
+			(SELECT COUNT(1) AS wishCount FROM t_product_wishlist w WHERE w.MEMBER_ID=#{memberId}) wishCount,
+			(
+			 SELECT COUNT(0) AS coupons FROM t_member_coupon mc LEFT JOIN t_coupons c ON mc.cpns_id=c.cpns_id LEFT JOIN t_sales_rule_goods srg ON srg.rule_id=c.rule_id LEFT JOIN t_business_storemanger bs ON c.store_id=bs.store_id WHERE mc.disabled = 0 AND c.disabled = 0 AND c.cpns_status=1	AND mc.member_id = #{memberId} 
+			<![CDATA[
+				AND DATE_FORMAT(now(), '%Y-%m-%d') >= DATE_FORMAT(srg.from_time, '%Y-%m-%d')
+			]]>
+			<![CDATA[
+				AND DATE_FORMAT(now(), '%Y-%m-%d') <=  DATE_FORMAT(srg.to_time, '%Y-%m-%d')
+			]]>			
+			) coupons
+		)
+  </select>
+  
+  <select id="selectMemberUnPayProductIds" resultType="java.lang.Long">
+  	SELECT
+		items.product_id
+	FROM
+		t_orders orders
+	LEFT JOIN t_order_items items ON orders.order_id = items.order_id
+	WHERE
+		orders.MEMBER_ID=#{memberId}
+	AND	orders.`status` = 'create'
+	AND orders.pay_status = 0
+	AND orders.payment_id= 0
+  </select>
+  
+  <update id="updateOrderStatus" parameterType="java.util.Map">
+    UPDATE T_ORDERS
+    <set>
+		<if test="status != null">
+	       STATUS = #{status},
+	    </if>
+		<if test="payStatus != null">
+	       PAY_STATUS = #{payStatus},
+	    </if>
+	    <if test="refunds!=null">
+	    	REFUND_STATUS=#{refundStatus},
+	    </if>
+	    ADDON=#{addon},
+	    LAST_MODIFIED =NOW()
+    </set>
+    WHERE ORDER_ID = #{orderId}
+  </update>
+  
+  <update id="updateOrderStatusAndDisable" parameterType="java.util.Map">
+    UPDATE T_ORDERS
+    <set>
+		<if test="status != null">
+	       STATUS = #{status},
+	    </if>
+		<if test="payStatus != null">
+	       PAY_STATUS = #{payStatus},
+	    </if>
+	    <if test="isDisplay != null and isDisplay != ''">
+	       IS_DISPLAY = #{isDisplay},
+	    </if>
+	    ADDON=#{addon},
+	    LAST_MODIFIED =NOW()
+    </set>
+    WHERE ORDER_ID = #{orderId}
+  </update>
+  
+  <update id="updateOrderDisableStatus" parameterType="java.util.Map">
+    UPDATE T_ORDERS
+    <set>
+		<if test="disabled != null and disabled != ''">
+	       disabled = #{disabled},
+	    </if>
+	    LAST_MODIFIED =NOW()
+    </set>
+    WHERE ORDER_ID in
+    <foreach collection="ids" item="id" index="index" open="(" close=")" separator=",">
+           #{id}
+     </foreach>
+  </update>
+  
+</mapper>

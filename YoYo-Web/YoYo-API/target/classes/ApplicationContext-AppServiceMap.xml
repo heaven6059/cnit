@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+	<!-- 从代码中获得需要登录方法的工具类 -->
+	<bean id="AppLoginsHolder" class="com.cnit.yoyo.base.xml.AppLoginsHolder" >
+		<property name="configLocation" value="classpath:AppLoginMethodConfig.xml" />
+	</bean>
+	<!-- 从代码中获得Spring上下文的工具类 -->
+	<bean id="ApplicationContextUtil" class="com.cnit.yoyo.util.ApplicationContextUtil" />
+	<!-- app服务码与服务类的映射关系工具类 -->
+	<bean id="appServiceMapHolder" class="com.cnit.yoyo.util.AppServiceMapHolder">
+		<property name="configLocation" value="classpath:appServiceClassMap.properties" />
+	</bean>
+	<!-- 服务处理类 -->
+	<bean id="mhpService" class="com.cnit.yoyo.service.IMhpService"/>
+</beans>

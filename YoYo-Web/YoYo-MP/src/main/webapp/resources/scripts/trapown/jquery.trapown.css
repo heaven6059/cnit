@@ -1,0 +1,19 @@
+.trapown-wrapper  *{font-family: inherit;font-size: inherit;line-height: 18px;-webkit-font-smoothing: inherit;color: #444B58;} 
+.trapown-wrapper {position: relative;display: inline-block;}
+.trapown-input,.trapown-dropdown{-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;}
+.trapown-input {position: relative;z-index: 1;display: inline-block;width: 100%;padding: 1px;border: 1px solid #d0d0d0;}
+.trapown-input.focusin{border-bottom: 0 none;}
+.trapown-input.focusout{border-bottom: 1px solid #d0d0d0;}
+.trapown-input input{position: relative;left: 0px;width:auto !important;max-width: 100% !important;max-height: none !important;min-height: 0 !important;padding: 0 !important;margin: 0 1px !important;line-height: inherit !important;text-indent: 0 !important;background: none !important;border: 0 none !important;display: inline-block;}
+.trapown-input input:focus{outline:none !important;}
+.trapown-input .value-tag{position: relative;display: inline-block;background: #1BA0EC;color: #FFFFFF; margin: 2px;-webkit-border-radius: 3px;-moz-border-radius: 3px;border-radius: 3px;}
+.trapown-input .value-tag span{display: inline-block;margin: 2px;}
+.trapown-dropdown{position:absolute; border: 1px solid #d0d0d0;background: #ffffff;border-top: 0 none;z-index: 9999;}
+.trapown-dropdown-content{max-height:200px;overflow-x: hidden;overflow-y: auto;}
+.trapown-item{overflow: hidden;cursor: pointer;padding: 5px 8px;margin: 3px;border: 1px dotted #d0d0d0;}
+.trapown-item.hover{background: #3EACEA;color: #F2F2F2;} 
+.trapown-item.selected{background: #1BA0EC;color: #FFFFFF;}
+.trapown-pagenation div{display: inline-block;margin: 5px;padding:3px; cursor: pointer;border: 1px dotted #d0d0d0;}
+.trapown-pagenation .next{position: absolute;right: 0px;bottom: 0px;}
+
+

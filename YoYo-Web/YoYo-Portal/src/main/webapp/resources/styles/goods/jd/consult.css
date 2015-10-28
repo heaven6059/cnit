@@ -1,0 +1,268 @@
+@CHARSET "UTF-8";
+.left{width:211px;float:left;margin-top:10px;}
+.right{width:763px;float:right;margin-top:10px;}
+.right a{color:#005ea7;}
+/*pinfo*/
+#pinfo .mt{height:30px;background:#f7f7f7;border:1px solid #ddd;border-bottom:0;}
+#pinfo h2{height:30px;line-height:30px;color:#333;padding-left:10px;font-family:\5fae\8f6f\96c5\9ed1;font-weight:normal;}
+#pinfo .mc{width:189px;padding:10px;border:solid #ddd;border-width:0 1px 1px;}
+#pinfo .p-img{padding:10px 0 20px;text-align:center;}
+#pinfo .p-name{height:auto;}
+#pinfo .p-name a{color:#005aa0;}
+#pinfo .p-price{color:#333;}
+#pinfo .p-cost-price{color:#333;}
+#pinfo .star{float:left;margin-top:2px;}
+#pinfo .btn-append{display:block;margin:0 auto;width:138px;height:40px;background:url(http://misc.360buyimg.com/product/skin/2012/i/p-btns.png) no-repeat 0 0;overflow:hidden;cursor:pointer;font-size:12px;line-height:100px;}
+#pinfo .btn-append:hover{background-position:-146px 0;}
+
+#pinfo .p-price,#pinfo .p-grade,#pinfo .num-comment,#pinfo .btn{margin-top:8px;}
+/*wiki-box*/
+#wiki-box .mt{height:30px;background:#f7f7f7;border:1px solid #ddd;border-bottom:0;}
+#wiki-box h2{height:30px;line-height:30px;color:#333;padding-left:10px;font-family:\5fae\8f6f\96c5\9ed1;font-weight:normal;}
+#wiki-box .mc{width:189px;padding:10px;border:solid #ddd;border-width:0 1px 1px;line-height:22px;}
+#wiki-box dl{margin:0 0 5px;}
+#wiki-box dt{color:#999;font-weight:bold;font-size:13px;}
+#wiki-box dd{margin:0 0 0 5px;}
+/*-----------------------------------------right-----------------------------------*/
+/*View_Mode*/
+.View_Mode{;height:30px;line-height:30px;background: url(http://misc.360buyimg.com/product/skin/2012/i/tab.png) repeat-x 0 -41px;padding-top: 2px;border:solid #ddd;border-width:0 1px;overflow:visible}
+.View_Mode strong{font-size:14px;}
+.View_Mode em{color:#FF7403;padding:0 2px;}
+.View_Mode a.curr:link,.View_Mode a.curr:visited{color:#FF7403;}
+div.viewindex{position:relative; z-index:1;display:block;float:left;height:30px;padding: 0 12px;color:#444;cursor:pointer;margin:0 2px 0 -1px;font-weight:bold;}
+div.viewindex a{display:inline-block; vertical-align:middle;font-size:14px;font-weight:normal;font-family:'\5fae\8f6f\96c5\9ed1';color:#333;}
+div.viewindex_curr{border-left: 1px solid #ddd;border-right: 1px solid #ddd;height: 34px;padding: 0 11px;border-top: 2px solid #E4393C;background-color: #FFFFFF;color: #E4393C;margin-top: -6px;}
+div.viewindex_curr a {color: #E4393C;height: 34px;line-height: 34px;font-weight:bold;}
+/*column_wxts*/
+.column_wxts{width:721px;background:#fff;padding:10px 20px;overflow:hidden;border:solid #dedede;border-width:0 1px 1px;}
+.column_wxts_ss{width:250px;height:60px;overflow:hidden;float:left;}
+.column_wxts_ss strong{display:block;margin:5px 0;font-weight:normal;}
+.column_wxts_ss .input1{width:170px;height:20px;line-height:20px;margin-right:10px;border:1px solid #ddd;color:#999;}
+.column_wxts_ss .btn1{width: 53px;height: 25px;border: 0;cursor: pointer;background:url(../../../images/goods/20130513A.png) no-repeat;border:0; vertical-align:top;}
+.column_wxts_ts{width:470px;height:60px;float:right;color:#999;}
+.column_wxts_ts div{height:48px;padding:8px 10px 4px;line-height:16px;border-left:1px dotted #dedede;}
+#column_wxts_ssjg{background:#F4F9FF;}
+
+
+
+/*refers*/
+.Refer_List{padding:10px 0 0 0;}
+.refer{padding:10px 20px;margin-bottom:10px;}
+.refer_bg{border:dotted #dedede;border-width:1px 0;}
+.refer .r_info{text-align:left;color:#999;padding-right:5px;}
+.refer dl{width:731px;overflow:hidden;margin-bottom:5px;line-height:22px;}
+.refer dt,.refer dd{float:left;}
+.refer a{color:#333;}
+.refer dd{width:520px;}
+.refer dd.an_time{width:130px;text-align:right;color:#999;}
+.refer .r_info a{color:#999;}
+
+/*.ask dt{background:url(http://www.360buy.com/skin/df/i/refer_item_03.gif) no-repeat 0 2px;padding-left:17px;}*/
+.answer{color:#f60;}
+/*.answer dt{background:url(http://www.360buy.com/skin/df/i/refer_item_06.gif) no-repeat 0 2px;padding-left:17px;}*/
+.grade{line-height:25px;margin:10px 0 0;padding:5px 10px;background:#FFFEF5;border:1px solid #FFCE8D;}
+.grade_submit{width:40px;height:20px;line-height:20px;padding:0;border:1px solid #F88E00;background:#FFD35A;}
+
+/*column_refer_result*/
+.column_refer_result{border:1px solid #DFA343;background:#FFFEFA;padding:10px;zoom:1;}
+.column_refer_result h6{padding:0 0 10px 30px;background:url(http://www.360buy.com/skin/df/i/ico_090616b.gif) no-repeat 5px 0;color:#DB6300;}
+.column_refer_result h6 span{color:#f00;font-weight:normal;}
+.column_refer_result dl{width:600px;margin-left:20px;overflow:hidden;}
+.column_refer_result dt{float:left;}
+.column_refer_result dd{width:500px;float:left;}
+.column_refer_result .ask dt{background:url(http://www.360buy.com/skin/df/i/ico_090616a.gif) no-repeat 8px 7px;}
+.column_refer_result .answer{border-bottom:1px dotted #E5CB9E;margin-bottom:5px;}
+.column_refer_result .answer dt{background:none;}
+.column_refer_result .opp{margin-top:10px;overflow:hidden;zoom:1;}
+.column_refer_result .opp span{height:20px;display:block;float:left;}
+.column_refer_result .opp span.s1{width:200px;padding-left:30px;}
+.column_refer_result .font14{font-size:14px;}
+#text1{margin-right:100px;}
+
+/*Re_Explain*/
+.Re_Explain{padding:10px 20px;}
+
+/*Review_Form*/
+.Review_Form{position:relative;float:left;width:761px;border-width:2px 1px 1px;border-color:#999 #dedede #dedede;border-style:solid;}
+.Review_Form h5{height:30px;line-height:30px;font-size:14px;font-family:'\5fae\8f6f\96c5\9ed1';padding-left:10px;}
+.Review_Form ul{padding:10px 20px;}
+.Review_Form img{display:inline;}
+.Review_Form li{margin-bottom:5px;line-height:25px;}
+.Review_Form li a{color:#005ea7;}
+.Review_Form li em{color:#9B9B9B;}
+.Review_Form .researchBox{border:1px solid #FCE2BC;width:560px;padding:10px 15px;background:#FFFDEE;}
+.Review_Form .text{padding-top:10px;border-top:1px dotted #FCE2BC;display:none;line-height:20px;}
+.Review_Form span{vertical-align:top;font-weight:bold;}
+.Review_Form .input1,.Review_Form area{line-height:20px;border:1px solid #7F9DB9;background:#FAFDFE;font-size:12px;}
+.Review_Form .input1{width:500px;height:20px;font-size:12px;}
+.Review_Form .area1{width:500px;height:100px;font-size:12px;}
+.Review_Form .area2{width:500px;height:100px;font-size:12px;}
+.Review_Form .buttons{margin:0;}
+.Review_Form .buttons img{cursor:pointer;}
+
+
+#getRefer{display:inline-block;width:72px;height:29px;margin-left:68px;background:url(i/20130513B.png) no-repeat; vertical-align:middle;}
+
+/*ERROR_Tip*/
+.ERROR_Tip{border:1px solid #E1E1E1;padding:5px 10px;background:#FAFAFA;}
+.ERROR_Tip em{color:#F10001;}
+/*star*/
+.sa0,.sa1,.sa2,.sa3,.sa4,.sa5{width:75px;height:14px;background-image:url(http://misc.360buyimg.com/product/skin/2012/i/newicon20130223.png);background-repeat:no-repeat;overflow:hidden;}
+.sa5{background-position:-109px -239px;}
+.sa4{background-position:-124px -239px;}
+.sa3{background-position:-139px -239px;}
+.sa2{background-position:-154px -239px;}
+.sa1{background-position:-169px -239px;}
+.sa0{background-position:-184px -239px;}
+/*2013*/
+.Pagination{float:right;text-align:right;margin:0 0 10px;}
+.Pagination a,.Pagination span {
+	float:left;
+	height:20px;
+	padding:3px 10px;
+	border:1px solid #ccc;
+	margin-left:2px;
+	font-family:arial;
+	line-height:20px;
+	font-size:14px;
+	overflow:hidden;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border-radius:5px;
+}
+.Pagination .text,.Pagination .current {
+	border:none;
+	padding:4px 11px;
+}
+.Pagination a:link,.Pagination a:visited {
+	color:#005aa0;
+}
+.Pagination a:hover,.Pagination a:active {
+	background:#005aa0;
+	color:#fff;
+	text-decoration:none;
+}
+.Pagination .current,.Pagination .current:link,.Pagination .current:visited {
+	color:#f60;
+	font-weight:bold;
+}
+.Pagination b {
+	dispaly:block;
+	position:absolute;
+	top:9px;
+	width:5px;
+	height:9px;
+	background-image:url(http://misc.360buyimg.com/201007/skin/df/i/bg_hotsale.gif);
+	background-repeat:no-repeat;
+	overflow:hidden;
+}
+.Pagination .prev,.Pagination .next,.Pagination .prev-disabled,.Pagination .next-disabled {
+	position:relative;
+	padding-top:5px;
+	height:18px;
+	line-height:18px;
+}
+.Pagination .prev-disabled,.Pagination .next-disabled {
+	color:#ccc;
+	cursor:default;
+}
+.Pagination .prev,.Pagination .prev-disabled {
+	padding-left:12px;
+}
+.Pagination .prev b {
+	left:3px;
+	background-position:-68px -608px;
+}
+.Pagination .prev-disabled b {
+	left:3px;
+	background-position:-80px -608px;
+}
+.Pagination .next,.Pagination .next-disabled {
+	padding-right:12px;
+}
+.Pagination .next b {
+	right:3px;
+	background-position:-62px -608px;
+}
+.Pagination .next-disabled b {
+	right:3px;
+	background-position:-74px -608px;
+}
+.Pagination-m a,.Pagination-m span {
+	height:14px;
+	line-height:14px;
+	font-size:12px;
+}
+.Pagination-m b {
+	top:5px;
+}
+.Pagination-m .prev,.Pagination-m .next,.Pagination-m .prev-disabled,.Pagination-m .next-disabled {
+	padding-top:3px;
+	height:14px;
+	line-height:14px;
+	*line-height:16px;
+}
+.Main{width:990px;margin:0 auto;overflow:hidden}
+.float_Right{float:right;margin-right:20px;};
+
+.root61 .Main{width:1210px;}
+.root61 .right{width:989px}
+.root61 .Review_Form{width:987px;}
+.root61 .column_wxts{width:947px;}
+.root61 .column_wxts_ts{width:696px;}
+.root61 .rank{padding-left:800px;}
+.root61 .refer dl{width:800px;}
+.root61 .refer dd{width:689px;}
+/*.w{overflow:hidden;}*/
+#o-header .w{overflow:visible}
+.Review_Form{margin-bottom:10px;}
+.rank .link_FF7403{color:#FF7403}
+
+.yoyoPagination {
+	font-size: 100%;
+	margin: 10px 0px;
+	float: right;
+}
+
+.yoyoPagination a {
+	text-decoration: none;
+	border: solid 1px #AAE;
+	color: #3c3c3c;
+}
+
+.yoyoPagination a,.yoyoPagination span {	
+	border: 1px solid #eee;
+	float: left;
+	line-height: 24px;
+	margin: 0 2px;
+	padding: 0 8px;}
+.yoyoPagination .current{
+	background: none repeat scroll 0 0 #377bee;
+	border: 1px solid #377bee;
+	color: #fff;
+	float: left;
+	line-height: 24px;
+	margin: 0 2px;
+	padding: 0 8px;}
+.yoyoPagination .current.prev,.yoyoPagination .current.next {
+	color: #999;
+	border-color: #999;
+	background: #fff;
+}
+
+.yoyoPagination a:hover {
+	border: 1px solid #377bee;
+	color: #377bee;
+	margin: 0 2px;
+	padding: 0 8px;
+}
+
+
+.code_ipt{
+	border:1px solid rgb(169, 169, 169);    
+    height: 37px;
+    line-height: 38px;
+    padding-left: 10px;
+    width: 110px;
+    font-size: 14px;
+}

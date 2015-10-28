@@ -1,0 +1,462 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cnit.yoyo.report.dao.ReportMapper" >
+   <resultMap id="reportDTOMap" type="com.cnit.yoyo.report.model.ReportDTO" >
+    <id column="report_id" property="reportId" jdbcType="BIGINT" />
+    <result column="cat_id" property="catId" jdbcType="INTEGER" />
+    <result column="from_member_id" property="fromMemberId" jdbcType="INTEGER" />
+    <result column="from_uname" property="fromUname" jdbcType="VARCHAR" />
+    <result column="to_member_id" property="toMemberId" jdbcType="INTEGER" />
+    <result column="to_uname" property="toUname" jdbcType="VARCHAR" />
+    <result column="source" property="source" jdbcType="CHAR" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="store_id" property="storeId" jdbcType="BIGINT" />
+    <result column="company_id" property="companyId" jdbcType="BIGINT" />
+    <result column="store_name" property="storeName" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="CHAR" />
+    <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="last_modified" property="lastModified" jdbcType="TIMESTAMP" />
+    <result column="disabled" property="disabled" jdbcType="CHAR" />
+    <result column="reason" property="reason" jdbcType="CHAR" />
+    <result column="memo" property="memo" jdbcType="LONGVARCHAR" />
+ 
+    <!-- reportComment -->
+	<result column="author_id" property="authorId" jdbcType="INTEGER" />
+	<result column="author" property="author" jdbcType="VARCHAR" />
+	<result column="image_path" property="imagePath" jdbcType="VARCHAR" />
+	<result column="comment" property="comment" jdbcType="LONGVARCHAR" />
+	
+	<!--  product-->
+   	<result column="product_id" property="productId" jdbcType="INTEGER" />
+	<result column="goods_id" property="goodsId" jdbcType="INTEGER" />
+	<result column="name" property="name" jdbcType="VARCHAR" />
+	<result column="picture_path" property="picturePath" jdbcType="VARCHAR" />
+	<result column="price" property="price" jdbcType="DECIMAL" />
+	
+	<collection property="reportComments" ofType="com.cnit.yoyo.report.model.ReportComment" column="report_id">
+	    <id column="comment_id" property="commentId" jdbcType="BIGINT" />
+	    <result column="comment_report_id" property="reportId" jdbcType="BIGINT" />
+	    <result column="comment_source" property="source" jdbcType="CHAR" />
+	    <result column="comment_author_id" property="authorId" jdbcType="INTEGER" />
+	    <result column="comment_author" property="author" jdbcType="VARCHAR" />
+	    <result column="comment_image_path" property="imagePath" jdbcType="VARCHAR" />
+	    <result column="COMMENT_LAST_MODIFIED" property="lastModified" jdbcType="TIMESTAMP" />
+	    <result column="comment_disabled" property="disabled" jdbcType="CHAR" />
+	    <result column="comment_comment" property="comment" jdbcType="LONGVARCHAR" />
+    </collection>
+        
+  </resultMap>
+ 
+  <resultMap id="BaseResultMap" type="com.cnit.yoyo.report.model.Report" >
+    <id column="report_id" property="reportId" jdbcType="BIGINT" />
+    <id column="product_id" property="productId" jdbcType="INTEGER" />
+    <result column="cat_id" property="catId" jdbcType="INTEGER" />
+    <result column="from_member_id" property="fromMemberId" jdbcType="INTEGER" />
+    <result column="from_uname" property="fromUname" jdbcType="VARCHAR" />
+    <result column="to_member_id" property="toMemberId" jdbcType="INTEGER" />
+    <result column="to_uname" property="toUname" jdbcType="VARCHAR" />
+    <result column="source" property="source" jdbcType="CHAR" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="store_id" property="storeId" jdbcType="BIGINT" />
+    <result column="store_name" property="storeName" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="CHAR" />
+    <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="last_modified" property="lastModified" jdbcType="TIMESTAMP" />
+    <result column="disabled" property="disabled" jdbcType="CHAR" />
+    <result column="reason" property="reason" jdbcType="CHAR" />
+    <result column="memo" property="memo" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    report_id, cat_id, from_member_id, from_uname, to_member_id, to_uname, source, mobile, 
+    store_id, store_name, status, createtime, last_modified, disabled, reason, product_id,memo
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_report
+    where report_id = #{reportId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_report
+    where report_id = #{reportId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.cnit.yoyo.report.model.Report" >
+    insert into t_report (report_id, cat_id, from_member_id, 
+      from_uname, to_member_id, to_uname, 
+      source, mobile, store_id, 
+      store_name, status, createtime, 
+      last_modified, disabled, reason, 
+      product_id, memo)
+    values (#{reportId,jdbcType=BIGINT}, #{catId,jdbcType=INTEGER}, #{fromMemberId,jdbcType=INTEGER}, 
+      #{fromUname,jdbcType=VARCHAR}, #{toMemberId,jdbcType=INTEGER}, #{toUname,jdbcType=VARCHAR}, 
+      #{source,jdbcType=CHAR}, #{mobile,jdbcType=VARCHAR}, #{storeId,jdbcType=BIGINT}, 
+      #{storeName,jdbcType=VARCHAR}, #{status,jdbcType=CHAR}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{lastModified,jdbcType=TIMESTAMP}, #{disabled,jdbcType=CHAR}, #{reason,jdbcType=CHAR}, 
+      #{productId,jdbcType=INTEGER}, #{memo,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cnit.yoyo.report.model.Report" >
+    insert into t_report
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="reportId != null" >
+        report_id,
+      </if>
+      <if test="catId != null" >
+        cat_id,
+      </if>
+      <if test="fromMemberId != null" >
+        from_member_id,
+      </if>
+      <if test="fromUname != null" >
+        from_uname,
+      </if>
+      <if test="toMemberId != null" >
+        to_member_id,
+      </if>
+      <if test="toUname != null" >
+        to_uname,
+      </if>
+      <if test="source != null" >
+        source,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+      <if test="storeId != null" >
+        store_id,
+      </if>
+      <if test="storeName != null" >
+        store_name,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+      <if test="lastModified != null" >
+        last_modified,
+      </if>
+      <if test="disabled != null" >
+        disabled,
+      </if>
+      <if test="reason != null" >
+        reason,
+      </if>
+      <if test="productId != null" >
+        product_id,
+      </if>
+      <if test="memo != null" >
+        memo,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="reportId != null" >
+        #{reportId,jdbcType=BIGINT},
+      </if>
+      <if test="catId != null" >
+        #{catId,jdbcType=INTEGER},
+      </if>
+      <if test="fromMemberId != null" >
+        #{fromMemberId,jdbcType=INTEGER},
+      </if>
+      <if test="fromUname != null" >
+        #{fromUname,jdbcType=VARCHAR},
+      </if>
+      <if test="toMemberId != null" >
+        #{toMemberId,jdbcType=INTEGER},
+      </if>
+      <if test="toUname != null" >
+        #{toUname,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null" >
+        #{source,jdbcType=CHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="storeId != null" >
+        #{storeId,jdbcType=BIGINT},
+      </if>
+      <if test="storeName != null" >
+        #{storeName,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastModified != null" >
+        #{lastModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="disabled != null" >
+        #{disabled,jdbcType=CHAR},
+      </if>
+      <if test="reason != null" >
+        #{reason,jdbcType=CHAR},
+      </if>
+      <if test="productId != null" >
+        #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="memo != null" >
+        #{memo,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cnit.yoyo.report.model.Report" >
+    update t_report
+    <set >
+      <if test="catId != null" >
+        cat_id = #{catId,jdbcType=INTEGER},
+      </if>
+      <if test="fromMemberId != null" >
+        from_member_id = #{fromMemberId,jdbcType=INTEGER},
+      </if>
+      <if test="fromUname != null" >
+        from_uname = #{fromUname,jdbcType=VARCHAR},
+      </if>
+      <if test="toMemberId != null" >
+        to_member_id = #{toMemberId,jdbcType=INTEGER},
+      </if>
+      <if test="toUname != null" >
+        to_uname = #{toUname,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null" >
+        source = #{source,jdbcType=CHAR},
+      </if>
+      <if test="mobile != null" >
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="storeId != null" >
+        store_id = #{storeId,jdbcType=BIGINT},
+      </if>
+      <if test="storeName != null" >
+        store_name = #{storeName,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=CHAR},
+      </if>
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastModified != null" >
+        last_modified = #{lastModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="disabled != null" >
+        disabled = #{disabled,jdbcType=CHAR},
+      </if>
+      <if test="reason != null" >
+        reason = #{reason,jdbcType=CHAR},
+      </if>
+      <if test="productId != null" >
+        product_id = #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="memo != null" >
+        memo = #{memo,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where report_id = #{reportId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.cnit.yoyo.report.model.Report" >
+    update t_report
+    set cat_id = #{catId,jdbcType=INTEGER},
+      from_member_id = #{fromMemberId,jdbcType=INTEGER},
+      from_uname = #{fromUname,jdbcType=VARCHAR},
+      to_member_id = #{toMemberId,jdbcType=INTEGER},
+      to_uname = #{toUname,jdbcType=VARCHAR},
+      source = #{source,jdbcType=CHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      store_id = #{storeId,jdbcType=BIGINT},
+      store_name = #{storeName,jdbcType=VARCHAR},
+      status = #{status,jdbcType=CHAR},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      last_modified = #{lastModified,jdbcType=TIMESTAMP},
+      disabled = #{disabled,jdbcType=CHAR},
+      reason = #{reason,jdbcType=CHAR},
+      product_id = #{productId,jdbcType=INTEGER},
+      memo = #{memo,jdbcType=LONGVARCHAR}
+    where report_id = #{reportId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cnit.yoyo.report.model.Report" >
+    update t_report
+    set cat_id = #{catId,jdbcType=INTEGER},
+      from_member_id = #{fromMemberId,jdbcType=INTEGER},
+      from_uname = #{fromUname,jdbcType=VARCHAR},
+      to_member_id = #{toMemberId,jdbcType=INTEGER},
+      to_uname = #{toUname,jdbcType=VARCHAR},
+      source = #{source,jdbcType=CHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      store_id = #{storeId,jdbcType=BIGINT},
+      store_name = #{storeName,jdbcType=VARCHAR},
+      status = #{status,jdbcType=CHAR},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      last_modified = #{lastModified,jdbcType=TIMESTAMP},
+      disabled = #{disabled,jdbcType=CHAR},
+      reason = #{reason,jdbcType=CHAR},
+      product_id = #{productId,jdbcType=INTEGER}
+    where report_id = #{reportId,jdbcType=BIGINT}
+  </update>
+  
+   <select id="getReportList" parameterType = "com.cnit.yoyo.report.model.ReportQryDTO" resultMap="reportDTOMap">
+			SELECT 
+			  REPORT.`REPORT_ID`,
+			  GOODS.`GOODS_ID`,
+			  GOODS.`PRICE`,
+			  GOODS.`NAME`,
+			  GOODS.`MID_PIC` picture_path ,
+			  REPORT.`STORE_NAME`,
+			  REPORT.`STORE_ID`,
+			  REPORT.`REASON`,
+			  REPORT.`STATUS`,
+			  REPORT.`CREATETIME` 
+			FROM
+			  T_REPORT REPORT 
+			  LEFT JOIN T_GOODS GOODS ON GOODS.`GOODS_ID` = REPORT.`PRODUCT_ID` 
+		<where>
+		    REPORT.DISABLED = '0'
+		    <if test="storeId != null">
+			 AND REPORT.STORE_ID = #{storeId}
+		  </if>
+		  <if test="memberId != null">
+			 AND REPORT.FROM_MEMBER_ID = #{memberId}
+		  </if>
+		  <if test="storeName !=null and storeName!=''">
+		  	AND  REPORT.STORE_NAME LIKE CONCAT('%/','${storeName}','%' ) escape '/'
+		  </if>
+		  <if test="productName !=null and productName !=''">
+		  	AND  GOODS.NAME LIKE CONCAT('%/','${productName}','%' ) escape '/'		  	
+		  </if>
+		  <if test="reportId != null and reportId != '' ">
+			 AND  REPORT.REPORT_ID LIKE CONCAT('%','${reportId}','%' )   
+		  </if>
+		  <if test="reason != null and reason != '' ">
+			 AND  REPORT.REASON = #{reason}
+		  </if>
+		  <if test="status != null and status != '' ">
+			 AND  REPORT.STATUS = #{status}
+		  </if>
+		  <if test="startDate != null and startDate != '' ">
+		  	 <![CDATA[
+		  	 	AND DATE_FORMAT(REPORT.CREATETIME ,'%Y-%m-%d') >= DATE_FORMAT(#{startDate} ,'%Y-%m-%d')
+		  	 ]]>
+		  </if>
+		  <if test="endDate != null and endDate != '' ">
+			<![CDATA[
+			  AND DATE_FORMAT(REPORT.CREATETIME, '%Y-%m-%d') <=  DATE_FORMAT(#{endDate}, '%Y-%m-%d')
+			]]>		
+		  </if>
+		</where>  			
+		  	ORDER  BY  REPORT.CREATETIME DESC	  		  		  		  		  
+  </select>
+  
+ <insert id="saveReport" parameterType="com.cnit.yoyo.report.model.Report" useGeneratedKeys="true" keyProperty="reportId">
+		 	  INSERT INTO `t_report`
+		            (
+		             `order_id`,
+		             `from_member_id`,
+		             `from_uname`,
+		             `mobile`,
+		             `to_member_id`,
+		             `to_uname`,
+		             `source`,
+		             `store_id`,
+		             `store_name`,
+		             `reason`,
+		             `status`,
+		             `memo`,
+		             `createtime`,
+		             `last_modified`,
+		             `disabled`)
+		VALUES (
+		        #{orderId},
+		        #{fromMemberId},
+		        #{fromUname},
+		        #{mobile},
+		        #{toMemberId},
+		        #{toUname},
+		        #{source},
+		        #{storeId},
+		        #{storeName},
+		        #{reason},
+		        #{status},
+		        #{memo},
+		        now(),
+		        NUll,
+		        #{disabled}
+		        )
+ </insert>
+ 
+ 
+  <insert id="saveReportComment" parameterType="com.cnit.yoyo.report.model.ReportComment" >
+		 	  INSERT INTO `t_report_comment`
+		            (
+		             `report_id`,
+		             `source`,
+		             `author_id`,
+		             `author`,
+		             `comment`,
+		             `last_modified`,
+		             `disabled`,
+		             image_path)
+		VALUES (
+		        #{reportId},
+		        #{source},
+		        #{authorId},
+		        #{author},
+		        #{comment},
+		        now(),
+		        #{disabled},
+		        #{imagePath}
+		        )
+ </insert> 
+  
+  
+  <select id="getReportDetailById" parameterType="java.util.Map" resultMap = "reportDTOMap">
+		 SELECT 
+		  REP.`REPORT_ID`,
+		  REP.`CAT_ID`,
+		  REP.`FROM_MEMBER_ID`,
+		  REP.`FROM_UNAME`,
+		  REP.`TO_MEMBER_ID`,
+		  REP.`TO_UNAME`,
+		  REP.`SOURCE`,
+		  REP.`MOBILE`,
+		  REP.`STORE_ID`,
+		  REP.`STORE_NAME`,
+		  REP.`STATUS`,
+		  REP.`MEMO`,
+		  REP.`CREATETIME`,
+		  REP.`LAST_MODIFIED`,
+		  REP.`DISABLED`,
+		  REP.`REASON`,
+		  REP.`PRODUCT_ID`,
+		  COMM.`COMMENT_ID` COMMENT_COMMENT_ID,
+		  COMM.`SOURCE` COMMENT_SOURCE,
+		  COMM.`AUTHOR_ID` COMMENT_AUTHOR_ID,
+		  COMM.`AUTHOR` COMMENT_AUTHOR,
+		  COMM.`COMMENT` COMMENT_COMMENT,
+		  COMM.`IMAGE_PATH` COMMENT_IMAGE_PATH,
+		  COMM.`LAST_MODIFIED`  COMMENT_LAST_MODIFIED,
+		  COMM.`DISABLED`,
+		  GOODS.COMPANY_ID,
+		  GOODS.`GOODS_ID`,
+		  GOODS.`PRICE`,
+		  GOODS.`NAME`,
+		  GOODS.`MID_PIC` picture_path 
+		FROM
+		  `T_REPORT` REP 
+		  LEFT JOIN `T_REPORT_COMMENT` COMM ON REP.`REPORT_ID` = COMM.`REPORT_ID` 
+		  LEFT JOIN `T_GOODS` GOODS ON GOODS.GOODS_ID = REP.`PRODUCT_ID`  
+       WHERE REP.REPORT_ID = #{reportId}
+  </select>
+  
+  <update id="updateReportStatus" parameterType="com.cnit.yoyo.report.model.Report">
+  	update T_REPORT set T_REPORT.STATUS=#{status} where T_REPORT.REPORT_ID=#{reportId}
+  </update>
+  
+  <select id="selectProductIsReport" resultType="java.lang.Integer">
+  	select count(0) from T_REPORT t where t.product_id=#{value}
+  </select>
+  
+</mapper>

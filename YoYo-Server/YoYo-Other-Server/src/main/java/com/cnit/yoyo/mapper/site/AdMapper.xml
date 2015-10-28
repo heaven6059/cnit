@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cnit.yoyo.dao.site.AdMapper" >
+  <resultMap id="BaseResultMap" type="com.cnit.yoyo.model.site.Ad" >
+    <id column="ad_id" property="adId" jdbcType="INTEGER" />
+    <result column="ad_type" property="adType" jdbcType="INTEGER" />
+    <result column="config" property="config" jdbcType="VARCHAR" />
+    <result column="begin_time" property="beginTime" jdbcType="TIMESTAMP" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="enabled" property="enabled" jdbcType="BIT" />
+    <result column="sequence" property="sequence" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="ad_num" property="adNum" jdbcType="INTEGER" />
+    <result column="pic_size" property="picSize" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.cnit.yoyo.model.site.Ad" extends="BaseResultMap" >
+    <result column="ad_config" property="adConfig" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ad_id, ad_type, begin_time, end_time, enabled, sequence, name, description,config,create_time,ad_num,pic_size
+  </sql>
+  <sql id="Blob_Column_List" >
+    ad_config
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_site_ad
+    where ad_id = #{adId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_site_ad
+    where ad_id = #{adId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cnit.yoyo.model.site.Ad" >
+    insert into t_site_ad (ad_id, ad_type, begin_time, 
+      end_time, enabled,
+      sequence, name, description, config,create_time,pic_size
+      ad_config)
+    values (#{adId,jdbcType=INTEGER}, #{adType,jdbcType=INTEGER}, #{beginTime,jdbcType=TIMESTAMP}, 
+      #{endTime,jdbcType=TIMESTAMP}, #{enabled,jdbcType=BIT},
+      #{sequence,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{config,jdbcType=VARCHAR}, now(),#{picSize,jdbcType=VARCHAR}
+      #{adConfig,jdbcType=LONGVARCHAR},=)
+  </insert>
+  <insert id="insertSelective" parameterType="com.cnit.yoyo.model.site.Ad" >
+    insert into t_site_ad
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="adId != null" >
+        ad_id,
+      </if>
+      <if test="adType != null">
+        ad_type,
+      </if>
+      <if test="beginTime != null" >
+        begin_time,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+      <if test="enabled != null" >
+        enabled,
+      </if>
+      <if test="sequence != null" >
+        sequence,
+      </if>
+      <if test="name != null and !''.equals(name.trim())" >
+        name,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="adConfig != null" >
+        ad_config,
+      </if>
+      <if test="config != null" >
+        config,
+      </if>
+      <if test="adNum != null" >
+        ad_num,
+      </if>
+      <if test="picSize != null" >
+        pic_size,
+      </if>
+      create_time
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="adId != null" >
+        #{adId,jdbcType=INTEGER},
+      </if>
+      <if test="adType != null" >
+        #{adType,jdbcType=INTEGER},
+      </if>
+      <if test="beginTime != null" >
+        #{beginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="enabled != null" >
+        #{enabled,jdbcType=BIT},
+      </if>
+      <if test="sequence != null" >
+        #{sequence,jdbcType=INTEGER},
+      </if>
+       <if test="name != null and !''.equals(name.trim())" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="adConfig != null" >
+        #{adConfig,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="config != null" >
+        #{config,jdbcType=VARCHAR},
+      </if>
+      <if test="adNum != null" >
+         #{adNum,jdbcType=INTEGER},
+      </if>
+      <if test="picSize != null" >
+         #{picSize,jdbcType=VARCHAR},
+      </if>
+      now()
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cnit.yoyo.model.site.Ad" >
+    update t_site_ad
+    <set >
+      <if test="adType != null" >
+        ad_type = #{adType,jdbcType=INTEGER},
+      </if>
+      <if test="beginTime != null" >
+        begin_time = #{beginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="enabled != null" >
+        enabled = #{enabled,jdbcType=BIT},
+      </if>
+      <if test="sequence != null" >
+        sequence = #{sequence,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="adConfig != null" >
+        ad_config = #{adConfig,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="config != null" >
+        config = #{config,jdbcType=VARCHAR},
+      </if>
+      <if test="adNum != null" >
+        ad_num = #{adNum,jdbcType=INTEGER},
+      </if>
+      <if test="picSize != null" >
+         pic_size = #{picSize,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ad_id = #{adId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.cnit.yoyo.model.site.Ad" >
+    update t_site_ad
+    set ad_type = #{adType,jdbcType=INTEGER},
+      begin_time = #{beginTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      enabled = #{enabled,jdbcType=BIT},
+      sequence = #{sequence,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      ad_config = #{adConfig,jdbcType=LONGVARCHAR},
+      config = #{config,jdbcType=VARCHAR}
+      ad_num = #{adNum,jdbcType=INTEGER}
+      pic_size = #{picSize,jdbcType=VARCHAR}
+    where ad_id = #{adId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cnit.yoyo.model.site.Ad" >
+    update t_site_ad
+    set ad_type = #{adType,jdbcType=INTEGER},
+      begin_time = #{beginTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      enabled = #{enabled,jdbcType=BIT},
+      sequence = #{sequence,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      ad_config = #{adConfig,jdbcType=LONGVARCHAR},
+      config = #{config,jdbcType=VARCHAR}
+      ad_num = #{adNum,jdbcType=INTEGER}
+      pic_size = #{picSize,jdbcType=VARCHAR}
+    where ad_id = #{adId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByName" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String">
+  	select 
+  	<include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_site_ad
+    where name like  CONCAT('%',#{name},'%')
+  </select>
+  <select id="selectAll" resultMap="ResultMapWithBLOBs">
+  	select
+  	<include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_site_ad
+    order by create_time
+  </select>
+  
+  <delete id="deleteBatch" parameterType="java.lang.Integer" >
+    DELETE FROM t_site_ad WHERE ad_id in(
+    	<foreach collection="list" item="id" separator=",">
+    		#{id}
+    	</foreach>
+    )
+  </delete>
+</mapper>

@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cnit.yoyo.dao.car.AccessoryCatalogMapper">
+	<resultMap id="BaseResultMap" type="com.cnit.yoyo.model.car.AccessoryCatalog">
+		<id column="CATALOG_ID" property="catalogId" jdbcType="INTEGER" />
+		<result column="CATALOG_NAME" property="catalogName" jdbcType="VARCHAR" />
+		<result column="CAT_ID" property="catId" jdbcType="INTEGER" />
+		<result column="ORDER_NUM" property="orderNum" jdbcType="INTEGER" />
+	</resultMap>
+	<sql id="Example_Where_Clause">
+		<where>
+			<foreach collection="oredCriteria" item="criteria" separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value} and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem" open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Update_By_Example_Where_Clause">
+		<where>
+			<foreach collection="example.oredCriteria" item="criteria" separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value} and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem" open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		CATALOG_ID, CATALOG_NAME, CAT_ID, ORDER_NUM
+	</sql>
+	<select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cnit.yoyo.model.car.AccessoryCatalogExample">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		'false' as QUERYID,
+		<include refid="Base_Column_List" />
+		from t_accessory_catalog
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from t_accessory_catalog
+		where CATALOG_ID = #{catalogId,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from t_accessory_catalog
+		where
+		CATALOG_ID = #{catalogId,jdbcType=INTEGER}
+	</delete>
+	<delete id="deleteByExample" parameterType="com.cnit.yoyo.model.car.AccessoryCatalogExample">
+		delete from t_accessory_catalog
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</delete>
+	<insert id="insert" parameterType="com.cnit.yoyo.model.car.AccessoryCatalog"
+		useGeneratedKeys="true" keyProperty="catalogId">
+		insert into t_accessory_catalog (CATALOG_ID, CATALOG_NAME,
+		CAT_ID,
+		ORDER_NUM)
+		values (#{catalogId,jdbcType=INTEGER}, #{catalogName,jdbcType=VARCHAR},
+		#{catId,jdbcType=INTEGER},
+		#{orderNum,jdbcType=INTEGER})
+	</insert>
+	<insert id="insertSelective" parameterType="com.cnit.yoyo.model.car.AccessoryCatalog"
+		useGeneratedKeys="true" keyProperty="catalogId">
+		insert into t_accessory_catalog
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="catalogId != null">
+				CATALOG_ID,
+			</if>
+			<if test="catalogName != null">
+				CATALOG_NAME,
+			</if>
+			<if test="catId != null">
+				CAT_ID,
+			</if>
+			<if test="orderNum != null">
+				ORDER_NUM,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="catalogId != null">
+				#{catalogId,jdbcType=INTEGER},
+			</if>
+			<if test="catalogName != null">
+				#{catalogName,jdbcType=VARCHAR},
+			</if>
+			<if test="catId != null">
+				#{catId,jdbcType=INTEGER},
+			</if>
+			<if test="orderNum != null">
+				#{orderNum,jdbcType=INTEGER},
+			</if>
+		</trim>
+	</insert>
+	<select id="countByExample" parameterType="com.cnit.yoyo.model.car.AccessoryCatalogExample"
+		resultType="java.lang.Integer">
+		select count(*) from t_accessory_catalog
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</select>
+	<update id="updateByExampleSelective" parameterType="map">
+		update t_accessory_catalog
+		<set>
+			<if test="record.catalogId != null">
+				CATALOG_ID = #{record.catalogId,jdbcType=INTEGER},
+			</if>
+			<if test="record.catalogName != null">
+				CATALOG_NAME = #{record.catalogName,jdbcType=VARCHAR},
+			</if>
+			<if test="record.catId != null">
+				CAT_ID = #{record.catId,jdbcType=INTEGER},
+			</if>
+			<if test="record.orderNum != null">
+				ORDER_NUM = #{record.orderNum,jdbcType=INTEGER},
+			</if>
+		</set>
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByExample" parameterType="map">
+		update t_accessory_catalog
+		set CATALOG_ID = #{record.catalogId,jdbcType=INTEGER},
+		CATALOG_NAME =
+		#{record.catalogName,jdbcType=VARCHAR},
+		CAT_ID = #{record.catId,jdbcType=INTEGER},
+		ORDER_NUM =
+		#{record.orderNum,jdbcType=INTEGER}
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByPrimaryKeySelective" parameterType="com.cnit.yoyo.model.car.AccessoryCatalog">
+		update t_accessory_catalog
+		<set>
+			<if test="catalogName != null">
+				CATALOG_NAME = #{catalogName,jdbcType=VARCHAR},
+			</if>
+			<if test="catId != null">
+				CAT_ID = #{catId,jdbcType=INTEGER},
+			</if>
+			<if test="orderNum != null">
+				ORDER_NUM = #{orderNum,jdbcType=INTEGER},
+			</if>
+		</set>
+		where CATALOG_ID = #{catalogId,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.cnit.yoyo.model.car.AccessoryCatalog">
+		update t_accessory_catalog
+		set CATALOG_NAME =
+		#{catalogName,jdbcType=VARCHAR},
+		CAT_ID = #{catId,jdbcType=INTEGER},
+		ORDER_NUM =
+		#{orderNum,jdbcType=INTEGER}
+		where CATALOG_ID = #{catalogId,jdbcType=INTEGER}
+	</update>
+	<select id="selectByQueryParams" resultMap="BaseResultMap" parameterType="map">
+		select
+		<include refid="Base_Column_List" />
+		from t_accessory_catalog where 1=1 
+		<foreach index="index" item="item" collection="whereStmt">
+			and ${item}
+		</foreach>
+		order by ${orderStmt}
+	</select>
+	
+	<resultMap type="com.cnit.yoyo.model.car.AccessoryCatalog" id="AccessoryCatalogResultMap" extends="BaseResultMap">
+		<collection property="accessoryParams" ofType="com.cnit.yoyo.model.car.AccessoryParam">
+			<result column="PARAM_NAME" jdbcType="VARCHAR" property="paramName" />
+			<result column="PARAM_ID" jdbcType="INTEGER" property="paramId" />
+		</collection>
+	</resultMap>
+	
+	<select id="selectAccessoryCatalog" resultMap="AccessoryCatalogResultMap">
+		SELECT
+			catalog.CATALOG_ID,
+			catalog.CATALOG_NAME,
+			param.PARAM_ID,
+			param.PARAM_NAME
+		FROM
+			t_accessory_catalog catalog
+		LEFT JOIN t_accessory_param param ON param.CATALOG_ID = catalog.CATALOG_ID
+	</select>
+	<!-- 查询保养配件类别 ，即商品分类是配件类别-->
+	<select id="findMaintainCatList" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from t_accessory_catalog where CAT_ID in (select CAT_ID from t_goods_cat where identifier='888' and disabled='0' )  
+	</select>
+</mapper>

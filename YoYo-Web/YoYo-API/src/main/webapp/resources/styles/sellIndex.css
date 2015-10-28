@@ -1,0 +1,97 @@
+@charset "utf-8";
+/* CSS Document */
+	.sell_txt{ width: 1200px; height: 30px; line-height: 30px; margin: 0 auto 10px;background: #fafafa none repeat scroll 0 0;}
+	.sell_txt dl dt,.sell_txt dl dd{ display: inline-block; float: left; margin-right: 6px; }
+	.sell_ddimg{ margin-top: 3px; }
+	.sell_txt dl dd a{ display: inline-block; padding-left: 10px; }
+	
+	.billboard{ width: 1200px; height: 70px; line-height: 70px; margin: 0 auto 10px; }
+	.bill_logo{ width: 145px; height: 70px; display: inline-block; }
+	.billboard p{ display: inline-block; height: 70px; line-height: 70px; font-size: 24px; margin-left: 20px; }
+	
+	.shop_index{ width: 82px;; height: 30px; margin-left: 20px; line-height: 30px; margin-top: 20px; cursor: pointer; position: relative; z-index: 50; }
+	.shop_index .shopA{ display: block; padding: 0 6px; border: 1px solid #ddd; position: absolute; z-index: 102; background-color: #fff; }
+	.shopHover{ border: 1px solid #E4393C !important; border-bottom: 0 !important; }
+	.shop_index b{ background: url(../images/x_icon.png) no-repeat 0 1px; width: 9px; height: 6px; display: inline-block; transition: transform .1s ease-in 0s; -webkit-transition: -webkit-transform .1s ease-in 0s; overflow: hidden; }
+	.shop_index span{ display: inline-block; _margin-top: 1px; }
+	
+	.shop_hide{ position: absolute; border: 1px solid #E4393C; background-color: #fff; z-index: 100; top: 30px; display: none; }
+	.shop_hide ul li{ width: 80px; height: 26px; line-height: 22px; padding: 0 10px; }
+	
+	
+	/*banner*/
+	.sell_banner{ width: 100%; height: 500px; background-color: #fbb402; position: relative; overflow: hidden; }
+	.sell_banner ul li a{ width: 1200px; height: 500px; overflow: hidden; display: block; margin: 0 auto; }
+	.sell_banner ol{ position: absolute; right: 20%; bottom: 20px; }
+	.sell_banner ol li{ width: 40px; height: 6px; background-color: #fde099; float: left; margin-right: 10px; cursor: pointer; }
+	.sell_olCur{ border: 2px solid #fff; background-color: #fe7405 !important; margin-top: -2px; }
+	
+	
+	.sell_stor{ border-bottom: 3px solid #333 !important; }
+	.sell_stor h2{ background-color: transparent !important; color: #333 !important; text-align: left !important; }
+	
+	.car_show ul li{ position: relative; z-index: 660; }
+	.car_show ul li b{ position: absolute; z-index: 1000; display: inline-block; left: 10px; top: 20px; width: 57px; height: 57px; font: 14px/57px 'microsoft yahei'; color: #fff; text-align: center; -webkit-transition: all .3s ease; -moz-transition: all .3s ease; transition: all .3s ease; background-image: url(../images/auto-bg20150206.png); }
+	.tag{ background-position: -55px -14px; }
+	
+	.selllist{ width: 1200px; height: auto; margin: 0 auto; padding-bottom: 8px; }
+	.selllist ul{ height: 290px; overflow: hidden; position: relative; }
+	.selllist ul li{ width: 234px; padding-right: 10px; position: absolute; }
+	.selllist ul li a{ display: block; width: 234px; overflow: hidden; }
+	.selllist ul li img{ -webkit-transition: all .2s linear; -moz-transition: all .2s linear; transition: all .2s linear; }
+	.selllist ul li img:hover{ -webkit-transform: scale(1.01); -moz-transform: scale(1.01); transform: scale(1.01); }
+	.s_fore2{ top: 150px; }
+	.s_fore3{ left: 244px; }
+	.s_fore4{ left: 488px; }
+	.s_fore5{ left: 488px; top: 150px; }
+	.s_fore6{ left: 734px; }
+	.s_fore7{ left: 978px; }
+	.s_fore8{ left: 978px; top: 150px; }
+	
+	.brandLogo{ border: 1px solid #e6e6e6; padding: 0 45px; }
+	.brandLogo ul{ padding: 7px 0; overflow: hidden; }
+	.brandLogo ul li{ float: left; width: 123px; }
+
+	.col02{ width: 439px; }
+	.col02 ul li{ width: 219px; position: absolute; }
+	.col02 .s_fore1 .sell_img,.col02 .s_fore4 .sell_img{ height: 262px; }
+	.col02 .s_fore2 .sell_img,.col02 .s_fore3 .sell_img{ height: 139px; }
+	.col02 .s_list{ position: relative; }
+	.col02 .s_fore2{ top: 262px; }
+	.col02 .s_fore3{ left: 219px; }
+	.col02 .s_fore4{ top: 139px; left: 219px; }
+	
+	.col02 .s_list{ height: 402px; }
+	.col02 ul li a{ width: 172px; line-height: 22px; }
+	.sell_img{ display: block; width: 218px !important; padding: 0; border: solid 1px #e6e6e6; border-top: none; text-align: right; }
+	.col02 .s_name{ position: absolute; display: block; left: 15px; top: 18px; height: 22px; overflow: hidden; font: 700 14px/22px 'microsoft yahei'; color: #333; }
+	.s_tips{ position: absolute; display: block; left: 15px; height: 22px; overflow: hidden; font: 700 14px/22px 'microsoft yahei'; top: 40px; color: #999; }
+	.sell_img img{ position: absolute; bottom: 10px; right: 12px; z-index: -1px; transition: all .3s linear; -webkit-transition: all .3s linear; -moz-transition: all .3s linear; border: 0; }
+	.sell_img:hover img{ right: 15px; }
+	
+	.col03{ width: 218px; height: 401px; border-right: 1px solid #e6e6e6; border-bottom: 1px solid #e6e6e6; overflow: hidden; position: relative; }
+	.col03 h4{ height: 53px; font: 16px/53px 'microsoft yahei'; background-color: #efb09d; position: relative; text-align: center; color: #fff; }
+	.col03 h4 b{ position: absolute; display: inline-block; border-color: #efb09d transparent transparent; border-style: solid dashed dashed; border-width: 10px; bottom: -20px; left: 50%; margin-left: -10px; margin-top: -8px; overflow: hidden; }
+	
+	.col03 .kg_list{ position: relative; z-index: 3; padding: 30px; height: 104px; overflow: hidden; }
+	.col03 .kg_list li{ height: 26px; width: 159px; white-space: nowrap; text-overflow: ellipsis; font: 700 14px/26px 'microsoft yahei'; overflow: hidden; position: static; }
+	.col03 .kg_list li a{ color: #333; }
+	.col03 .kg_list li a b{ display: inline-block; margin-right: 8px; height: 6px; width: 6px; border-radius: 3px; background-color: #ccc; vertical-align: middle; overflow: hidden; }
+	
+	.col03 .s_img{ position: absolute; height: 317px; width: 219px; left: 0; bottom: 0; }
+	
+	.p_scroll{ height: 117px; border: 1px solid #e6e6e6; border-top: 0; position: relative; overflow: hidden; }
+	.p_leftbtn,.p_rightbtn{ display: block; width: 14px; height: 26px; background-image: url(../images/auto-bg20150206.png); position: absolute; }
+	.p_leftbtn{ left: 15px; top: 45px; background-position: -172px -73px; }
+	a.p_leftbtn:hover{ background-position: -137px -73px; }
+	.p_rightbtn{ right: 15px; top: 45px; background-position: -186px -73px; }
+	a.p_rightbtn:hover{ background-position: -152px -73px; }
+	.scroll_list{ position: relative; width: 1110px; height: 100px; overflow: hidden; margin: 0 45px; }
+	.scroll_list ul{ position: absolute; width: 2886px; height: 100px; top: 0px; left: 0px; padding: 9px 0 0 4px; overflow: hidden; }
+	.scroll_list ul li{ float: left; position: relative; padding: 0 10px 0 109px; width: 103px; height: 100px; overflow: hidden; }
+	.scroll_list .s_img{ position: absolute; padding: 0; left: 0; top: 0; width: 100px; height: 100px; }
+	.scroll_list .s_name{ margin: 6px 0 10px; height: 36px; overflow: hidden; }
+	.scroll_list .s_price{ overflow: hidden; }
+	
+	
+	

@@ -1,0 +1,160 @@
+@CHARSET "UTF-8";
+
+.sellList_dl {
+	width: 950px;
+	height: auto;
+	padding: 0 10px;
+}
+
+.sellList_dl dt,.sellList_dl dd {
+	float: left;
+	height: 34px;
+	line-height: 34px;
+}
+
+.sellList_dl dt {
+	margin-left: 20px;
+}
+
+.sellList_dl dd input {
+	width: 108px;
+	height: 32px;
+	line-height: 32px;
+	border: 1px solid #ddd;
+	padding-left: 10px;
+}
+
+.sell_search {
+	width: 100px;
+	height: 34px;
+	line-height: 34px;
+	background-color: #0093e7;
+	color: #fff;
+	font-size: 18px;
+	font-family: "微软雅黑";
+	display: inline-block;
+	text-align: center;
+}
+
+a.sell_search:hover {
+	color: #fff;
+	background-color: #0283cd;
+}
+
+.sell_con {
+	width: 970px;
+	height: auto;
+	margin-top: 20px;
+}
+
+.sell_table {
+	color: #333;
+}
+
+.sell_table .firstTr {
+	background-color: #edf2f8;
+}
+
+.sell_table .firstTr th {
+	text-align: center;
+}
+
+.sell_table tr td {
+	text-align: center;
+}
+
+.sell_table .sell_img a {
+	display: inline-block;
+	width: 68px;
+	height: 68px;
+	border: 1px solid #ddd;
+	margin: 11px 0 0 10px;
+}
+
+.sell_table .sell_name {
+	width: auto;
+	margin: 11px 0 0 10px;
+	text-align: left;
+}
+
+.sell_table p {
+	color: #333;
+	line-height: 20px;
+}
+
+.sell_table .sell_name span {
+	font-size: 12px;
+	color: #aaa;
+	line-height: 16px;
+	display: inline-block;
+}
+
+.sell_table .sell_name b {
+	font-style: normal;
+	display: inline-block;
+	width: 17px;
+	height: 16px;
+	background-color: #ccc;
+	overflow: hidden;
+	position: relative;
+	top: 4px;
+}
+
+.sell_table .buy_opera a {
+	line-height: 20px;
+}
+
+.select_c {
+	width: 77px;
+	height: 18px;
+	border: 1px solid #abadb3;
+}
+
+.pading_left {
+	padding-left: 10px
+}
+
+.offerPrice {
+	display: inline-block;
+	font-size: 0.1em;
+	vertical-align: middle;
+}
+
+.buy_opera {
+	display: table-cell;
+	height: 1em;
+	padding: 0 0.1em;
+	font-size: 10em;
+	vertical-align: middle;
+}
+
+.offerPrice a {
+	margin-left: 0
+}
+
+.Plate>h4 {
+	border-bottom: 2px solid #377bee;
+}
+
+.Plate>h4 a {
+  background: none repeat scroll 0 0 #f1f1f1;
+  border-left: 1px solid #ecebf0;
+  border-right: 1px solid #ecebf0;
+  color: #333333;
+  display: inline-block;
+  font-weight: normal;
+  height: 28px;
+  line-height: 28px;
+  padding: 0 30px;
+}
+
+.Plate>h4 a.current {
+	background: none repeat scroll 0 0 #377bee;
+	border: 0 none;
+	color: #fff;
+	font-weight: bold;
+}
+
+.source{
+	color: rgb(63, 218, 21);
+}

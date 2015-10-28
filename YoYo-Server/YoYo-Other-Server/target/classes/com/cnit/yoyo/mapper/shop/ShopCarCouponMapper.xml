@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cnit.yoyo.dao.shop.ShopCarCouponMapper" >
+  <resultMap id="BaseResultMap" type="com.cnit.yoyo.model.shop.ShopCarCoupon" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="company_id" property="companyId" jdbcType="BIGINT" />
+    <result column="store_id" property="storeId" jdbcType="BIGINT" />
+    <result column="selas_title" property="selasTitle" jdbcType="VARCHAR" />
+    <result column="product_id" property="productId" jdbcType="BIGINT" />
+    <result column="hot_icon" property="hotIcon" jdbcType="INTEGER" />
+    <result column="enabled" property="enabled" jdbcType="CHAR" />
+    <result column="last_modify" property="lastModify" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, company_id, store_id, selas_title, product_id, hot_icon, enabled, last_modify
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_shop_car_coupon
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_shop_car_coupon
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.cnit.yoyo.model.shop.ShopCarCoupon" >
+    insert into t_shop_car_coupon (id, company_id, store_id, 
+      selas_title, product_id, hot_icon, 
+      enabled, last_modify)
+    values (#{id,jdbcType=BIGINT}, #{companyId,jdbcType=BIGINT}, #{storeId,jdbcType=BIGINT}, 
+      #{selasTitle,jdbcType=VARCHAR}, #{productId,jdbcType=BIGINT}, #{hotIcon,jdbcType=INTEGER}, 
+      #{enabled,jdbcType=CHAR}, #{lastModify,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cnit.yoyo.model.shop.ShopCarCoupon" >
+    insert into t_shop_car_coupon
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="companyId != null" >
+        company_id,
+      </if>
+      <if test="storeId != null" >
+        store_id,
+      </if>
+      <if test="selasTitle != null" >
+        selas_title,
+      </if>
+      <if test="productId != null" >
+        product_id,
+      </if>
+      <if test="hotIcon != null" >
+        hot_icon,
+      </if>
+      <if test="enabled != null" >
+        enabled,
+      </if>
+      <if test="lastModify != null" >
+        last_modify,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="companyId != null" >
+        #{companyId,jdbcType=BIGINT},
+      </if>
+      <if test="storeId != null" >
+        #{storeId,jdbcType=BIGINT},
+      </if>
+      <if test="selasTitle != null" >
+        #{selasTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="productId != null" >
+        #{productId,jdbcType=BIGINT},
+      </if>
+      <if test="hotIcon != null" >
+        #{hotIcon,jdbcType=INTEGER},
+      </if>
+      <if test="enabled != null" >
+        #{enabled,jdbcType=CHAR},
+      </if>
+      <if test="lastModify != null" >
+        #{lastModify,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cnit.yoyo.model.shop.ShopCarCoupon" >
+    update t_shop_car_coupon
+    <set >
+      <if test="companyId != null" >
+        company_id = #{companyId,jdbcType=BIGINT},
+      </if>
+      <if test="storeId != null" >
+        store_id = #{storeId,jdbcType=BIGINT},
+      </if>
+      <if test="selasTitle != null" >
+        selas_title = #{selasTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="productId != null" >
+        product_id = #{productId,jdbcType=BIGINT},
+      </if>
+      <if test="hotIcon != null" >
+        hot_icon = #{hotIcon,jdbcType=INTEGER},
+      </if>
+      <if test="enabled != null" >
+        enabled = #{enabled,jdbcType=CHAR},
+      </if>
+      <if test="lastModify != null" >
+        last_modify = #{lastModify,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cnit.yoyo.model.shop.ShopCarCoupon" >
+    update t_shop_car_coupon
+    set company_id = #{companyId,jdbcType=BIGINT},
+      store_id = #{storeId,jdbcType=BIGINT},
+      selas_title = #{selasTitle,jdbcType=VARCHAR},
+      product_id = #{productId,jdbcType=BIGINT},
+      hot_icon = #{hotIcon,jdbcType=INTEGER},
+      enabled = #{enabled,jdbcType=CHAR},
+      last_modify = #{lastModify,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <resultMap type="com.cnit.yoyo.model.shop.dto.ShopCarCouponDTO" id="ShopCarCouponResulMap" extends="BaseResultMap">
+		<result column="name" property="productName"/>
+		<result column="price" property="price"/>
+		<result column="goods_id" property="goodsId"/>
+		<result column="picture_path" property="picturePath"/>
+  </resultMap>
+  <select id="selectShopCarCoupon" resultMap="ShopCarCouponResulMap" parameterType="com.cnit.yoyo.model.shop.ShopCarCoupon">
+  	select
+    	coupon.product_id, coupon.company_id, coupon.store_id, coupon.selas_title, coupon.product_id, coupon.hot_icon, coupon.enabled, coupon.last_modify,
+    	product.price,product.goods_id,product.`name`,product.picture_path
+    from
+    	t_shop_car_coupon coupon
+    left join
+    	t_products product on coupon.product_id=product.product_id
+    where
+    	coupon.company_id=#{companyId}
+    and 
+    	product.marketable=1
+  </select>
+</mapper>

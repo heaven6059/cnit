@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans    
+    http://www.springframework.org/schema/beans/spring-beans-3.2.xsd    
+    http://www.springframework.org/schema/context   
+    http://www.springframework.org/schema/context/spring-context-3.2.xsd 
+    http://www.springframework.org/schema/mvc   
+    http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+    http://www.springframework.org/schema/aop 
+    http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
+    http://www.springframework.org/schema/task
+    http://www.springframework.org/schema/task/spring-task-3.2.xsd">
+	<!-- Spring MVC配置 -->
+	<context:annotation-config />
+	<!-- 启用apo拦截 -->
+    <aop:aspectj-autoproxy proxy-target-class="true" />
+	<!--扫描注解 -->
+	<context:component-scan base-package="com.cnit.yoyo.*" />
+	<!--默认的mvc注解映射的支持 -->
+	<mvc:annotation-driven>
+		<mvc:message-converters>
+			<bean class="org.springframework.http.converter.StringHttpMessageConverter">
+				<property name="supportedMediaTypes">
+					<list>
+						<value>text/plain;charset=UTF-8</value>
+						<value>text/html;charset=UTF-8</value>
+						<value>application/json;charset=UTF-8</value>  
+					</list>
+				</property>
+			</bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
+	<!-- 默认拦截器 -->
+<!-- 	<mvc:interceptors>  -->
+<!--        <mvc:interceptor>  -->
+<!--            <mvc:mapping path="/**"/>  -->
+<!--            <bean class="com.cnit.yoyo.base.interceptor.PermissionInterceptor" />  -->
+<!--        </mvc:interceptor>  -->
+<!--     </mvc:interceptors>  -->
+    
+	<!-- 视图解析器和json解析器 -->
+	<bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+		<property name="mediaTypes">
+			<map>
+				<entry key="html" value="text/html" />
+				<entry key="json" value="application/json" />
+			</map>
+		</property>
+		<property name="viewResolvers">
+			<list>
+				<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+					<property name="prefix" value="/WEB-INF/" /> <!--可为空,方便实现自已的依据扩展名来选择视图解释类的逻辑 -->
+					<property name="suffix" value=".jsp" />
+				</bean>
+			</list>
+		</property>
+		<property name="defaultViews">
+			<list>
+				<bean class="org.springframework.web.servlet.view.json.MappingJackson2JsonView" />
+			</list>
+		</property>
+	</bean>
+	<!-- 文件上传解析器 -->
+	 <bean id="multipartResolver"  
+	    class="org.springframework.web.multipart.commons.CommonsMultipartResolver">  
+	    <!-- 设置上传文件的最大尺寸为2MB -->  
+	    <property name="maxUploadSize">  
+	        <value>2097152</value>  
+	    </property>
+	    <!--<property name="uploadTempDir"> <value>file:D:/temp</value></property> -->
+	    <property name="defaultEncoding"><value>utf-8</value></property> 
+	</bean>
+	<!-- 总错误处理 -->
+	<bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<property name="defaultErrorView">
+			<value>/error</value>
+		</property>
+		<property name="defaultStatusCode">
+			<value>500</value>
+		</property>
+		<property name="warnLogCategory">
+			<value>org.springframework.web.servlet.handler.SimpleMappingExceptionResolver
+			</value>
+		</property>
+	</bean>
+	<!-- 对静态资源文件的访问 -->
+	<mvc:resources mapping="/resources/**" location="/resources/" cache-period="31556926" />
+    <mvc:resources mapping="/pages/**" location="/pages/"/>
+	
+	<!-- 加载系统参数 -->
+	<bean id="config" class="com.cnit.yoyo.util.Configuration" factory-method="getInstance">
+		<!-- 配置文件路径 -->
+		<constructor-arg type="java.lang.String" value="config.properties" />
+	</bean>
+	
+	<!-- <import resource="ApplicationContext-mvc-shiro.xml"/> -->
+</beans>

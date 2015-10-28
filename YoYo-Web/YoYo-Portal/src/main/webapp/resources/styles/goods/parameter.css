@@ -1,0 +1,152 @@
+@charset "utf-8";
+/* CSS Document */
+	.row{ width: 1200px; height: auto; margin: 0 auto; position: relative; }
+	.column{ width: 1068px; height: auto; }
+	.title-content{ padding-top: 15px; border: 1px solid #ccd3e5; }
+	h1, h2, h3, h4, h5, h6 { font-size: 100%; font-weight: 500; }
+	.select-option dl dd:hover, .select-option dl dd a:hover, .select-option dl dd.current, .select-option dl dd.current a{ color: #3b5998; background-color: #f2f5f8; }
+	label input{ margin-right: 3px; position: relative; top: 3px; -moz-position: relative; -moz-top: 1px; }
+	input{ display: inline-block;  outline: 0;  }/* font-size: 100%;font: 12px/1.5 "\5B8B\4F53",arial,tahoma,sans-serif; */
+	strong,b{ font-weight: bold; }
+	
+	
+	/*车型图片*/
+	.tablechoice{ height: 215px; margin-bottom: 15px; line-height: 20px; border-collapse: collapse; border-spacing: 0; border-color: gray; display: table; zoom: 1; }
+	tr{ display: table-row; vertical-align: inherit; border-color: inherit; }
+	.title-content td{ border-right: 1px dotted #ccd3e4; vertical-align: top; padding: 0 9px; }
+	.title-content table th { padding: 0 9px; }
+	.title-content tr .title{ width: 161px; }
+	.tablechoice .title-name { font-size: 14px; font-weight: 700; padding-bottom: 10px; }
+	.font-grey999 { color: #999; }
+	.tablechoice .title-option{ margin-top: 50px; }
+	.tablechoice .title-option p{ margin-bottom: 5px; }
+	.title-content label { cursor: pointer; font-size: 12px; }
+	label{ text-align: left; min-height: 16px; line-height: 16px; vertical-align: middle; font-size: 14px; }
+	.checkbox { width: 12px; height: 12px vertical-align: middle margin: -4px 4px 0 0; }
+	table .text, .pop02{ width: 205px; }
+	.text-ul .text-ul-pic { width: 120px; height: 90px; overflow: hidden; margin: 0 auto 10px; }
+	.zindex-103{ z-index: 103; }
+	.zindex-102{ z-index: 102; }
+	.zindex-101{ z-index: 101; }
+	.text-ul .text-ul-selectcon{ height: 24px; position: relative; margin-bottom: 5px; vertical-align: middle; }
+	.select { font-size: 12px; max-width: 260px; cursor: pointer; min-width: 100%; position: absolute; }
+	.select-selected { width: 99%; height: 22px; line-height: 138px; border: solid 1px #ccd3e4; background-color: #fff; color: #666; position: relative; overflow: hidden; z-index: 100; }
+	.select-selected:hover{ background-color: #fafbfc; border: 1px solid #7892cd; }
+	
+	
+	/*下拉选择菜单*/
+	.select-option{ position: absolute; z-index: 200; top: 24px; left: 0; width: 98%; background: url(../images/shadow_bg.png) repeat scroll 0 0 transparent; padding: 2px; display: none; }
+	.select-option dl{ max-height: 250px; border: 1px solid #ccd3e4; background-color: #fff; color: #666; overflow-y: auto; overflow-x: hidden; cursor: pointer; }
+	.select-option dl dd{ cursor: pointer; overflow: hidden; clear: both; }
+	.select-option dl dd:first-child, .select-option dl dt:first-child{ border-top: 0; }
+	.select-option dl dd, .select-option dl dt{ height: 24px; line-height: 24px; border-top: 1px dotted #ccd3e4; padding: 0; }
+	.select-option dl dd b{ display: inline-block; width: 25px; text-align: center; float: left; font-family: Arial, Helvetica, sans-serif; }
+	.select-option dl dd a{ display: block; padding: 0 10px 0 27px; color: #666; }
+	.select-option dl dt{ font-size: 14px; font-weight: 700; text-align: left; padding: 0 10px; }
+	
+	
+	.select-selected span { float: left; line-height: 22px; padding-left: 5px; margin-right: 20px; }
+	.select-selected .icon10-down1 { background-position: -61px -208px; position: absolute; right: 6px; top: 10px; }
+	.select .icon10-down1 { -webkit-transition: -webkit-transform .2s ease-in; -moz-transition: -moz-transform .2s ease-in; -o-transition: -o-transform .2s ease-in; transition: transform .2s ease-out 0s; -moz-transform: rotate(0deg); -webkit-transform: rotate(0deg); -o-transform: rotate(0deg); transform: rotate(0deg); }
+	.icon10-down1 { background-position: -160px -60px; }
+	.icon10{ height: 10px; width: 10px; }
+	.icon, .icon16, .icon12, .icon10 { display: inline-block; background: url(../images/p_picbg.png) no-repeat; _background: url(../images/p_picbg.png) no-repeat; overflow: hidden; }
+	.tablechoice .text-ul .text-ul-btncont, .imgwrap { text-align: center; }
+	.tablechoice .text-ul .btn { margin-right: 7px; }
+	.btn, .btn:link, .btn:visited { font-family: "\5B8B\4F53"; display: inline-block; color: #3b5b98; border: 1px solid #ccd3e4; background-color: #fafbfc; cursor: pointer; outline: 0; overflow: hidden; text-align: center; vertical-align: middle; }
+	.btn-small { height: 24px; line-height: 24px; padding: 0 15px; font-size: 12px; font-weight: 100; }
+	/*车型信息*/
+	.tableinfo{ line-height: 29px; }
+	.tableinfo .redtitle { height: 52px; font-size: 14px; font-weight: 700; text-align: center; color: #d60000; }
+	.tableinfo th { border-top: 1px solid #ccd3e4; text-align: right; background-color: #fafbfc; }
+	.tableinfo .name { text-align: center; background-color: #fafbfc; line-height: 20px; font-weight: 700; }
+	.tableinfo td { border-left: 1px solid #ccd3e4; border-top: 1px solid #ccd3e4; text-align: center; vertical-align: middle; }
+	a {  outline: 0; }/* color: #3B5998; */
+	
+	
+	/*查看更多车型*/
+	.mouth-more{ height: 30px; line-height: 30px; background-color: #fffbe2; font-weight: 700; border-top: 1px solid #ccd3e5; text-align: center; }
+	
+	/*基本参数*/
+	.genre-title { height: 36px; line-height: 36px; font-weight: 700; padding-left: 14px; cursor: pointer; border-top: 1px solid #ccd3e5; background-color: #fafbfc; color: #3b5998; }
+	.genre-title .icon10 { float: left; margin: 13px 5px 0 0; }
+	.icon10-pack { background-position: -180px 0; }
+	.icon10{ width: 10px; height: 10px; }
+	.genre-title h3 { font-size: 14px; font-weight: 700; }
+	
+	
+	
+  /* 左侧跟随 */
+  .followcon{ width: 127px; z-index:100 ; position: fixed; top: 480px;
+  _position:absolute;
+  _top:expression(eval(document.documentElement.scrollTop + 480));
+  _bottom: 0;
+  *zoom:1;
+  }
+  .folul li, .folul li a:hover, .folul li a.active, .folul li a.active:hover, .icon-jt{ background: url(../../images/goods/duibi-bg20140320.png) no-repeat; }
+  .folul{ width: 121px; background-color: #eef3f9; padding: 5px 0px; margin: 0 5px; float: left; }
+  .folul li{ width: 121px; height: 100%; background-position: -31px -5px; float: left; _overflow:hidden; }
+  .folul li.top{ background-position: 101px -17px; }
+  .folul li a.top:hover{ background-position: 101px -58px; }
+  .folul li.bottom{ background-position: 101px -58px; }
+  .folul li a.bottom:hover{ background-position: 101px -58px; }
+  .folul li a{ display: block; height: 23px; line-height: 23px; margin: 2px 0; padding-right: 25px;text-align: center; }
+  .folul li a:link,.folul li a:visited{ color: #5c6962; text-decoration: none; }
+  .folul li a:hover{ color: #5c6962; background-color: #cfe0f4; background-position: -31px -7px; }
+  .folul li a.active,.folul li a.active:link,.folul li a.active:visited,.folul li a.active:hover{ width: 101px; height: 31px; line-height: 31px; background-position: 0 -90px; margin: 0 0 0 -4px;padding-right: 45px; color: #fff; font-weight: bold; position: relative; }
+
+
+
+
+/*PAR2*/
+.title .parP P{ float: left; color: #333; }
+.title input{ position: relative; top: 3px; }
+.title label{ color: #3b5998; }
+.btn_delbar {
+  height: 16px;
+  line-height: 16px;
+  padding: 4px;
+  text-align: center;
+  position: relative;}
+
+.btn_delbar a.btn_del{ width: 16px;
+  height: 16px;
+  line-height: 16px;
+  display: inline-block;
+  background-position: -80px -172px;
+  overflow: hidden;
+  position: absolute;
+  top: 4px;
+  right: 4px; background-image: url(../images/csicon.png); }
+a.btn_del:hover {
+  background-position: -80px -193px;}
+.carbox .carboxin{ height: 50px; font-size: 12px; font-weight: bold; text-align: center; }
+.carboxin a{ text-align: center; }
+.carboxin a:hover{ color: #E4393C; }
+.carbox p {
+  height: 15px;
+  zoom: 1;
+  position: relative;
+  margin: 0px;
+  padding: 0px;
+}
+.carbox .btn_mini{ color: #fff; background-color: #3b5998; display: inline-block;
+  width: 45px;
+  height: 16px;
+  line-height: 16px;
+  padding: 0;
+  border: 0!important;
+  font-weight: bold; text-align: center; position: absolute; left: 74px; top: -10px; }
+.carbox a.btn_mini:hover{ color: #fff; background-color: #ff7700; }
+.tabcolor td{ background-color: #f0f3f8; }
+
+
+
+
+
+
+
+
+
+
+

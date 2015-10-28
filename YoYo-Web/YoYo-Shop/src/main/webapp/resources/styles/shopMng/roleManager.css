@@ -1,0 +1,65 @@
+@CHARSET "UTF-8";
+
+.shop_manager_right .title {
+	height: 45px;
+	line-height: 45px;
+	font-size: 18px;
+	font-family: 'Microsoft Yahei';
+	font-weight: normal;
+	border-bottom: 1px solid #eee;
+	margin-bottom: 15px;
+}
+.shop_manager_right .disc {
+	color: #666666;
+	font-weight: 100;
+	padding-left: 15px;
+	font-size: 12px;
+}
+.shop_manager_right .disc a:link {
+	color: #31A13D;
+}
+.shop_manager_right a {
+	cursor: pointer;
+	text-decoration: none;
+	outline: none /* for FF Chrome */;
+}
+.addRoles {
+	border: none;
+	border-bottom: 1px dashed #ddd;
+	margin-bottom: 30px;
+	padding-bottom: 20px;
+	display: none;
+}
+.addRoles_table {
+	border-collapse: separate;
+	border-spacing: 10px;
+}
+.datagrid-btable th{
+	text-align: center;
+	font-weight: normal;
+	line-height: 39px;
+	font-size: 13px;
+	border-bottom: 1px solid #DEDEDE;
+	background-color: #FFF0F5;
+}
+.datagrid-btable td{
+	text-align: center;
+	line-height: 39px;
+	font-size: 13px;
+	border: 1px solid #DEDEDE;
+}
+.addRoles_table td{
+	line-height: 32px;
+	font-size: 13px;
+}
+/* .addRoles_table input {
+	border: 1px solid #cccccc;
+	padding: 6px 5px;
+	width: 300px;
+}
+
+input {
+	line-height: 18px;
+	vertical-align: middle;
+	padding: 2px 0;
+} */

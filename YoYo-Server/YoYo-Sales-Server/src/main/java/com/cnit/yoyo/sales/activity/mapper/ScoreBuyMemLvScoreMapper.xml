@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cnit.yoyo.sales.activity.dao.ScoreBuyMemLvScoreMapper" >
+  <resultMap id="BaseResultMap" type="com.cnit.yoyo.model.sales.activity.ScoreBuyMemLvScore" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="member_id" property="memberId" jdbcType="INTEGER" />
+    <result column="aid" property="aid" jdbcType="INTEGER" />
+    <result column="gid" property="gid" jdbcType="BIGINT" />
+    <result column="level_id" property="levelId" jdbcType="INTEGER" />
+    <result column="score" property="score" jdbcType="INTEGER" />
+    <result column="price" property="price" jdbcType="DECIMAL" />
+    <result column="last_price" property="lastPrice" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, member_id, aid, gid, level_id, score, price, last_price
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_scorebuy_memberlvscore
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_scorebuy_memberlvscore
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cnit.yoyo.model.sales.activity.ScoreBuyMemLvScore" >
+    insert into t_scorebuy_memberlvscore (id, member_id, aid, 
+      gid, level_id, score, 
+      price, last_price)
+    values (#{id,jdbcType=INTEGER}, #{memberId,jdbcType=INTEGER}, #{aid,jdbcType=INTEGER}, 
+      #{gid,jdbcType=BIGINT}, #{levelId,jdbcType=INTEGER}, #{score,jdbcType=INTEGER}, 
+      #{price,jdbcType=DECIMAL}, #{lastPrice,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cnit.yoyo.model.sales.activity.ScoreBuyMemLvScore" >
+    insert into t_scorebuy_memberlvscore
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="memberId != null" >
+        member_id,
+      </if>
+      <if test="aid != null" >
+        aid,
+      </if>
+      <if test="gid != null" >
+        gid,
+      </if>
+      <if test="levelId != null" >
+        level_id,
+      </if>
+      <if test="score != null" >
+        score,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="lastPrice != null" >
+        last_price,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="memberId != null" >
+        #{memberId,jdbcType=INTEGER},
+      </if>
+      <if test="aid != null" >
+        #{aid,jdbcType=INTEGER},
+      </if>
+      <if test="gid != null" >
+        #{gid,jdbcType=BIGINT},
+      </if>
+      <if test="levelId != null" >
+        #{levelId,jdbcType=INTEGER},
+      </if>
+      <if test="score != null" >
+        #{score,jdbcType=INTEGER},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="lastPrice != null" >
+        #{lastPrice,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cnit.yoyo.model.sales.activity.ScoreBuyMemLvScore" >
+    update t_scorebuy_memberlvscore
+    <set >
+      <if test="memberId != null" >
+        member_id = #{memberId,jdbcType=INTEGER},
+      </if>
+      <if test="aid != null" >
+        aid = #{aid,jdbcType=INTEGER},
+      </if>
+      <if test="gid != null" >
+        gid = #{gid,jdbcType=BIGINT},
+      </if>
+      <if test="levelId != null" >
+        level_id = #{levelId,jdbcType=INTEGER},
+      </if>
+      <if test="score != null" >
+        score = #{score,jdbcType=INTEGER},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="lastPrice != null" >
+        last_price = #{lastPrice,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cnit.yoyo.model.sales.activity.ScoreBuyMemLvScore" >
+    update t_scorebuy_memberlvscore
+    set member_id = #{memberId,jdbcType=INTEGER},
+      aid = #{aid,jdbcType=INTEGER},
+      gid = #{gid,jdbcType=BIGINT},
+      level_id = #{levelId,jdbcType=INTEGER},
+      score = #{score,jdbcType=INTEGER},
+      price = #{price,jdbcType=DECIMAL},
+      last_price = #{lastPrice,jdbcType=DECIMAL}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

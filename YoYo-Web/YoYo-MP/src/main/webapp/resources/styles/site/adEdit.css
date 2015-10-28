@@ -1,0 +1,49 @@
+.huabu{
+		width:400px;
+		height:300px;
+	}
+.info{
+margin-top:20px;
+margin-left:300px;
+padding:1px;
+}
+.readonly{
+color:rgb(84, 84, 84);
+background-color:rgb(235, 235, 228);
+}
+td span.star{
+color:red;
+}
+.fieldValue3{
+width:410px;
+}
+div.confirm{
+margin-left:375px;
+margin-top:10px;
+}
+tbody{
+border:1px solid gray;
+}
+.img{
+width:410px;
+height:200px;
+}
+.fileInputContainer1 {
+	height: 31px;
+	background: url("../../images/btn1.jpg") left center;
+	position: relative;
+	width: 101px;
+	margin-left: 5px;
+}
+.fileInput1 {
+	height: 31px;
+	overflow: hidden;
+	font-size: 300px;
+	position: absolute;
+	right: 0;
+	top: 0;
+	opacity: 0;
+	filter: alpha(opacity = 0);
+	cursor: pointer;
+	width: 101px;
+}

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cnit.yoyo.membermsg.dao.MemberMsgMapper" >
+  <resultMap id="BaseResultMap" type="com.cnit.yoyo.membermsg.model.MemberMsg" >
+    <id column="msg_id" property="msgId" jdbcType="INTEGER" />
+    <result column="for_id" property="forId" jdbcType="INTEGER" />
+    <result column="from_id" property="fromId" jdbcType="INTEGER" />
+    <result column="from_uname" property="fromUname" jdbcType="VARCHAR" />
+    <result column="from_type" property="fromType" jdbcType="INTEGER" />
+    <result column="to_id" property="toId" jdbcType="INTEGER" />
+    <result column="to_uname" property="toUname" jdbcType="VARCHAR" />
+    <result column="subject" property="subject" jdbcType="VARCHAR" />
+    <result column="order_id" property="orderId" jdbcType="BIGINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="to_time" property="toTime" jdbcType="TIMESTAMP" />
+    <result column="has_read" property="hasRead" jdbcType="CHAR" />
+    <result column="has_sent" property="hasSent" jdbcType="CHAR" />
+    <result column="has_star" property="hasStar" jdbcType="CHAR" />
+    <result column="keep_unread" property="keepUnread" jdbcType="CHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.cnit.yoyo.membermsg.model.MemberMsg" extends="BaseResultMap" >
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  
+   <select id="getMemberMsgList" parameterType = "Map" resultMap="BaseResultMap">
+		SELECT
+		  MSG.`MSG_ID`,
+		  MSG.`FOR_ID`,
+		  MSG.`FROM_ID`,
+		  MSG.`FROM_UNAME`,
+		  MSG.`FROM_TYPE`,
+		  MSG.`TO_ID`,
+		  MSG.`TO_UNAME`,
+		  MSG.`SUBJECT`,
+		  MSG.`ORDER_ID`,
+		  MSG.`CREATE_TIME`,
+		  MSG.`TO_TIME`,
+		  MSG.`HAS_READ`,
+		  MSG.`HAS_SENT`,
+		  MSG.`HAS_STAR`,
+		  MSG.`KEEP_UNREAD`
+		FROM `T_MEMBER_MSG` MSG
+		<where>
+		  <if test="memberId != null and memberId != '' ">
+			  MSG.`FROM_ID` = #{memberId} or MSG.`TO_ID` = #{memberId}
+		  </if>
+		  <if test="hasRead != null and hasRead != '' ">
+			 AND  MSG.`HAS_READ` = #{hasRead}
+		  </if>
+		  <if test="hasSent != null and hasSent != '' ">
+			 AND  MSG.`HAS_SENT` = #{hasSent}
+		  </if>
+		  <if test="hasStar != null and hasStar != '' ">
+			 AND  MSG.`HAS_STAR` = #{hasStar}
+		  </if>
+		</where>  			
+		  	ORDER  BY  MSG.TO_TIME DESC	  		  		  		  		  
+  </select>
+  
+   <select id="getMemberMsgDetailById" parameterType="java.util.Map" resultMap="ResultMapWithBLOBs">
+		SELECT
+		  MSG.`MSG_ID`,
+		  MSG.`FOR_ID`,
+		  MSG.`FROM_ID`,
+		  MSG.`FROM_UNAME`,
+		  MSG.`FROM_TYPE`,
+		  MSG.`TO_ID`,
+		  MSG.`TO_UNAME`,
+		  MSG.`SUBJECT`,
+		  MSG.`CONTENT`,
+		  MSG.`ORDER_ID`,
+		  MSG.`CREATE_TIME`,
+		  MSG.`TO_TIME`,
+		  MSG.`HAS_READ`,
+		  MSG.`HAS_SENT`,
+		  MSG.`HAS_STAR`,
+		  MSG.`KEEP_UNREAD`
+		FROM 
+			`T_MEMBER_MSG` MSG
+		WHERE 
+			MSG.MSG_ID = #{msgIds} AND MSG.TO_ID=#{memberId}
+   </select>
+ 
+ <update id="updateMemberMsgReadStatus" parameterType="java.util.Map">
+		UPDATE 
+			T_MEMBER_MSG MSG 
+		SET
+			MSG.`HAS_READ` =  'true'			
+		WHERE MSG.TO_ID=#{memberId} AND MSG.`MSG_ID` in
+		<foreach collection="msgIds" item="id" index="index" open="(" close=")" separator=",">
+			#{id}
+		</foreach>
+ </update>
+  <insert id="insert" parameterType="com.cnit.yoyo.membermsg.model.MemberMsg">
+    insert into t_member_msg (msg_id, for_id, from_id, 
+      from_uname, from_type, to_id, 
+      to_uname, subject, order_id, 
+      create_time, to_time, has_read, 
+      has_sent, has_star, keep_unread, 
+      content)
+    values (#{msgId,jdbcType=INTEGER}, #{forId,jdbcType=INTEGER}, #{fromId,jdbcType=INTEGER}, 
+      #{fromUname,jdbcType=VARCHAR}, #{fromType,jdbcType=INTEGER}, #{toId,jdbcType=INTEGER}, 
+      #{toUname,jdbcType=VARCHAR}, #{subject,jdbcType=VARCHAR}, #{orderId,jdbcType=BIGINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{toTime,jdbcType=TIMESTAMP}, #{hasRead,jdbcType=CHAR}, 
+      #{hasSent,jdbcType=CHAR}, #{hasStar,jdbcType=CHAR}, #{keepUnread,jdbcType=CHAR}, 
+      #{content,jdbcType=LONGVARCHAR})
+  </insert>
+</mapper>

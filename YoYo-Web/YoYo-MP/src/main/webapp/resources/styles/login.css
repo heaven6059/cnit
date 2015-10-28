@@ -1,0 +1,36 @@
+@charset "utf-8";
+/* CSS Document */
+.h_top{ width: 100%; height: 80px; }
+.h_top_in{ width: 980px; height: 80px; margin: 0 auto; }
+.h_top_l{height: 80px; line-height: 80px; }
+.h_top_l h1{ width: 160px; height: 80px; }
+.h_top_l h1 a{ width: 160px; height: 45px; margin-top: 15px; display: inline-block; background:url(../images/login/login_pic.png) no-repeat 0 0; text-indent: -999em; }
+.login_txt{font-size: 24px;  color: #666; font-style: normal;height: 80px; line-height: 80px;}
+.h_top_r{ width: 100px; height: 42px; background: url(../images/login/login_pic.png) 0 -60px; margin-top: 19px; }
+.merchantLogin{width: 1246px; height: 475px; margin: 0 auto; background: url(../images/login/login.jpg) 0 0;}
+
+.main{ width: 100%; height: 475px; background-color: #1d74e0; }
+.main_in{ width: 980px; height: 475px; margin: 0 auto; background: url(../images/login_bg.jpg) no-repeat left top; position: relative; }
+
+.login{ width: 306px; height: 280px; background-color: #fff; position: absolute; top: 70px; right: 1px; padding: 20px; }
+.login_t{ width: 306px; height: 20px; line-height: 20px; margin-top: 10px; }
+.login_t h2{ display: inline-block; font-family:"微软雅黑"; font-size: 18px; }
+.login_t a{ width: 78px; height: 16px; line-height: 16px; display: inline-block; font-family:"微软雅黑"; font-size: 14px; background:url(../images/login_icon.png) no-repeat; text-align: right; }
+.login_b{ width: 306px; height: 254px; }
+.user input{ height: 37px; line-height: 37px; }
+.user{ width: 304px; height: 38px; border: 1px solid #c7c7c7; margin-top: 20px;margin-top: 30px;  }
+.user span{ width: 38px; height: 38px; display: block; background: url(../images/login/login_pic.png) no-repeat left -115px; }
+.user input{ width: 252px; height: 22px; border: 0; padding-left: 10px; line-height:22px; margin:8px 0px 7px 0px}
+.pws span{ background-position: 0 -162px; }
+
+.code{ width: 306px; height: 40px; margin-top: 20px; }
+.code_ipt{ width: 120px; height: 38px; border: 1px solid #c7c7c7; }
+.code_ipt input{ width: 110px; height: 37px; border: 0; line-height: 38px; padding-left: 10px; }
+.code_bg{height: 40px;padding: 0px 6px;}
+.code span{ width: 98px; height: 40px; line-height: 40px; display: block; font-family:"宋体"; font-size: 12px; }
+.code span a{ color: #0088cc; }
+.find{ width: 306px; height: 14px; line-height: 14px; margin-top: 20px; }
+.find a{ display: block; }
+.sub{color: #fff;font-size: 18px; text-align: center; display: block;height: 38px;line-height: 38px; background-color:#6fc615;border: 1px solid #76a518; margin-top: 20px}
+.sub:hover{color:#fff;background-color:#75CF18;border: 1px solid #86BB1C}
+

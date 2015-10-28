@@ -1,0 +1,133 @@
+.webuploader-container {
+	position: relative;
+}
+.webuploader-element-invisible {
+	position: absolute !important;
+	clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+    clip: rect(1px,1px,1px,1px);
+}
+.webuploader-pick {
+	position: relative;
+	display: inline-block;
+	cursor: pointer;
+	background: #00b7ee;
+	padding: 10px 15px;
+	color: #fff;
+	text-align: center;
+	border-radius: 3px;
+	overflow: hidden;
+	display:none;
+}
+.webuploader-pick-hover {
+	background: #00a2d4;
+}
+
+.webuploader-pick-disable {
+	opacity: 0.6;
+	pointer-events:none;
+}
+
+.uploader-list {
+  width: 100%;
+  overflow: hidden;
+}
+
+.file-item {
+  float: left;
+  position: relative;
+  margin: 0 20px 20px 0;
+  padding: 4px;
+}
+.thumbnail, .img-thumbnail {
+  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.075);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.075);
+}
+.thumbnail {
+  display: block;
+  padding: 4px;
+  margin-bottom: 20px;
+  line-height: 1.428571429;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  -webkit-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+  position: relative;
+}
+
+.thumbnail>img, .thumbnail a>img {
+  display: block;
+  height: auto;
+  max-width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+img {
+  vertical-align: middle;
+}
+
+.file-item .info {
+  position: absolute;
+  left: 4px;
+  bottom: 4px;
+  right: 4px;
+  height: 20px;
+  line-height: 20px;
+  text-indent: 5px;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 12px;
+  z-index: 10;
+}
+
+.upload-state-done:after {
+  content: "\f00c";
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 32px;
+  position: absolute;
+  bottom: 0;
+  right: 4px;
+  color: #4cae4c;
+  z-index: 99;
+}
+
+.picture div.file-panel {
+  position: absolute;
+  height: 0;
+  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#80000000', endColorstr='#80000000')\0;
+  background: rgba( 0, 0, 0, 0.5 );
+  width: 100%;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  z-index: 300;
+}
+
+.picture div.file-panel span {
+  width: 24px;
+  height: 24px;
+  display: inline;
+  float: right;
+  text-indent: -9999px;
+  overflow: hidden;
+  background: url(../../images/webUploader/icons.png) no-repeat;
+  margin: 5px 1px 1px;
+  cursor: pointer;
+}
+
+.picture div.file-panel span.cancel {
+  background-position: -48px -24px;
+}
+.picture div.file-panel span.cancel:hover  {
+    background-position: -48px 0;
+}
+

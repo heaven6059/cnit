@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cnit.yoyo.dao.system.ResourceMapper" >
+  <resultMap id="BaseResultMap" type="com.cnit.yoyo.model.system.Resource" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="RESOURCE_NAME" property="resourceName" jdbcType="VARCHAR" />
+    <result column="RESOURCE_TYPE" property="resourceType" jdbcType="VARCHAR" />
+    <result column="APP_ID" property="appId" jdbcType="VARCHAR" />
+    <result column="WORKGROUND" property="workground" jdbcType="VARCHAR" />
+    <result column="MENU_GROUP" property="menuGroup" jdbcType="VARCHAR" />
+    <result column="MENU_TITLE" property="menuTitle" jdbcType="VARCHAR" />
+    <result column="URL" property="url" jdbcType="VARCHAR" />
+    <result column="DISABLEd" property="disabled" jdbcType="BIT" />
+    <result column="DISPLAY" property="display" jdbcType="BIT" />
+    <result column="PERMISSION" property="permission" jdbcType="VARCHAR" />
+    <result column="TARGET" property="target" jdbcType="VARCHAR" />
+    <result column="MENU_ORDER" property="menuOrder" jdbcType="INTEGER" />
+    <result column="IDENTITY" property="identity" jdbcType="VARCHAR" />
+    <result column="PARENT_ID" property="parentId" jdbcType="INTEGER" />
+    <result column="PARENT_IDS" property="parentIds" jdbcType="VARCHAR" />
+    <result column="ICON" property="icon" jdbcType="VARCHAR" />
+    <result column="WEIGHT" property="weight" jdbcType="INTEGER" />
+  </resultMap>
+  
+  <resultMap id="ResultMapWithBLOBs" type="com.cnit.yoyo.model.system.Resource" extends="BaseResultMap" >
+    <result column="ADDON" property="addon" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  
+    <resultMap type="com.cnit.yoyo.model.system.Resource" id="resourceRoleMap" extends="BaseResultMap">  
+      <collection property="roles" ofType="com.cnit.yoyo.model.system.Role">  
+          <id column="ROLE_ID" property="roleId" jdbcType="INTEGER" />
+   		  <result column="ROLE_NAME" property="roleName" jdbcType="VARCHAR" />
+          <result column="ROLE" property="role" jdbcType="VARCHAR" />
+          <result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
+          <result column="ROLE_STATUS" property="roleStatus" jdbcType="VARCHAR" /> 
+      </collection>  
+  </resultMap>
+  
+    <resultMap id="ResourceDTO" type="com.cnit.yoyo.model.system.dto.ResourceListDTO" extends="BaseResultMap" >
+    	<result column="RESOURCE_TYPE" property="resourceType" jdbcType="VARCHAR" />
+   	    <result column="DISABLEd" property="disabled" jdbcType="VARCHAR" />
+    	<result column="DISPLAY" property="display" jdbcType="VARCHAR" />
+  	</resultMap>
+  	
+  	<resultMap id="ResourceTreeDTO" type="com.cnit.yoyo.model.system.dto.ResourceTreeDTO" extends="BaseResultMap" >
+  	</resultMap>
+  
+  <sql id="Base_Column_List" >
+    ID, RESOURCE_NAME, RESOURCE_TYPE, APP_ID, WORKGROUND, MENU_GROUP, MENU_TITLE, URL, 
+    DISABLEd, DISPLAY, PERMISSION, TARGET, MENU_ORDER, IDENTITY, PARENT_ID, PARENT_IDS, 
+    ICON, WEIGHT
+  </sql>
+  <sql id="Blob_Column_List" >
+    ADDON
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_desktop_resource
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  
+    <select id="selectAll" resultMap="ResourceDTO">
+	select 
+    ID, RESOURCE_NAME, RESOURCE_TYPE, URL, 
+    DISABLEd, DISPLAY, PERMISSION, TARGET, MENU_ORDER, PARENT_ID, PARENT_IDS
+    from t_desktop_resource
+    order by ID desc
+  </select>
+  
+   <select id="selectAllTree" resultMap="ResourceTreeDTO">
+	select ID,  PARENT_ID as pId,RESOURCE_NAME as name,TARGET
+    from t_desktop_resource
+  </select>
+  
+  <select id="selectByParentId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_desktop_resource
+    <where>  
+       <if test="parentId != -1">PARENT_ID = #{parentId,jdbcType=INTEGER}</if>  
+   </where> 
+  </select>
+  
+    <select id="selectByAccountId" resultMap="BaseResultMap" parameterType="com.cnit.yoyo.model.system.dto.ResourceQryDTO" >
+    select 
+    t_desktop_resource.ID,
+	t_desktop_resource.RESOURCE_NAME,
+	t_desktop_resource.RESOURCE_TYPE,
+	t_desktop_resource.APP_ID,
+	t_desktop_resource.WORKGROUND,
+	t_desktop_resource.MENU_GROUP,
+	t_desktop_resource.MENU_TITLE,
+	t_desktop_resource.URL,
+	t_desktop_resource.DISABLED,
+	t_desktop_resource.DISPLAY,
+	t_desktop_resource.PERMISSION,
+	t_desktop_resource.ADDON,
+	t_desktop_resource.TARGET,
+	t_desktop_resource.MENU_ORDER,
+	t_desktop_resource.IDENTITY,
+	t_desktop_resource.PARENT_ID,
+	t_desktop_resource.PARENT_IDS,
+	t_desktop_resource.ICON,
+	t_desktop_resource.WEIGHT
+    FROM
+	t_desktop_resource
+	JOIN t_resource_role ON t_desktop_resource.ID = t_resource_role.RESOURCE_ID
+	JOIN t_desktop_roles ON t_resource_role.ROLE_ID = t_desktop_roles.ROLE_ID
+	JOIN t_role_user ON t_desktop_roles.ROLE_ID = t_role_user.ROLE_ID
+	JOIN t_pam_account ON t_role_user.ACCOUNT_ID = t_pam_account.ACCOUNT_ID
+	where t_pam_account.ACCOUNT_ID=#{accountId,jdbcType=INTEGER} and 
+	t_desktop_resource.PARENT_ID=#{parentId,jdbcType=INTEGER}
+	ORDER BY menu_order
+  </select>
+  
+  <select id="selectResourceRole" resultMap="resourceRoleMap" parameterType="java.lang.Integer" >
+    select re.ID, re.RESOURCE_NAME, re.RESOURCE_TYPE, re.APP_ID, re.WORKGROUND, re.MENU_GROUP, re.MENU_TITLE, re.URL, 
+    re.DISABLEd, re.DISPLAY, re.PERMISSION, re.TARGET, re.MENU_ORDER, re.IDENTITY, re.PARENT_ID, re.PARENT_IDS, 
+    re.ICON, re.WEIGHT, re.ADDON,
+    r.ROLE_ID, r.ROLE_NAME, r.ROLE, r.DESCRIPTION, r.ROLE_STATUS,r.WORKGROUND, r.CAT
+	from t_desktop_resource re left join t_resource_role ur on  re.ID= ur.RESOURCE_ID left join t_desktop_roles r on ur.ROLE_ID=r.ROLE_ID
+    where re.ID = #{id,jdbcType=BIGINT}
+  </select>
+  
+  <insert id="saveResourceRoleLink" parameterType="com.cnit.yoyo.model.system.ResourceRoleLink" >
+    insert into t_resource_role (ID, ROLE_ID, RESOURCE_ID)
+    values (#{id,jdbcType=BIGINT}, #{role.roleId,jdbcType=BIGINT}, #{resource.id,jdbcType=BIGINT}
+  </insert>
+  
+  <delete id="deleteResourceRoleLink" parameterType="com.cnit.yoyo.model.system.ResourceRoleLink" >
+    delete from t_resource_role
+    	<where>  
+            <if test="resource.id != 0">RESOURCE_ID = #{resource.id}</if>  
+            <if test="role.roleId != 0">and ROLE_ID = #{role.roleId}</if>  
+        </where> 
+  </delete>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    <!--
+      WARNING - @mbggenerated
+      This element is automatically generated by MyBatis Generator, do not modify.
+      This element was generated on Wed Mar 25 19:51:14 CST 2015.
+    -->
+    delete from t_desktop_resource
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.cnit.yoyo.model.system.Resource" >
+    <!--
+      WARNING - @mbggenerated
+      This element is automatically generated by MyBatis Generator, do not modify.
+      This element was generated on Wed Mar 25 19:51:14 CST 2015.
+    -->
+    insert into t_desktop_resource (ID, RESOURCE_NAME, RESOURCE_TYPE, 
+      APP_ID, WORKGROUND, MENU_GROUP, 
+      MENU_TITLE, URL, DISABLEd, 
+      DISPLAY, PERMISSION, TARGET, 
+      MENU_ORDER, IDENTITY, PARENT_ID, 
+      PARENT_IDS, ICON, WEIGHT, 
+      ADDON)
+    values (#{id,jdbcType=BIGINT}, #{resourceName,jdbcType=VARCHAR}, #{resourceType,jdbcType=VARCHAR}, 
+      #{appId,jdbcType=VARCHAR}, #{workground,jdbcType=VARCHAR}, #{menuGroup,jdbcType=VARCHAR}, 
+      #{menuTitle,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, #{disabled,jdbcType=BIT}, 
+      #{display,jdbcType=BIT}, #{permission,jdbcType=VARCHAR}, #{target,jdbcType=VARCHAR}, 
+      #{menuOrder,jdbcType=INTEGER}, #{identity,jdbcType=VARCHAR}, #{parentId,jdbcType=INTEGER}, 
+      #{parentIds,jdbcType=VARCHAR}, #{icon,jdbcType=VARCHAR}, #{weight,jdbcType=INTEGER}, 
+      #{addon,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cnit.yoyo.model.system.Resource" >
+    <!--
+      WARNING - @mbggenerated
+      This element is automatically generated by MyBatis Generator, do not modify.
+      This element was generated on Wed Mar 25 19:51:14 CST 2015.
+    -->
+    insert into t_desktop_resource
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="resourceName != null" >
+        RESOURCE_NAME,
+      </if>
+      <if test="resourceType != null" >
+        RESOURCE_TYPE,
+      </if>
+      <if test="appId != null" >
+        APP_ID,
+      </if>
+      <if test="workground != null" >
+        WORKGROUND,
+      </if>
+      <if test="menuGroup != null" >
+        MENU_GROUP,
+      </if>
+      <if test="menuTitle != null" >
+        MENU_TITLE,
+      </if>
+      <if test="url != null" >
+        URL,
+      </if>
+      <if test="disabled != null" >
+        DISABLEd,
+      </if>
+      <if test="display != null" >
+        DISPLAY,
+      </if>
+      <if test="permission != null" >
+        PERMISSION,
+      </if>
+      <if test="target != null" >
+        TARGET,
+      </if>
+      <if test="menuOrder != null" >
+        MENU_ORDER,
+      </if>
+      <if test="identity != null" >
+        IDENTITY,
+      </if>
+      <if test="parentId != null" >
+        PARENT_ID,
+      </if>
+      <if test="parentIds != null" >
+        PARENT_IDS,
+      </if>
+      <if test="icon != null" >
+        ICON,
+      </if>
+      <if test="weight != null" >
+        WEIGHT,
+      </if>
+      <if test="addon != null" >
+        ADDON,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="resourceName != null" >
+        #{resourceName,jdbcType=VARCHAR},
+      </if>
+      <if test="resourceType != null" >
+        #{resourceType,jdbcType=VARCHAR},
+      </if>
+      <if test="appId != null" >
+        #{appId,jdbcType=VARCHAR},
+      </if>
+      <if test="workground != null" >
+        #{workground,jdbcType=VARCHAR},
+      </if>
+      <if test="menuGroup != null" >
+        #{menuGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="menuTitle != null" >
+        #{menuTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="disabled != null" >
+        #{disabled,jdbcType=BIT},
+      </if>
+      <if test="display != null" >
+        #{display,jdbcType=BIT},
+      </if>
+      <if test="permission != null" >
+        #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="target != null" >
+        #{target,jdbcType=VARCHAR},
+      </if>
+      <if test="menuOrder != null" >
+        #{menuOrder,jdbcType=INTEGER},
+      </if>
+      <if test="identity != null" >
+        #{identity,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="parentIds != null" >
+        #{parentIds,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null" >
+        #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="weight != null" >
+        #{weight,jdbcType=INTEGER},
+      </if>
+      <if test="addon != null" >
+        #{addon,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cnit.yoyo.model.system.Resource" >
+    <!--
+      WARNING - @mbggenerated
+      This element is automatically generated by MyBatis Generator, do not modify.
+      This element was generated on Wed Mar 25 19:51:14 CST 2015.
+    -->
+    update t_desktop_resource
+    <set >
+      <if test="resourceName != null" >
+        RESOURCE_NAME = #{resourceName,jdbcType=VARCHAR},
+      </if>
+      <if test="resourceType != null" >
+        RESOURCE_TYPE = #{resourceType,jdbcType=VARCHAR},
+      </if>
+      <if test="appId != null" >
+        APP_ID = #{appId,jdbcType=VARCHAR},
+      </if>
+      <if test="workground != null" >
+        WORKGROUND = #{workground,jdbcType=VARCHAR},
+      </if>
+      <if test="menuGroup != null" >
+        MENU_GROUP = #{menuGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="menuTitle != null" >
+        MENU_TITLE = #{menuTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        URL = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="disabled != null" >
+        DISABLEd = #{disabled,jdbcType=BIT},
+      </if>
+      <if test="display != null" >
+        DISPLAY = #{display,jdbcType=BIT},
+      </if>
+      <if test="permission != null" >
+        PERMISSION = #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="target != null" >
+        TARGET = #{target,jdbcType=VARCHAR},
+      </if>
+      <if test="menuOrder != null" >
+        MENU_ORDER = #{menuOrder,jdbcType=INTEGER},
+      </if>
+      <if test="identity != null" >
+        IDENTITY = #{identity,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        PARENT_ID = #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="parentIds != null" >
+        PARENT_IDS = #{parentIds,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null" >
+        ICON = #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="weight != null" >
+        WEIGHT = #{weight,jdbcType=INTEGER},
+      </if>
+      <if test="addon != null" >
+        ADDON = #{addon,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.cnit.yoyo.model.system.Resource" >
+    <!--
+      WARNING - @mbggenerated
+      This element is automatically generated by MyBatis Generator, do not modify.
+      This element was generated on Wed Mar 25 19:51:14 CST 2015.
+    -->
+    update t_desktop_resource
+    set RESOURCE_NAME = #{resourceName,jdbcType=VARCHAR},
+      RESOURCE_TYPE = #{resourceType,jdbcType=VARCHAR},
+      APP_ID = #{appId,jdbcType=VARCHAR},
+      WORKGROUND = #{workground,jdbcType=VARCHAR},
+      MENU_GROUP = #{menuGroup,jdbcType=VARCHAR},
+      MENU_TITLE = #{menuTitle,jdbcType=VARCHAR},
+      URL = #{url,jdbcType=VARCHAR},
+      DISABLEd = #{disabled,jdbcType=BIT},
+      DISPLAY = #{display,jdbcType=BIT},
+      PERMISSION = #{permission,jdbcType=VARCHAR},
+      TARGET = #{target,jdbcType=VARCHAR},
+      MENU_ORDER = #{menuOrder,jdbcType=INTEGER},
+      IDENTITY = #{identity,jdbcType=VARCHAR},
+      PARENT_ID = #{parentId,jdbcType=INTEGER},
+      PARENT_IDS = #{parentIds,jdbcType=VARCHAR},
+      ICON = #{icon,jdbcType=VARCHAR},
+      WEIGHT = #{weight,jdbcType=INTEGER},
+      ADDON = #{addon,jdbcType=LONGVARCHAR}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cnit.yoyo.model.system.Resource" >
+    <!--
+      WARNING - @mbggenerated
+      This element is automatically generated by MyBatis Generator, do not modify.
+      This element was generated on Wed Mar 25 19:51:14 CST 2015.
+    -->
+    update t_desktop_resource
+    set RESOURCE_NAME = #{resourceName,jdbcType=VARCHAR},
+      RESOURCE_TYPE = #{resourceType,jdbcType=VARCHAR},
+      APP_ID = #{appId,jdbcType=VARCHAR},
+      WORKGROUND = #{workground,jdbcType=VARCHAR},
+      MENU_GROUP = #{menuGroup,jdbcType=VARCHAR},
+      MENU_TITLE = #{menuTitle,jdbcType=VARCHAR},
+      URL = #{url,jdbcType=VARCHAR},
+      DISABLEd = #{disabled,jdbcType=BIT},
+      DISPLAY = #{display,jdbcType=BIT},
+      PERMISSION = #{permission,jdbcType=VARCHAR},
+      TARGET = #{target,jdbcType=VARCHAR},
+      MENU_ORDER = #{menuOrder,jdbcType=INTEGER},
+      IDENTITY = #{identity,jdbcType=VARCHAR},
+      PARENT_ID = #{parentId,jdbcType=INTEGER},
+      PARENT_IDS = #{parentIds,jdbcType=VARCHAR},
+      ICON = #{icon,jdbcType=VARCHAR},
+      WEIGHT = #{weight,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <!-- 查找所有菜单 xiaox -->
+   <select id="findAllMenu" resultMap="BaseResultMap"  parameterType="java.lang.Integer">
+    select 
+    <include refid="Base_Column_List" />
+    from t_desktop_resource
+    where DISABLEd = 0 and  DISPLAY=0 and PARENT_ID = #{parentId,jdbcType=INTEGER}
+    
+  </select>
+  
+  <!-- 根据角色ID查找角色所绑定的菜单 -->
+   <select id="findMenuByRoleId" resultMap="BaseResultMap"  parameterType="java.lang.Integer">
+    select 
+    <include refid="Base_Column_List" />
+    from t_desktop_resource
+    where DISABLEd = 0 and  DISPLAY=0 and ID in(select resource_id from t_resource_role where ROLE_ID=#{roleId,jdbcType=INTEGER});
+  </select>
+</mapper>

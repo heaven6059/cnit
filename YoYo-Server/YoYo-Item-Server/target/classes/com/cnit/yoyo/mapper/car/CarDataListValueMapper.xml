@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cnit.yoyo.dao.car.CarDataListValueMapper" >
+  <resultMap id="BaseResultMap" type="com.cnit.yoyo.model.car.CarDataListValue" >
+    <id column="car_id" property="carId" jdbcType="INTEGER" />
+    <id column="data_id" property="dataId" jdbcType="INTEGER" />
+    <result column="value" property="value" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    car_id, data_id, value
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.cnit.yoyo.model.car.CarDataListValueKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_car_data_list_value
+    where car_id = #{carId,jdbcType=INTEGER}
+      and data_id = #{dataId,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectCountByPrimaryKey" resultType="java.lang.Integer" parameterType="com.cnit.yoyo.model.car.CarDataListValueKey" >
+    select 
+    count(0)
+    from t_car_data_list_value
+    where car_id = #{carId,jdbcType=INTEGER}
+      and data_id = #{dataId,jdbcType=INTEGER}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="com.cnit.yoyo.model.car.CarDataListValueKey" >
+    delete from t_car_data_list_value
+    where car_id = #{carId,jdbcType=INTEGER}
+      and data_id = #{dataId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cnit.yoyo.model.car.CarDataListValue" >
+    insert into t_car_data_list_value (car_id, data_id, value
+      )
+    values (#{carId,jdbcType=INTEGER}, #{dataId,jdbcType=INTEGER}, #{value,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cnit.yoyo.model.car.CarDataListValue" >
+    insert into t_car_data_list_value
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="carId != null" >
+        car_id,
+      </if>
+      <if test="dataId != null" >
+        data_id,
+      </if>
+      <if test="value != null" >
+        value,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="carId != null" >
+        #{carId,jdbcType=INTEGER},
+      </if>
+      <if test="dataId != null" >
+        #{dataId,jdbcType=INTEGER},
+      </if>
+      <if test="value != null" >
+        #{value,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cnit.yoyo.model.car.CarDataListValue" >
+    update t_car_data_list_value
+    <set >
+      <if test="value != null" >
+        value = #{value,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where car_id = #{carId,jdbcType=INTEGER}
+      and data_id = #{dataId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cnit.yoyo.model.car.CarDataListValue" >
+    update t_car_data_list_value
+    set value = #{value,jdbcType=VARCHAR}
+    where car_id = #{carId,jdbcType=INTEGER}
+      and data_id = #{dataId,jdbcType=INTEGER}
+  </update>
+</mapper>

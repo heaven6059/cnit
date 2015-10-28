@@ -1,0 +1,65 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*买家中心*/
+.sidebar{ width: 180px; height: auto; }
+.sidebar p{ width: 150px; height: 36px; line-height: 36px; background-color: #7dd589; color: #fff; font-family:"微软雅黑"; font-size: 18px; padding-left: 30px; }
+.sidebar .listUl{ padding: 10px; }
+.buy_sid ul .listLi{ border-bottom: 1px dotted #e2e2e2; padding-top: 10px; }
+.buy_sid ul li .myTitle{ height: 28px; line-height: 28px; background: url(../images/jiantou.png) no-repeat 4px -48px; padding-left: 30px; margin-bottom: 10px; display: block; font-size: 14px; color: #333; font-weight: bold; }
+.buy_sid ul ul{ margin-bottom: 16px; }
+.buy_sid ul ul li{ line-height: 24px; color: #666; padding-left: 30px; }
+
+
+/*个人信息*/
+.buy_main{ width: 790px; height: auto; margin-left: 10px; }
+.buy_t{ width: 750px; height: 83px; background-color: #e9f4fc; padding: 20px; }
+.b_img{ width: 80px; height: 80px; overflow: hidden; }
+.b_name_t{ width: 660px; height: 60px; }
+.b_name_l h2{ font-size: 20px; font-family: "微软雅黑"; color: #464849; line-height: 30px; }
+.b_name_l p{ color: #0081cc; line-height: 24px; }
+.b_name_r span{ color: #666; }
+.b_name_b{ width: 660px; height: 23px; line-height: 23px; }
+.b_name_b dl dt,.b_name_b dl dd{ float: left; display: inline-block; }
+.buy_dd{ width: 50px; height: 10px; background-color: #d9d9d9; margin-top: 7px; margin-right: 4px; }
+.buy_dd i{ width: 40px; height: 10px; background-color: #71b247; display: inline-block; position: relative; left: 0px; top: -6px; }
+.s_green{ color: #669933; margin-right: 16px; }
+.b_name_b dl dd a{ color: #0081cc; }
+
+/*nav*/
+.buy_nav{ margin:20px 0 50px; }
+.buy_nav ul li{ float: left; text-align: center; width: 19.8%; border-right: 1px solid #ccc; }
+.br0{ border-right: 0!important; }
+.buy_nav ul li i{ font-style: normal; }
+
+
+/*近期订单*/
+.buy_con{ width: 790px; height: auto; margin-top: 40px; }
+.order{ height: 24px; line-height: 24px; padding: 0 20px; }
+.order_l{ font-size: 18px; font-family: "微软雅黑"; }
+.order_r a{ color: #666; font-family: "宋体"; }
+.buy_list{ margin-top: 10px; color: #666; line-height: 30px; font-family: "新宋体"; }
+.buy_list ul li{ padding: 18px 0; margin: 0 26px; border-bottom: 1px dotted #eee; }
+.buy_list table { border-collapse: collapse; border: 1px solid #ddd;  } 
+.buy_list table tr td { border: solid #707070 1px; }
+
+
+.buy_list p{ text-align: center; }
+.buy_name{ width: 180px; height: 93px; padding: 16px 0 0 30px; }
+.buy_name p{ line-height: 30px; text-align: left !important; }
+.buy_price p,.buy_addr p,.buy_arre p{ height: 93px; padding-top: 16px; }
+.buy_price p{ width: 87px; }
+.buy_addr p{ width: 137px; }
+.buy_arre p{ width: 104px; }
+.buy_opera{ width: 120px; height: 93px; text-align: center; padding-top: 16px; }
+.buy_opera a{ display: block; color: #0081cc; margin-left: 20px; line-height: 22px; }
+.buy_opera .payment{ width: 73px; height: 22px; line-height: 22px; color: #fff; background-color: #f8a42d; border: 1px solid #d37002; margin-left: 35px; }
+
+
+/*帮助中心*/
+.buy_help{ width: 210px; height: auto; font-family: "新宋体"; }
+.help_t{ width: 190px; height: 36px; padding: 0 10px; line-height: 36px; background-color: #eaeaea; }
+.help_t span{ color: #333; }
+.help_in{ margin-left: 10px; font-size: 14px; font-weight: bold; }
+.help_ul{ padding: 20px; }
+.help_ul li{ line-height: 28px; }

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd  http://www.springframework.org/schema/context   
+    http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+	<context:component-scan base-package="com.cnit.yoyo.*" />
+
+	<bean id="configProperties"
+		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<property name="locations">
+			<list>
+				<value>classpath*:config.properties</value>
+			</list>
+		</property>
+	</bean>
+	<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PreferencesPlaceholderConfigurer">
+		<property name="properties" ref="configProperties" />
+	</bean>
+
+	<bean id="remoteService"
+		class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+		<property name="serviceUrl">
+			<value>${item.serviceUrl}</value>
+		</property>
+		<property name="serviceInterface" value="com.cnit.yoyo.rmi.interfaces.RemoteService" />
+		<property name="overloadEnabled" value="false" />
+	</bean>
+
+	<bean id="itemService"
+		class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+		<property name="serviceUrl">
+			<value>${item.serviceUrl}</value>
+		</property>
+		<property name="serviceInterface" value="com.cnit.yoyo.rmi.interfaces.RemoteService" />
+		<property name="overloadEnabled" value="false" />
+	</bean>
+
+	<bean id="orderService"
+		class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+		<property name="serviceUrl">
+			<value>${order.serviceUrl}</value>
+		</property>
+		<property name="serviceInterface" value="com.cnit.yoyo.rmi.interfaces.RemoteService" />
+		<property name="overloadEnabled" value="false" />
+	</bean>
+
+	<bean id="memberService"
+		class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+		<property name="serviceUrl">
+			<value>${user.serviceUrl}</value>
+		</property>
+		<property name="serviceInterface" value="com.cnit.yoyo.rmi.interfaces.RemoteService" />
+		<property name="overloadEnabled" value="false" />
+	</bean>
+
+	<bean id="searchClientService"
+		class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+		<property name="serviceUrl">
+			<value>${search.serviceUrl}</value>
+		</property>
+		<property name="serviceInterface" value="com.cnit.yoyo.rmi.interfaces.RemoteService" />
+		<property name="overloadEnabled" value="false" />
+	</bean>
+
+	<bean id="otherService"
+		class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+		<property name="serviceUrl">
+			<value>${other.serviceUrl}</value>
+		</property>
+		<property name="serviceInterface" value="com.cnit.yoyo.rmi.interfaces.RemoteService" />
+		<property name="overloadEnabled" value="false" />
+	</bean>
+
+	<bean id="imagesService" class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+		<property name="serviceUrl">  
+            <value>${images.serviceUrl}</value>  
+        </property> 
+		<property name="serviceInterface" value="com.cnit.yoyo.image.HessianInerface" />
+		<property name="overloadEnabled" value="false" />
+	</bean>
+	<import resource="classpath:ApplicationContext-Email.xml" />
+	<import resource="classpath:spring-redis.xml"/>
+</beans>

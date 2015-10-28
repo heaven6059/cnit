@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cnit.yoyo.sales.activity.dao.GroupBuyApplyMapper" >
+  <resultMap id="BaseResultMap" type="com.cnit.yoyo.model.sales.activity.GroupBuyApply" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="goods_id" property="goodsId" jdbcType="BIGINT" />
+    <result column="goods_name" property="goodsName" jdbcType="VARCHAR" />
+    <result column="cat_id" property="catId" jdbcType="BIGINT" />
+    <result column="aid" property="aid" jdbcType="BIGINT" />
+    <result column="store_id" property="storeId" jdbcType="BIGINT" />
+    <result column="price" property="price" jdbcType="DECIMAL" />
+    <result column="last_price" property="lastPrice" jdbcType="DECIMAL" />
+    <result column="remainnums" property="remainnums" jdbcType="INTEGER" />
+    <result column="nums" property="nums" jdbcType="INTEGER" />
+    <result column="personlimit" property="personlimit" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="image_codeid" property="imageCodeid" jdbcType="VARCHAR" />
+    <result column="last_midifity" property="lastMidifity" jdbcType="DATE" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.cnit.yoyo.model.sales.activity.GroupBuyApply" extends="BaseResultMap" >
+    <result column="act_desc" property="actDesc" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, goods_id, goods_name, cat_id, aid, store_id, price, last_price, remainnums, nums, 
+    personlimit, status, remark, image_codeid, last_midifity
+  </sql>
+  <sql id="Blob_Column_List" >
+    act_desc
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_groupbuy_apply
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_groupbuy_apply
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.cnit.yoyo.model.sales.activity.GroupBuyApply" >
+    insert into t_groupbuy_apply (id, goods_id, goods_name, 
+      cat_id, aid, store_id, price, 
+      last_price, remainnums, nums, 
+      personlimit, status, remark, 
+      image_codeid, last_midifity, act_desc
+      )
+    values (#{id,jdbcType=BIGINT}, #{goodsId,jdbcType=BIGINT}, #{goodsName,jdbcType=VARCHAR}, 
+      #{catId,jdbcType=BIGINT}, #{aid,jdbcType=BIGINT}, #{storeId,jdbcType=BIGINT}, #{price,jdbcType=DECIMAL}, 
+      #{lastPrice,jdbcType=DECIMAL}, #{remainnums,jdbcType=INTEGER}, #{nums,jdbcType=INTEGER}, 
+      #{personlimit,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, 
+      #{imageCodeid,jdbcType=VARCHAR}, #{lastMidifity,jdbcType=DATE}, #{actDesc,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cnit.yoyo.model.sales.activity.GroupBuyApply" >
+    insert into t_groupbuy_apply
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="goodsId != null" >
+        goods_id,
+      </if>
+      <if test="goodsName != null" >
+        goods_name,
+      </if>
+      <if test="catId != null" >
+        cat_id,
+      </if>
+      <if test="aid != null" >
+        aid,
+      </if>
+      <if test="storeId != null" >
+        store_id,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="lastPrice != null" >
+        last_price,
+      </if>
+      <if test="remainnums != null" >
+        remainnums,
+      </if>
+      <if test="nums != null" >
+        nums,
+      </if>
+      <if test="personlimit != null" >
+        personlimit,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="imageCodeid != null" >
+        image_codeid,
+      </if>
+      <if test="lastMidifity != null" >
+        last_midifity,
+      </if>
+      <if test="actDesc != null" >
+        act_desc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsName != null" >
+        #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="catId != null" >
+        #{catId,jdbcType=BIGINT},
+      </if>
+      <if test="aid != null" >
+        #{aid,jdbcType=BIGINT},
+      </if>
+      <if test="storeId != null" >
+        #{storeId,jdbcType=BIGINT},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="lastPrice != null" >
+        #{lastPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="remainnums != null" >
+        #{remainnums,jdbcType=INTEGER},
+      </if>
+      <if test="nums != null" >
+        #{nums,jdbcType=INTEGER},
+      </if>
+      <if test="personlimit != null" >
+        #{personlimit,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="imageCodeid != null" >
+        #{imageCodeid,jdbcType=VARCHAR},
+      </if>
+      <if test="lastMidifity != null" >
+        #{lastMidifity,jdbcType=DATE},
+      </if>
+      <if test="actDesc != null" >
+        #{actDesc,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cnit.yoyo.model.sales.activity.GroupBuyApply" >
+    update t_groupbuy_apply
+    <set >
+      <if test="goodsId != null" >
+        goods_id = #{goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsName != null" >
+        goods_name = #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="catId != null" >
+        cat_id = #{catId,jdbcType=BIGINT},
+      </if>
+      <if test="aid != null" >
+        aid = #{aid,jdbcType=BIGINT},
+      </if>
+      <if test="storeId != null" >
+        store_id = #{storeId,jdbcType=BIGINT},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="lastPrice != null" >
+        last_price = #{lastPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="remainnums != null" >
+        remainnums = #{remainnums,jdbcType=INTEGER},
+      </if>
+      <if test="nums != null" >
+        nums = #{nums,jdbcType=INTEGER},
+      </if>
+      <if test="personlimit != null" >
+        personlimit = #{personlimit,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="imageCodeid != null" >
+        image_codeid = #{imageCodeid,jdbcType=VARCHAR},
+      </if>
+      <if test="lastMidifity != null" >
+        last_midifity = #{lastMidifity,jdbcType=DATE},
+      </if>
+      <if test="actDesc != null" >
+        act_desc = #{actDesc,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.cnit.yoyo.model.sales.activity.GroupBuyApply" >
+    update t_groupbuy_apply
+    set goods_id = #{goodsId,jdbcType=BIGINT},
+      goods_name = #{goodsName,jdbcType=VARCHAR},
+      cat_id = #{catId,jdbcType=BIGINT},
+      aid = #{aid,jdbcType=BIGINT},
+      store_id = #{storeId,jdbcType=BIGINT},
+      price = #{price,jdbcType=DECIMAL},
+      last_price = #{lastPrice,jdbcType=DECIMAL},
+      remainnums = #{remainnums,jdbcType=INTEGER},
+      nums = #{nums,jdbcType=INTEGER},
+      personlimit = #{personlimit,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      image_codeid = #{imageCodeid,jdbcType=VARCHAR},
+      last_midifity = #{lastMidifity,jdbcType=DATE},
+      act_desc = #{actDesc,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cnit.yoyo.model.sales.activity.GroupBuyApply" >
+    update t_groupbuy_apply
+    set goods_id = #{goodsId,jdbcType=BIGINT},
+      goods_name = #{goodsName,jdbcType=VARCHAR},
+      cat_id = #{catId,jdbcType=BIGINT},
+      aid = #{aid,jdbcType=BIGINT},
+      store_id = #{storeId,jdbcType=BIGINT},
+      price = #{price,jdbcType=DECIMAL},
+      last_price = #{lastPrice,jdbcType=DECIMAL},
+      remainnums = #{remainnums,jdbcType=INTEGER},
+      nums = #{nums,jdbcType=INTEGER},
+      personlimit = #{personlimit,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      image_codeid = #{imageCodeid,jdbcType=VARCHAR},
+      last_midifity = #{lastMidifity,jdbcType=DATE}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

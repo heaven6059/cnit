@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cnit.yoyo.membercar.dao.MemberCarMapper" >
+  <resultMap id="BaseResultMap" type="com.cnit.yoyo.membercar.model.MemberCar" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="member_id" property="memberId" jdbcType="INTEGER" />
+    <result column="car_nick_name" property="carNickName" jdbcType="VARCHAR" />
+    <result column="is_default" property="isDefault" jdbcType="INTEGER" />
+    <result column="car_brand_id" property="carBrandId" jdbcType="BIGINT" />
+    <result column="car_dept_id" property="carDeptId" jdbcType="BIGINT" />
+    <result column="car_id" property="carId" jdbcType="BIGINT" />
+    <result column="car_year" property="carYear" jdbcType="INTEGER" />
+    <result column="car_production_month" property="carProductionMonth" jdbcType="INTEGER" />
+    <result column="use_year" property="useYear" jdbcType="INTEGER" />
+    <result column="use_month" property="useMonth" jdbcType="INTEGER" />
+    <result column="use_meter" property="useMeter"  jdbcType="BIGINT"/>
+    <result column="lastModified" property="lastmodified" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, member_id, car_nick_name, is_default, car_brand_id, car_dept_id, car_id, car_year, 
+    car_production_month, use_year, use_month, lastModified
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_member_car
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_member_car
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  
+  <delete id="deleteMemberCar" parameterType="com.cnit.yoyo.membercar.model.MemberCarQryDTO" >
+    delete from t_member_car
+    where id = #{id,jdbcType=INTEGER} and member_id=#{memberId,jdbcType=BIGINT}
+  </delete>
+  
+  <insert id="insert" parameterType="com.cnit.yoyo.membercar.model.MemberCar" >
+    insert into t_member_car (id, member_id, car_nick_name, 
+      is_default, car_brand_id, car_dept_id, 
+      car_id, car_year, car_production_month, 
+      use_year, use_month, lastModified
+      )
+    values (#{id,jdbcType=INTEGER}, #{memberId,jdbcType=INTEGER}, #{carNickName,jdbcType=VARCHAR}, 
+      #{isDefault,jdbcType=INTEGER}, #{carBrandId,jdbcType=BIGINT}, #{carDeptId,jdbcType=BIGINT}, 
+      #{carId,jdbcType=BIGINT}, #{carYear,jdbcType=INTEGER}, #{carProductionMonth,jdbcType=INTEGER}, 
+      #{useYear,jdbcType=INTEGER}, #{useMonth,jdbcType=INTEGER}, #{lastmodified,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" useGeneratedKeys="true" keyProperty="id" parameterType="com.cnit.yoyo.membercar.model.MemberCar" >
+    insert into t_member_car
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="memberId != null" >
+        member_id,
+      </if>
+      <if test="carNickName != null" >
+        car_nick_name,
+      </if>
+      <if test="isDefault != null" >
+        is_default,
+      </if>
+      <if test="carBrandId != null" >
+        car_brand_id,
+      </if>
+      <if test="carDeptId != null" >
+        car_dept_id,
+      </if>
+      <if test="carId != null" >
+        car_id,
+      </if>
+      <if test="carYear != null" >
+        car_year,
+      </if>
+      <if test="carProductionMonth != null" >
+        car_production_month,
+      </if>
+      <if test="useYear != null" >
+        use_year,
+      </if>
+      <if test="useMonth != null" >
+        use_month,
+      </if>
+      <if test="useMeter != null" >
+        use_meter,
+      </if>
+      <if test="lastmodified != null" >
+        lastModified,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="memberId != null" >
+        #{memberId,jdbcType=INTEGER},
+      </if>
+      <if test="carNickName != null" >
+        #{carNickName,jdbcType=VARCHAR},
+      </if>
+      <if test="isDefault != null" >
+        #{isDefault,jdbcType=INTEGER},
+      </if>
+      <if test="carBrandId != null" >
+        #{carBrandId,jdbcType=BIGINT},
+      </if>
+      <if test="carDeptId != null" >
+        #{carDeptId,jdbcType=BIGINT},
+      </if>
+      <if test="carId != null" >
+        #{carId,jdbcType=BIGINT},
+      </if>
+      <if test="carYear != null" >
+        #{carYear,jdbcType=INTEGER},
+      </if>
+      <if test="carProductionMonth != null" >
+        #{carProductionMonth,jdbcType=INTEGER},
+      </if>
+      <if test="useYear != null" >
+        #{useYear,jdbcType=INTEGER},
+      </if>
+      <if test="useMonth != null" >
+        #{useMonth,jdbcType=INTEGER},
+      </if>
+      <if test="useMeter != null" >
+        #{useMeter,jdbcType=BIGINT},
+      </if>
+      <if test="lastmodified != null" >
+        #{lastmodified,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cnit.yoyo.membercar.model.MemberCar" >
+    update t_member_car
+    <set >
+      <if test="memberId != null" >
+        member_id = #{memberId,jdbcType=INTEGER},
+      </if>
+      <if test="carNickName != null" >
+        car_nick_name = #{carNickName,jdbcType=VARCHAR},
+      </if>
+      <if test="isDefault != null" >
+        is_default = #{isDefault,jdbcType=INTEGER},
+      </if>
+      <if test="carBrandId != null" >
+        car_brand_id = #{carBrandId,jdbcType=BIGINT},
+      </if>
+      <if test="carDeptId != null" >
+        car_dept_id = #{carDeptId,jdbcType=BIGINT},
+      </if>
+      <if test="carId != null" >
+        car_id = #{carId,jdbcType=BIGINT},
+      </if>
+      <if test="carYear != null" >
+        car_year = #{carYear,jdbcType=INTEGER},
+      </if>
+      <if test="carProductionMonth != null" >
+        car_production_month = #{carProductionMonth,jdbcType=INTEGER},
+      </if>
+      <if test="useYear != null" >
+        use_year = #{useYear,jdbcType=INTEGER},
+      </if>
+      <if test="useMonth != null" >
+        use_month = #{useMonth,jdbcType=INTEGER},
+      </if>
+      <if test="useMeter != null" >
+        use_meter = #{useMeter,jdbcType=BIGINT},
+      </if>
+      <if test="lastmodified != null" >
+        lastModified = #{lastmodified,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cnit.yoyo.membercar.model.MemberCar" >
+    update t_member_car
+    set member_id = #{memberId,jdbcType=INTEGER},
+      car_nick_name = #{carNickName,jdbcType=VARCHAR},
+      is_default = #{isDefault,jdbcType=INTEGER},
+      car_brand_id = #{carBrandId,jdbcType=BIGINT},
+      car_dept_id = #{carDeptId,jdbcType=BIGINT},
+      car_id = #{carId,jdbcType=BIGINT},
+      car_year = #{carYear,jdbcType=INTEGER},
+      car_production_month = #{carProductionMonth,jdbcType=INTEGER},
+      use_year = #{useYear,jdbcType=INTEGER},
+      use_month = #{useMonth,jdbcType=INTEGER},
+      lastModified = #{lastmodified,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <update id="updateDefaultCarStatus" parameterType="com.cnit.yoyo.membercar.model.MemberCar" >
+    update t_member_car set is_default = 0 where id != #{id,jdbcType=INTEGER} and member_id=#{memberId,jdbcType=INTEGER}
+  </update>
+  
+  <update id="updateLastCarToDefault" parameterType="com.cnit.yoyo.membercar.model.MemberCarQryDTO">
+  	UPDATE t_member_car car SET car.is_default=1 WHERE car.member_id=#{memberId} and car.id=(SELECT id FROM (SELECT id FROM t_member_car c WHERE c.member_id = 313 ORDER BY c.lastModified DESC LIMIT 1 ) AS a)
+  </update>
+  
+  <resultMap type="com.cnit.yoyo.membercar.model.MemberCarDTO" id="MemberCarResultMap" extends="BaseResultMap">
+  		<result column="car_name" property="carName"/>
+  		<result column="car_logo" property="carLogo"/>
+  		<result column="car_dept_name"  property="carDeptName"/>
+  </resultMap>
+  <select id="selectMemberCarList" parameterType="com.cnit.yoyo.membercar.model.MemberCarQryDTO" resultMap="MemberCarResultMap">
+  	SELECT
+		member_car.id,
+		member_car.car_production_month,
+		member_car.car_nick_name,
+		member_car.car_brand_id,
+		member_car.car_dept_id,
+		member_car.car_id,
+		member_car.member_id,
+		member_car.car_year,
+		member_car.car_production_month,
+		member_car.use_year,
+		member_car.use_month,
+		member_car.use_meter,
+		member_car.lastModified,
+		member_car.is_default,
+		car.car_name,
+		car.icon_file as car_logo	,
+		car_dept.car_dept_name
+	FROM
+		t_member_car member_car
+	INNER JOIN 
+		t_car car ON member_car.car_id = car.car_id
+	LEFT JOIN 
+	    t_car_dept car_dept on member_car.car_dept_id=car_dept.car_dept_id	
+	WHERE
+		member_car.member_id=#{memberId}
+	ORDER BY member_car.lastModified DESC
+  </select>
+  
+  <select id="selectMemberCar" resultMap="MemberCarResultMap" parameterType="com.cnit.yoyo.membercar.model.MemberCarQryDTO">
+	SELECT
+		member_car.id,
+		member_car.car_production_month,
+		member_car.car_nick_name,
+		member_car.car_brand_id,
+		member_car.car_dept_id,
+		member_car.car_id,
+		member_car.member_id,
+		member_car.car_year,
+		member_car.car_production_month,
+		member_car.use_year,
+		member_car.use_month,
+		member_car.lastModified,
+		member_car.is_default,
+		car.car_name,
+		car.icon_file as car_logo	
+	FROM
+		t_member_car member_car
+	INNER JOIN 
+		t_car car ON member_car.car_id = car.car_id
+	WHERE
+		member_car.id=#{id} 
+	AND	
+		member_car.member_id=#{memberId}
+  </select>
+  
+  
+  <select id="selectMemberDefaultCar" resultMap="MemberCarResultMap" parameterType="com.cnit.yoyo.membercar.model.MemberCarQryDTO">
+		SELECT
+			member_car.id,
+			member_car.car_production_month,
+			member_car.car_nick_name,
+			member_car.car_brand_id,
+			member_car.car_dept_id,
+			member_car.car_id,
+			member_car.member_id,
+			member_car.car_year,
+			member_car.car_production_month,
+			member_car.use_year,
+			member_car.use_month,
+			member_car.use_meter,
+			member_car.lastModified,
+			member_car.is_default,
+			car.car_name,
+			car.icon_file as car_logo	
+		FROM
+			t_member_car member_car
+		INNER JOIN 
+			t_car car ON member_car.car_id = car.car_id
+		WHERE
+			member_car.is_default=1 
+		AND	
+			member_car.member_id=#{memberId}
+  </select>
+  
+  <select id="selectMemberHasAddCar" resultType="java.lang.Integer" parameterType="com.cnit.yoyo.membercar.model.MemberCarQryDTO">
+		SELECT
+			count(1)
+		FROM
+			t_member_car member_car
+		WHERE
+			member_car.member_id=#{memberId}
+		AND
+			member_car.car_id=#{carId} 
+		AND	
+			member_car.member_id=#{memberId}
+		AND 
+			member_car.car_year=#{carYear}
+  </select>
+  
+  <select id="selectMemberCarCount" resultType="java.lang.Integer" parameterType="com.cnit.yoyo.membercar.model.MemberCar">
+		SELECT
+			count(1)
+		FROM
+			t_member_car member_car
+		WHERE
+			member_car.member_id=#{memberId}
+  </select>
+</mapper>

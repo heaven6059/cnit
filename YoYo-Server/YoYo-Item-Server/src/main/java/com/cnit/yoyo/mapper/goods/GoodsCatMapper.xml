@@ -1,0 +1,699 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cnit.yoyo.dao.goods.GoodsCatMapper">
+	<resultMap id="BaseResultMap" type="com.cnit.yoyo.model.goods.GoodsCat">
+		<id column="CAT_ID" property="catId" jdbcType="INTEGER" />
+		<result column="CAT_NAME" property="catName" jdbcType="VARCHAR" />
+		<result column="PARENT_CAT_ID" property="parentCatId" jdbcType="INTEGER" />
+		<result column="PROFIT_POINT" property="profitPoint" jdbcType="DECIMAL" />
+		<result column="ORDER_NUM" property="orderNum" jdbcType="INTEGER" />
+		<result column="HIT_COUNT" property="hitCount" jdbcType="INTEGER" />
+		<result column="GOODS_COUNT" property="goodsCount" jdbcType="INTEGER" />
+		<result column="CHILD_COUNT" property="childCount" jdbcType="INTEGER" />
+		<result column="CAT_LOGO" property="catLogo" jdbcType="VARCHAR" />
+		<result column="DISABLED" property="disabled" jdbcType="CHAR" />
+		<result column="HIDDEN" property="hidden" jdbcType="CHAR" />
+		<result column="LAST_MODIFY" property="lastModify" jdbcType="VARCHAR" />
+		<result column="TITLE" property="title" jdbcType="VARCHAR" />
+		<result column="META_KEYWORDS" property="metaKeywords" jdbcType="VARCHAR" />
+		<result column="META_DESCRIPTION" property="metaDescription" jdbcType="VARCHAR" />
+		<result column="identifier" property="identifier" jdbcType="VARCHAR" />
+		<result column="accessoryName" jdbcType="VARCHAR" property="accessoryName" />
+		<result column="accessoryIds" jdbcType="INTEGER" property="accessoryIds" />
+	</resultMap>
+	<resultMap id="ResultMapWithBLOBs" type="com.cnit.yoyo.model.goods.GoodsCatWithBLOBs"
+		extends="BaseResultMap">
+		<result column="FINDER" property="finder" jdbcType="LONGVARCHAR" />
+		<result column="TABS" property="tabs" jdbcType="LONGVARCHAR" />
+		<result column="ADDON" property="addon" jdbcType="LONGVARCHAR" />
+	</resultMap>
+	<sql id="Example_Where_Clause">
+		<where>
+			<foreach collection="oredCriteria" item="criteria" separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem" open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Update_By_Example_Where_Clause">
+		<where>
+			<foreach collection="example.oredCriteria" item="criteria" separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem" open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		CAT_ID, CAT_NAME, PARENT_CAT_ID, PROFIT_POINT, ORDER_NUM, HIT_COUNT, GOODS_COUNT,
+		CHILD_COUNT, CAT_LOGO, DISABLED, HIDDEN, LAST_MODIFY, TITLE, META_KEYWORDS, META_DESCRIPTION,
+		identifier
+	</sql>
+	<sql id="Blob_Column_List">
+		FINDER, TABS, ADDON
+	</sql>
+	<select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.cnit.yoyo.model.goods.GoodsCatExample">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		'false' as QUERYID,
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from t_goods_cat
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
+	<select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cnit.yoyo.model.goods.GoodsCatExample">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		'false' as QUERYID,
+		<include refid="Base_Column_List" />
+		from t_goods_cat
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
+	<select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from t_goods_cat
+		where CAT_ID = #{catId,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from t_goods_cat
+		where CAT_ID =
+		#{catId,jdbcType=INTEGER}
+	</delete>
+	<delete id="deleteByExample" parameterType="com.cnit.yoyo.model.goods.GoodsCatExample">
+		delete from t_goods_cat
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</delete>
+	<insert id="insert" parameterType="com.cnit.yoyo.model.goods.GoodsCatWithBLOBs">
+		insert into t_goods_cat (CAT_ID, CAT_NAME, PARENT_CAT_ID,
+		PROFIT_POINT, ORDER_NUM, HIT_COUNT,
+		GOODS_COUNT, CHILD_COUNT, CAT_LOGO,
+		DISABLED, HIDDEN,
+		LAST_MODIFY,
+		TITLE, META_KEYWORDS, META_DESCRIPTION,
+		identifier, FINDER, TABS,
+		ADDON)
+		values
+		(#{catId,jdbcType=INTEGER}, #{catName,jdbcType=VARCHAR}, #{parentCatId,jdbcType=INTEGER},
+		#{profitPoint,jdbcType=DECIMAL}, #{orderNum,jdbcType=INTEGER}, #{hitCount,jdbcType=INTEGER},
+		#{goodsCount,jdbcType=INTEGER}, #{childCount,jdbcType=INTEGER}, #{catLogo,jdbcType=VARCHAR},
+		#{disabled,jdbcType=CHAR}, #{hidden,jdbcType=CHAR}, #{lastModify,jdbcType=VARCHAR},
+		#{title,jdbcType=VARCHAR}, #{metaKeywords,jdbcType=VARCHAR}, #{metaDescription,jdbcType=VARCHAR},
+		#{identifier,jdbcType=VARCHAR}, #{finder,jdbcType=LONGVARCHAR}, #{tabs,jdbcType=LONGVARCHAR},
+		#{addon,jdbcType=LONGVARCHAR})
+	</insert>
+	<insert id="insertSelective"  useGeneratedKeys="true" keyProperty="catId" parameterType="com.cnit.yoyo.model.goods.GoodsCatWithBLOBs" >
+		insert into t_goods_cat
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="catId != null">
+				CAT_ID,
+			</if>
+			<if test="catName != null">
+				CAT_NAME,
+			</if>
+			<if test="parentCatId != null">
+				PARENT_CAT_ID,
+			</if>
+			<if test="profitPoint != null">
+				PROFIT_POINT,
+			</if>
+			<if test="orderNum != null">
+				ORDER_NUM,
+			</if>
+			<if test="hitCount != null">
+				HIT_COUNT,
+			</if>
+			<if test="goodsCount != null">
+				GOODS_COUNT,
+			</if>
+			<if test="childCount != null">
+				CHILD_COUNT,
+			</if>
+			<if test="catLogo != null">
+				CAT_LOGO,
+			</if>
+			<if test="disabled != null">
+				DISABLED,
+			</if>
+			<if test="hidden != null">
+				HIDDEN,
+			</if>
+			<if test="lastModify != null">
+				LAST_MODIFY,
+			</if>
+			<if test="title != null">
+				TITLE,
+			</if>
+			<if test="metaKeywords != null">
+				META_KEYWORDS,
+			</if>
+			<if test="metaDescription != null">
+				META_DESCRIPTION,
+			</if>
+			<if test="identifier != null">
+				identifier,
+			</if>
+			<if test="finder != null">
+				FINDER,
+			</if>
+			<if test="tabs != null">
+				TABS,
+			</if>
+			<if test="addon != null">
+				ADDON,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="catId != null">
+				#{catId,jdbcType=INTEGER},
+			</if>
+			<if test="catName != null">
+				#{catName,jdbcType=VARCHAR},
+			</if>
+			<if test="parentCatId != null">
+				#{parentCatId,jdbcType=INTEGER},
+			</if>
+			<if test="profitPoint != null">
+				#{profitPoint,jdbcType=DECIMAL},
+			</if>
+			<if test="orderNum != null">
+				#{orderNum,jdbcType=INTEGER},
+			</if>
+			<if test="hitCount != null">
+				#{hitCount,jdbcType=INTEGER},
+			</if>
+			<if test="goodsCount != null">
+				#{goodsCount,jdbcType=INTEGER},
+			</if>
+			<if test="childCount != null">
+				#{childCount,jdbcType=INTEGER},
+			</if>
+			<if test="catLogo != null">
+				#{catLogo,jdbcType=VARCHAR},
+			</if>
+			<if test="disabled != null">
+				#{disabled,jdbcType=CHAR},
+			</if>
+			<if test="hidden != null">
+				#{hidden,jdbcType=CHAR},
+			</if>
+			<if test="lastModify != null">
+				#{lastModify,jdbcType=VARCHAR},
+			</if>
+			<if test="title != null">
+				#{title,jdbcType=VARCHAR},
+			</if>
+			<if test="metaKeywords != null">
+				#{metaKeywords,jdbcType=VARCHAR},
+			</if>
+			<if test="metaDescription != null">
+				#{metaDescription,jdbcType=VARCHAR},
+			</if>
+			<if test="identifier != null">
+				#{identifier,jdbcType=VARCHAR},
+			</if>
+			<if test="finder != null">
+				#{finder,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="tabs != null">
+				#{tabs,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="addon != null">
+				#{addon,jdbcType=LONGVARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<select id="countByExample" parameterType="com.cnit.yoyo.model.goods.GoodsCatExample"
+		resultType="java.lang.Integer">
+		select count(*) from t_goods_cat
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</select>
+	<update id="updateByExampleSelective" parameterType="map">
+		update t_goods_cat
+		<set>
+			<if test="record.catId != null">
+				CAT_ID = #{record.catId,jdbcType=INTEGER},
+			</if>
+			<if test="record.catName != null">
+				CAT_NAME = #{record.catName,jdbcType=VARCHAR},
+			</if>
+			<if test="record.parentCatId != null">
+				PARENT_CAT_ID = #{record.parentCatId,jdbcType=INTEGER},
+			</if>
+			<if test="record.profitPoint != null">
+				PROFIT_POINT = #{record.profitPoint,jdbcType=DECIMAL},
+			</if>
+			<if test="record.orderNum != null">
+				ORDER_NUM = #{record.orderNum,jdbcType=INTEGER},
+			</if>
+			<if test="record.hitCount != null">
+				HIT_COUNT = #{record.hitCount,jdbcType=INTEGER},
+			</if>
+			<if test="record.goodsCount != null">
+				GOODS_COUNT = #{record.goodsCount,jdbcType=INTEGER},
+			</if>
+			<if test="record.childCount != null">
+				CHILD_COUNT = #{record.childCount,jdbcType=INTEGER},
+			</if>
+			<if test="record.catLogo != null">
+				CAT_LOGO = #{record.catLogo,jdbcType=VARCHAR},
+			</if>
+			<if test="record.disabled != null">
+				DISABLED = #{record.disabled,jdbcType=CHAR},
+			</if>
+			<if test="record.hidden != null">
+				HIDDEN = #{record.hidden,jdbcType=CHAR},
+			</if>
+			<if test="record.lastModify != null">
+				LAST_MODIFY = #{record.lastModify,jdbcType=VARCHAR},
+			</if>
+			<if test="record.title != null">
+				TITLE = #{record.title,jdbcType=VARCHAR},
+			</if>
+			<if test="record.metaKeywords != null">
+				META_KEYWORDS = #{record.metaKeywords,jdbcType=VARCHAR},
+			</if>
+			<if test="record.metaDescription != null">
+				META_DESCRIPTION = #{record.metaDescription,jdbcType=VARCHAR},
+			</if>
+			<if test="record.identifier != null">
+				identifier = #{record.identifier,jdbcType=VARCHAR},
+			</if>
+			<if test="record.finder != null">
+				FINDER = #{record.finder,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="record.tabs != null">
+				TABS = #{record.tabs,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="record.addon != null">
+				ADDON = #{record.addon,jdbcType=LONGVARCHAR},
+			</if>
+		</set>
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByExampleWithBLOBs" parameterType="map">
+		update t_goods_cat
+		set CAT_ID = #{record.catId,jdbcType=INTEGER},
+		CAT_NAME =
+		#{record.catName,jdbcType=VARCHAR},
+		PARENT_CAT_ID = #{record.parentCatId,jdbcType=INTEGER},
+		PROFIT_POINT = #{record.profitPoint,jdbcType=DECIMAL},
+		ORDER_NUM =
+		#{record.orderNum,jdbcType=INTEGER},
+		HIT_COUNT = #{record.hitCount,jdbcType=INTEGER},
+		GOODS_COUNT =
+		#{record.goodsCount,jdbcType=INTEGER},
+		CHILD_COUNT = #{record.childCount,jdbcType=INTEGER},
+		CAT_LOGO = #{record.catLogo,jdbcType=VARCHAR},
+		DISABLED = #{record.disabled,jdbcType=CHAR},
+		HIDDEN =
+		#{record.hidden,jdbcType=CHAR},
+		LAST_MODIFY = #{record.lastModify,jdbcType=VARCHAR},
+		TITLE =
+		#{record.title,jdbcType=VARCHAR},
+		META_KEYWORDS = #{record.metaKeywords,jdbcType=VARCHAR},
+		META_DESCRIPTION = #{record.metaDescription,jdbcType=VARCHAR},
+		identifier =
+		#{record.identifier,jdbcType=VARCHAR},
+		FINDER = #{record.finder,jdbcType=LONGVARCHAR},
+		TABS =
+		#{record.tabs,jdbcType=LONGVARCHAR},
+		ADDON = #{record.addon,jdbcType=LONGVARCHAR}
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByExample" parameterType="map">
+		update t_goods_cat
+		set CAT_ID = #{record.catId,jdbcType=INTEGER},
+		CAT_NAME =
+		#{record.catName,jdbcType=VARCHAR},
+		PARENT_CAT_ID = #{record.parentCatId,jdbcType=INTEGER},
+		PROFIT_POINT = #{record.profitPoint,jdbcType=DECIMAL},
+		ORDER_NUM =
+		#{record.orderNum,jdbcType=INTEGER},
+		HIT_COUNT = #{record.hitCount,jdbcType=INTEGER},
+		GOODS_COUNT =
+		#{record.goodsCount,jdbcType=INTEGER},
+		CHILD_COUNT = #{record.childCount,jdbcType=INTEGER},
+		CAT_LOGO = #{record.catLogo,jdbcType=VARCHAR},
+		DISABLED = #{record.disabled,jdbcType=CHAR},
+		HIDDEN =
+		#{record.hidden,jdbcType=CHAR},
+		LAST_MODIFY = #{record.lastModify,jdbcType=VARCHAR},
+		TITLE =
+		#{record.title,jdbcType=VARCHAR},
+		META_KEYWORDS = #{record.metaKeywords,jdbcType=VARCHAR},
+		META_DESCRIPTION = #{record.metaDescription,jdbcType=VARCHAR},
+		identifier =
+		#{record.identifier,jdbcType=VARCHAR}
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByPrimaryKeySelective" parameterType="com.cnit.yoyo.model.goods.GoodsCatWithBLOBs">
+		update t_goods_cat
+		<set>
+			<if test="catName != null">
+				CAT_NAME = #{catName,jdbcType=VARCHAR},
+			</if>
+			<if test="parentCatId != null">
+				PARENT_CAT_ID = #{parentCatId,jdbcType=INTEGER},
+			</if>
+			<if test="profitPoint != null">
+				PROFIT_POINT = #{profitPoint,jdbcType=DECIMAL},
+			</if>
+			<if test="orderNum != null">
+				ORDER_NUM = #{orderNum,jdbcType=INTEGER},
+			</if>
+			<if test="hitCount != null">
+				HIT_COUNT = #{hitCount,jdbcType=INTEGER},
+			</if>
+			<if test="goodsCount != null">
+				GOODS_COUNT = #{goodsCount,jdbcType=INTEGER},
+			</if>
+			<if test="childCount != null">
+				CHILD_COUNT = #{childCount,jdbcType=INTEGER},
+			</if>
+			<if test="catLogo != null">
+				CAT_LOGO = #{catLogo,jdbcType=VARCHAR},
+			</if>
+			<if test="disabled != null">
+				DISABLED = #{disabled,jdbcType=CHAR},
+			</if>
+			<if test="hidden != null">
+				HIDDEN = #{hidden,jdbcType=CHAR},
+			</if>
+			<if test="lastModify != null">
+				LAST_MODIFY = #{lastModify,jdbcType=VARCHAR},
+			</if>
+			<if test="title != null">
+				TITLE = #{title,jdbcType=VARCHAR},
+			</if>
+			<if test="metaKeywords != null">
+				META_KEYWORDS = #{metaKeywords,jdbcType=VARCHAR},
+			</if>
+			<if test="metaDescription != null">
+				META_DESCRIPTION = #{metaDescription,jdbcType=VARCHAR},
+			</if>
+			<if test="identifier != null">
+				identifier = #{identifier,jdbcType=VARCHAR},
+			</if>
+			<if test="finder != null">
+				FINDER = #{finder,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="tabs != null">
+				TABS = #{tabs,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="addon != null">
+				ADDON = #{addon,jdbcType=LONGVARCHAR},
+			</if>
+		</set>
+		where CAT_ID = #{catId,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKeyWithBLOBs" parameterType="com.cnit.yoyo.model.goods.GoodsCatWithBLOBs">
+		update t_goods_cat
+		set CAT_NAME =
+		#{catName,jdbcType=VARCHAR},
+		PARENT_CAT_ID = #{parentCatId,jdbcType=INTEGER},
+		PROFIT_POINT =
+		#{profitPoint,jdbcType=DECIMAL},
+		ORDER_NUM = #{orderNum,jdbcType=INTEGER},
+		HIT_COUNT =
+		#{hitCount,jdbcType=INTEGER},
+		GOODS_COUNT = #{goodsCount,jdbcType=INTEGER},
+		CHILD_COUNT =
+		#{childCount,jdbcType=INTEGER},
+		CAT_LOGO = #{catLogo,jdbcType=VARCHAR},
+		DISABLED =
+		#{disabled,jdbcType=CHAR},
+		HIDDEN = #{hidden,jdbcType=CHAR},
+		LAST_MODIFY =
+		#{lastModify,jdbcType=VARCHAR},
+		TITLE = #{title,jdbcType=VARCHAR},
+		META_KEYWORDS =
+		#{metaKeywords,jdbcType=VARCHAR},
+		META_DESCRIPTION = #{metaDescription,jdbcType=VARCHAR},
+		identifier = #{identifier,jdbcType=VARCHAR},
+		FINDER = #{finder,jdbcType=LONGVARCHAR},
+		TABS =
+		#{tabs,jdbcType=LONGVARCHAR},
+		ADDON = #{addon,jdbcType=LONGVARCHAR}
+		where CAT_ID =
+		#{catId,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.cnit.yoyo.model.goods.GoodsCat">
+		update t_goods_cat
+		set CAT_NAME =
+		#{catName,jdbcType=VARCHAR},
+		PARENT_CAT_ID = #{parentCatId,jdbcType=INTEGER},
+		PROFIT_POINT =
+		#{profitPoint,jdbcType=DECIMAL},
+		ORDER_NUM = #{orderNum,jdbcType=INTEGER},
+		HIT_COUNT =
+		#{hitCount,jdbcType=INTEGER},
+		GOODS_COUNT = #{goodsCount,jdbcType=INTEGER},
+		CHILD_COUNT =
+		#{childCount,jdbcType=INTEGER},
+		CAT_LOGO = #{catLogo,jdbcType=VARCHAR},
+		DISABLED =
+		#{disabled,jdbcType=CHAR},
+		HIDDEN = #{hidden,jdbcType=CHAR},
+		LAST_MODIFY =
+		#{lastModify,jdbcType=VARCHAR},
+		TITLE = #{title,jdbcType=VARCHAR},
+		META_KEYWORDS =
+		#{metaKeywords,jdbcType=VARCHAR},
+		META_DESCRIPTION = #{metaDescription,jdbcType=VARCHAR},
+		identifier = #{identifier,jdbcType=VARCHAR}
+		where CAT_ID = #{catId,jdbcType=INTEGER}
+	</update>
+	<select id="selectAllMainCategory" resultMap="ResultMapWithBLOBs">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from t_goods_cat
+		where PARENT_CAT_ID=0
+	</select>
+	<resultMap id="TreeNodeDTO" type="com.cnit.yoyo.dto.TreeNode" extends="BaseResultMap"></resultMap>
+	<select id="selectAllCategoryTree" resultMap="TreeNodeDTO">
+		SELECT
+		CAT_ID AS id,CAT_NAME AS
+		name,PARENT_CAT_ID AS pId
+		FROM
+		t_goods_cat
+	</select>
+	<select id="selectCategoryByIds" resultMap="ResultMapWithBLOBs">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from t_goods_cat
+		where cat_id in
+		<foreach collection="array" item="item" index="index" open="(" close=")" separator=",">
+			#{item}
+		</foreach>
+	</select>
+	
+	<select id="selectMaintainCategory" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from t_goods_cat
+		where identifier = #{identifier,jdbcType=VARCHAR}
+		and child_count=0
+	</select>
+	
+	<select id="selectOptionalMaintainCategoryTree" parameterType="java.lang.String" resultMap="TreeNodeDTO">
+		call pro_find_goods_cat_childLst(777,(SELECT cat_id from t_goods_cat WHERE cat_name='官方保养'));
+	</select>
+	
+	<select id="selectOfficialMaintainCategory" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from t_goods_cat
+		WHERE PARENT_CAT_ID = (SELECT CAT_ID from t_goods_cat WHERE CAT_NAME='官方保养') 
+		and DISABLED=0
+		and child_count=0
+	</select>
+	
+	<select id="selectOptionalMaintainCategory" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from t_goods_cat
+		WHERE PARENT_CAT_ID = (SELECT CAT_ID from t_goods_cat WHERE CAT_NAME='自选保养') 
+		and DISABLED=0
+		and child_count=0
+	</select>
+	
+	<!-- 根据分类id获得该id的所有上级分类的id -->
+	<select id="getParentIds" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+		SELECT T2.CAT_ID
+		FROM (
+		SELECT
+		@r AS _id,
+		(SELECT @r := parent_cat_id FROM t_goods_cat WHERE CAT_ID =
+		_id) AS parent_cat_id,
+		@l := @l + 1 AS lvl
+		FROM
+		(SELECT @r := #{id,jdbcType=INTEGER}, @l := 0) vars,
+		t_goods_cat h
+		WHERE  <![CDATA[ @r <> 0 ]]>)
+		T1
+		JOIN t_goods_cat T2
+		ON T1._id = T2.CAT_ID
+		ORDER BY T1.lvl DESC
+
+	</select>
+	<update id="increaseSubcatCount" parameterType="java.lang.Integer">
+		update t_goods_cat t set t.CHILD_COUNT =
+		t.CHILD_COUNT+1 where t.CAT_ID = #{catId,jdbcType=INTEGER}
+	</update>
+	<update id="decreaseSubcatCount" parameterType="java.lang.Integer">
+		update t_goods_cat t set t.CHILD_COUNT =
+		t.CHILD_COUNT-1 where t.CAT_ID = #{catId,jdbcType=INTEGER}
+	</update>
+	
+	
+		<!--通过identifier查找分类  -->
+	<select id="findCategoryTree" parameterType="java.lang.String" resultMap="BaseResultMap">
+		select <include refid="Base_Column_List" />,
+		(SELECT group_concat(tac.CATALOG_NAME  SEPARATOR '、') from t_car_maintain_accessory tc join t_accessory_catalog tac ON tc.acc_id=tac.CATALOG_ID WHERE tc.disabled='0' and tc.category_id=t_goods_cat.CAT_ID) as accessoryName,
+		(SELECT group_concat(tac.CATALOG_ID SEPARATOR '|') from t_car_maintain_accessory tc join t_accessory_catalog tac ON tc.acc_id=tac.CATALOG_ID WHERE tc.disabled='0' and tc.category_id=t_goods_cat.CAT_ID) as accessoryIds
+		from t_goods_cat where identifier = #{identifier} and DISABLED='0' and parent_cat_id=0
+		
+	</select>
+	
+	<!-- 通过父级id查子级 -->
+	<select id="selectByPid" parameterType="java.lang.Integer"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />,
+		(SELECT group_concat(tac.CATALOG_NAME  SEPARATOR '、') from t_car_maintain_accessory tc join t_accessory_catalog tac ON tc.acc_id=tac.CATALOG_ID WHERE tc.disabled='0' and tc.category_id=t_goods_cat.CAT_ID) as accessoryName,
+		(SELECT group_concat(tac.CATALOG_ID SEPARATOR '|') from t_car_maintain_accessory tc join t_accessory_catalog tac ON tc.acc_id=tac.CATALOG_ID WHERE tc.disabled='0' and tc.category_id=t_goods_cat.CAT_ID) as accessoryIds
+		from t_goods_cat
+		where DISABLED='0' and parent_cat_id=#{pid} 
+		
+	</select>
+	
+		<!-- 通过父级id查子级 -->
+	<select id="selectNoHiddenByPid" parameterType="java.lang.Integer"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />,
+		(SELECT group_concat(tac.CATALOG_NAME  SEPARATOR '、') from t_car_maintain_accessory tc join t_accessory_catalog tac ON tc.acc_id=tac.CATALOG_ID WHERE tc.disabled='0' and tc.category_id=t_goods_cat.CAT_ID) as accessoryName,
+		(SELECT group_concat(tac.CATALOG_ID SEPARATOR '|') from t_car_maintain_accessory tc join t_accessory_catalog tac ON tc.acc_id=tac.CATALOG_ID WHERE tc.disabled='0' and tc.category_id=t_goods_cat.CAT_ID) as accessoryIds
+		from t_goods_cat
+		where DISABLED='0' and parent_cat_id=#{pid} and HIDDEN='0'
+		
+	</select>
+	
+	<!-- 获取分类树 -->
+	<select id="selectCategory" parameterType="com.cnit.yoyo.model.goods.GoodsCat"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from t_goods_cat
+		where DISABLED='0'  and HIDDEN='0' 
+		
+		<if test="identifier!=null and identifier!=''">
+			<choose>
+				<when test="identifier=='110'">  <!-- 其他品牌 -->
+					and identifier != '999'
+				</when>
+				<otherwise>
+					and identifier = #{identifier}
+				</otherwise>
+			</choose>
+		</if>
+		
+		<if test="catName!=null and catName!=''">
+			and cat_name=#{catName}
+		</if>
+		
+		<if test="(parentCatId != null and parentCatId!='') or (parentCatId ==0) ">
+			and parent_cat_id=#{parentCatId}
+		</if>
+		
+		<if test="companyId != null and companyId != ''">
+			and CAT_ID in (select cat_id from t_company_region where company_id = #{companyId})
+		</if>
+	</select>
+	
+	<!-- 通过店铺id获得分类 -->
+	<select id="findGoodsCatByCompanyId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+		select d.* from t_company_region a LEFT JOIN t_company_region_cat b on a.cat_id=b.region_id
+		LEFT JOIN t_company_region_ship c on b.region_id=c.region_id 
+		LEFT JOIN t_goods_cat d on c.cat_id=d.CAT_ID WHERE a.company_id=#{companyId} and a.disbaled='0'
+	</select>
+</mapper>
